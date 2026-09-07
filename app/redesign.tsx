@@ -39,6 +39,169 @@ function MapFrame({
   topRankedIds: string[];
   onSelect: (id: string) => void;
 }){
+ const [html, setHtml] = useState('');
+
+ useEffect(() => {
+   const topList = JSON.stringify(topRankedIds || []);
+   const doc = `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    html, body, #map { height: 100%; margin: 0; padding: 0; }
+    .leaflet-container { font: 11px monospace; background: #dce3df; }
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip { border-radius: 0; border: 1px solid #111; }
+    .legend { background: #fff; border: 1px solid #111; padding: 6px 8px; line-height: 16px; font-size: 10px; }
+    .legend i { display: inline-block; width: 11px; height: 11px; margin-right: 5px; vertical-align: -1px; }
+    
+    .rank-badge {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      background: #c80032;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      border: 1.5px solid #111;
+      box-shadow: 2px 2px 0px #111;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .rank-badge.active-badge {
+      background: #111111;
+      color: #ffffff;
+      transform: scale(1.15);
+      border-color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    const city = ${JSON.stringify(city)};
+    const field = ${JSON.stringify(scenario)};
+    const selected = ${JSON.stringify(selected)};
+    const topIds = ${topList};
+
+    const map = L.map('map', { zoomControl: true });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap',
+      maxZoom: 19
+    }).addTo(map);
+
+    function fmt(v) { return v == null ? '—' : Number(v).toFixed(0) + '/100'; }
+
+    Promise.all([
+      fetch('/data/grid_priority.geojson').then(r => r.json()),
+      fetch('/data/project_context.geojson').then(r => r.json()).catch(() => null)
+    ]).then(([grid, projects]) => {
+      const vals = [
+        ['#1046ca', '0–20'],
+        ['#55a8c8', '20–40'],
+        ['#ecebe5', '40–60'],
+        ['#c80032', '60–80'],
+        ['#880022', '80–100']
+      ];
+
+      const layer = L.geoJSON(grid, {
+        filter: function(f) { return f.properties && f.properties.city === city; },
+        style: function(f) {
+          const v = f.properties[field];
+          const isSel = f.properties.grid_id === selected;
+          const rankIdx = topIds.indexOf(f.properties.grid_id);
+          const isTop = rankIdx !== -1;
+
+          let baseColor = '#ecebe5';
+          if (v != null) {
+            baseColor = v < 20 ? '#1046ca' : v < 40 ? '#55a8c8' : v < 60 ? '#ecebe5' : v < 80 ? '#c80032' : '#880022';
+          }
+
+          return {
+            fillColor: isTop ? '#c80032' : baseColor,
+            fillOpacity: isSel ? 0.95 : isTop ? 0.85 : (f.properties.eligible ? 0.45 : 0.15),
+            color: isSel ? '#111111' : isTop ? '#111111' : 'rgba(255,255,255,.65)',
+            weight: isSel ? 3.5 : isTop ? 2.5 : 0.5
+          };
+        },
+        onEachFeature: function(f, l) {
+          const p = f.properties;
+          const v = p[field];
+          const rankIdx = topIds.indexOf(p.grid_id);
+
+          if (rankIdx !== -1) {
+            try {
+              const center = l.getBounds().getCenter();
+              const isSel = p.grid_id === selected;
+              const badge = L.divIcon({
+                className: 'rank-badge' + (isSel ? ' active-badge' : ''),
+                html: String(rankIdx + 1).padStart(2, '0'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
+              });
+              L.marker(center, { icon: badge, interactive: false }).addTo(map);
+            } catch(e){}
+          }
+
+          l.bindPopup('<b>' + (p.neighbourhood_name || '500 m cell') + '</b><br>' +
+            (rankIdx !== -1 ? '<b style="color:#c80032">Top Rank #' + (rankIdx + 1) + '</b><br>' : '') +
+            'Priority ' + (v == null ? 'Excluded' : Number(v).toFixed(1) + '/100') + '<br>' +
+            'Surface pressure ' + fmt(p.score_impervious) + '<br>' +
+            'Green deficit ' + fmt(p.score_green_deficit) + '<br>' +
+            'Population exposure ' + fmt(p.score_population) + '<br>' +
+            'Summer surface temp ' + (p.summer_lst_median_c == null ? '—' : Number(p.summer_lst_median_c).toFixed(1) + ' °C')
+          );
+
+          l.on('click', function() {
+            parent.postMessage({ type: 'grid-select', id: p.grid_id }, '*');
+          });
+        }
+      }).addTo(map);
+
+      try {
+        map.fitBounds(layer.getBounds(), { padding: [10, 10] });
+      } catch(e){}
+
+      if (projects) {
+        try {
+          L.geoJSON(projects, {
+            filter: function(f) { return f.properties && f.properties.city === city; },
+            style: { color: '#111', weight: 2, fillOpacity: 0.04, dashArray: '5 3' }
+          }).addTo(map);
+        } catch(e){}
+      }
+
+      const legend = L.control({ position: 'bottomright' });
+      legend.onAdd = function() {
+        const d = L.DomUtil.create('div', 'legend');
+        d.innerHTML = '<b>Relative priority</b><br>' +
+          vals.map(x => '<i style="background:' + x[0] + '"></i>' + x[1]).join('<br>') +
+          '<br><i style="background:#c80032; border:1px solid #111;"></i><b>01-10 Top rank</b>';
+        return d;
+      };
+      legend.addTo(map);
+    }).catch(err => {
+      console.error('GeoJSON yükleme hatası:', err);
+    });
+  </script>
+</body>
+</html>`;
+   setHtml(doc);
+ }, [city, scenario, selected, topRankedIds]);
+
+ useEffect(() => {
+   const h = (e: MessageEvent) => {
+     if (e.data?.type === 'grid-select') onSelect(e.data.id);
+   };
+   window.addEventListener('message', h);
+   return () => window.removeEventListener('message', h);
+ }, [onSelect]);
+
+ return <iframe title={`${city} urban cooling priority map`} srcDoc={html} />;
+}
  const [html,setHtml]=useState('');
 
  useEffect(()=>{

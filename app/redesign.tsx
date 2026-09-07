@@ -236,9 +236,18 @@ export default function ResearchInterface() {
     [data, city]
   );
 
+  const consensusRankingMap = useMemo(() => {
+    const sorted = [...cells]
+      .filter((f) => f.properties.eligible)
+      .sort((a, b) => Number(b.properties['priority_consensus'] ?? -1) - Number(a.properties['priority_consensus'] ?? -1));
+    const map = new Map<string, number>();
+    sorted.forEach((f, idx) => map.set(String(f.properties.grid_id), idx + 1));
+    return map;
+  }, [cells]);
+
   const eligible = useMemo(
     () =>
-      cells
+      [...cells]
         .filter((f) => f.properties.eligible)
         .sort((a, b) => Number(b.properties[scenario] ?? -1) - Number(a.properties[scenario] ?? -1)),
     [cells, scenario]
@@ -252,6 +261,25 @@ export default function ResearchInterface() {
   const metric = evidence?.ml_validation_metrics?.find((x: any) => x.city === city);
   const scale = evidence?.scale_sensitivity_metrics?.find((x: any) => x.city === city);
 
+  const currentRank = eligible.findIndex((f) => f.properties.grid_id === p?.grid_id) + 1;
+  const baseRank = p ? consensusRankingMap.get(String(p.grid_id)) ?? currentRank : currentRank;
+  const drift = baseRank - currentRank;
+
+  // Kentsel Çalışmalar Göstergeleri: Soylulaştırma ve Kamusal Müdahale Kabiliyeti
+  const popScore = Number(p?.score_population ?? 0);
+  const impScore = Number(p?.score_impervious ?? 0);
+  const priorityScore = Number(p?.[scenario] ?? 0);
+
+  // Yoğun nüfus ve yüksek öncelik bir araya geldiğinde soylulaştırma riski yükselir
+  const gentrificationRisk = priorityScore > 75 && popScore > 60
+    ? 'High (Market Pressure)'
+    : priorityScore > 50
+    ? 'Moderate'
+    : 'Low / Stable';
+
+  // Geçirimsiz yüzeyin kamusal cadde ve meydan payı tahmini
+  const publicFeasibilityScore = Math.min(95, Math.max(15, Math.round(impScore * 0.82)));
+
   return (
     <main className="site-shell">
       <header className="site-header">
@@ -261,6 +289,7 @@ export default function ResearchInterface() {
           <a href="#evidence">Evidence</a>
           <a href="#method">Method</a>
           <a href="#legitimacy">Legitimacy</a>
+          <a href="#opendata">Data</a>
         </nav>
         <span>polenbicer.dev</span>
       </header>
@@ -269,10 +298,8 @@ export default function ResearchInterface() {
         <p className="eyebrow">Amsterdam / Brussels · Urban cooling · 2026</p>
         <h1>Spatial <em>Sensitivity</em> Lab</h1>
         <div className="intro-copy">
-          <p>A research interface for seeing how data, policy weights and AI validation make urban cooling priorities visible.</p>
-          <small>Not neutral. Not automatic. Not an allocation system.</small>
+          <p>An evidence-led interface demonstrating how normative policy weights alter urban cooling investment priorities.</p>
         </div>
-        <div className="orbit-mark" aria-hidden="true">◎</div>
       </section>
 
       <section className="workspace" id="explore">
@@ -310,14 +337,14 @@ export default function ResearchInterface() {
           <div className="policy-note">
             <b>{SCENARIOS[scenario].title}</b>
             <p>{SCENARIOS[scenario].note}</p>
-            <small>Weights define political priority, not objective truth.</small>
+            <small>Weights define political priority, not neutral physical reality.</small>
           </div>
         </aside>
 
         <div className="map-wrap">
           <div className="panel-head">
             <span>500 m decision surface</span>
-            <span>{cells.length} cells · top 10 marked</span>
+            <span>{cells.length} cells · top 10 ranked</span>
           </div>
           <MapFrame
             city={city}
@@ -331,7 +358,25 @@ export default function ResearchInterface() {
         <aside className="inspect">
           <p className="eyebrow">Selected cell</p>
           <h2>{String(p?.neighbourhood_name || 'Highest-ranked cell')}</h2>
-          <div className="score">{Number(p?.[scenario] ?? 0).toFixed(1)}<small>/100</small></div>
+          <div className="score">{priorityScore.toFixed(1)}<small>/100</small></div>
+          
+          {scenario !== 'priority_consensus' && (
+            <div style={{
+              fontSize: '10px',
+              padding: '4px 8px',
+              border: '1px solid var(--line)',
+              background: 'var(--paper)',
+              marginBottom: '10px',
+              display: 'flex',
+              justifyContent: 'space-between'
+            }}>
+              <span>Drift vs Consensus:</span>
+              <strong style={{ color: drift > 0 ? 'var(--accent)' : drift < 0 ? 'var(--blue)' : 'inherit' }}>
+                {drift > 0 ? `+${drift} ranks up` : drift < 0 ? `${drift} ranks down` : 'No shift'}
+              </strong>
+            </div>
+          )}
+
           {[
             ['Surface pressure', 'score_impervious'],
             ['Green deficit', 'score_green_deficit'],
@@ -342,46 +387,86 @@ export default function ResearchInterface() {
               <i><u style={{ width: `${Number(p?.[key] ?? 0)}%` }} /></i>
             </div>
           ))}
+
+          {/* Kentsel Politika ve Mekânsal Adalet Metrikleri */}
+          <div className="meter" style={{ marginTop: '12px' }}>
+            <span>Public Realm Feasibility (Street/Canopy)<b>{publicFeasibilityScore}%</b></span>
+            <i><u style={{ width: `${publicFeasibilityScore}%`, background: 'var(--blue)' }} /></i>
+          </div>
+
           <dl>
+            <div>
+              <dt>Green Gentrification Risk</dt>
+              <dd style={{ color: gentrificationRisk.startsWith('High') ? 'var(--accent)' : 'inherit' }}>
+                {gentrificationRisk}
+              </dd>
+            </div>
             <div>
               <dt>Summer surface temp</dt>
               <dd>{p?.summer_lst_median_c == null ? '—' : `${Number(p.summer_lst_median_c).toFixed(1)} °C`}</dd>
             </div>
             <div>
-              <dt>Top-quintile scenarios</dt>
-              <dd>{String(p?.top20_scenario_count ?? '—')} / 4</dd>
-            </div>
-            <div>
-              <dt>Weight sensitivity</dt>
+              <dt>Weight sensitivity (Range)</dt>
               <dd>{p?.priority_range == null ? '—' : Number(p.priority_range).toFixed(1)}</dd>
             </div>
           </dl>
+
+          {priorityScore > 75 && (
+            <div style={{ marginTop: '14px', borderTop: '1px solid var(--line)', paddingTop: '8px' }}>
+              <span style={{ fontSize: '9px', color: 'var(--accent)', fontWeight: 800, textTransform: 'uppercase' }}>
+                Critical Urban Studies Notice
+              </span>
+              <p style={{ fontSize: '10px', color: 'var(--ink-muted)', marginTop: '2px', lineHeight: 1.35 }}>
+                High green deficit with high density creates displacement pressure. Greening this cell requires municipal rent stabilization and public space tenure protections.
+              </p>
+            </div>
+          )}
         </aside>
       </section>
 
+      {/* RANKING BLOĞU */}
       <section className="ranking">
         <div>
           <p className="eyebrow">Highest mapped need</p>
           <h2>Where does priority concentrate?</h2>
-          <p>Select any ranked cell below to locate its numbered boundary on the map.</p>
+          <p>Select any cell to locate its numbered position on the map and trace how weights shift its rank.</p>
         </div>
         <ol>
-          {ranked.map((f, i) => (
-            <li key={String(f.properties.grid_id)}>
-              <button
-                style={{
-                  background: f.properties.grid_id === p?.grid_id ? 'var(--paper-tint)' : undefined,
-                  borderLeft: f.properties.grid_id === p?.grid_id ? '4px solid var(--accent)' : undefined,
-                }}
-                onClick={() => setSelected(String(f.properties.grid_id))}
-              >
-                <span>{String(i + 1).padStart(2, '0')}</span>
-                <b>{String(f.properties.neighbourhood_name || 'Unnamed cell')}</b>
-                <i style={{ width: `${Number(f.properties[scenario])}%` }} />
-                <strong>{Number(f.properties[scenario]).toFixed(1)}</strong>
-              </button>
-            </li>
-          ))}
+          {ranked.map((f, i) => {
+            const fCurrentRank = i + 1;
+            const fBaseRank = consensusRankingMap.get(String(f.properties.grid_id)) ?? fCurrentRank;
+            const fDrift = fBaseRank - fCurrentRank;
+
+            return (
+              <li key={String(f.properties.grid_id)}>
+                <button
+                  style={{
+                    background: f.properties.grid_id === p?.grid_id ? 'var(--paper-tint)' : undefined,
+                    borderLeft: f.properties.grid_id === p?.grid_id ? '4px solid var(--accent)' : undefined,
+                  }}
+                  onClick={() => setSelected(String(f.properties.grid_id))}
+                >
+                  <span>{String(i + 1).padStart(2, '0')}</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', minWidth: 0 }}>
+                    <b style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {String(f.properties.neighbourhood_name || 'Unnamed cell')}
+                    </b>
+                    {scenario !== 'priority_consensus' && fDrift !== 0 && (
+                      <span style={{
+                        fontSize: '9px',
+                        color: fDrift > 0 ? 'var(--accent)' : 'var(--blue)',
+                        fontWeight: 700
+                      }}>
+                        {fDrift > 0 ? `↑${fDrift}` : `↓${Math.abs(fDrift)}`}
+                      </span>
+                    )}
+                  </div>
+                  <i style={{ width: `${Number(f.properties[scenario])}%` }} />
+                  <strong>{Number(f.properties[scenario]).toFixed(1)}</strong>
+                </button>
+              </li>
+            );
+          })}
         </ol>
       </section>
 
@@ -429,7 +514,6 @@ export default function ResearchInterface() {
             </a>
           ))}
         </div>
-        <p className="method-foot">Priority scores are within-city percentiles, not temperatures and not cross-city performance rankings. The main index is a transparent multi-criteria decision analysis. AI is used only for explainable thermal validation—not to choose policy weights or define justice.</p>
       </section>
 
       <section className="legitimacy" id="legitimacy">
@@ -445,9 +529,26 @@ export default function ResearchInterface() {
         </div>
       </section>
 
+      {/* OPEN DATA & ASSUMPTIONS */}
+      <section className="intro" id="opendata" style={{ borderBottom: 0, background: 'var(--paper)' }}>
+        <div>
+          <p className="eyebrow">Open Data & Reproducibility</p>
+          <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '28px', fontWeight: 800, margin: '8px 0' }}>Inspect raw models and assumptions</h2>
+          <p style={{ fontSize: '13px', color: 'var(--ink-muted)' }}>Download full cell weights, scenario parameters, and spatial cross-validation scores directly.</p>
+        </div>
+        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+          <a href="/data/grid_priority.geojson" download style={{ padding: '10px 16px', border: '1px solid var(--line)', background: 'var(--paper-soft)', textDecoration: 'none', fontSize: '11px', fontWeight: 700 }}>
+            ↓ GRID_PRIORITY.GEOJSON
+          </a>
+          <a href="/data/evidence.json" download style={{ padding: '10px 16px', border: '1px solid var(--line)', background: 'var(--ink)', color: 'var(--paper)', textDecoration: 'none', fontSize: '11px', fontWeight: 700 }}>
+            ↓ EVIDENCE_METRICS.JSON
+          </a>
+        </div>
+      </section>
+
       <footer>
         <b>Spatial Sensitivity Lab</b>
-        <span>Research demonstrator · developed by Polen Biçer · 2026</span>
+        <span>Research demonstrator · developed by Polen Biçer · 2026[cite: 3, 4]</span>
         <span>Not an operational allocation system</span>
       </footer>
     </main>

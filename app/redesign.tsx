@@ -22,12 +22,38 @@ type Collection = {
 
 const CITIES: City[] = ['Brussels', 'Amsterdam'];
 
-const SCENARIOS: Record<Scenario, { title: string; weights: string; note: string }> = {
-  priority_consensus: { title: 'Consensus', weights: 'Median of four scenarios', note: 'The median score across all policy logics.' },
-  priority_balanced: { title: 'Balanced', weights: '40% surface · 30% green deficit · 30% population', note: 'Distributes attention across physical pressure, nature deficit and population exposure.' },
-  priority_population_led: { title: 'Population-led', weights: '25% surface · 20% green deficit · 55% population', note: 'Prioritises where more residents are potentially exposed.' },
-  priority_surface_led: { title: 'Surface-led', weights: '60% surface · 20% green deficit · 20% population', note: 'Prioritises sealed and impervious urban surfaces.' },
-  priority_nature_deficit_led: { title: 'Nature-deficit-led', weights: '25% surface · 55% green deficit · 20% population', note: 'Prioritises the greatest relative shortage of cooling green cover.' },
+// Normative / Political Value Framing
+const SCENARIOS: Record<Scenario, { title: string; weights: string; note: string; biasTag: string }> = {
+  priority_consensus: { 
+    title: 'Consensus Median', 
+    weights: 'Statistical compromise across four logics', 
+    note: 'The median baseline. Neutralises individual normative extremes.',
+    biasTag: 'Statistical Compromise'
+  },
+  priority_balanced: { 
+    title: 'Equal Distributive Justice', 
+    weights: '40% surface · 30% green deficit · 30% population', 
+    note: 'Equally distributes weight across built environment, ecology, and human density.',
+    biasTag: 'Balanced Intervention'
+  },
+  priority_population_led: { 
+    title: 'Demographic Exposure First', 
+    weights: '25% surface · 20% green deficit · 55% population', 
+    note: 'Prioritises human bodies over physical land cover. Favours high-density social housing.',
+    biasTag: 'Human Utilitarian'
+  },
+  priority_surface_led: { 
+    title: 'Built Environment / Sealed Surfaces', 
+    weights: '60% surface · 20% green deficit · 20% population', 
+    note: 'Prioritises unsealing asphalt and masonry regardless of residential count.',
+    biasTag: 'Morphological Focus'
+  },
+  priority_nature_deficit_led: { 
+    title: 'Ecological Compensation', 
+    weights: '25% surface · 55% green deficit · 20% population', 
+    note: 'Directs investment to areas with the severe absence of cooling biophilic infrastructure.',
+    biasTag: 'Biophilic Priority'
+  },
 };
 
 const SOURCES = [
@@ -158,8 +184,8 @@ function MapFrame({
           }
 
           l.bindPopup('<b>' + (p.neighbourhood_name || '500 m cell') + '</b><br>' +
-            (rankIdx !== -1 ? '<b style="color:#c80032">Top Rank #' + (rankIdx + 1) + '</b><br>' : '') +
-            'Priority ' + (v == null ? 'Excluded' : Number(v).toFixed(1) + '/100') + '<br>' +
+            (rankIdx !== -1 ? '<b style="color:#c80032">Top Cohort #' + (rankIdx + 1) + '</b><br>' : '') +
+            'Score ' + (v == null ? 'Excluded' : Number(v).toFixed(1) + '/100') + '<br>' +
             'Surface pressure ' + fmt(p.score_impervious) + '<br>' +
             'Green deficit ' + fmt(p.score_green_deficit) + '<br>' +
             'Population exposure ' + fmt(p.score_population) + '<br>' +
@@ -190,7 +216,7 @@ function MapFrame({
         const d = L.DomUtil.create('div', 'legend');
         d.innerHTML = '<b>Relative priority</b><br>' +
           vals.map(x => '<i style="background:' + x[0] + '"></i>' + x[1]).join('<br>') +
-          '<br><i style="background:#c80032; border:1px solid #111;"></i><b>01-10 Top rank</b>';
+          '<br><i style="background:#c80032; border:1px solid #111;"></i><b>01-10 Top cohort</b>';
         return d;
       };
       legend.addTo(map);
@@ -265,19 +291,22 @@ export default function ResearchInterface() {
   const baseRank = p ? consensusRankingMap.get(String(p.grid_id)) ?? currentRank : currentRank;
   const drift = baseRank - currentRank;
 
-  // Kentsel Çalışmalar Göstergeleri: Soylulaştırma ve Kamusal Müdahale Kabiliyeti
+  // Cohort Spread (İlk ve son arasındaki mikro fark)
+  const topScore = Number(ranked[0]?.properties[scenario] ?? 0);
+  const bottomScore = Number(ranked[ranked.length - 1]?.properties[scenario] ?? 0);
+  const cohortSpread = (topScore - bottomScore).toFixed(1);
+
+  // Critical Urban Studies Indicators
   const popScore = Number(p?.score_population ?? 0);
   const impScore = Number(p?.score_impervious ?? 0);
   const priorityScore = Number(p?.[scenario] ?? 0);
 
-  // Yoğun nüfus ve yüksek öncelik bir araya geldiğinde soylulaştırma riski yükselir
   const gentrificationRisk = priorityScore > 75 && popScore > 60
     ? 'High (Market Pressure)'
     : priorityScore > 50
     ? 'Moderate'
     : 'Low / Stable';
 
-  // Geçirimsiz yüzeyin kamusal cadde ve meydan payı tahmini
   const publicFeasibilityScore = Math.min(95, Math.max(15, Math.round(impScore * 0.82)));
 
   return (
@@ -294,18 +323,22 @@ export default function ResearchInterface() {
         <span>polenbicer.dev</span>
       </header>
 
+      {/* MANIFESTO HERO */}
       <section className="intro" id="top">
-        <p className="eyebrow">Amsterdam / Brussels · Urban cooling · 2026</p>
-        <h1>Spatial <em>Sensitivity</em> Lab</h1>
+        <p className="eyebrow">A Demonstrator in Algorithmic Limits · Urban Cooling · 2026</p>
+        <h1>Where Data Ends, <br/><em>Politics Begins</em></h1>
         <div className="intro-copy">
-          <p>An evidence-led interface demonstrating how normative policy weights alter urban cooling investment priorities.</p>
+          <p>Satellite data locates the acute heat cohort; it cannot authorise which street receives the budget. When scores cluster within 2.5 points, mathematical optimization exhausts itself.</p>
+          <small>Legitimacy requires democratic authorization, not formulaic pretense.</small>
         </div>
+        <div className="orbit-mark" aria-hidden="true">◎</div>
       </section>
 
+      {/* DASHBOARD WORKSPACE */}
       <section className="workspace" id="explore">
         <aside className="controls">
           <div>
-            <p className="eyebrow">01 · City</p>
+            <p className="eyebrow">01 · Jurisdiction</p>
             <div className="segmented">
               {CITIES.map((x) => (
                 <button
@@ -320,7 +353,8 @@ export default function ResearchInterface() {
                 </button>
               ))}
             </div>
-            <p className="eyebrow">02 · Policy logic</p>
+
+            <p className="eyebrow">02 · Normative Value Choice</p>
             <div className="scenario-list">
               {(Object.keys(SCENARIOS) as Scenario[]).map((k) => (
                 <button
@@ -328,23 +362,29 @@ export default function ResearchInterface() {
                   onClick={() => setScenario(k)}
                   key={k}
                 >
-                  <b>{SCENARIOS[k].title}</b>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <b>{SCENARIOS[k].title}</b>
+                    <span style={{ fontSize: '8px', background: k === scenario ? '#333' : '#ddd', color: k === scenario ? '#fff' : '#222', padding: '1px 4px' }}>
+                      {SCENARIOS[k].biasTag}
+                    </span>
+                  </div>
                   <span>{SCENARIOS[k].weights}</span>
                 </button>
               ))}
             </div>
           </div>
+
           <div className="policy-note">
             <b>{SCENARIOS[scenario].title}</b>
             <p>{SCENARIOS[scenario].note}</p>
-            <small>Weights define political priority, not neutral physical reality.</small>
+            <small>Changing weights changes the definition of justice, not statistical truth.</small>
           </div>
         </aside>
 
         <div className="map-wrap">
           <div className="panel-head">
             <span>500 m decision surface</span>
-            <span>{cells.length} cells · top 10 ranked</span>
+            <span>{cells.length} cells · top 10 marked</span>
           </div>
           <MapFrame
             city={city}
@@ -356,23 +396,36 @@ export default function ResearchInterface() {
         </div>
 
         <aside className="inspect">
-          <p className="eyebrow">Selected cell</p>
-          <h2>{String(p?.neighbourhood_name || 'Highest-ranked cell')}</h2>
+          <p className="eyebrow">Selected Cohort Cell</p>
+          <h2>{String(p?.neighbourhood_name || 'Cohort Member')}</h2>
           <div className="score">{priorityScore.toFixed(1)}<small>/100</small></div>
-          
+
+          {/* Legitimacy Boundary Alert */}
+          <div style={{ margin: '8px 0', padding: '6px 8px', border: '1px solid var(--line)', background: 'var(--paper)' }}>
+            <span style={{ fontSize: '8px', textTransform: 'uppercase', color: 'var(--accent)', fontWeight: 800, display: 'block' }}>
+              Decision Legitimacy Status
+            </span>
+            <b style={{ fontSize: '11px', display: 'block', marginTop: '1px' }}>
+              {priorityScore > 90 ? 'Political Tie-Break Zone' : 'Standard Evaluation'}
+            </b>
+            <p style={{ fontSize: '9px', color: 'var(--ink-muted)', marginTop: '2px', lineHeight: 1.3 }}>
+              Score falls within the unresolvable top cohort. Ranking here is an artifact of weights.
+            </p>
+          </div>
+
           {scenario !== 'priority_consensus' && (
             <div style={{
               fontSize: '10px',
               padding: '4px 8px',
               border: '1px solid var(--line)',
-              background: 'var(--paper)',
-              marginBottom: '10px',
+              background: 'var(--paper-tint)',
+              marginBottom: '8px',
               display: 'flex',
               justifyContent: 'space-between'
             }}>
-              <span>Drift vs Consensus:</span>
+              <span>Shift vs Baseline:</span>
               <strong style={{ color: drift > 0 ? 'var(--accent)' : drift < 0 ? 'var(--blue)' : 'inherit' }}>
-                {drift > 0 ? `+${drift} ranks up` : drift < 0 ? `${drift} ranks down` : 'No shift'}
+                {drift > 0 ? `+${drift} ranks up` : drift < 0 ? `${drift} ranks down` : 'Neutral'}
               </strong>
             </div>
           )}
@@ -388,9 +441,8 @@ export default function ResearchInterface() {
             </div>
           ))}
 
-          {/* Kentsel Politika ve Mekânsal Adalet Metrikleri */}
-          <div className="meter" style={{ marginTop: '12px' }}>
-            <span>Public Realm Feasibility (Street/Canopy)<b>{publicFeasibilityScore}%</b></span>
+          <div className="meter" style={{ marginTop: '10px' }}>
+            <span>Public Realm Feasibility<b>{publicFeasibilityScore}%</b></span>
             <i><u style={{ width: `${publicFeasibilityScore}%`, background: 'var(--blue)' }} /></i>
           </div>
 
@@ -406,30 +458,24 @@ export default function ResearchInterface() {
               <dd>{p?.summer_lst_median_c == null ? '—' : `${Number(p.summer_lst_median_c).toFixed(1)} °C`}</dd>
             </div>
             <div>
-              <dt>Weight sensitivity (Range)</dt>
+              <dt>Sensitivity Range across Logics</dt>
               <dd>{p?.priority_range == null ? '—' : Number(p.priority_range).toFixed(1)}</dd>
             </div>
           </dl>
-
-          {priorityScore > 75 && (
-            <div style={{ marginTop: '14px', borderTop: '1px solid var(--line)', paddingTop: '8px' }}>
-              <span style={{ fontSize: '9px', color: 'var(--accent)', fontWeight: 800, textTransform: 'uppercase' }}>
-                Critical Urban Studies Notice
-              </span>
-              <p style={{ fontSize: '10px', color: 'var(--ink-muted)', marginTop: '2px', lineHeight: 1.35 }}>
-                High green deficit with high density creates displacement pressure. Greening this cell requires municipal rent stabilization and public space tenure protections.
-              </p>
-            </div>
-          )}
         </aside>
       </section>
 
-      {/* RANKING BLOĞU */}
+      {/* THE TIE-BREAK COHORT */}
+      <div className="cohort-header">
+        <span>TOP 10 COHORT SPREAD: Δ {cohortSpread} POINTS</span>
+        <strong>THE ARBITRARY THRESHOLD ZONE · ALGORITHM CANNOT LEGITIMATELY SELECT A WINNER</strong>
+      </div>
+
       <section className="ranking">
         <div>
-          <p className="eyebrow">Highest mapped need</p>
-          <h2>Where does priority concentrate?</h2>
-          <p>Select any cell to locate its numbered position on the map and trace how weights shift its rank.</p>
+          <p className="eyebrow">Equally Urgent Cells</p>
+          <h2>The Tie-Break Cohort</h2>
+          <p>These cells share equivalent thermal and structural pressure within statistical error. Trace how changing normative weights reshuffles their order.</p>
         </div>
         <ol>
           {ranked.map((f, i) => {
@@ -470,6 +516,7 @@ export default function ResearchInterface() {
         </ol>
       </section>
 
+      {/* EVIDENCE SECTION */}
       <section className="evidence" id="evidence">
         <div>
           <p className="eyebrow">Independent thermal validation</p>
@@ -485,6 +532,7 @@ export default function ResearchInterface() {
         </div>
       </section>
 
+      {/* BLINDSPOT */}
       <section className="blindspot">
         <p className="eyebrow">What the map cannot see</p>
         <h2>Missing data do not mean missing vulnerability.</h2>
@@ -495,6 +543,7 @@ export default function ResearchInterface() {
         </div>
       </section>
 
+      {/* METHOD */}
       <section className="method" id="method">
         <header><p className="eyebrow">Method & sources</p><h2>Follow every choice from source to score.</h2></header>
         <div className="chain">
@@ -516,6 +565,7 @@ export default function ResearchInterface() {
         </div>
       </section>
 
+      {/* LEGITIMACY AUDIT */}
       <section className="legitimacy" id="legitimacy">
         <header><p className="eyebrow">AI/data-supported policy legitimacy audit</p><h2>Accuracy is not authorization.</h2><p>A technically strong model can still depoliticise contested choices. Before acting, every stage needs public justification and an accountable decision-maker.</p></header>
         <div>
@@ -529,18 +579,18 @@ export default function ResearchInterface() {
         </div>
       </section>
 
-      {/* OPEN DATA & ASSUMPTIONS */}
+      {/* OPEN DATA / REPRODUCIBILITY */}
       <section className="intro" id="opendata" style={{ borderBottom: 0, background: 'var(--paper)' }}>
         <div>
-          <p className="eyebrow">Open Data & Reproducibility</p>
-          <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '28px', fontWeight: 800, margin: '8px 0' }}>Inspect raw models and assumptions</h2>
-          <p style={{ fontSize: '13px', color: 'var(--ink-muted)' }}>Download full cell weights, scenario parameters, and spatial cross-validation scores directly.</p>
+          <p className="eyebrow">Open Data & Assumptions</p>
+          <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '24px', fontWeight: 800, margin: '6px 0' }}>Inspect raw models and assumptions</h2>
+          <p style={{ fontSize: '12px', color: 'var(--ink-muted)' }}>Download full cell weights, scenario parameters, and spatial cross-validation scores directly.</p>
         </div>
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
-          <a href="/data/grid_priority.geojson" download style={{ padding: '10px 16px', border: '1px solid var(--line)', background: 'var(--paper-soft)', textDecoration: 'none', fontSize: '11px', fontWeight: 700 }}>
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'center', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+          <a href="/data/grid_priority.geojson" download style={{ padding: '8px 14px', border: '1px solid var(--line)', background: 'var(--paper-soft)', textDecoration: 'none', fontSize: '10px', fontWeight: 700 }}>
             ↓ GRID_PRIORITY.GEOJSON
           </a>
-          <a href="/data/evidence.json" download style={{ padding: '10px 16px', border: '1px solid var(--line)', background: 'var(--ink)', color: 'var(--paper)', textDecoration: 'none', fontSize: '11px', fontWeight: 700 }}>
+          <a href="/data/evidence.json" download style={{ padding: '8px 14px', border: '1px solid var(--line)', background: 'var(--ink)', color: 'var(--paper)', textDecoration: 'none', fontSize: '10px', fontWeight: 700 }}>
             ↓ EVIDENCE_METRICS.JSON
           </a>
         </div>

@@ -20,8 +20,9 @@ const SOURCES=[
  ['Imperviousness','Copernicus HRL 2021 · 10 m','https://land.copernicus.eu/en/products/high-resolution-layer-imperviousness/imperviousness-density-2021'],
  ['Population','JRC GHSL GHS-POP 2020 · 100 m','https://data.jrc.ec.europa.eu/collection/ghsl'],
  ['Surface temperature','Landsat 8/9 C2 L2 · JJA 2019–2023','https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2'],
-];
-function colour(v:number|null){return v==null?'#444':v<20?'#0878ad':v<40?'#55a8c8':v<60?'#ecebe5':v<80?'#f07a4b':'#c80032'}
+];function colour(v: number | null) {
+  return v == null ? '#777' : v < 20 ? '#1046ca' : v < 50 ? '#111111' : v < 80 ? '#eb3b1e' : '#c80032';
+}
 
 function MapFrame({city,scenario,selected,onSelect}:{city:City;scenario:Scenario;selected:string;onSelect:(id:string)=>void}){
  const [html,setHtml]=useState('');

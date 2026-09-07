@@ -6,7 +6,7 @@
   --ink-muted: #55524c;
   --line: #111111;
   --line-soft: #b8b3a7;
-  --accent: #c80032; /* Net bordo */
+  --accent: #c80032;
   --blue: #1046ca;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -76,13 +76,13 @@ body {
   display: block; 
 }
 
-/* Hero - Kompakt Editoryal */
+/* Manifesto Hero */
 .intro { 
-  padding: 24px 20px 20px; 
+  padding: 28px 20px 22px; 
   border-bottom: 1px solid var(--line); 
   display: grid; 
   grid-template-columns: 1.8fr 1.2fr; 
-  gap: 24px; 
+  gap: 28px; 
   background: var(--paper-soft); 
   position: relative; 
 }
@@ -93,7 +93,7 @@ body {
 }
 .intro h1 { 
   font-family: var(--font-sans); 
-  font-size: clamp(34px, 4.2vw, 68px); 
+  font-size: clamp(34px, 4.4vw, 70px); 
   line-height: 0.9; 
   letter-spacing: -0.05em; 
   font-weight: 800; 
@@ -111,19 +111,17 @@ body {
 }
 .intro-copy p { font-family: var(--font-sans); font-size: 15px; line-height: 1.35; color: var(--ink); }
 .intro-copy small { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; color: var(--accent); }
-.orbit-mark { position: absolute; right: 20px; top: 24px; font-size: 18px; color: var(--accent); }
+.orbit-mark { position: absolute; right: 20px; top: 28px; font-size: 18px; color: var(--accent); }
 
-/* =========================================================
-   DASHBOARD / WORKSPACE (Harita & Detaylar - Kompakt Yükseklik)
-   ========================================================= */
+/* Workspace */
 .workspace { 
   display: grid; 
-  grid-template-columns: 240px minmax(360px, 1fr) 280px; 
+  grid-template-columns: 240px minmax(360px, 1fr) 290px; 
   border-bottom: 1px solid var(--line); 
   background: var(--paper); 
 }
 
-/* Sol Kontroller */
+/* Controls */
 .controls { 
   border-right: 1px solid var(--line); 
   padding: 14px; 
@@ -167,7 +165,7 @@ body {
 .policy-note p { font-size: 10px; margin: 3px 0; color: var(--ink-muted); }
 .policy-note small { font-size: 8px; display: block; color: var(--accent); }
 
-/* Orta Harita: Yükseklik 420px'e sabitlendi */
+/* Map */
 .map-wrap { min-width: 0; background: #dce3df; }
 .panel-head { 
   height: 32px; 
@@ -184,11 +182,11 @@ body {
 .map-wrap iframe { 
   border: 0; 
   width: 100%; 
-  height: 420px; /* Görüş alanına sığması için küçültüldü */
+  height: 420px; 
   display: block; 
 }
 
-/* Sağ Panel (Seçilen Hücre) */
+/* Inspect Panel */
 .inspect { 
   border-left: 1px solid var(--line); 
   padding: 14px 16px; 
@@ -203,10 +201,10 @@ body {
 }
 .score { 
   font-family: var(--font-sans); 
-  font-size: 46px; 
+  font-size: 44px; 
   font-weight: 800; 
   letter-spacing: -0.05em; 
-  margin: 6px 0; 
+  margin: 4px 0; 
   line-height: 0.9; 
   color: var(--accent); 
 }
@@ -222,9 +220,7 @@ body {
 .inspect dt { font-size: 9px; text-transform: uppercase; color: var(--ink-muted); }
 .inspect dd { font-family: var(--font-sans); font-size: 13px; font-weight: 700; margin-top: 1px; }
 
-/* =========================================================
-   RANKING SECTION (Haritanın hemen altında tek bakışta görünür)
-   ========================================================= */
+/* Tie-Break Cohort Ranking Block */
 .ranking { 
   display: grid; 
   grid-template-columns: 240px 1fr; 
@@ -232,7 +228,7 @@ body {
   background: var(--paper); 
 }
 .ranking > div { 
-  padding: 18px 14px; 
+  padding: 16px 14px; 
   border-right: 1px solid var(--line); 
   background: var(--paper-soft); 
   display: flex;
@@ -241,19 +237,34 @@ body {
 }
 .ranking h2 { 
   font-family: var(--font-sans); 
-  font-size: 26px; 
+  font-size: 24px; 
   line-height: 0.95; 
   letter-spacing: -0.04em; 
   font-weight: 800; 
-  margin: 8px 0; 
+  margin: 6px 0; 
 }
 .ranking > div > p:last-child { font-size: 11px; line-height: 1.35; color: var(--ink-muted); }
 
-/* 8'li Sıralama Listesi 2 Kolon Halinde Ekrana Sığdırıldı */
+.cohort-header {
+  grid-column: 1 / -1;
+  padding: 8px 16px;
+  background: var(--ink);
+  color: var(--paper);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--line);
+}
+.cohort-header strong {
+  color: var(--accent);
+}
+
 .ranking ol { 
   list-style: none; 
   display: grid; 
-  grid-template-columns: 1fr 1fr; /* 2 kolon */
+  grid-template-columns: 1fr 1fr; 
   background: var(--line);
   gap: 1px;
 }
@@ -278,7 +289,7 @@ body {
 .ranking li i { height: 6px; background: var(--accent); border: 1px solid var(--line); }
 .ranking li strong { text-align: right; font-size: 14px; font-family: var(--font-sans); font-weight: 700; color: var(--accent); }
 
-/* Evidence, Blindspot, Method, Legitimacy */
+/* Other Sections */
 .evidence h2, .blindspot h2, .method h2, .legitimacy h2 { 
   font-family: var(--font-sans); 
   font-size: clamp(28px, 3.6vw, 48px); 
@@ -326,7 +337,6 @@ body {
 
 footer { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; font-size: 9px; text-transform: uppercase; letter-spacing: 0.05em; background: var(--ink); color: var(--paper); }
 
-/* Responsive Düzenler */
 @media (max-width: 1024px) {
   .workspace { grid-template-columns: 1fr; }
   .controls { border-right: 0; border-bottom: 1px solid var(--line); }

@@ -1,0 +1,164 @@
+{
+  "ml_validation_metrics": [
+    {
+      "city": "Amsterdam",
+      "n_cells": 846,
+      "n_spatial_blocks": 77,
+      "cv_folds": 5,
+      "block_size_m": 2000,
+      "model": "RandomForestRegressor",
+      "r2_spatial_cv": 0.813350533103888,
+      "mae_c_spatial_cv": 1.155375525692359,
+      "rmse_c_spatial_cv": 1.63066081788692,
+      "baseline_mae_c": 3.1385083468861947,
+      "decision_role": "validation/explanation only; no automatic allocation"
+    },
+    {
+      "city": "Brussels",
+      "n_cells": 674,
+      "n_spatial_blocks": 55,
+      "cv_folds": 5,
+      "block_size_m": 2000,
+      "model": "RandomForestRegressor",
+      "r2_spatial_cv": 0.9362361997991403,
+      "mae_c_spatial_cv": 0.8788177612186568,
+      "rmse_c_spatial_cv": 1.1590067099354797,
+      "baseline_mae_c": 3.750788067166217,
+      "decision_role": "validation/explanation only; no automatic allocation"
+    }
+  ],
+  "ml_feature_importance": [
+    {
+      "city": "Amsterdam",
+      "feature": "sealed_surface_pct",
+      "mae_importance_mean": 1.8590471660074157,
+      "fold_sd": 0.22521682631795947
+    },
+    {
+      "city": "Amsterdam",
+      "feature": "cooling_green_pct",
+      "mae_importance_mean": 0.03134198507612617,
+      "fold_sd": 0.016665085072041855
+    },
+    {
+      "city": "Amsterdam",
+      "feature": "tree_pct",
+      "mae_importance_mean": 0.07529669777232592,
+      "fold_sd": 0.034441432974447454
+    },
+    {
+      "city": "Amsterdam",
+      "feature": "grass_pct",
+      "mae_importance_mean": 0.03935517054615244,
+      "fold_sd": 0.01801899898187781
+    },
+    {
+      "city": "Amsterdam",
+      "feature": "population_density_km2",
+      "mae_importance_mean": 0.17626974188964162,
+      "fold_sd": 0.06110228701938964
+    },
+    {
+      "city": "Amsterdam",
+      "feature": "water_pct",
+      "mae_importance_mean": 0.4083121218839915,
+      "fold_sd": 0.19408731052722017
+    },
+    {
+      "city": "Brussels",
+      "feature": "sealed_surface_pct",
+      "mae_importance_mean": 0.9790702539381355,
+      "fold_sd": 0.2612126977960547
+    },
+    {
+      "city": "Brussels",
+      "feature": "cooling_green_pct",
+      "mae_importance_mean": 1.2518599195500086,
+      "fold_sd": 0.35612056587749125
+    },
+    {
+      "city": "Brussels",
+      "feature": "tree_pct",
+      "mae_importance_mean": 0.4698361723731148,
+      "fold_sd": 0.15875309041110028
+    },
+    {
+      "city": "Brussels",
+      "feature": "grass_pct",
+      "mae_importance_mean": 0.033752288440681864,
+      "fold_sd": 0.011142502187003389
+    },
+    {
+      "city": "Brussels",
+      "feature": "population_density_km2",
+      "mae_importance_mean": 0.18334094653661648,
+      "fold_sd": 0.12763397216383957
+    },
+    {
+      "city": "Brussels",
+      "feature": "water_pct",
+      "mae_importance_mean": 0.0009467082853987874,
+      "fold_sd": 0.002789614598628425
+    }
+  ],
+  "scale_sensitivity_metrics": [
+    {
+      "city": "Amsterdam",
+      "eligible_500m_cells": 949,
+      "eligible_1km_cells": 278,
+      "spearman_priority_500m_vs_1km": 0.9156242997196987,
+      "mean_absolute_score_difference": 8.427514849261604,
+      "top_quintile_jaccard": 0.5555555555555556
+    },
+    {
+      "city": "Brussels",
+      "eligible_500m_cells": 732,
+      "eligible_1km_cells": 204,
+      "spearman_priority_500m_vs_1km": 0.9249481932310075,
+      "mean_absolute_score_difference": 7.708646009844267,
+      "top_quintile_jaccard": 0.6529411764705882
+    }
+  ],
+  "ai_policy_legitimacy_audit": [
+    {
+      "stage": 1,
+      "legitimacy_stage": "Problem definition & goal",
+      "current_evidence": "Explicit relative priority; political objective remains contestable"
+    },
+    {
+      "stage": 2,
+      "legitimacy_stage": "Authorization & participation",
+      "current_evidence": "Weight scenarios disclosed; participatory weighting still required"
+    },
+    {
+      "stage": 3,
+      "legitimacy_stage": "Data & indicators",
+      "current_evidence": "Source catalogue and Brussels evidence gap exposed"
+    },
+    {
+      "stage": 4,
+      "legitimacy_stage": "AI/data tool",
+      "current_evidence": "Spatial CV and permutation importance; ML validates, not decides"
+    },
+    {
+      "stage": 5,
+      "legitimacy_stage": "Safeguards",
+      "current_evidence": "Water and Natura review flags; human review required"
+    },
+    {
+      "stage": 6,
+      "legitimacy_stage": "Communication",
+      "current_evidence": "Neighbourhood context and high-contrast cartography"
+    },
+    {
+      "stage": 7,
+      "legitimacy_stage": "Objection & appeal",
+      "current_evidence": "Formal correction/appeal route remains unresolved"
+    },
+    {
+      "stage": 8,
+      "legitimacy_stage": "Evaluation & accountability",
+      "current_evidence": "Thermal, scale and project-overlap audits"
+    }
+  ]
+}

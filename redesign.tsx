@@ -1,0 +1,492 @@
+"use client";
+import { useEffect, useMemo, useState } from "react";
+
+type City = "Amsterdam" | "Brussels";
+type Scenario =
+  | "priority_consensus"
+  | "priority_balanced"
+  | "priority_population_led"
+  | "priority_surface_led"
+  | "priority_nature_deficit_led";
+type Feature = {
+  type: "Feature";
+  geometry: unknown;
+  properties: Record<string, string | number | null>;
+};
+type Collection = { type: "FeatureCollection"; features: Feature[] };
+
+const CITIES: City[] = ["Brussels", "Amsterdam"];
+const SCENARIOS: Record<Scenario, { title: string; weights: string; note: string }> = {
+  priority_consensus: {
+    title: "Consensus",
+    weights: "Median of four scenarios",
+    note: "The median score across all policy logics.",
+  },
+  priority_balanced: {
+    title: "Balanced",
+    weights: "40% surface · 30% green deficit · 30% population",
+    note: "Distributes attention across physical pressure, nature deficit and population exposure.",
+  },
+  priority_population_led: {
+    title: "Population-led",
+    weights: "25% surface · 20% green deficit · 55% population",
+    note: "Prioritises where more residents are potentially exposed.",
+  },
+  priority_surface_led: {
+    title: "Surface-led",
+    weights: "60% surface · 20% green deficit · 20% population",
+    note: "Prioritises sealed and impervious urban surfaces.",
+  },
+  priority_nature_deficit_led: {
+    title: "Nature-deficit-led",
+    weights: "25% surface · 55% green deficit · 20% population",
+    note: "Prioritises the greatest relative shortage of cooling green cover.",
+  },
+};
+const SOURCES = [
+  [
+    "Amsterdam boundaries",
+    "PDOK · Administrative Areas",
+    "https://www.pdok.nl/introductie/-/article/bestuurlijke-gebieden",
+  ],
+  [
+    "Brussels boundaries",
+    "Brussels UrbIS open data",
+    "https://datastore.brussels/web/urbis-download",
+  ],
+  ["Land cover", "ESA WorldCover 2021 · 10 m", "https://worldcover2021.esa.int/"],
+  [
+    "Imperviousness",
+    "Copernicus HRL 2021 · 10 m",
+    "https://land.copernicus.eu/en/products/high-resolution-layer-imperviousness/imperviousness-density-2021",
+  ],
+  ["Population", "JRC GHSL GHS-POP 2020 · 100 m", "https://data.jrc.ec.europa.eu/collection/ghsl"],
+  [
+    "Surface temperature",
+    "Landsat 8/9 C2 L2 · JJA 2019–2023",
+    "https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2",
+  ],
+];
+function colour(v: number | null) {
+  return v == null
+    ? "#444"
+    : v < 20
+      ? "#0878ad"
+      : v < 40
+        ? "#55a8c8"
+        : v < 60
+          ? "#ecebe5"
+          : v < 80
+            ? "#e89b32"
+            : "#c80032";
+}
+
+function MapFrame({
+  city,
+  scenario,
+  selected,
+  onSelect,
+}: {
+  city: City;
+  scenario: Scenario;
+  selected: string;
+  onSelect: (id: string) => void;
+}) {
+  const [html, setHtml] = useState("");
+  useEffect(() => {
+    setHtml(
+      `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>html,body,#map{height:100%;margin:0}.leaflet-container{font:13px Arial,sans-serif;background:#dce3df}.leaflet-popup-content-wrapper,.leaflet-popup-tip{border-radius:0}.legend{background:#fff;border:1px solid #111;padding:9px;line-height:19px}.legend i{display:inline-block;width:14px;height:14px;margin-right:7px;vertical-align:-2px}</style></head><body><div id="map"></div><script>
+ const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},selected=${JSON.stringify(selected)};const map=L.map('map',{zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);
+ Promise.all([fetch('/data/grid_priority.geojson').then(r=>r.json()),fetch('/data/project_context.geojson').then(r=>r.json())]).then(([grid,projects])=>{const vals=[['#0878ad','0–20'],['#55a8c8','20–40'],['#ecebe5','40–60'],['#f07a4b','60–80'],['#c80032','80–100']];const layer=L.geoJSON(grid,{filter:f=>f.properties.city===city,style:f=>{const v=f.properties[field],c=v<20?'#0878ad':v<40?'#55a8c8':v<60?'#ecebe5':v<80?'#f07a4b':'#c80032';return{fillColor:c,fillOpacity:f.properties.eligible?.76:.35,color:f.properties.grid_id===selected?'#111':'rgba(255,255,255,.72)',weight:f.properties.grid_id===selected?3:.55}},onEachFeature:(f,l)=>{const p=f.properties,v=p[field];l.bindPopup('<b>'+(p.neighbourhood_name||'500 m cell')+'</b><br>Priority '+(v==null?'Excluded':Number(v).toFixed(1)+'/100')+'<br>Surface pressure '+fmt(p.score_impervious)+'<br>Green deficit '+fmt(p.score_green_deficit)+'<br>Population exposure '+fmt(p.score_population)+'<br>Summer surface temperature '+(p.summer_lst_median_c==null?'Not available':Number(p.summer_lst_median_c).toFixed(1)+' °C')+'<br>Top-quintile scenarios '+(p.top20_scenario_count??'—')+'/4');l.on('click',()=>parent.postMessage({type:'grid-select',id:p.grid_id},'*'))}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]});L.geoJSON(projects,{filter:f=>f.properties.city===city,style:{color:'#5b22b4',weight:3,fillOpacity:.06,dashArray:'7 4'}}).addTo(map);const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>Relative priority</b><br>'+vals.map(x=>'<i style="background:'+x[0]+'"></i>'+x[1]).join('<br>');return d};legend.addTo(map)});function fmt(v){return v==null?'—':Number(v).toFixed(0)+'/100'}
+ </script></body></html>`
+        .replace("Top-quintile scenarios", "Scenarios scoring ≥80")
+        .replaceAll("#f07a4b", "#e89b32"),
+    );
+  }, [city, scenario, selected]);
+  useEffect(() => {
+    const h = (e: MessageEvent) => {
+      if (e.data?.type === "grid-select") onSelect(e.data.id);
+    };
+    addEventListener("message", h);
+    return () => removeEventListener("message", h);
+  }, [onSelect]);
+  return <iframe title={`${city} urban cooling priority map`} srcDoc={html} />;
+}
+
+export default function ResearchInterface() {
+  const [city, setCity] = useState<City>("Brussels"),
+    [scenario, setScenario] = useState<Scenario>("priority_consensus"),
+    [data, setData] = useState<Collection | null>(null),
+    [evidence, setEvidence] = useState<any>(null),
+    [selected, setSelected] = useState(""),
+    [loadError, setLoadError] = useState("");
+  useEffect(() => {
+    Promise.all([
+      fetch("/data/grid_priority.geojson").then((r) => {
+        if (!r.ok) throw new Error("grid");
+        return r.json() as Promise<Collection>;
+      }),
+      fetch("/data/evidence.json").then((r) => {
+        if (!r.ok) throw new Error("evidence");
+        return r.json();
+      }),
+    ])
+      .then(([g, e]) => {
+        setData(g);
+        setEvidence(e);
+      })
+      .catch(() => setLoadError("Spatial data could not be loaded. Please refresh the page."));
+  }, []);
+  const cells = useMemo(
+    () => data?.features.filter((f) => f.properties.city === city) ?? [],
+    [data, city],
+  );
+  const eligible = useMemo(
+    () =>
+      cells
+        .filter((f) => f.properties.eligible)
+        .sort(
+          (a, b) => Number(b.properties[scenario] ?? -1) - Number(a.properties[scenario] ?? -1),
+        ),
+    [cells, scenario],
+  );
+  const active = cells.find((f) => f.properties.grid_id === selected) ?? eligible[0],
+    ranked = eligible.slice(0, 6),
+    p = active?.properties;
+  const metric = evidence?.ml_validation_metrics?.find((x: any) => x.city === city),
+    scale = evidence?.scale_sensitivity_metrics?.find((x: any) => x.city === city);
+  return (
+    <main className="site-shell">
+      <section className="intro" id="top">
+        <header className="site-header">
+          <a className="hero-brand" href="#top">
+            spatial sensitivity lab
+          </a>
+          <a className="hero-credit" href="https://polenbicer.dev">
+            polenbicer.dev
+          </a>
+        </header>
+        <nav className="hero-nav" aria-label="Primary navigation">
+          <a href="#explore">Explore</a>
+          <a href="/rankings">Rankings</a>
+          <a href="#evidence">Evidence</a>
+          <a href="#method">Method</a>
+          <a href="#legitimacy">Legitimacy</a>
+          <a href="#opendata">Data</a>
+        </nav>
+        <h1>Spatial Sensitivity</h1>
+        <p className="hero-meta">Amsterdam / Brussels · Urban cooling · 2026</p>
+      </section>
+      <section className="research-frame">
+        <p className="eyebrow">Research question</p>
+        <h2>
+          How do AI- and data-supported spatial prioritisation tools shape what becomes visible as
+          urban cooling need?
+        </h2>
+        <p>And where must political judgement, participation and accountability remain decisive?</p>
+      </section>
+      <section className="workspace" id="explore">
+        <aside className="controls">
+          <p className="eyebrow">01 · City</p>
+          <div className="segmented">
+            {CITIES.map((x) => (
+              <button
+                className={x === city ? "active" : ""}
+                onClick={() => {
+                  setCity(x);
+                  setSelected("");
+                }}
+                key={x}
+              >
+                {x}
+              </button>
+            ))}
+          </div>
+          <p className="eyebrow">02 · Policy logic</p>
+          <div className="scenario-list">
+            {(Object.keys(SCENARIOS) as Scenario[]).map((k) => (
+              <button
+                className={k === scenario ? "active" : ""}
+                onClick={() => setScenario(k)}
+                key={k}
+              >
+                <b>{SCENARIOS[k].title}</b>
+                <span>{SCENARIOS[k].weights}</span>
+              </button>
+            ))}
+          </div>
+          <div className="policy-note">
+            <b>{SCENARIOS[scenario].title}</b>
+            <p>{SCENARIOS[scenario].note}</p>
+            <small>Weights change the political definition of priority—not its objectivity.</small>
+          </div>
+        </aside>
+        <div className="map-wrap">
+          <div className="panel-head">
+            <span>500 m decision surface</span>
+            <span>
+              {data ? `${cells.length} cells · within-city scores` : "Loading spatial evidence…"}
+            </span>
+          </div>
+          {loadError ? (
+            <div className="load-state error">{loadError}</div>
+          ) : !data ? (
+            <div className="load-state">Loading spatial evidence…</div>
+          ) : (
+            <MapFrame
+              city={city}
+              scenario={scenario}
+              selected={String(p?.grid_id ?? "")}
+              onSelect={setSelected}
+            />
+          )}
+        </div>
+        <aside className="decision-rail">
+          {!data ? (
+            <div className="load-copy">Results appear after the verified spatial files load.</div>
+          ) : (
+            <>
+              <section className="inspect">
+                <p className="eyebrow">Selected cell</p>
+                <div className="inspect-title">
+                  <h2>{String(p?.neighbourhood_name || "Highest-ranked cell")}</h2>
+                  <div className="score" style={{ color: colour(Number(p?.[scenario] ?? 0)) }}>
+                    {Number(p?.[scenario] ?? 0).toFixed(1)}
+                    <small>/100</small>
+                  </div>
+                </div>
+                {[
+                  ["Surface pressure", "score_impervious"],
+                  ["Green deficit", "score_green_deficit"],
+                  ["Population exposure", "score_population"],
+                ].map(([label, key]) => (
+                  <div className="meter" key={key}>
+                    <span>
+                      {label}
+                      <b>{Number(p?.[key] ?? 0).toFixed(0)}</b>
+                    </span>
+                    <i>
+                      <u style={{ width: `${Number(p?.[key] ?? 0)}%` }} />
+                    </i>
+                  </div>
+                ))}
+                <dl>
+                  <div>
+                    <dt>Summer LST</dt>
+                    <dd>
+                      {p?.summer_lst_median_c == null
+                        ? "—"
+                        : `${Number(p.summer_lst_median_c).toFixed(1)} °C`}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Scenarios scoring ≥80</dt>
+                    <dd>{String(p?.score_ge_80_scenario_count ?? "—")} / 4</dd>
+                  </div>
+                  <div>
+                    <dt>Weight sensitivity</dt>
+                    <dd>{p?.priority_range == null ? "—" : Number(p.priority_range).toFixed(1)}</dd>
+                  </div>
+                </dl>
+              </section>
+              <section className="rank-rail">
+                <header>
+                  <p className="eyebrow">Highest mapped need</p>
+                  <span>Cells, not neighbourhood verdicts</span>
+                </header>
+                <ol>
+                  {ranked.map((f, i) => (
+                    <li key={String(f.properties.grid_id)}>
+                      <button
+                        className={
+                          String(f.properties.grid_id) === String(p?.grid_id) ? "active" : ""
+                        }
+                        onClick={() => setSelected(String(f.properties.grid_id))}
+                      >
+                        <span>{String(i + 1).padStart(2, "0")}</span>
+                        <b>{String(f.properties.neighbourhood_name || "Boundary cell")}</b>
+                        <strong>{Number(f.properties[scenario]).toFixed(1)}</strong>
+                      </button>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            </>
+          )}
+        </aside>
+      </section>
+      <section className="evidence" id="evidence">
+        <div>
+          <p className="eyebrow">Independent thermal validation</p>
+          <h2>Does the model correspond to observed heat?</h2>
+          <p>
+            Random Forest predicts Landsat summer land-surface temperature from sealed surface,
+            cooling green, trees, grass, water and population density. Validation uses five-fold
+            spatial blocks, not random cell splits.
+          </p>
+          <blockquote>
+            Predictive accuracy validates a relationship with observed surface temperature. It does
+            not determine which neighbourhood deserves investment.
+          </blockquote>
+        </div>
+        <div className="metric-grid">
+          <article>
+            <span>Spatial CV R²</span>
+            <strong>{metric?.r2_spatial_cv?.toFixed(3) ?? "—"}</strong>
+          </article>
+          <article>
+            <span>Mean absolute error</span>
+            <strong>{metric?.mae_c_spatial_cv?.toFixed(2) ?? "—"} °C</strong>
+          </article>
+          <article>
+            <span>Baseline MAE</span>
+            <strong>{metric?.baseline_mae_c?.toFixed(2) ?? "—"} °C</strong>
+          </article>
+          <article>
+            <span>500 m ↔ 1 km rank correlation</span>
+            <strong>{scale?.spearman_priority_500m_vs_1km?.toFixed(3) ?? "—"}</strong>
+          </article>
+        </div>
+      </section>
+      <section className="blindspot">
+        <p className="eyebrow">What the map cannot see</p>
+        <h2>Missing data do not mean missing vulnerability.</h2>
+        <div>
+          <p>
+            Amsterdam includes a limited diagnostic context based on residents aged 65+ and
+            one-person households. It is not a complete social vulnerability index.
+          </p>
+          <p>
+            For Brussels, no comparable small-area social score is asserted in this release. The gap
+            remains visible rather than being filled with an undocumented proxy.
+          </p>
+          <p>
+            This asymmetry is itself a finding: unequal data infrastructures shape which people and
+            needs become legible to decision systems.
+          </p>
+        </div>
+      </section>
+      <section className="case-note">
+        <div>
+          <p className="eyebrow">Why two cities?</p>
+          <h2>Cases, not a league table.</h2>
+        </div>
+        <div>
+          <p>
+            Amsterdam and Brussels test the same analytical framework in different data and
+            governance environments. The project does not rank which city governs better.
+          </p>
+          <p>
+            The comparison asks which needs become measurable, which remain absent, and how unequal
+            data infrastructures condition what a decision system can recognise.
+          </p>
+        </div>
+      </section>
+      <section className="ai-role">
+        <div>
+          <p className="eyebrow">Where is AI?</p>
+          <h2>Validation is not authorization.</h2>
+        </div>
+        <div>
+          <p>
+            Machine learning tests whether environmental indicators correspond to observed summer
+            surface temperature. The priority index itself is a transparent multi-criteria analysis.
+          </p>
+          <p>
+            Neither component determines a legitimate distribution of public resources. Predictive
+            accuracy can support evidence, but it cannot choose policy values, replace participation
+            or settle contested claims of need.
+          </p>
+        </div>
+      </section>
+      <section className="method" id="method">
+        <header>
+          <p className="eyebrow">Method & sources</p>
+          <h2>Follow every choice from source to score.</h2>
+        </header>
+        <div className="chain">
+          {[
+            "Official boundaries",
+            "Aligned 500 m grid",
+            "Surface + nature + population",
+            "Four normative scenarios",
+            "Independent Landsat validation",
+            "Spatial robustness tests",
+            "Human interpretation",
+          ].map((x, i) => (
+            <div key={x}>
+              <span>{String(i + 1).padStart(2, "0")}</span>
+              <b>{x}</b>
+            </div>
+          ))}
+        </div>
+        <div className="sources">
+          {SOURCES.map(([a, b, url]) => (
+            <a href={url} target="_blank" rel="noreferrer" key={url}>
+              <span>{a}</span>
+              <b>{b}</b>
+              <i>↗</i>
+            </a>
+          ))}
+        </div>
+        <p className="method-foot">
+          Priority scores are within-city percentiles, not temperatures, uncertainty intervals or
+          cross-city performance rankings. The consensus aggregates four scenarios through the
+          median; it reduces the influence of a single weighting scheme but does not create a
+          neutral result. AI is used for explainable thermal validation—not to choose policy weights
+          or define justice.
+        </p>
+      </section>
+      <section className="legitimacy" id="legitimacy">
+        <header>
+          <p className="eyebrow">AI/data-supported policy legitimacy audit</p>
+          <h2>Accuracy is not authorization.</h2>
+          <p>
+            A technically strong model can still depoliticise contested choices. Before acting,
+            every stage needs public justification and an accountable decision-maker.
+          </p>
+        </header>
+        <div>
+          {evidence?.ai_policy_legitimacy_audit?.map((x: any) => (
+            <article key={x.stage}>
+              <span>{String(x.stage).padStart(2, "0")}</span>
+              <h3>{x.legitimacy_stage}</h3>
+              <p>{x.current_evidence}</p>
+            </article>
+          ))}
+        </div>
+        <aside className="thesis-proposition">
+          <b>Working thesis proposition</b>
+          <p>
+            The central technocratic risk is not simply an autonomous AI making a decision. It is
+            the translation of contestable indicators, weights and data gaps into an apparently
+            necessary technical ranking. The visible rank shifts in this demonstrator make that
+            political contingency inspectable.
+          </p>
+        </aside>
+      </section>
+      <section className="open-data" id="opendata">
+        <p className="eyebrow">Open data & assumptions</p>
+        <h2>Inspect the mapped cells and validation evidence.</h2>
+        <div>
+          <a href="/data/grid_priority.geojson" download>
+            ↓ Grid priority GeoJSON
+          </a>
+          <a href="/data/evidence.json" download>
+            ↓ Evidence metrics JSON
+          </a>
+        </div>
+        <p>
+          The displayed rankings are research outputs, not administrative decisions. A narrow score
+          difference is descriptive and must not be presented as a statistical confidence interval
+          without a separate uncertainty analysis.
+        </p>
+      </section>
+      <footer>
+        <b>Spatial Sensitivity Lab</b>
+        <span>Research demonstrator · developed by Polen Biçer · 2026</span>
+        <span>Not an operational allocation system</span>
+      </footer>
+    </main>
+  );
+}

@@ -1,5 +1,13 @@
 # Spatial Sensitivity Lab
 
+## September 2026 review update
+
+- Adds an explicit research question and explains why Amsterdam and Brussels are analytical cases rather than a city ranking.
+- Clarifies that machine learning validates relationships with observed heat but does not authorize resource allocation.
+- Replaces zero-valued placeholders with proper loading and error states.
+- States that the median consensus remains a normative aggregation and that narrow score differences are not statistical confidence intervals.
+- Separates the Amsterdam and Brussels boundary sources and exposes the core GeoJSON and evidence files for download.
+
 Research demonstrator for an Urban Studies thesis on equitable urban cooling and the legitimacy of AI/data-supported spatial decision tools in Amsterdam and Brussels.
 
 ## What this release changes

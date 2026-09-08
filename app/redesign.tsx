@@ -157,15 +157,16 @@ export default function ResearchInterface() {
     scale = evidence?.scale_sensitivity_metrics?.find((x: any) => x.city === city);
   return (
     <main className="site-shell">
-      <header className="site-header">
-        <a href="#top">
-          spatial
-          <br />
-          sensitivity
-          <br />
-          lab
-        </a>
-        <nav>
+      <section className="intro" id="top">
+        <header className="site-header">
+          <a className="hero-brand" href="#top">
+            spatial sensitivity lab
+          </a>
+          <a className="hero-credit" href="https://polenbicer.dev">
+            polenbicer.dev
+          </a>
+        </header>
+        <nav className="hero-nav" aria-label="Primary navigation">
           <a href="#explore">Explore</a>
           <a href="/rankings">Rankings</a>
           <a href="#evidence">Evidence</a>
@@ -173,27 +174,8 @@ export default function ResearchInterface() {
           <a href="#legitimacy">Legitimacy</a>
           <a href="#opendata">Data</a>
         </nav>
-        <span>polenbicer.dev</span>
-      </header>
-      <section className="intro" id="top">
-        <p className="eyebrow">Amsterdam / Brussels · Urban cooling · 2026</p>
-        <h1>
-          Spatial
-          <br />
-          <em>Sensitivity</em>
-          <br />
-          Lab
-        </h1>
-        <div className="intro-copy">
-          <p>
-            A research interface for seeing how data, policy weights and AI validation make urban
-            cooling priorities visible.
-          </p>
-          <small>Not neutral. Not automatic. Not an allocation system.</small>
-        </div>
-        <div className="orbit-mark" aria-hidden="true">
-          ◎
-        </div>
+        <h1>Spatial Sensitivity</h1>
+        <p className="hero-meta">Amsterdam / Brussels · Urban cooling · 2026</p>
       </section>
       <section className="research-frame">
         <p className="eyebrow">Research question</p>

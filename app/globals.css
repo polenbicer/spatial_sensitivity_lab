@@ -3078,3 +3078,19 @@ button:focus-visible {
   .ranking-results > .ranking-map,
   .ranking-results > .full-table { min-height: 360px; }
 }
+
+
+/* High-resolution hero legibility correction */
+.intro {
+  background:
+    linear-gradient(rgba(244,245,241,.46), rgba(244,245,241,.46)),
+    url("/synoptic-reference.svg") center center / cover no-repeat;
+}
+.site-header { background: rgba(244,245,241,.78); }
+.hero-nav,
+.hero-title {
+  background: rgba(244,245,241,.76);
+  backdrop-filter: blur(3px);
+}
+.hero-nav { border-color: rgba(23,34,116,.72); }
+.hero-title { border-color: rgba(23,34,116,.72); }

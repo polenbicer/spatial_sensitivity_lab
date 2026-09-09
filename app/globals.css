@@ -3109,3 +3109,56 @@ button:focus-visible {
       url("/synoptic-reference.svg");
   }
 }
+
+
+/* Atlas image sequence */
+.intro {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(244,245,241,.40), rgba(244,245,241,.40)),
+    url("https://i.pinimg.com/originals/47/f5/19/47f5198566e6bc91a7be1b5024690e7b.gif");
+  background-position: center, center;
+  background-size: cover, 88% auto;
+  background-repeat: no-repeat;
+}
+.method {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(244,245,241,.88), rgba(244,245,241,.88)),
+    url("/grid-poster-reference.svg");
+  background-position: center, right 5% center;
+  background-size: cover, min(58vw, 920px) auto;
+  background-repeat: no-repeat;
+}
+.legitimacy {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(244,245,241,.88), rgba(244,245,241,.88)),
+    url("/red-contours-reference.svg");
+  background-position: center, left -8vw center;
+  background-size: cover, min(58vw, 900px) auto;
+  background-repeat: no-repeat;
+}
+.open-data {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(244,245,241,.90), rgba(244,245,241,.90)),
+    url("/synoptic-reference.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.method > *,
+.legitimacy > *,
+.open-data > * { position: relative; z-index: 1; }
+
+@media (max-width: 720px) {
+  .intro {
+    background-size: cover, 118% auto;
+  }
+  .method,
+  .legitimacy {
+    background-position: center;
+    background-size: cover, auto 72%;
+  }
+}

@@ -2297,10 +2297,9 @@ footer {
 
 .hero-nav a {
   color: #f5f3ec;
-  font:
-    400 clamp(25px, 2.2vw, 39px)/1.22 "Courier New",
-    monospace;
-  letter-spacing: -0.08em;
+  font: 400 clamp(24px, 1.8vw, 32px)/1.22 "Arial Narrow", "Avenir Next Condensed",
+    "Helvetica Neue Condensed", Arial, sans-serif;
+  letter-spacing: -0.035em;
   text-decoration: none;
 }
 
@@ -2316,16 +2315,18 @@ footer {
   left: 50%;
   width: max-content;
   margin: 0;
-  transform: translate(-43%, -50%);
+  transform: translate(-42%, -50%);
   color: var(--red);
-  font:
-    700 clamp(70px, 9.1vw, 164px)/0.82 Arial,
-    sans-serif;
-  letter-spacing: -0.075em;
+  font: 900 clamp(64px, 7.15vw, 122px)/0.84 "Arial Narrow", "Helvetica Neue Condensed",
+    Arial, sans-serif;
+  font-stretch: condensed;
+  letter-spacing: -0.055em;
+  text-transform: none;
   white-space: nowrap;
 }
 
 .hero-meta {
+  display: none;
   position: absolute;
   right: 34px;
   bottom: 27px;

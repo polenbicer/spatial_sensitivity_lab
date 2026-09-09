@@ -3162,3 +3162,25 @@ button:focus-visible {
     background-size: cover, auto 72%;
   }
 }
+
+
+/* Hero crop and repeated research-question plate */
+.intro {
+  background-position: center, center;
+  background-size: cover, cover;
+}
+.research-frame {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(244,245,241,.84), rgba(244,245,241,.84)),
+    url("/synoptic-reference.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.research-frame .eyebrow,
+.research-frame h2 { text-shadow: 0 1px 0 rgba(244,245,241,.9); }
+@media (max-width: 720px) {
+  .intro { background-size: cover, cover; }
+  .research-frame { background-position: 42% center; }
+}

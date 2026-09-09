@@ -2213,8 +2213,9 @@ footer {
   overflow: hidden;
   display: block;
   box-sizing: border-box;
-  border: clamp(13px, 1vw, 20px) solid #f2f0e9;
-  border-radius: clamp(44px, 3.2vw, 68px);
+  border: clamp(16px, 1.25vw, 24px) solid #f4f4f2;
+  border-radius: clamp(58px, 4.5vw, 92px);
+  box-shadow: 0 0 0 4vw #000;
   background: #151515;
   color: #f5f3ec;
 }

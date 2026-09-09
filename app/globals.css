@@ -3094,3 +3094,18 @@ button:focus-visible {
 }
 .hero-nav { border-color: rgba(23,34,116,.72); }
 .hero-title { border-color: rgba(23,34,116,.72); }
+
+
+/* Animated opening artwork */
+.intro {
+  background:
+    linear-gradient(rgba(244,245,241,.52), rgba(244,245,241,.52)),
+    url("https://i.pinimg.com/originals/47/f5/19/47f5198566e6bc91a7be1b5024690e7b.gif") center center / cover no-repeat;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    background-image:
+      linear-gradient(rgba(244,245,241,.52), rgba(244,245,241,.52)),
+      url("/synoptic-reference.svg");
+  }
+}

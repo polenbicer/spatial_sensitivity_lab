@@ -2386,3 +2386,160 @@ footer {
     max-width: 220px;
   }
 }
+
+
+/* Cartographic research-poster opening */
+.intro {
+  min-height: min(900px, calc(100svh - 32px));
+  margin: 16px;
+  border: 1px solid #172274;
+  border-radius: 0;
+  box-shadow: 0 0 0 16px #08090d;
+  background: #f3f4f2;
+  color: #172274;
+  overflow: hidden;
+}
+.intro::before {
+  z-index: 0;
+  opacity: .2;
+  background-image:
+    linear-gradient(rgba(23,34,116,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23,34,116,.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mix-blend-mode: multiply;
+}
+.intro::after {
+  z-index: 0;
+  opacity: .32;
+  background-image: radial-gradient(rgba(23,34,116,.24) .55px, transparent .7px);
+  background-size: 5px 5px;
+}
+.site-header {
+  z-index: 5;
+  padding: 22px 26px;
+  color: #172274;
+}
+.hero-brand,
+.hero-credit {
+  max-width: none;
+  color: #172274;
+  font: 700 12px/1 "IBM Plex Mono", monospace;
+  letter-spacing: .02em;
+}
+.hero-register {
+  position: absolute;
+  z-index: 4;
+  top: 76px;
+  left: 26px;
+  display: grid;
+  gap: 5px;
+  color: #172274;
+  font: 600 12px/1.15 "IBM Plex Mono", monospace;
+}
+.hero-register p { margin: 0; }
+.hero-nav {
+  z-index: 6;
+  top: 184px;
+  left: 26px;
+  gap: 3px;
+}
+.hero-nav a {
+  color: #172274;
+  font: 600 12px/1.25 "IBM Plex Mono", monospace;
+  letter-spacing: 0;
+}
+.hero-nav a:hover,
+.hero-nav a:focus-visible { color: #e13d2f; }
+.hero-title {
+  position: absolute;
+  z-index: 4;
+  left: 27px;
+  bottom: 28px;
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  color: #172274;
+  font: 600 clamp(20px, 2.1vw, 38px)/.9 "IBM Plex Mono", monospace;
+  letter-spacing: -.08em;
+}
+.hero-title strong {
+  font-weight: 700;
+  color: #e13d2f;
+}
+.diagram-field {
+  position: absolute;
+  z-index: 2;
+  inset: 32px 24px 62px 260px;
+}
+.diagram-grid,
+.dot-field {
+  position: absolute;
+  border: 1px solid #172274;
+}
+.diagram-grid {
+  background-image:
+    linear-gradient(#172274 1px, transparent 1px),
+    linear-gradient(90deg, #172274 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.grid-a { left: 8%; top: 27%; width: 48%; height: 38%; }
+.grid-b { right: 0; top: 5%; width: 35%; height: 24%; background-size: 13px 13px; }
+.grid-c { right: 5%; bottom: 0; width: 28%; height: 36%; background-size: 20px 20px; border-radius: 50% 50% 0 0; }
+.dot-field {
+  border: 0;
+  background-image: radial-gradient(circle, #172274 0 1.35px, transparent 1.6px);
+  background-size: 10px 10px;
+}
+.dots-a { left: 0; top: 3%; width: 31%; height: 25%; transform: rotate(-3deg); }
+.dots-b { right: 2%; top: 31%; width: 43%; height: 31%; background-size: 13px 11px; transform: rotate(2deg); }
+.dots-c { left: 4%; bottom: 2%; width: 39%; height: 29%; background-size: 8px 12px; transform: rotate(-1deg); }
+.city-contours {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: rgba(243,244,242,.7);
+  stroke: #172274;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+.city-contours .contour-inner {
+  fill: none;
+  stroke-width: 1.2;
+  stroke-dasharray: 4 3;
+}
+.measure {
+  position: absolute;
+  z-index: 3;
+  color: #172274;
+  font: 600 10px/1 "IBM Plex Mono", monospace;
+  letter-spacing: .03em;
+}
+.measure-x { right: 0; bottom: -18px; }
+.measure-y { right: -74px; top: 48%; transform: rotate(90deg); }
+
+@media (max-width: 720px) {
+  .intro {
+    min-height: calc(100svh - 20px);
+    margin: 10px;
+    box-shadow: 0 0 0 10px #08090d;
+  }
+  .site-header { padding: 18px; }
+  .hero-brand, .hero-credit { font-size: 10px; }
+  .hero-register { top: 70px; left: 18px; font-size: 10px; }
+  .hero-nav { top: 150px; left: 18px; }
+  .hero-nav a { font-size: 11px; }
+  .diagram-field { inset: 205px 14px 76px 92px; }
+  .grid-a { left: 0; top: 22%; width: 74%; height: 42%; }
+  .grid-b { width: 52%; height: 20%; }
+  .grid-c { width: 48%; height: 28%; }
+  .dots-a { width: 45%; }
+  .dots-b { width: 56%; }
+  .dots-c { width: 55%; }
+  .hero-title {
+    left: 18px;
+    bottom: 20px;
+    gap: 7px;
+    font-size: clamp(14px, 4.4vw, 22px);
+  }
+}

@@ -3184,3 +3184,36 @@ button:focus-visible {
   .intro { background-size: cover, cover; }
   .research-frame { background-position: 42% center; }
 }
+
+
+/* Contextual backgrounds after the evidence section */
+.blindspot {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(244,245,241,.84), rgba(244,245,241,.84)),
+    url("/red-topography-reference.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.case-note {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(244,245,241,.82), rgba(244,245,241,.82)),
+    url("/brussels-map-reference.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.ai-role {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(244,245,241,.86), rgba(244,245,241,.86)),
+    url("/blue-topography-reference.svg");
+  background-position: center 44%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.blindspot > *,
+.case-note > *,
+.ai-role > * { position: relative; z-index: 1; }

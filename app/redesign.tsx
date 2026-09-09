@@ -179,17 +179,10 @@ export default function ResearchInterface() {
         </nav>
 
         <div className="diagram-field" aria-hidden="true">
+          <img className="reference-drawing topo-drawing" src="/topography-reference.svg" alt="" />
+          <img className="reference-drawing synoptic-drawing" src="/synoptic-reference.svg" alt="" />
           <div className="diagram-grid grid-a" />
           <div className="diagram-grid grid-b" />
-          <div className="diagram-grid grid-c" />
-          <div className="dot-field dots-a" />
-          <div className="dot-field dots-b" />
-          <div className="dot-field dots-c" />
-          <svg className="city-contours" viewBox="0 0 1000 620" preserveAspectRatio="none">
-            <path d="M72 510 C122 453 132 381 205 355 C266 333 286 282 345 274 C397 267 426 223 484 240 C548 259 573 321 642 326 C711 332 721 391 682 425 C639 463 579 445 535 481 C481 525 423 552 359 538 C291 523 255 576 193 568 C135 560 110 531 72 510Z" />
-            <path d="M498 456 C531 406 575 386 622 394 C660 400 687 375 729 392 C781 413 791 462 839 482 C881 499 903 538 872 564 C839 591 792 563 756 580 C704 603 661 570 620 575 C568 581 522 541 498 456Z" />
-            <path className="contour-inner" d="M170 470 C248 424 273 348 359 330 C446 312 470 379 551 397 M574 461 C637 424 705 434 760 502" />
-          </svg>
           <div className="measure measure-x">734 CELLS / PRIORITY SURFACE</div>
           <div className="measure measure-y">DATA → WEIGHT → SCORE</div>
         </div>

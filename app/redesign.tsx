@@ -345,22 +345,26 @@ export default function ResearchInterface() {
             not determine which neighbourhood deserves investment.
           </blockquote>
         </div>
-        <div className="metric-grid">
-          <article>
+        <div className="metric-grid" aria-label="Model validation metrics">
+          <article tabIndex={0} data-explain="Share of spatial variation in observed summer surface temperature explained by the model during blocked cross-validation. Values closer to 1 indicate a stronger fit.">
             <span>Spatial CV R²</span>
             <strong>{metric?.r2_spatial_cv?.toFixed(3) ?? "—"}</strong>
+            <small>Explained spatial variation · higher is better</small>
           </article>
-          <article>
+          <article tabIndex={0} data-explain="The model's average prediction error in degrees Celsius on spatial blocks it did not train on. Lower values indicate more accurate temperature estimates.">
             <span>Mean absolute error</span>
             <strong>{metric?.mae_c_spatial_cv?.toFixed(2) ?? "—"} °C</strong>
+            <small>Average model error · lower is better</small>
           </article>
-          <article>
+          <article tabIndex={0} data-explain="The average error produced by a simple reference prediction without the Random Forest model. It provides the benchmark the model must improve upon.">
             <span>Baseline MAE</span>
             <strong>{metric?.baseline_mae_c?.toFixed(2) ?? "—"} °C</strong>
+            <small>Reference error without the model</small>
           </article>
-          <article>
+          <article tabIndex={0} data-explain="Spearman correlation between priority rankings calculated with 500 metre and 1 kilometre grids. Values closer to 1 mean rankings change less when spatial scale changes.">
             <span>500 m ↔ 1 km rank correlation</span>
             <strong>{scale?.spearman_priority_500m_vs_1km?.toFixed(3) ?? "—"}</strong>
+            <small>Ranking stability across grid scales · higher is steadier</small>
           </article>
         </div>
       </section>

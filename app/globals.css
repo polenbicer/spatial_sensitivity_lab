@@ -3217,3 +3217,12 @@ button:focus-visible {
 .blindspot > *,
 .case-note > *,
 .ai-role > * { position: relative; z-index: 1; }
+
+
+/* Full-width background continuity */
+.method,
+.legitimacy {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

@@ -175,7 +175,6 @@ export default function ResearchInterface() {
           <a href="#opendata">Data</a>
         </nav>
         <h1>Spatial Sensitivity</h1>
-        <p className="hero-meta">Amsterdam / Brussels · Urban cooling · 2026</p>
       </section>
       <section className="research-frame">
         <p className="eyebrow">Research question</p>

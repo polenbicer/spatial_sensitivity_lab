@@ -2212,7 +2212,9 @@ footer {
   padding: 0;
   overflow: hidden;
   display: block;
-  border: 0;
+  box-sizing: border-box;
+  border: clamp(13px, 1vw, 20px) solid #f2f0e9;
+  border-radius: clamp(44px, 3.2vw, 68px);
   background: #151515;
   color: #f5f3ec;
 }
@@ -2313,13 +2315,13 @@ footer {
   position: absolute;
   z-index: 1;
   top: 51%;
-  left: 50%;
+  left: -2.2vw;
   width: max-content;
   margin: 0;
-  transform: translate(-42%, -50%);
+  transform: translateY(-50%);
   color: var(--red);
-  font: 400 clamp(64px, 7.15vw, 122px)/0.84 "Archivo Black", Arial, sans-serif;
-  letter-spacing: -0.055em;
+  font: 700 clamp(72px, 9vw, 176px)/0.84 "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.06em;
   text-transform: none;
   white-space: nowrap;
 }

@@ -3008,3 +3008,73 @@ button:focus-visible {
   .metric-grid { grid-template-columns: 1fr; }
   .metric-grid article { min-height: 180px; }
 }
+
+
+/* Global spacing audit */
+.research-frame {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr) minmax(280px, 390px);
+  gap: clamp(24px, 4vw, 72px);
+  align-items: center;
+  padding: clamp(42px, 5vw, 74px) 4vw;
+}
+.research-frame::before { display: none; }
+.research-frame .eyebrow {
+  grid-column: 1;
+  align-self: start;
+  margin: 6px 0 0;
+}
+.research-frame h2 {
+  grid-column: 2;
+  margin: 0;
+  font-size: clamp(30px, 4vw, 66px);
+  line-height: .98;
+}
+.research-frame p:last-child {
+  grid-column: 3;
+  align-self: end;
+  margin: 0;
+}
+.blindspot,
+.case-note,
+.ai-role {
+  min-height: 0 !important;
+}
+.rankings-title {
+  min-height: 0;
+  padding: 34px 2vw;
+}
+.ranking-results,
+.ranking-results > .ranking-map,
+.ranking-results > .full-table {
+  min-height: 520px;
+}
+.report-note,
+.report-method,
+.reading-limits {
+  min-height: 0;
+}
+@media (max-width: 900px) {
+  .research-frame {
+    grid-template-columns: 150px 1fr;
+  }
+  .research-frame h2 { grid-column: 2; }
+  .research-frame p:last-child {
+    grid-column: 2;
+    width: min(100%, 560px);
+  }
+}
+@media (max-width: 650px) {
+  .research-frame {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 36px 20px;
+  }
+  .research-frame .eyebrow,
+  .research-frame h2,
+  .research-frame p:last-child { grid-column: 1; }
+  .ranking-results,
+  .ranking-results > .ranking-map,
+  .ranking-results > .full-table { min-height: 360px; }
+}

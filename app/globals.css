@@ -3226,3 +3226,124 @@ button:focus-visible {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+/* Democratic legitimacy additions */
+.data-legibility,
+.scenario-comparator,
+.participation,
+.contestability {
+  padding: clamp(48px, 7vw, 100px) 4vw;
+  border-top: 1px solid var(--ink);
+}
+.data-legibility header,
+.scenario-comparator header,
+.participation header {
+  display: grid;
+  grid-template-columns: minmax(150px, .55fr) minmax(280px, 1.35fr) minmax(220px, .8fr);
+  gap: clamp(24px, 4vw, 72px);
+  align-items: start;
+  margin-bottom: 38px;
+}
+.data-legibility h2,
+.scenario-comparator h2,
+.participation h2,
+.contestability h2 {
+  margin: 0;
+  font-size: clamp(34px, 5vw, 72px);
+  line-height: .94;
+  font-weight: 500;
+  letter-spacing: -.045em;
+}
+.data-legibility header p:last-child,
+.scenario-comparator header p:last-child,
+.participation header p:last-child { margin: 4px 0 0; line-height: 1.5; }
+.legibility-table { border: 1px solid var(--ink); background: rgba(244,245,241,.86); }
+.legibility-row {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  border-bottom: 1px solid var(--ink);
+}
+.legibility-row:last-child { border-bottom: 0; }
+.legibility-row > * { padding: 14px 16px; border-right: 1px solid var(--ink); }
+.legibility-row > *:last-child { border-right: 0; }
+.legibility-row.head { background: var(--ink); color: var(--paper); text-transform: uppercase; font-size: 12px; letter-spacing: .08em; }
+.scenario-comparator { background: var(--ink); color: var(--paper); }
+.compare-controls { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--paper); }
+.compare-controls label { padding: 18px; display: grid; gap: 8px; text-transform: uppercase; font-size: 11px; letter-spacing: .08em; }
+.compare-controls label:first-child { border-right: 1px solid var(--paper); }
+.compare-controls strong, .compare-controls select { font-size: clamp(18px, 2.2vw, 32px); font-weight: 500; text-transform: none; letter-spacing: 0; }
+.compare-controls select { width: 100%; color: var(--paper); background: var(--ink); border: 0; border-bottom: 1px solid var(--paper); border-radius: 0; }
+.compare-list { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--paper); border-top: 0; }
+.compare-list article { min-height: 150px; padding: 18px; border-right: 1px solid var(--paper); border-bottom: 1px solid var(--paper); display: grid; align-content: space-between; gap: 12px; }
+.compare-list article:nth-child(3n) { border-right: 0; }
+.compare-list article:nth-last-child(-n+3) { border-bottom: 0; }
+.compare-list article span { font-variant-numeric: tabular-nums; }
+.compare-list article strong { font-size: 32px; }
+.compare-list .up { color: #7ee2a8; }
+.compare-list .down { color: #ff8d8d; }
+.comparison-foot { max-width: 760px; margin: 22px 0 0; }
+.participation { background: var(--paper); }
+.decision-actors { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--ink); }
+.decision-actors article { min-height: 270px; padding: 18px; border-right: 1px solid var(--ink); display: flex; flex-direction: column; }
+.decision-actors article:last-child { border-right: 0; }
+.decision-actors article > span { font-size: 12px; }
+.decision-actors h3 { margin: 34px 0 12px; font-size: 24px; font-weight: 500; }
+.decision-actors p { margin: 0; }
+.decision-actors small { margin-top: auto; padding-top: 28px; line-height: 1.4; }
+.participation-question { margin-top: 28px; padding: 22px; border-left: 8px solid var(--red); background: rgba(23,34,116,.06); }
+.participation-question p { max-width: 1000px; margin-bottom: 0; font-size: clamp(20px, 2.4vw, 34px); line-height: 1.15; }
+.contestability { display: grid; grid-template-columns: minmax(260px, .75fr) minmax(340px, 1.25fr); gap: clamp(30px, 6vw, 100px); background: #e7e8e3; }
+.contestability > div:first-child p:last-child { max-width: 520px; }
+.challenge-panel { border: 1px solid var(--ink); padding: 20px; background: var(--paper); }
+.challenge-panel > strong { display: block; font-size: clamp(22px, 3vw, 38px); margin-bottom: 18px; }
+.challenge-options { display: grid; }
+.challenge-options button { text-align: left; padding: 13px; border: 1px solid var(--ink); border-bottom: 0; background: transparent; color: var(--ink); }
+.challenge-options button:last-child { border-bottom: 1px solid var(--ink); }
+.challenge-options button:hover,
+.challenge-options button.active { background: var(--red); color: var(--paper); }
+.record-challenge { margin-top: 16px; width: 100%; padding: 14px; background: var(--ink); color: var(--paper); border: 1px solid var(--ink); }
+.record-challenge:disabled { opacity: .38; cursor: not-allowed; }
+.challenge-result { margin: 16px 0 0; padding: 15px; border: 1px solid var(--red); line-height: 1.45; }
+.chain > div small { display: block; margin-top: 8px; line-height: 1.35; font-weight: 400; }
+
+@media (max-width: 900px) {
+  .data-legibility header,
+  .scenario-comparator header,
+  .participation header { grid-template-columns: 150px 1fr; }
+  .data-legibility header p:last-child,
+  .scenario-comparator header p:last-child,
+  .participation header p:last-child { grid-column: 2; }
+  .decision-actors { grid-template-columns: 1fr 1fr; }
+  .decision-actors article:nth-child(2) { border-right: 0; }
+  .decision-actors article:nth-child(-n+2) { border-bottom: 1px solid var(--ink); }
+  .compare-list { grid-template-columns: 1fr 1fr; }
+  .compare-list article:nth-child(3n) { border-right: 1px solid var(--paper); }
+  .compare-list article:nth-child(2n) { border-right: 0; }
+  .compare-list article:nth-last-child(-n+3) { border-bottom: 1px solid var(--paper); }
+  .compare-list article:nth-last-child(-n+2) { border-bottom: 0; }
+}
+@media (max-width: 650px) {
+  .data-legibility,
+  .scenario-comparator,
+  .participation,
+  .contestability { padding-left: 20px; padding-right: 20px; }
+  .data-legibility header,
+  .scenario-comparator header,
+  .participation header,
+  .contestability { grid-template-columns: 1fr; }
+  .data-legibility header p:last-child,
+  .scenario-comparator header p:last-child,
+  .participation header p:last-child { grid-column: 1; }
+  .legibility-row { grid-template-columns: 1.15fr .9fr .9fr; font-size: 12px; }
+  .legibility-row > * { padding: 11px 9px; }
+  .compare-controls,
+  .compare-list,
+  .decision-actors { grid-template-columns: 1fr; }
+  .compare-controls label:first-child { border-right: 0; border-bottom: 1px solid var(--paper); }
+  .compare-list article,
+  .compare-list article:nth-child(3n),
+  .compare-list article:nth-child(2n) { border-right: 0; border-bottom: 1px solid var(--paper); }
+  .compare-list article:last-child { border-bottom: 0; }
+  .decision-actors article { min-height: 220px; border-right: 0; border-bottom: 1px solid var(--ink); }
+  .decision-actors article:last-child { border-bottom: 0; }
+}

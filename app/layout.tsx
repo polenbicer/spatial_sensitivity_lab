@@ -4,7 +4,7 @@ import './globals.css';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://spatial-sensitivity-lab.vercel.app';
 const siteTitle = 'Spatial Sensitivity Lab | Urban Cooling and AI Governance';
 const siteDescription =
-  'An evidence-led research demonstrator examining urban cooling priority, uncertainty and AI-supported decision legitimacy in Brussels and Amsterdam.';
+  'Who Gets Prioritised? A research demonstrator examining the democratic legitimacy of data-driven urban cooling decisions in Brussels and Amsterdam.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -61,7 +61,7 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
   name: 'Spatial Sensitivity Lab',
-  alternateName: 'Spatial Sensitivity Lab: Urban Cooling Decision Research',
+  alternateName: 'Who Gets Prioritised? The Democratic Legitimacy of Data-Driven Urban Cooling Decisions in Brussels and Amsterdam',
   url: siteUrl,
   description: siteDescription,
   applicationCategory: 'ResearchApplication',

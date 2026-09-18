@@ -18,14 +18,14 @@ type Collection = { type: "FeatureCollection"; features: Feature[] };
 const CITIES: City[] = ["Brussels", "Amsterdam"];
 const SCENARIOS: Record<Scenario, { title: string; weights: string; note: string }> = {
   priority_consensus: {
-    title: "Consensus",
+    title: "Scenario median",
     weights: "Median of four scenarios",
-    note: "The median score across all policy logics.",
+    note: "A statistical median across four policy logics—not a political or public consensus.",
   },
   priority_balanced: {
-    title: "Balanced",
+    title: "Balanced proxy weighting",
     weights: "40% surface · 30% green deficit · 30% population",
-    note: "Distributes attention across physical pressure, nature deficit and population exposure.",
+    note: "Distributes attention across three mapped proxies. Equal treatment of indicators is not, by itself, a complete theory of distributive justice.",
   },
   priority_population_led: {
     title: "Population-led",
@@ -116,9 +116,12 @@ function MapFrame({
 export default function ResearchInterface() {
   const [city, setCity] = useState<City>("Brussels"),
     [scenario, setScenario] = useState<Scenario>("priority_consensus"),
+    [comparisonScenario, setComparisonScenario] = useState<Scenario>("priority_population_led"),
     [data, setData] = useState<Collection | null>(null),
     [evidence, setEvidence] = useState<any>(null),
     [selected, setSelected] = useState(""),
+    [challengeReason, setChallengeReason] = useState(""),
+    [challengeRecorded, setChallengeRecorded] = useState(false),
     [loadError, setLoadError] = useState("");
   useEffect(() => {
     Promise.all([
@@ -153,6 +156,23 @@ export default function ResearchInterface() {
   const active = cells.find((f) => f.properties.grid_id === selected) ?? eligible[0],
     ranked = eligible.slice(0, 6),
     p = active?.properties;
+  const comparisonRows = useMemo(() => {
+    const usable = cells.filter((f) => f.properties.eligible);
+    const rank = (field: Scenario) =>
+      new Map(
+        [...usable]
+          .sort((a, b) => Number(b.properties[field]) - Number(a.properties[field]))
+          .map((f, i) => [String(f.properties.grid_id), i + 1]),
+      );
+    const left = rank(scenario), right = rank(comparisonScenario);
+    return usable
+      .map((f) => {
+        const id = String(f.properties.grid_id), a = left.get(id) ?? 0, b = right.get(id) ?? 0;
+        return { id, name: String(f.properties.neighbourhood_name || "Boundary cell"), a, b, shift: a - b };
+      })
+      .sort((a, b) => Math.abs(b.shift) - Math.abs(a.shift))
+      .slice(0, 6);
+  }, [cells, scenario, comparisonScenario]);
   const metric = evidence?.ml_validation_metrics?.find((x: any) => x.city === city),
     scale = evidence?.scale_sensitivity_metrics?.find((x: any) => x.city === city);
   return (
@@ -174,8 +194,9 @@ export default function ResearchInterface() {
           <a href="/rankings">[02] RANKINGS</a>
           <a href="#evidence">[03] EVIDENCE</a>
           <a href="#method">[04] METHOD</a>
-          <a href="#legitimacy">[05] LEGITIMACY</a>
-          <a href="#opendata">[06] DATA</a>
+          <a href="#participation">[05] DEMOCRACY</a>
+          <a href="#legitimacy">[06] LEGITIMACY</a>
+          <a href="#opendata">[07] DATA</a>
         </nav>
 
         <div className="diagram-field" aria-hidden="true">
@@ -196,10 +217,10 @@ export default function ResearchInterface() {
       <section className="research-frame">
         <p className="eyebrow">Research question</p>
         <h2>
-          How do AI- and data-supported spatial prioritisation tools shape what becomes visible as
-          urban cooling need?
+          How do data-driven prioritisation tools translate contested understandings of urban
+          cooling need into spatial priorities?
         </h2>
-        <p>And where must political judgement, participation and accountability remain decisive?</p>
+        <p>Under what conditions can that translation be considered democratically legitimate?</p>
       </section>
       <section className="workspace" id="explore">
         <aside className="controls">
@@ -341,8 +362,8 @@ export default function ResearchInterface() {
             spatial blocks, not random cell splits.
           </p>
           <blockquote>
-            Predictive accuracy validates a relationship with observed surface temperature. It does
-            not determine which neighbourhood deserves investment.
+            This validates thermal association—not distributive justice, policy legitimacy, the
+            selected weights or an investment decision.
           </blockquote>
         </div>
         <div className="metric-grid" aria-label="Model validation metrics">
@@ -386,6 +407,59 @@ export default function ResearchInterface() {
           </p>
         </div>
       </section>
+      <section className="data-legibility" aria-labelledby="legibility-title">
+        <header>
+          <p className="eyebrow">Data legibility audit</p>
+          <h2 id="legibility-title">Absence is part of the evidence.</h2>
+          <p>Included does not mean complete; unavailable does not mean unimportant.</p>
+        </header>
+        <div className="legibility-table" role="table" aria-label="Data availability by city">
+          <div className="legibility-row head" role="row">
+            <b role="columnheader">Dimension</b><b role="columnheader">Brussels</b><b role="columnheader">Amsterdam</b>
+          </div>
+          {[
+            ["Sealed surface", "Included", "Included"],
+            ["Cooling green", "Included", "Included"],
+            ["Population exposure", "Included", "Included"],
+            ["Observed summer surface heat", "Included", "Included"],
+            ["Age 65+ / one-person households", "Unavailable in this release", "Partial diagnostic context"],
+            ["Health, income, housing quality", "Not represented", "Not represented"],
+            ["Residents’ situated knowledge", "Not yet represented", "Not yet represented"],
+          ].map(([dimension, brussels, amsterdam]) => (
+            <div className="legibility-row" role="row" key={dimension}>
+              <span role="cell">{dimension}</span><span role="cell">{brussels}</span><span role="cell">{amsterdam}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className="scenario-comparator" aria-labelledby="compare-title">
+        <header>
+          <p className="eyebrow">Compare value choices</p>
+          <h2 id="compare-title">The same city. Different priorities.</h2>
+          <p>Largest cell-level rank movements between the active policy logic and a second scenario.</p>
+        </header>
+        <div className="compare-controls">
+          <label>Active logic<strong>{SCENARIOS[scenario].title}</strong></label>
+          <label>
+            Compare with
+            <select value={comparisonScenario} onChange={(e) => setComparisonScenario(e.target.value as Scenario)}>
+              {(Object.keys(SCENARIOS) as Scenario[]).filter((key) => key !== scenario).map((key) => (
+                <option key={key} value={key}>{SCENARIOS[key].title}</option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <div className="compare-list">
+          {comparisonRows.map((row) => (
+            <article key={row.id}>
+              <b>{row.name}</b>
+              <span>#{row.a} → #{row.b}</span>
+              <strong className={row.shift > 0 ? "up" : "down"}>{row.shift > 0 ? `+${row.shift}` : row.shift}</strong>
+            </article>
+          ))}
+        </div>
+        <p className="comparison-foot">Movement is evidence of value sensitivity, not evidence that either scenario is politically correct.</p>
+      </section>
       <section className="case-note">
         <div>
           <p className="eyebrow">Why two cities?</p>
@@ -419,6 +493,47 @@ export default function ResearchInterface() {
           </p>
         </div>
       </section>
+      <section className="participation" id="participation">
+        <header>
+          <p className="eyebrow">Democratic participation</p>
+          <h2>Who should decide the weights?</h2>
+          <p>
+            Participation is not a final yes/no vote. Affected residents may need opportunities to
+            authorize, challenge, revise or reject assumptions throughout the decision process.
+          </p>
+        </header>
+        <div className="decision-actors">
+          {[
+            ["Elected representatives", "Public mandate and political responsibility", "Risk: electoral majorities may overlook locally concentrated harms."],
+            ["Technical experts", "Methodological competence and evidence appraisal", "Risk: expertise can turn contestable values into apparently necessary parameters."],
+            ["Affected residents", "Situated knowledge and lived consequences", "Risk: unequal time, access and representation can shape who is heard."],
+            ["Deliberative hybrid", "Shared judgement across institutions, experts and residents", "Risk: participation becomes symbolic unless it can alter indicators, weights or decisions."],
+          ].map(([title, value, risk], i) => (
+            <article key={title}><span>{String(i + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{value}</p><small>{risk}</small></article>
+          ))}
+        </div>
+        <aside className="participation-question">
+          <b>Research sub-question</b>
+          <p>How and at what stages should affected residents be able to authorize, challenge, revise or reject the assumptions and outputs of data-driven urban cooling prioritisation?</p>
+        </aside>
+      </section>
+      <section className="contestability" aria-labelledby="contest-title">
+        <div>
+          <p className="eyebrow">Contest this classification</p>
+          <h2 id="contest-title">What might this cell be missing?</h2>
+          <p>This is a demonstrator of an objection route. It does not send data or contact a municipality.</p>
+        </div>
+        <div className="challenge-panel">
+          <strong>{String(p?.neighbourhood_name || "Select a mapped cell")}</strong>
+          <div className="challenge-options">
+            {["Local heat experience is missing", "The indicators misrepresent need", "The weighting is unacceptable", "The proposed unit or boundary is wrong", "Residents were not involved"].map((reason) => (
+              <button key={reason} className={challengeReason === reason ? "active" : ""} onClick={() => { setChallengeReason(reason); setChallengeRecorded(false); }}>{reason}</button>
+            ))}
+          </div>
+          <button className="record-challenge" disabled={!challengeReason} onClick={() => setChallengeRecorded(true)}>Create a local challenge record</button>
+          {challengeRecorded && <p className="challenge-result"><b>Challenge recorded in this browser session:</b> {challengeReason}. A legitimate operational system would now identify a responsible official, response deadline, evidence route and appeal body.</p>}
+        </div>
+      </section>
       <section className="method" id="method">
         <header>
           <p className="eyebrow">Method & sources</p>
@@ -426,17 +541,18 @@ export default function ResearchInterface() {
         </header>
         <div className="chain">
           {[
-            "Official boundaries",
-            "Aligned 500 m grid",
-            "Surface + nature + population",
-            "Four normative scenarios",
-            "Independent Landsat validation",
-            "Spatial robustness tests",
-            "Human interpretation",
-          ].map((x, i) => (
+            ["Source", "Official boundaries and dated public datasets"],
+            ["Pre-process", "Reproject, clip and align to a 500 m analytical grid"],
+            ["Measure", "Surface pressure, cooling-green deficit and population exposure"],
+            ["Normalise", "Convert indicators to within-city relative scores"],
+            ["Weight", "Apply four disclosed, contestable policy logics"],
+            ["Aggregate", "Calculate cell scores and overlap-area-weighted neighbourhood summaries"],
+            ["Validate", "Test thermal association and spatial-scale sensitivity"],
+            ["Interpret", "Require participation, feasibility review, explanation and appeal"],
+          ].map(([x, detail], i) => (
             <div key={x}>
               <span>{String(i + 1).padStart(2, "0")}</span>
-              <b>{x}</b>
+              <b>{x}</b><small>{detail}</small>
             </div>
           ))}
         </div>
@@ -451,9 +567,9 @@ export default function ResearchInterface() {
         </div>
         <p className="method-foot">
           Priority scores are within-city percentiles, not temperatures, uncertainty intervals or
-          cross-city performance rankings. The consensus aggregates four scenarios through the
-          median; it reduces the influence of a single weighting scheme but does not create a
-          neutral result. AI is used for explainable thermal validation—not to choose policy weights
+          cross-city performance rankings. The scenario median aggregates four scenarios; it
+          reduces the influence of a single weighting scheme but does not create democratic
+          consensus or a neutral result. AI is used for explainable thermal validation—not to choose policy weights
           or define justice.
         </p>
       </section>
@@ -500,6 +616,11 @@ export default function ResearchInterface() {
           The displayed rankings are research outputs, not administrative decisions. A narrow score
           difference is descriptive and must not be presented as a statistical confidence interval
           without a separate uncertainty analysis.
+        </p>
+        <p>
+          Priority indicates mapped conditions for further review. It does not determine project
+          suitability, intervention type, land availability, cost, ownership, displacement risk or
+          residents’ preferences.
         </p>
       </section>
       <footer>

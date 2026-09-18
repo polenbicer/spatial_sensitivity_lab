@@ -50,16 +50,16 @@ type Summary = {
 const CITIES: City[] = ["Brussels", "Amsterdam"];
 const SCENARIOS: Record<Scenario, { title: string; weights: string; interpretation: string }> = {
   priority_consensus: {
-    title: "Consensus median",
+    title: "Scenario median",
     weights: "Median of four scenarios",
     interpretation:
-      "This report aggregates four policy logics through the median. It reduces the influence of any single weighting scheme, but it is not a neutral result. High-ranking places repeatedly combine sealed surfaces, limited cooling green and population exposure.",
+      "This report aggregates four policy logics through a statistical median. It reduces the influence of any single weighting scheme, but it is neither a political consensus nor a neutral result.",
   },
   priority_balanced: {
-    title: "Equal distributive justice",
+    title: "Balanced proxy weighting",
     weights: "40% surface · 30% green deficit · 30% population",
     interpretation:
-      "This balanced logic distributes attention across built-surface pressure, shortage of cooling green and population exposure. It favours places where several forms of need overlap rather than allowing one indicator to dominate.",
+      "This logic distributes attention across three mapped proxies. It favours places where several signals overlap, but equal treatment of indicators is not a complete theory of distributive justice.",
   },
   priority_population_led: {
     title: "Demographic exposure first",
@@ -479,7 +479,7 @@ export default function RankingExplorer() {
         <p>{SCENARIOS[scenario].interpretation}</p>
         <small>
           Rank movement compares this selection with the previously selected policy logic:{" "}
-          {SCENARIOS[comparison].title}. On first load, consensus is the reference.
+          {SCENARIOS[comparison].title}. On first load, the scenario median is the reference.
         </small>
       </section>
       <section className="ranking-results">

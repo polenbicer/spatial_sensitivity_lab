@@ -1451,6 +1451,14 @@ footer {
 .rankings-title > div b {
   font-size: 52px;
 }
+.rankings-title > div small {
+  display: block;
+  max-width: 250px;
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.35;
+  font-weight: 500;
+}
 .rankings-title > div span {
   font:
     12px "Courier New",

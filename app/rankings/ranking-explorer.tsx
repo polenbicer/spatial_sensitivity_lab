@@ -288,6 +288,7 @@ export default function RankingExplorer() {
     view === "neighbourhoods"
       ? currentSummaries.filter((r) => r.rankingEligible).length
       : cityCells.length;
+  const excludedNeighbourhoodCount = currentSummaries.filter((r) => !r.rankingEligible).length;
   const downloadCsv = () => {
     const head =
       view === "neighbourhoods"
@@ -397,6 +398,9 @@ export default function RankingExplorer() {
         <div>
           <b>{count}</b>
           <span>{view === "neighbourhoods" ? "neighbourhoods" : "eligible cells"} ranked</span>
+          {view === "neighbourhoods" && excludedNeighbourhoodCount > 0 && (
+            <small>{excludedNeighbourhoodCount} additional official units shown but excluded for insufficient mapped coverage</small>
+          )}
         </div>
       </section>
       <section className="rankings-controls">
@@ -462,6 +466,10 @@ export default function RankingExplorer() {
               Each official neighbourhood appears once. Values are{" "}
               <b>weighted by the exact overlap area</b> between eligible 500 m cells and the
               neighbourhood polygon, so a tiny boundary fragment cannot count like a full cell.
+              Amsterdam uses 519 fine-grained CBS <i>buurten</i> (508 rankable here), while
+              Brussels uses 145 Monitoring des Quartiers units. These local geographies are not
+              equivalent in size or granularity, so neighbourhood ranks must not be compared
+              between cities. Use the common 500 m cell view for cross-city spatial comparison.
             </>
           ) : (
             <>

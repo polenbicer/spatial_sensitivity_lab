@@ -3365,3 +3365,5 @@ button:focus-visible {
 .procurement-table {overflow-x:auto;margin:35px 0}.procurement-table [role=row] {display:grid;grid-template-columns:1fr 2fr 2fr 1.5fr;min-width:760px;border-bottom:1px solid #abb3ae}.procurement-table [role=row]>* {padding:14px;line-height:1.45}
 .clause-simulator {border:2px solid #191e1b;padding:24px;max-width:940px;margin:32px 0}
 @media(max-width:700px){.procurement-chain{grid-template-columns:repeat(2,minmax(0,1fr))}.procurement{padding:30px 18px}}
+.diagnostic-toggle{display:flex;gap:10px;align-items:flex-start;padding:14px 10px;font-size:13px;line-height:1.4}.diagnostic-toggle input{width:18px;height:18px;flex:none;accent-color:#0878ad}
+.open-data a small{display:block;font-size:11px;line-height:1.4;margin-top:8px;font-weight:400}

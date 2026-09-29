@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Cite this research demonstrator and its underlying data providers. A DOI has not yet been assigned."
+authors:
+  - family-names: Biçer
+    given-names: Polen
+title: "Spatial Sensitivity Lab: Urban Cooling Prioritisation in Brussels and Amsterdam"
+version: "0.3"
+date-released: 2026-09-29
+url: "https://spatialsensitivitylab.vercel.app/"
+repository-code: "https://github.com/polenbicer/spatial_sensitivity_lab"

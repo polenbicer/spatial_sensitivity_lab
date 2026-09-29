@@ -3408,3 +3408,61 @@ footer { color:var(--paper); background:var(--ink); }
   .decision-rail { display:block; }
   .decision-rail .inspect { border-right:0;border-bottom:1px solid var(--ink); }
 }
+
+/* Research question: keep the three subquestions readable and compact. */
+.research-frame {
+  display:block;
+  min-height:0;
+  padding:48px clamp(20px,4vw,70px) 54px;
+  background-color:var(--paper);
+  color:var(--ink);
+}
+.research-frame > .eyebrow:first-child {
+  max-width:950px;
+  color:var(--red) !important;
+  font-size:12px;
+  line-height:1.5;
+  margin:0 0 20px;
+}
+.research-frame > p:not(.eyebrow) {
+  max-width:900px;
+  margin:0 0 20px;
+  background:none;
+  color:var(--ink);
+  padding:0;
+  font-size:15px;
+  line-height:1.5;
+}
+.research-frame > .eyebrow:not(:first-child) { margin:24px 0 12px; }
+.research-frame h2 {
+  max-width:1120px;
+  margin:0 0 15px;
+  font-size:clamp(25px,3vw,42px);
+  line-height:1.12;
+}
+.research-frame .research-subquestions {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(16px,2vw,32px);
+  max-width:none;
+  margin:28px 0 0;
+  border-top:1px solid var(--ink);
+  padding-top:20px;
+}
+.research-frame .research-subquestions p,
+.research-frame .research-subquestions p:last-child {
+  min-width:0;
+  margin:0;
+  padding:0;
+  background:none;
+  color:var(--ink);
+  font-size:clamp(14px,1.15vw,17px);
+  line-height:1.46;
+  overflow-wrap:normal;
+}
+.research-frame .research-subquestions b { margin-bottom:10px; }
+@media(max-width:760px){
+  .research-frame { padding:34px 20px 38px; }
+  .research-frame .research-subquestions { grid-template-columns:1fr;gap:18px; }
+  .research-frame .research-subquestions p + p { border-top:1px solid var(--ink);padding-top:18px; }
+}

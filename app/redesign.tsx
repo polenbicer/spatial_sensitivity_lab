@@ -232,14 +232,18 @@ export default function ResearchInterface() {
         </div>
       </section>
       <section className="research-frame">
-        <p className="eyebrow">Who Is Prioritized? The Politics of Data-Driven Urban Cooling and Territorial Governance in Brussels and Amsterdam</p>
+        <p className="eyebrow">Who Is Prioritized? Data-Driven Urban Cooling and Democratic Legitimacy in Brussels and Amsterdam</p>
         <p>Extreme heat forces cities to decide where limited adaptation resources should go. Spatial priorities depend on choices about indicators, data gaps, spatial units and weights. Who has the authority to define public need?</p>
         <p className="eyebrow">Research question</p>
         <h2>
-          How do data-driven approaches translate contested understandings of urban cooling need into spatial and institutional priorities, and under what conditions can this process be considered democratically legitimate?
+          How does data-driven spatial prioritization define urban cooling needs, and under what conditions can such prioritization be considered democratically legitimate in light of the AI and algorithm governance frameworks of Brussels and Amsterdam?
         </h2>
-        <p>The question is examined through Brussels and Amsterdam.</p>
-        <div className="research-subquestions"><p><b>01 · Value sensitivity</b> How do the selection and weighting of available indicators change spatial priority rankings in Brussels and Amsterdam, and which areas are most affected?</p><p><b>02 · Decision chain</b> How are cooling needs and spatial priorities defined, interpreted and justified within the relevant institutions? At which stages do contestable choices become difficult to revise?</p><p><b>03 · Democratic legitimacy</b> Whose knowledge can influence these choices, what opportunities exist to question or contest them, and what conditions of justification, participation and responsibility should govern the use of spatial priorities?</p></div>
+        <p>The prototype and institutional documents address different parts of this question.</p>
+        <div className="research-subquestions">
+          <p><b>01 · Value choices</b> When the prototype’s indicators, weights, social data, and spatial scale change, which areas move in the priority ranking, and which remain stable?</p>
+          <p><b>02 · Institutional frameworks</b> How do Amsterdam, Brussels, and relevant EU documents define transparency, oversight, and responsibility for AI and algorithmic tools that may inform public decisions? What can be established about the implementation of these stated principles?</p>
+          <p><b>03 · Democratic legitimacy</b> If a technical ranking is used to justify intervention priorities, whose knowledge should count, who should explain the choices behind it, and how should affected residents be able to challenge and revise them?</p>
+        </div>
       </section>
       <section className="workspace" id="explore">
         <aside className="controls">

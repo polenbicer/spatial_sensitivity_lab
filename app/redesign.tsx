@@ -232,11 +232,14 @@ export default function ResearchInterface() {
         </div>
       </section>
       <section className="research-frame">
+        <p className="eyebrow">Who Is Prioritized? The Politics of Data-Driven Urban Cooling and Territorial Governance in Brussels and Amsterdam</p>
+        <p>Extreme heat forces cities to decide where limited adaptation resources should go. Spatial priorities depend on choices about indicators, data gaps, spatial units and weights. Who has the authority to define public need?</p>
         <p className="eyebrow">Research question</p>
         <h2>
-          How are contested definitions of urban cooling need translated into spatial and institutional priorities in Brussels and Amsterdam, and under what conditions can this decision-making process be considered democratically legitimate?
+          How do data-driven approaches translate contested understandings of urban cooling need into spatial and institutional priorities, and under what conditions can this process be considered democratically legitimate?
         </h2>
-        <div className="research-subquestions"><p><b>01 · Value sensitivity</b> How do territorial rankings change when available indicators and weights vary, and which areas are most affected?</p><p><b>02 · Decision chain</b> Where do contestable choices become fixed between defining need and setting intervention priorities, who makes them, and how are they justified?</p><p><b>03 · Authority and contestation</b> Whose knowledge counts, and how can affected people participate in, question, approve or challenge priorities?</p></div>
+        <p>The question is examined through Brussels and Amsterdam.</p>
+        <div className="research-subquestions"><p><b>01 · Value sensitivity</b> How do the selection and weighting of available indicators change spatial priority rankings in Brussels and Amsterdam, and which areas are most affected?</p><p><b>02 · Decision chain</b> How are cooling needs and spatial priorities defined, interpreted and justified within the relevant institutions? At which stages do contestable choices become difficult to revise?</p><p><b>03 · Democratic legitimacy</b> Whose knowledge can influence these choices, what opportunities exist to question or contest them, and what conditions of justification, participation and responsibility should govern the use of spatial priorities?</p></div>
       </section>
       <section className="workspace" id="explore">
         <aside className="controls">
@@ -494,7 +497,7 @@ export default function ResearchInterface() {
             governance environments. The project does not rank which city governs better.
           </p>
           <p>
-            The comparison asks how different governance arrangements shape the authority given to spatial evidence and the opportunities to challenge it. The prototype does not represent either city’s existing decision system.
+            The two cities provide distinct institutional settings for examining these judgments. The aim is to develop and assess an argument about democratic legitimacy using empirical evidence. The prototype is a critical research instrument, not a representation of either city’s existing decision system or an account of actual public spending.
           </p>
         </div>
       </section>
@@ -520,7 +523,7 @@ export default function ResearchInterface() {
           <p className="eyebrow">Democratic participation</p>
           <h2>Who should decide the weights?</h2>
           <p>
-            The study asks whose knowledge is treated as authoritative and whether residents and other affected groups can participate in, question, approve or challenge priorities and decisions.
+            Heat justice, governing by indicators and democratic legitimacy meet in the question of whose knowledge can influence priorities. The study examines opportunities for affected people to question or contest choices and how institutions justify and take responsibility for decisions.
           </p>
         </header>
         <div className="decision-actors">
@@ -535,7 +538,7 @@ export default function ResearchInterface() {
         </div>
         <aside className="participation-question">
           <b>Research sub-question</b>
-          <p>Whose knowledge is treated as authoritative, and what opportunities do affected people have to participate in, question, approve or challenge the priorities and decisions involved?</p>
+          <p>Whose knowledge can influence these choices, what opportunities exist to question or contest them, and what conditions of justification, participation and responsibility should govern the use of spatial priorities?</p>
         </aside>
       </section>
       <section className="contestability" aria-labelledby="contest-title">
@@ -600,7 +603,7 @@ export default function ResearchInterface() {
           <p className="eyebrow">Institutional interpretation</p>
           <h2>A ranking does not make a decision.</h2>
           <p>
-            Documents and expert interviews will examine how institutions define cooling needs, interpret spatial evidence and set intervention priorities. The prototype exposes questions for this inquiry; it does not report findings from interviews that have not taken place.
+            Policy and decision documents and semi-structured expert interviews will examine how institutions define cooling needs, interpret spatial evidence and set intervention priorities. The prototype exposes questions for this inquiry; its rankings are not assumed to determine actual spending, and it does not report findings from interviews that have not taken place.
           </p>
         </header>
         <div>
@@ -621,7 +624,7 @@ export default function ResearchInterface() {
         <aside className="thesis-proposition">
           <b>Working thesis proposition</b>
           <p>
-            A single ranking makes competing needs easier to compare, but may conceal the judgments on which that comparison rests. The study asks whose knowledge gains authority, when choices become difficult to revise, and whether affected people can understand and contest the grounds for prioritisation.
+            The accuracy or technical performance of a ranking cannot by itself justify allocating public attention and resources according to it. Legitimacy also depends on whether the judgments behind it can be explained, informed by affected people, questioned and revised, with clear institutional responsibility for the decisions made. Evidence from both cities will develop and assess these conditions and inform a concise checklist for public authorities.
           </p>
         </aside>
       </section>

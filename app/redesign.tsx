@@ -211,8 +211,8 @@ export default function ResearchInterface() {
           <a href="#method">[04] METHOD</a>
           <a href="#participation">[05] DEMOCRACY</a>
           <a href="#legitimacy">[06] LEGITIMACY</a>
-          <a href="#procurement">[08] PROCUREMENT</a>
           <a href="#opendata">[07] DATA</a>
+          <a href="#procurement">[08] FURTHER STAGES</a>
           <a href="/methods.html">METHODS & REPRODUCIBILITY</a>
         </nav>
 
@@ -222,7 +222,7 @@ export default function ResearchInterface() {
           <div className="diagram-grid grid-a" />
           <div className="diagram-grid grid-b" />
           <div className="measure measure-x">734 CELLS / PRIORITY SURFACE</div>
-          <div className="measure measure-y">DATA → WEIGHT → SCORE</div>
+          <div className="measure measure-y">NEED → EVIDENCE → PRIORITY</div>
         </div>
 
         <div className="hero-title">
@@ -234,10 +234,9 @@ export default function ResearchInterface() {
       <section className="research-frame">
         <p className="eyebrow">Research question</p>
         <h2>
-          How do data-driven prioritisation tools translate contested understandings of urban
-          cooling needs into spatial priorities, and under what conditions can this translation be considered democratically legitimate?
+          How are contested definitions of urban cooling need translated into spatial and institutional priorities in Brussels and Amsterdam, and under what conditions can this decision-making process be considered democratically legitimate?
         </h2>
-        <p>Sub-questions: Which data, indicators and spatial units define need? How do weights and data gaps alter rankings? How can residents approve, challenge or reject decisions, and who remains responsible?</p>
+        <div className="research-subquestions"><p><b>01 · Value sensitivity</b> How do territorial rankings change when available indicators and weights vary, and which areas are most affected?</p><p><b>02 · Decision chain</b> Where do contestable choices become fixed between defining need and setting intervention priorities, who makes them, and how are they justified?</p><p><b>03 · Authority and contestation</b> Whose knowledge counts, and how can affected people participate in, question, approve or challenge priorities?</p></div>
       </section>
       <section className="workspace" id="explore">
         <aside className="controls">
@@ -459,7 +458,7 @@ export default function ResearchInterface() {
         <header>
           <p className="eyebrow">Compare value choices</p>
           <h2 id="compare-title">The same city. Different priorities.</h2>
-          <p>Largest cell-level rank movements between the active policy logic and a second scenario.</p>
+        <p>A sensitivity analysis of available indicators and weights. Largest cell-level rank movements between the active logic and another scenario.</p>
         </header>
         <div className="compare-controls">
           <label>Active logic<strong>{SCENARIOS[scenario].title}</strong></label>
@@ -495,8 +494,7 @@ export default function ResearchInterface() {
             governance environments. The project does not rank which city governs better.
           </p>
           <p>
-            The comparison asks which needs become measurable, which remain absent, and how unequal
-            data infrastructures condition what a decision system can recognise.
+            The comparison asks how different governance arrangements shape the authority given to spatial evidence and the opportunities to challenge it. The prototype does not represent either city’s existing decision system.
           </p>
         </div>
       </section>
@@ -522,8 +520,7 @@ export default function ResearchInterface() {
           <p className="eyebrow">Democratic participation</p>
           <h2>Who should decide the weights?</h2>
           <p>
-            Participation is not a final yes/no vote. Affected residents may need opportunities to
-            authorize, challenge, revise or reject assumptions throughout the decision process.
+            The study asks whose knowledge is treated as authoritative and whether residents and other affected groups can participate in, question, approve or challenge priorities and decisions.
           </p>
         </header>
         <div className="decision-actors">
@@ -538,7 +535,7 @@ export default function ResearchInterface() {
         </div>
         <aside className="participation-question">
           <b>Research sub-question</b>
-          <p>How and at what stages should affected residents be able to authorize, challenge, revise or reject the assumptions and outputs of data-driven urban cooling prioritisation?</p>
+          <p>Whose knowledge is treated as authoritative, and what opportunities do affected people have to participate in, question, approve or challenge the priorities and decisions involved?</p>
         </aside>
       </section>
       <section className="contestability" aria-labelledby="contest-title">
@@ -572,7 +569,7 @@ export default function ResearchInterface() {
             ["Weight", "Apply four environmental logics and one social diagnostic scenario"],
             ["Aggregate", "Calculate cell scores and overlap-area-weighted neighbourhood summaries"],
             ["Validate", "Test thermal association and spatial-scale sensitivity"],
-            ["Interpret", "Require participation, feasibility review, explanation and appeal"],
+            ["Interpret", "Examine institutional interpretation, feasibility, participation and intervention priorities"],
           ].map(([x, detail], i) => (
             <div key={x}>
               <span>{String(i + 1).padStart(2, "0")}</span>
@@ -580,6 +577,7 @@ export default function ResearchInterface() {
             </div>
           ))}
         </div>
+        <div className="decision-chain-research"><h3>Research decision chain</h3><ol><li>Define cooling need</li><li>Select data and indicators</li><li>Model and rank areas</li><li>Interpret spatial evidence</li><li>Set intervention priorities</li></ol><p>At each stage: who decides, what justification is visible, and who can challenge the choice? Procurement and budget decisions may follow; this study does not claim to trace them systematically.</p></div>
         <div className="sources">
           {SOURCES.map(([a, b, url]) => (
             <a href={url} target="_blank" rel="noreferrer" key={url}>
@@ -599,31 +597,37 @@ export default function ResearchInterface() {
       </section>
       <section className="legitimacy" id="legitimacy">
         <header>
-          <p className="eyebrow">AI/data-supported policy legitimacy audit</p>
-          <h2>Accuracy is not authorization.</h2>
+          <p className="eyebrow">Institutional interpretation</p>
+          <h2>A ranking does not make a decision.</h2>
           <p>
-            A technically strong model can still depoliticise contested choices. Before acting,
-            every stage needs public justification and an accountable decision-maker.
+            Documents and expert interviews will examine how institutions define cooling needs, interpret spatial evidence and set intervention priorities. The prototype exposes questions for this inquiry; it does not report findings from interviews that have not taken place.
           </p>
         </header>
         <div>
-          {evidence?.ai_policy_legitimacy_audit?.map((x: any) => (
-            <article key={x.stage}>
-              <span>{String(x.stage).padStart(2, "0")}</span>
-              <h3>{x.legitimacy_stage}</h3>
-              <p>{x.current_evidence}</p>
+          {[
+            ["Define need", "Who decides what counts as cooling need, and whose observations enter the record?"],
+            ["Choose evidence", "Which data, indicators and spatial units are selected or left out?"],
+            ["Fix weights", "Who authorises the weighting, and when can it still be revised?"],
+            ["Interpret rankings", "How do officials read uncertain and incomplete spatial results alongside local knowledge?"],
+            ["Set priorities", "What reasons and responsibilities connect a map to proposed interventions and routes for objection?"],
+          ].map(([title, question], i) => (
+            <article key={title}>
+              <span>{String(i + 1).padStart(2, "0")}</span>
+              <h3>{title}</h3>
+              <p>{question}</p>
             </article>
           ))}
         </div>
         <aside className="thesis-proposition">
           <b>Working thesis proposition</b>
           <p>
-            Data-driven prioritisation can depoliticise public resource allocation when contested choices about indicators, weights, gaps and scale appear as a necessary technical ranking. Democratic legitimacy depends on public justification, participation, contestation and institutional responsibility. The visible rank shifts make these choices open to scrutiny.
+            A single ranking makes competing needs easier to compare, but may conceal the judgments on which that comparison rests. The study asks whose knowledge gains authority, when choices become difficult to revise, and whether affected people can understand and contest the grounds for prioritisation.
           </p>
         </aside>
       </section>
       <section className="procurement" id="procurement">
-        <header><p className="eyebrow">08 · Procurement</p><h2>Where do the weights get fixed?</h2><p>A research prompt about how analytical choices might become contractual requirements; neither city is asserted to procure this demonstrator.</p></header>
+        <header><p className="eyebrow">08 · Possible later stages</p><h2>What happens after priorities are proposed?</h2><p>Procurement and budget decisions can later fix or alter priorities. They are prompts for further inquiry, not stages this study sets out to trace systematically. Neither city is asserted to procure this demonstrator.</p></header>
+        <details className="procurement-details"><summary>Explore procurement questions and the contract clause demonstrator</summary>
         <ol className="procurement-chain">{["Data", "Indicator", "Weight", "Model", "Tender specification", "Contract", "Budget allocation", "Appeal"].map((step) => <li key={step}><b>{step}</b><small>Who decides? What is visible? Can residents challenge?</small></li>)}</ol>
         <div className="procurement-table" role="table" aria-label="Procurement comparison"><div role="row"><b role="columnheader">Question</b><b role="columnheader">Amsterdam</b><b role="columnheader">Brussels</b><b role="columnheader">Verification status</b></div>
           <div role="row"><span>Algorithm register</span><span><a href="https://www.amsterdam.nl/innovatie/digitalisering-technologie/algoritmes-ai/algoritmes/">Municipal algorithm descriptions</a> are public; relevance to cooling procurement requires inquiry.</span><span>Equivalent register for this use case not established.</span><span>Verified (Amsterdam publication); To verify (Brussels)</span></div>
@@ -633,6 +637,7 @@ export default function ResearchInterface() {
         <div className="clause-simulator"><h3>Contract clause simulator · demonstrator</h3><p>If <b>{SCENARIOS[scenario].title}</b> were fixed in a tender specification, {SCENARIOS[scenario].weights.toLowerCase()} would become a contractual baseline. A draft could require disclosure of the weights and source data, a version record for changes, independent audit access, a route for residents to challenge outputs, and a narrowly justified treatment of trade secrets. These are questions for a real procurement, not existing clauses in either city's cooling contract.</p><p>Compare the <a href="https://www.amsterdam.nl/innovatie/digitalisering-technologie/algoritmes-ai/inkoopvoorwaarden-algoritmes/">Amsterdam terms</a> and <a href="https://public-buyers-community.ec.europa.eu/communities/procurement-ai/resources/updated-eu-ai-model-contractual-clauses">EU model clauses and commentary</a> for the actual wording.</p></div>
         <p><b>AI Act classification: to be assessed.</b> A transparent cooling priority index may fall outside high-risk AI categories, and the thermal validation component has a separate role. Whether the Act applies, and whether any full or light clauses are appropriate, requires expert assessment. See <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng">Regulation (EU) 2024/1689</a>.</p>
         <p><b>If the weighting sits in a tender specification, who can still contest it?</b> Return to <a href="#participation">democratic participation</a>.</p>
+        </details>
       </section>
       <section className="open-data" id="opendata">
         <p className="eyebrow">Open data & assumptions</p>

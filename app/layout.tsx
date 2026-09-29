@@ -4,7 +4,7 @@ import './globals.css';
 const siteUrl = 'https://spatialsensitivitylab.vercel.app';
 const siteTitle = 'Spatial Sensitivity Lab | Urban Cooling and Territorial Priorities';
 const siteDescription =
-  'Who Is Prioritized? A research demonstrator examining how contested cooling needs become spatial and institutional priorities in Brussels and Amsterdam.';
+  'Who Is Prioritized? A research demonstrator on urban cooling priorities and democratic legitimacy in Brussels and Amsterdam.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

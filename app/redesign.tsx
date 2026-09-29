@@ -557,7 +557,7 @@ export default function ResearchInterface() {
         </div>
         <aside className="participation-question">
           <b>Research sub-question</b>
-          <p>Whose knowledge can influence these choices, what opportunities exist to question or contest them, and what conditions of justification, participation and responsibility should govern the use of spatial priorities?</p>
+          <p>If a technical ranking is used to justify intervention priorities, whose knowledge should count, who should explain the choices behind it, and how should affected residents be able to challenge and revise them?</p>
         </aside>
       </section>
       <section className="contestability" aria-labelledby="contest-title">

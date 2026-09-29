@@ -65,7 +65,7 @@ const SCENARIOS: Record<Scenario, { title: string; weights: string; interpretati
     title: "Demographic exposure first",
     weights: "25% surface · 20% green deficit · 55% population",
     interpretation:
-      "This population-led logic moves densely inhabited places upward. The result reflects potential exposure, not individual vulnerability: age, health, income and housing conditions are not consistently represented across both cities.",
+      "This population-led logic moves densely inhabited places upward. The result reflects potential exposure, not individual vulnerability: age and one-person household shares are now available in the main explorer’s social diagnostic; health and housing remain outside this ranking report.",
   },
   priority_surface_led: {
     title: "Built environment / sealed surfaces",

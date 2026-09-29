@@ -3390,3 +3390,4 @@ button:focus-visible {
 .research-subquestions b {color:var(--red);display:block;font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
 @media(max-width:900px){.procurement header{grid-template-columns:150px 1fr}.procurement header p:last-child{grid-column:2}.decision-chain-research ol{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.procurement-chain{grid-template-columns:repeat(2,minmax(0,1fr))}.procurement{padding:36px 20px}.procurement header{grid-template-columns:1fr}.procurement header p:last-child{grid-column:1}.decision-chain-research ol{grid-template-columns:1fr}.decision-chain-research li{min-height:0;border-right:0;border-bottom:1px solid var(--ink)}.decision-chain-research li:last-child{border-bottom:0}}
+footer { color:var(--paper); background:var(--ink); }

@@ -198,7 +198,7 @@ export default function ResearchInterface() {
           <a href="#legitimacy">[06] LEGITIMACY</a>
           <a href="#procurement">[08] PROCUREMENT</a>
           <a href="#opendata">[07] DATA</a>
-          <a href="/methods">METHODS & REPRODUCIBILITY</a>
+          <a href="/methods.html">METHODS & REPRODUCIBILITY</a>
         </nav>
 
         <div className="diagram-field" aria-hidden="true">
@@ -625,7 +625,7 @@ export default function ResearchInterface() {
             ↓ Evidence metrics JSON
           </a>
         </div>
-        <p>Source attribution and reuse terms: PDOK and UrbIS boundaries; ESA WorldCover 2021, Copernicus HRL 2021, GHSL GHS-POP 2020 and Landsat 8/9 JJA 2019–2023. Check each provider’s current licence before redistribution. The GeoJSON contains derived values; underlying imagery is not included. <a href="/methods">Methods, provenance and citation status</a>.</p>
+        <p>Source attribution and reuse terms: PDOK and UrbIS boundaries; ESA WorldCover 2021, Copernicus HRL 2021, GHSL GHS-POP 2020 and Landsat 8/9 JJA 2019–2023. Check each provider’s current licence before redistribution. The GeoJSON contains derived values; underlying imagery is not included. <a href="/methods.html">Methods, provenance and citation status</a>.</p>
         <p>
           The displayed rankings are research outputs, not administrative decisions. A narrow score
           difference is descriptive and must not be presented as a statistical confidence interval

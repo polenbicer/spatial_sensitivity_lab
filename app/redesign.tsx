@@ -518,6 +518,21 @@ export default function ResearchInterface() {
           </p>
         </div>
       </section>
+      <section className="research-bridge" aria-label="AI governance and the political question">
+        <article id="ai-governance">
+          <p className="eyebrow">AI governance in context</p>
+          <h2>What rules should govern a tool that informs a public decision?</h2>
+          <p>This prototype is not a municipal AI system. Its priority rankings come from explicit indicators and weights; machine learning is used only to test their relationship with observed surface temperature.</p>
+          <p>The research also examines <a href="https://www.amsterdam.nl/innovatie/ai-innovatie/" target="_blank" rel="noreferrer">Amsterdam’s AI vision and algorithm governance tools</a>, <a href="https://admin.be.brussels/sites/default/files/2024-10/Paradigm_livre%20blanc_2024_FR_240910.pdf" target="_blank" rel="noreferrer">Brussels’ regional AI policy documents</a>, and <a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-27" target="_blank" rel="noreferrer">relevant EU rules</a>. These sources do not show that either city uses this prototype, or AI, to allocate urban cooling resources. They show how public institutions define transparency, oversight and responsibility when computational tools enter decision-making.</p>
+        </article>
+        <article id="political-question">
+          <p className="eyebrow">When a ranking speaks for the public</p>
+          <h2>Can a single score stand in for public debate?</h2>
+          <p>A map can make competing needs appear to have a single answer. Yet a ranking depends on prior choices: what counts as need, whose experience becomes data, and how different needs are weighed.</p>
+          <p>This research asks whether a technically persuasive ranking can come to stand in for public debate. It examines a possible connection between technocratic claims to a single correct solution and political claims to a single public interest. That connection is a question for the thesis, not a finding about Brussels or Amsterdam.</p>
+          <p>The democratic test is whether a model’s choices can be explained, challenged and revised, and whether a public institution takes responsibility for decisions made with its help.</p>
+        </article>
+      </section>
       <section className="participation" id="participation">
         <header>
           <p className="eyebrow">Democratic participation</p>

@@ -20,27 +20,27 @@ const SCENARIOS: Record<Scenario, { title: string; weights: string; note: string
   priority_consensus: {
     title: "Scenario median",
     weights: "Median of four scenarios",
-    note: "A statistical median across four policy logics—not a political or public consensus.",
+    note: "A statistical median across four policy logics—not a political or public consensus. An analyst seeking a compromise summary might defend this choice.",
   },
   priority_balanced: {
     title: "Balanced proxy weighting",
     weights: "40% surface · 30% green deficit · 30% population",
-    note: "Distributes attention across three mapped proxies. Equal treatment of indicators is not, by itself, a complete theory of distributive justice.",
+    note: "Distributes attention across three mapped proxies. Equal treatment of indicators is not, by itself, a complete theory of distributive justice. A planner seeking balance among mapped environmental and exposure proxies might defend it.",
   },
   priority_population_led: {
     title: "Population-led",
     weights: "25% surface · 20% green deficit · 55% population",
-    note: "Prioritises where more residents are potentially exposed.",
+    note: "Prioritises where more residents are potentially exposed. A decision-maker aiming to reach the largest number of people might defend it.",
   },
   priority_surface_led: {
     title: "Surface-led",
     weights: "60% surface · 20% green deficit · 20% population",
-    note: "Prioritises sealed and impervious urban surfaces.",
+    note: "Prioritises sealed and impervious urban surfaces. An infrastructure or heat-mitigation programme focused on physical surfaces might defend it.",
   },
   priority_nature_deficit_led: {
     title: "Nature-deficit-led",
     weights: "25% surface · 55% green deficit · 20% population",
-    note: "Prioritises the greatest relative shortage of cooling green cover.",
+    note: "Prioritises the greatest relative shortage of cooling green cover. A green-infrastructure equity programme might defend it.",
   },
 };
 const SOURCES = [
@@ -97,7 +97,7 @@ function MapFrame({
     setHtml(
       `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>html,body,#map{height:100%;margin:0}.leaflet-container{font:13px Arial,sans-serif;background:#dce3df}.leaflet-popup-content-wrapper,.leaflet-popup-tip{border-radius:0}.legend{background:#fff;border:1px solid #111;padding:9px;line-height:19px}.legend i{display:inline-block;width:14px;height:14px;margin-right:7px;vertical-align:-2px}</style></head><body><div id="map"></div><script>
  const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},selected=${JSON.stringify(selected)};const map=L.map('map',{zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);
- Promise.all([fetch('/data/grid_priority.geojson').then(r=>r.json()),fetch('/data/project_context.geojson').then(r=>r.json())]).then(([grid,projects])=>{const vals=[['#0878ad','0–20'],['#55a8c8','20–40'],['#ecebe5','40–60'],['#f07a4b','60–80'],['#c80032','80–100']];const layer=L.geoJSON(grid,{filter:f=>f.properties.city===city,style:f=>{const v=f.properties[field],c=v<20?'#0878ad':v<40?'#55a8c8':v<60?'#ecebe5':v<80?'#f07a4b':'#c80032';return{fillColor:c,fillOpacity:f.properties.eligible?.76:.35,color:f.properties.grid_id===selected?'#111':'rgba(255,255,255,.72)',weight:f.properties.grid_id===selected?3:.55}},onEachFeature:(f,l)=>{const p=f.properties,v=p[field];l.bindPopup('<b>'+(p.neighbourhood_name||'500 m cell')+'</b><br>Priority '+(v==null?'Excluded':Number(v).toFixed(1)+'/100')+'<br>Surface pressure '+fmt(p.score_impervious)+'<br>Green deficit '+fmt(p.score_green_deficit)+'<br>Population exposure '+fmt(p.score_population)+'<br>Summer surface temperature '+(p.summer_lst_median_c==null?'Not available':Number(p.summer_lst_median_c).toFixed(1)+' °C')+'<br>Top-quintile scenarios '+(p.top20_scenario_count??'—')+'/4');l.on('click',()=>parent.postMessage({type:'grid-select',id:p.grid_id},'*'))}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]});L.geoJSON(projects,{filter:f=>f.properties.city===city,style:{color:'#5b22b4',weight:3,fillOpacity:.06,dashArray:'7 4'}}).addTo(map);const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>Relative priority</b><br>'+vals.map(x=>'<i style="background:'+x[0]+'"></i>'+x[1]).join('<br>');return d};legend.addTo(map)});function fmt(v){return v==null?'—':Number(v).toFixed(0)+'/100'}
+ Promise.all([fetch('/data/grid_priority.geojson').then(r=>{if(!r.ok)throw Error('grid');return r.json()}),fetch('/data/project_context.geojson').then(r=>{if(!r.ok)throw Error('context');return r.json()})]).then(([grid,projects])=>{const vals=[['#0878ad','0–20'],['#55a8c8','20–40'],['#ecebe5','40–60'],['#f07a4b','60–80'],['#c80032','80–100']];const layer=L.geoJSON(grid,{filter:f=>f.properties.city===city,style:f=>{const v=f.properties[field],c=v<20?'#0878ad':v<40?'#55a8c8':v<60?'#ecebe5':v<80?'#f07a4b':'#c80032';return{fillColor:c,fillOpacity:f.properties.eligible?.76:.35,color:f.properties.grid_id===selected?'#111':'rgba(255,255,255,.72)',weight:f.properties.grid_id===selected?3:.55}},onEachFeature:(f,l)=>{const p=f.properties,v=p[field];l.bindPopup('<b>'+(p.neighbourhood_name||'500 m cell')+'</b><br>Priority '+(v==null?'Excluded':Number(v).toFixed(1)+'/100')+'<br>Surface pressure '+fmt(p.score_impervious)+'<br>Green deficit '+fmt(p.score_green_deficit)+'<br>Population exposure '+fmt(p.score_population)+'<br>Summer surface temperature '+(p.summer_lst_median_c==null?'Not available':Number(p.summer_lst_median_c).toFixed(1)+' °C')+'<br>Top-quintile scenarios '+(p.top20_scenario_count??'—')+'/4');l.on('click',()=>parent.postMessage({type:'grid-select',id:p.grid_id},'*'))}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]});L.geoJSON(projects,{filter:f=>f.properties.city===city,style:{color:'#5b22b4',weight:3,fillOpacity:.06,dashArray:'7 4'}}).addTo(map);const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>Relative priority</b><br>'+vals.map(x=>'<i style="background:'+x[0]+'"></i>'+x[1]).join('<br>');return d};legend.addTo(map)}).catch(()=>{document.getElementById('map').textContent='Map data could not be loaded. Refresh the page to retry.'});function fmt(v){return v==null?'—':Number(v).toFixed(0)+'/100'}
  </script></body></html>`
         .replace("Top-quintile scenarios", "Scenarios scoring ≥80")
         .replaceAll("#f07a4b", "#e89b32"),
@@ -196,7 +196,9 @@ export default function ResearchInterface() {
           <a href="#method">[04] METHOD</a>
           <a href="#participation">[05] DEMOCRACY</a>
           <a href="#legitimacy">[06] LEGITIMACY</a>
+          <a href="#procurement">[08] PROCUREMENT</a>
           <a href="#opendata">[07] DATA</a>
+          <a href="/methods">METHODS & REPRODUCIBILITY</a>
         </nav>
 
         <div className="diagram-field" aria-hidden="true">
@@ -218,9 +220,9 @@ export default function ResearchInterface() {
         <p className="eyebrow">Research question</p>
         <h2>
           How do data-driven prioritisation tools translate contested understandings of urban
-          cooling need into spatial priorities?
+          cooling needs into spatial priorities, and under what conditions can this translation be considered democratically legitimate?
         </h2>
-        <p>Under what conditions can that translation be considered democratically legitimate?</p>
+        <p>Sub-questions: Which data, indicators and spatial units define need? How do weights and data gaps alter rankings? How can residents approve, challenge or reject decisions, and who remains responsible?</p>
       </section>
       <section className="workspace" id="explore">
         <aside className="controls">
@@ -361,6 +363,8 @@ export default function ResearchInterface() {
             cooling green, trees, grass, water and population density. Validation uses five-fold
             spatial blocks, not random cell splits.
           </p>
+          {metric && <p>Spatially blocked validation explains {(metric.r2_spatial_cv * 100).toFixed(1)}% of observed temperature variation (R² {metric.r2_spatial_cv.toFixed(3)}); MAE is {metric.mae_c_spatial_cv.toFixed(2)} °C versus {metric.baseline_mae_c.toFixed(2)} °C for the baseline. These are within-city prediction metrics.</p>}
+          {!metric && (loadError || evidence) && <p role="alert">Thermal validation metrics are unavailable for this city.</p>}
           <blockquote>
             This validates thermal association—not distributive justice, policy legitimacy, the
             selected weights or an investment decision.
@@ -369,48 +373,46 @@ export default function ResearchInterface() {
         <div className="metric-grid" aria-label="Model validation metrics">
           <article tabIndex={0} data-explain="Share of spatial variation in observed summer surface temperature explained by the model during blocked cross-validation. Values closer to 1 indicate a stronger fit.">
             <span>Spatial CV R²</span>
-            <strong>{metric?.r2_spatial_cv?.toFixed(3) ?? "—"}</strong>
+            <strong>{metric?.r2_spatial_cv?.toFixed(3) ?? "Unavailable"}</strong>
             <small>Explained spatial variation · higher is better</small>
           </article>
           <article tabIndex={0} data-explain="The model's average prediction error in degrees Celsius on spatial blocks it did not train on. Lower values indicate more accurate temperature estimates.">
             <span>Mean absolute error</span>
-            <strong>{metric?.mae_c_spatial_cv?.toFixed(2) ?? "—"} °C</strong>
+            <strong>{metric ? `${metric.mae_c_spatial_cv.toFixed(2)} °C` : "Unavailable"}</strong>
             <small>Average model error · lower is better</small>
           </article>
           <article tabIndex={0} data-explain="The average error produced by a simple reference prediction without the Random Forest model. It provides the benchmark the model must improve upon.">
             <span>Baseline MAE</span>
-            <strong>{metric?.baseline_mae_c?.toFixed(2) ?? "—"} °C</strong>
+            <strong>{metric ? `${metric.baseline_mae_c.toFixed(2)} °C` : "Unavailable"}</strong>
             <small>Reference error without the model</small>
           </article>
           <article tabIndex={0} data-explain="Spearman correlation between priority rankings calculated with 500 metre and 1 kilometre grids. Values closer to 1 mean rankings change less when spatial scale changes.">
             <span>500 m ↔ 1 km rank correlation</span>
-            <strong>{scale?.spearman_priority_500m_vs_1km?.toFixed(3) ?? "—"}</strong>
+            <strong>{scale?.spearman_priority_500m_vs_1km?.toFixed(3) ?? "Unavailable"}</strong>
             <small>Ranking stability across grid scales · higher is steadier</small>
           </article>
         </div>
       </section>
       <section className="blindspot">
         <p className="eyebrow">What the map cannot see</p>
-        <h2>Missing data do not mean missing vulnerability.</h2>
+        <h2>Social indicators still need integration.</h2>
         <div>
           <p>
             Amsterdam includes a limited diagnostic context based on residents aged 65+ and
             one-person households. It is not a complete social vulnerability index.
           </p>
           <p>
-            For Brussels, no comparable small-area social score is asserted in this release. The gap
-            remains visible rather than being filled with an undocumented proxy.
+            For Brussels, relevant IBSA age, household and income data exist. They have not yet been integrated into this model version; integration is planned for a subsequent version after geographic and temporal alignment.
           </p>
           <p>
-            This asymmetry is itself a finding: unequal data infrastructures shape which people and
-            needs become legible to decision systems.
+            The asymmetry in this version reflects the model release, not an absence of Brussels data infrastructure.
           </p>
         </div>
       </section>
       <section className="data-legibility" aria-labelledby="legibility-title">
         <header>
           <p className="eyebrow">Data legibility audit</p>
-          <h2 id="legibility-title">Absence is part of the evidence.</h2>
+          <h2 id="legibility-title">What is included in this release?</h2>
           <p>Included does not mean complete; unavailable does not mean unimportant.</p>
         </header>
         <div className="legibility-table" role="table" aria-label="Data availability by city">
@@ -422,8 +424,10 @@ export default function ResearchInterface() {
             ["Cooling green", "Included", "Included"],
             ["Population exposure", "Included", "Included"],
             ["Observed summer surface heat", "Included", "Included"],
-            ["Age 65+ / one-person households", "Unavailable in this release", "Partial diagnostic context"],
-            ["Health, income, housing quality", "Not represented", "Not represented"],
+            ["Age 65+ / one-person households", "Available (IBSA), not yet integrated", "Partial diagnostic context"],
+            ["Income", "Available (IBSA), not yet integrated", "Not represented in this release"],
+            ["Health", "Availability and spatial comparability to verify", "Not represented in this release"],
+            ["Housing quality", "Availability and spatial comparability to verify", "Not represented in this release"],
             ["Residents’ situated knowledge", "Not yet represented", "Not yet represented"],
           ].map(([dimension, brussels, amsterdam]) => (
             <div className="legibility-row" role="row" key={dimension}>
@@ -594,12 +598,21 @@ export default function ResearchInterface() {
         <aside className="thesis-proposition">
           <b>Working thesis proposition</b>
           <p>
-            The central technocratic risk is not simply an autonomous AI making a decision. It is
-            the translation of contestable indicators, weights and data gaps into an apparently
-            necessary technical ranking. The visible rank shifts in this demonstrator make that
-            political contingency inspectable.
+            Data-driven prioritisation can depoliticise public resource allocation when contested choices about indicators, weights, gaps and scale appear as a necessary technical ranking. Democratic legitimacy depends on public justification, participation, contestation and institutional responsibility. The visible rank shifts make these choices open to scrutiny.
           </p>
         </aside>
+      </section>
+      <section className="procurement" id="procurement">
+        <header><p className="eyebrow">08 · Procurement</p><h2>Where do the weights get fixed?</h2><p>A research prompt about how analytical choices might become contractual requirements; neither city is asserted to procure this demonstrator.</p></header>
+        <ol className="procurement-chain">{["Data", "Indicator", "Weight", "Model", "Tender specification", "Contract", "Budget allocation", "Appeal"].map((step) => <li key={step}><b>{step}</b><small>Who decides? What is visible? Can residents challenge?</small></li>)}</ol>
+        <div className="procurement-table" role="table" aria-label="Procurement comparison"><div role="row"><b role="columnheader">Question</b><b role="columnheader">Amsterdam</b><b role="columnheader">Brussels</b><b role="columnheader">Verification status</b></div>
+          <div role="row"><span>Algorithm register</span><span><a href="https://www.amsterdam.nl/innovatie/digitalisering-technologie/algoritmes-ai/algoritmes/">Municipal algorithm descriptions</a> are public; relevance to cooling procurement requires inquiry.</span><span>Equivalent register for this use case not established.</span><span>Verified (Amsterdam publication); To verify (Brussels)</span></div>
+          <div role="row"><span>Standard procurement terms</span><span><a href="https://www.amsterdam.nl/innovatie/digitalisering-technologie/algoritmes-ai/inkoopvoorwaarden-algoritmes/">Algorithmic procurement terms</a> published.</span><span>Equivalent standard terms not established.</span><span>Verified (Amsterdam publication); Interview needed (Brussels use)</span></div>
+          <div role="row"><span>EU model clauses</span><span>EU full and light versions draw on Amsterdam's earlier approach; applicability depends on the system and contract.</span><span>Potential reference, with adoption unverified.</span><span>Verified (model text); Interview needed (adoption)</span></div>
+        </div>
+        <div className="clause-simulator"><h3>Contract clause simulator · demonstrator</h3><p>If <b>{SCENARIOS[scenario].title}</b> were fixed in a tender specification, {SCENARIOS[scenario].weights.toLowerCase()} would become a contractual baseline. A draft could require disclosure of the weights and source data, a version record for changes, independent audit access, a route for residents to challenge outputs, and a narrowly justified treatment of trade secrets. These are questions for a real procurement, not existing clauses in either city's cooling contract.</p><p>Compare the <a href="https://www.amsterdam.nl/innovatie/digitalisering-technologie/algoritmes-ai/inkoopvoorwaarden-algoritmes/">Amsterdam terms</a> and <a href="https://public-buyers-community.ec.europa.eu/communities/procurement-ai/resources/updated-eu-ai-model-contractual-clauses">EU model clauses and commentary</a> for the actual wording.</p></div>
+        <p><b>AI Act classification: to be assessed.</b> A transparent cooling priority index may fall outside high-risk AI categories, and the thermal validation component has a separate role. Whether the Act applies, and whether any full or light clauses are appropriate, requires expert assessment. See <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng">Regulation (EU) 2024/1689</a>.</p>
+        <p><b>If the weighting sits in a tender specification, who can still contest it?</b> Return to <a href="#participation">democratic participation</a>.</p>
       </section>
       <section className="open-data" id="opendata">
         <p className="eyebrow">Open data & assumptions</p>
@@ -612,6 +625,7 @@ export default function ResearchInterface() {
             ↓ Evidence metrics JSON
           </a>
         </div>
+        <p>Source attribution and reuse terms: PDOK and UrbIS boundaries; ESA WorldCover 2021, Copernicus HRL 2021, GHSL GHS-POP 2020 and Landsat 8/9 JJA 2019–2023. Check each provider’s current licence before redistribution. The GeoJSON contains derived values; underlying imagery is not included. <a href="/methods">Methods, provenance and citation status</a>.</p>
         <p>
           The displayed rankings are research outputs, not administrative decisions. A narrow score
           difference is descriptive and must not be presented as a statistical confidence interval

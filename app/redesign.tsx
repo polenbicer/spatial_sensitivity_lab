@@ -7,7 +7,8 @@ type Scenario =
   | "priority_balanced"
   | "priority_population_led"
   | "priority_surface_led"
-  | "priority_nature_deficit_led";
+  | "priority_nature_deficit_led"
+  | "priority_vulnerability_informed";
 type Feature = {
   type: "Feature";
   geometry: unknown;
@@ -42,8 +43,16 @@ const SCENARIOS: Record<Scenario, { title: string; weights: string; note: string
     weights: "25% surface · 55% green deficit · 20% population",
     note: "Prioritises the greatest relative shortage of cooling green cover. A green-infrastructure equity programme might defend it.",
   },
+  priority_vulnerability_informed: {
+    title: "Vulnerability-informed",
+    weights: "30% surface · 20% green deficit · 20% population · 30% social diagnostic",
+    note: "Adds age 65+ and one-person household shares. A policy coalition seeking to account for social exposure might defend this weighting. Cells lacking both social measures remain unscored.",
+  },
 };
 const SOURCES = [
+  ["Brussels social indicators", "IBSA Monitoring des Quartiers · 65+ and one-person households 2025; median taxable income 2023 (diagnostic)", "https://monitoringdesquartiers.brussels/indicateurs"],
+  ["Brussels neighbourhood boundaries", "IBSA / perspective.brussels via Brussels Open Data · CC0 1.0", "https://opendata.brussels.be/explore/dataset/quartiers-du-monitoring-des-quartiers-ibsa-perspective-rbc/"],
+  ["Amsterdam social indicators", "CBS Kerncijfers wijken en buurten 2025", "https://www.cbs.nl/nl-nl/cijfers/detail/86165NED"],
   [
     "Amsterdam boundaries",
     "PDOK · Administrative Areas",
@@ -69,26 +78,20 @@ const SOURCES = [
 ];
 function colour(v: number | null) {
   return v == null
-    ? "#444"
-    : v < 20
-      ? "#0878ad"
-      : v < 40
-        ? "#55a8c8"
-        : v < 60
-          ? "#ecebe5"
-          : v < 80
-            ? "#e89b32"
-            : "#c80032";
+    ? "#777"
+    : v < 20 ? "#440154" : v < 40 ? "#3b528b" : v < 60 ? "#21918c" : v < 80 ? "#5ec962" : "#8a7300";
 }
 
 function MapFrame({
   city,
   scenario,
+  showDiagnostic,
   selected,
   onSelect,
 }: {
   city: City;
   scenario: Scenario;
+  showDiagnostic: boolean;
   selected: string;
   onSelect: (id: string) => void;
 }) {
@@ -96,13 +99,13 @@ function MapFrame({
   useEffect(() => {
     setHtml(
       `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>html,body,#map{height:100%;margin:0}.leaflet-container{font:13px Arial,sans-serif;background:#dce3df}.leaflet-popup-content-wrapper,.leaflet-popup-tip{border-radius:0}.legend{background:#fff;border:1px solid #111;padding:9px;line-height:19px}.legend i{display:inline-block;width:14px;height:14px;margin-right:7px;vertical-align:-2px}</style></head><body><div id="map"></div><script>
- const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},selected=${JSON.stringify(selected)};const map=L.map('map',{zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);
- Promise.all([fetch('/data/grid_priority.geojson').then(r=>{if(!r.ok)throw Error('grid');return r.json()}),fetch('/data/project_context.geojson').then(r=>{if(!r.ok)throw Error('context');return r.json()})]).then(([grid,projects])=>{const vals=[['#0878ad','0–20'],['#55a8c8','20–40'],['#ecebe5','40–60'],['#f07a4b','60–80'],['#c80032','80–100']];const layer=L.geoJSON(grid,{filter:f=>f.properties.city===city,style:f=>{const v=f.properties[field],c=v<20?'#0878ad':v<40?'#55a8c8':v<60?'#ecebe5':v<80?'#f07a4b':'#c80032';return{fillColor:c,fillOpacity:f.properties.eligible?.76:.35,color:f.properties.grid_id===selected?'#111':'rgba(255,255,255,.72)',weight:f.properties.grid_id===selected?3:.55}},onEachFeature:(f,l)=>{const p=f.properties,v=p[field];l.bindPopup('<b>'+(p.neighbourhood_name||'500 m cell')+'</b><br>Priority '+(v==null?'Excluded':Number(v).toFixed(1)+'/100')+'<br>Surface pressure '+fmt(p.score_impervious)+'<br>Green deficit '+fmt(p.score_green_deficit)+'<br>Population exposure '+fmt(p.score_population)+'<br>Summer surface temperature '+(p.summer_lst_median_c==null?'Not available':Number(p.summer_lst_median_c).toFixed(1)+' °C')+'<br>Top-quintile scenarios '+(p.top20_scenario_count??'—')+'/4');l.on('click',()=>parent.postMessage({type:'grid-select',id:p.grid_id},'*'))}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]});L.geoJSON(projects,{filter:f=>f.properties.city===city,style:{color:'#5b22b4',weight:3,fillOpacity:.06,dashArray:'7 4'}}).addTo(map);const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>Relative priority</b><br>'+vals.map(x=>'<i style="background:'+x[0]+'"></i>'+x[1]).join('<br>');return d};legend.addTo(map)}).catch(()=>{document.getElementById('map').textContent='Map data could not be loaded. Refresh the page to retry.'});function fmt(v){return v==null?'—':Number(v).toFixed(0)+'/100'}
+ const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},diagnostic=${JSON.stringify(showDiagnostic)},selected=${JSON.stringify(selected)};const map=L.map('map',{zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);
+ Promise.all([fetch('/data/grid_priority.geojson').then(r=>{if(!r.ok)throw Error('grid');return r.json()}),fetch('/data/project_context.geojson').then(r=>{if(!r.ok)throw Error('context');return r.json()}),fetch('/data/social_diagnostic.json').then(r=>{if(!r.ok)throw Error('social');return r.json()})]).then(([grid,projects,social])=>{const byId=new Map(social.map(r=>[r[0],r]));for(const f of grid.features){const r=byId.get(f.properties.grid_id);if(r){['age65_pct','one_person_pct','median_taxable_income_eur','social_diagnostic','priority_vulnerability_informed','age65_pct_covered_area_pct','one_person_pct_covered_area_pct','social_overlap_count'].forEach((k,i)=>f.properties[k]=r[i+1])}}const vals=[['#440154','0–20'],['#3b528b','20–40'],['#21918c','40–60'],['#5ec962','60–80'],['#fde725','80–100']];const layer=L.geoJSON(grid,{filter:f=>f.properties.city===city,style:f=>{const v=diagnostic?f.properties.social_diagnostic:f.properties[field],c=v==null?'#777':v<20?'#440154':v<40?'#3b528b':v<60?'#21918c':v<80?'#5ec962':'#fde725';return{fillColor:c,fillOpacity:f.properties.eligible?.76:.35,color:f.properties.grid_id===selected?'#111':'rgba(255,255,255,.72)',weight:f.properties.grid_id===selected?3:.55}},onEachFeature:(f,l)=>{const p=f.properties,v=diagnostic?p.social_diagnostic:p[field];l.bindPopup('<b>'+(p.neighbourhood_name||'500 m cell')+'</b><br>'+(diagnostic?'Social diagnostic':'Priority')+' '+(v==null?'No data':Number(v).toFixed(1)+'/100')+'<br>Surface pressure '+fmt(p.score_impervious)+'<br>Green deficit '+fmt(p.score_green_deficit)+'<br>Population exposure '+fmt(p.score_population)+'<br>Age 65+ '+percent(p.age65_pct)+'<br>One-person households '+percent(p.one_person_pct)+'<br>Social diagnostic '+fmt(p.social_diagnostic)+'<br>Summer surface temperature '+(p.summer_lst_median_c==null?'Not available':Number(p.summer_lst_median_c).toFixed(1)+' °C')+'<br>Top-quintile scenarios '+(p.top20_scenario_count??'—')+'/4');l.on('click',()=>parent.postMessage({type:'grid-select',id:p.grid_id},'*'));l.on('add',()=>{const el=l.getElement();if(el){el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label',(p.neighbourhood_name||'Grid cell')+' '+(v==null?'no data':Number(v).toFixed(1)+' out of 100'));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();l.openPopup();parent.postMessage({type:'grid-select',id:p.grid_id},'*')}})}})}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]});L.geoJSON(projects,{filter:f=>f.properties.city===city,style:{color:'#5b22b4',weight:3,fillOpacity:.06,dashArray:'7 4'}}).addTo(map);const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>'+(diagnostic?'Social diagnostic':'Relative priority')+'</b><br>'+vals.map(x=>'<i style="background:'+x[0]+'"></i>'+x[1]).join('<br>');return d};legend.addTo(map)}).catch(()=>{document.getElementById('map').textContent='Map data could not be loaded. Refresh the page to retry.'});function fmt(v){return v==null?'No data':Number(v).toFixed(0)+'/100'}function percent(v){return v==null?'No data':Number(v).toFixed(1)+'%'}
  </script></body></html>`
         .replace("Top-quintile scenarios", "Scenarios scoring ≥80")
-        .replaceAll("#f07a4b", "#e89b32"),
+        .replaceAll("#f07a4b", "#5ec962"),
     );
-  }, [city, scenario, selected]);
+  }, [city, scenario, showDiagnostic, selected]);
   useEffect(() => {
     const h = (e: MessageEvent) => {
       if (e.data?.type === "grid-select") onSelect(e.data.id);
@@ -120,6 +123,7 @@ export default function ResearchInterface() {
     [data, setData] = useState<Collection | null>(null),
     [evidence, setEvidence] = useState<any>(null),
     [selected, setSelected] = useState(""),
+    [showDiagnostic, setShowDiagnostic] = useState(false),
     [challengeReason, setChallengeReason] = useState(""),
     [challengeRecorded, setChallengeRecorded] = useState(false),
     [loadError, setLoadError] = useState("");
@@ -129,12 +133,22 @@ export default function ResearchInterface() {
         if (!r.ok) throw new Error("grid");
         return r.json() as Promise<Collection>;
       }),
+      fetch("/data/social_diagnostic.json").then((r) => {
+        if (!r.ok) throw new Error("social");
+        return r.json() as Promise<Array<Array<string | number | null>>>;
+      }),
       fetch("/data/evidence.json").then((r) => {
         if (!r.ok) throw new Error("evidence");
         return r.json();
       }),
     ])
-      .then(([g, e]) => {
+      .then(([g, social, e]) => {
+        const byId = new Map(social.map((row) => [String(row[0]), row]));
+        const fields = ["age65_pct", "one_person_pct", "median_taxable_income_eur", "social_diagnostic", "priority_vulnerability_informed", "age65_pct_covered_area_pct", "one_person_pct_covered_area_pct", "social_overlap_count"];
+        for (const feature of g.features) {
+          const row = byId.get(String(feature.properties.grid_id));
+          if (row) fields.forEach((field, i) => { feature.properties[field] = row[i + 1] as number | null; });
+        }
         setData(g);
         setEvidence(e);
       })
@@ -147,7 +161,7 @@ export default function ResearchInterface() {
   const eligible = useMemo(
     () =>
       cells
-        .filter((f) => f.properties.eligible)
+        .filter((f) => f.properties.eligible && f.properties[scenario] != null)
         .sort(
           (a, b) => Number(b.properties[scenario] ?? -1) - Number(a.properties[scenario] ?? -1),
         ),
@@ -157,7 +171,7 @@ export default function ResearchInterface() {
     ranked = eligible.slice(0, 6),
     p = active?.properties;
   const comparisonRows = useMemo(() => {
-    const usable = cells.filter((f) => f.properties.eligible);
+    const usable = cells.filter((f) => f.properties.eligible && f.properties[scenario] != null && f.properties[comparisonScenario] != null);
     const rank = (field: Scenario) =>
       new Map(
         [...usable]
@@ -174,7 +188,8 @@ export default function ResearchInterface() {
       .slice(0, 6);
   }, [cells, scenario, comparisonScenario]);
   const metric = evidence?.ml_validation_metrics?.find((x: any) => x.city === city),
-    scale = evidence?.scale_sensitivity_metrics?.find((x: any) => x.city === city);
+    scale = evidence?.scale_sensitivity_metrics?.find((x: any) => x.city === city),
+    socialSensitivity = evidence?.social_sensitivity_metrics?.find((x: any) => x.city === city);
   return (
     <main className="site-shell">
       <section className="intro" id="top">
@@ -254,6 +269,7 @@ export default function ResearchInterface() {
               </button>
             ))}
           </div>
+          <label className="diagnostic-toggle"><input type="checkbox" checked={showDiagnostic} onChange={(e) => setShowDiagnostic(e.target.checked)} /> Show social diagnostic layer (65+ and one-person households)</label>
           <div className="policy-note">
             <b>{SCENARIOS[scenario].title}</b>
             <p>{SCENARIOS[scenario].note}</p>
@@ -264,7 +280,7 @@ export default function ResearchInterface() {
           <div className="panel-head">
             <span>500 m decision surface</span>
             <span>
-              {data ? `${cells.length} cells · within-city scores` : "Loading spatial evidence…"}
+              {data ? `${cells.length} cells · ${showDiagnostic ? "social diagnostic" : "within-city scores"}` : "Loading spatial evidence…"}
             </span>
           </div>
           {loadError ? (
@@ -275,6 +291,7 @@ export default function ResearchInterface() {
             <MapFrame
               city={city}
               scenario={scenario}
+              showDiagnostic={showDiagnostic}
               selected={String(p?.grid_id ?? "")}
               onSelect={setSelected}
             />
@@ -290,7 +307,7 @@ export default function ResearchInterface() {
                 <div className="inspect-title">
                   <h2>{String(p?.neighbourhood_name || "Highest-ranked cell")}</h2>
                   <div className="score" style={{ color: colour(Number(p?.[scenario] ?? 0)) }}>
-                    {Number(p?.[scenario] ?? 0).toFixed(1)}
+                    {p?.[scenario] == null ? "N/A" : Number(p[scenario]).toFixed(1)}
                     <small>/100</small>
                   </div>
                 </div>
@@ -298,11 +315,12 @@ export default function ResearchInterface() {
                   ["Surface pressure", "score_impervious"],
                   ["Green deficit", "score_green_deficit"],
                   ["Population exposure", "score_population"],
+                  ["Social diagnostic", "social_diagnostic"],
                 ].map(([label, key]) => (
                   <div className="meter" key={key}>
                     <span>
                       {label}
-                      <b>{Number(p?.[key] ?? 0).toFixed(0)}</b>
+                      <b>{p?.[key] == null ? "N/A" : Number(p[key]).toFixed(0)}</b>
                     </span>
                     <i>
                       <u style={{ width: `${Number(p?.[key] ?? 0)}%` }} />
@@ -311,7 +329,9 @@ export default function ResearchInterface() {
                 ))}
                 <dl>
                   <div>
-                    <dt>Summer LST</dt>
+                    <dt>Age 65+ · one-person households</dt>
+                    <dd>{p?.age65_pct == null ? "N/A" : `${Number(p.age65_pct).toFixed(1)}%`} · {p?.one_person_pct == null ? "N/A" : `${Number(p.one_person_pct).toFixed(1)}%`}</dd>
+                  </div><div><dt>Summer LST</dt>
                     <dd>
                       {p?.summer_lst_median_c == null
                         ? "—"
@@ -395,17 +415,16 @@ export default function ResearchInterface() {
       </section>
       <section className="blindspot">
         <p className="eyebrow">What the map cannot see</p>
-        <h2>Social indicators still need integration.</h2>
+        <h2>Social indicators reveal another view of need.</h2>
         <div>
           <p>
-            Amsterdam includes a limited diagnostic context based on residents aged 65+ and
-            one-person households. It is not a complete social vulnerability index.
+            Both cities now show a diagnostic layer combining 65+ population and one-person household shares. Brussels uses IBSA 2025; Amsterdam uses CBS 2025. This is not a complete social vulnerability index.
           </p>
           <p>
-            For Brussels, relevant IBSA age, household and income data exist. They have not yet been integrated into this model version; integration is planned for a subsequent version after geographic and temporal alignment.
+            IBSA age and household measures are transferred from neighbourhoods to 500 m cells by polygon overlap area. Median taxable income (2023) is recorded separately, not treated as a directly comparable household income measure or included in the new weighting.
           </p>
           <p>
-            The asymmetry in this version reflects the model release, not an absence of Brussels data infrastructure.
+            Health, housing quality and residents’ situated knowledge remain outside the index. Park and industrial neighbourhoods with suppressed or unavailable IBSA values leave some cells without a social score; partial intersections may mix distinct local conditions.
           </p>
         </div>
       </section>
@@ -424,8 +443,8 @@ export default function ResearchInterface() {
             ["Cooling green", "Included", "Included"],
             ["Population exposure", "Included", "Included"],
             ["Observed summer surface heat", "Included", "Included"],
-            ["Age 65+ / one-person households", "Available (IBSA), not yet integrated", "Partial diagnostic context"],
-            ["Income", "Available (IBSA), not yet integrated", "Not represented in this release"],
+            ["Age 65+ / one-person households", "Included (IBSA 2025); some cells unscored", "Included (CBS 2025); some cells unscored"],
+            ["Income", "IBSA median taxable income 2023: diagnostic metadata only", "CBS income differs in definition; not in this scenario"],
             ["Health", "Availability and spatial comparability to verify", "Not represented in this release"],
             ["Housing quality", "Availability and spatial comparability to verify", "Not represented in this release"],
             ["Residents’ situated knowledge", "Not yet represented", "Not yet represented"],
@@ -462,6 +481,7 @@ export default function ResearchInterface() {
             </article>
           ))}
         </div>
+        {socialSensitivity && <p>Balanced versus vulnerability-informed on {socialSensitivity.n_complete_cells} complete cells: Spearman ρ {socialSensitivity.spearman_balanced_vs_vulnerability}; Kendall τ {socialSensitivity.kendall_balanced_vs_vulnerability}; top 20% overlap {(socialSensitivity.top20_overlap_fraction * 100).toFixed(1)}%. Rank comparisons above use only cells scored in both selected scenarios.</p>}
         <p className="comparison-foot">Movement is evidence of value sensitivity, not evidence that either scenario is politically correct.</p>
       </section>
       <section className="case-note">
@@ -549,7 +569,7 @@ export default function ResearchInterface() {
             ["Pre-process", "Reproject, clip and align to a 500 m analytical grid"],
             ["Measure", "Surface pressure, cooling-green deficit and population exposure"],
             ["Normalise", "Convert indicators to within-city relative scores"],
-            ["Weight", "Apply four disclosed, contestable policy logics"],
+            ["Weight", "Apply four environmental logics and one social diagnostic scenario"],
             ["Aggregate", "Calculate cell scores and overlap-area-weighted neighbourhood summaries"],
             ["Validate", "Test thermal association and spatial-scale sensitivity"],
             ["Interpret", "Require participation, feasibility review, explanation and appeal"],
@@ -571,7 +591,7 @@ export default function ResearchInterface() {
         </div>
         <p className="method-foot">
           Priority scores are within-city percentiles, not temperatures, uncertainty intervals or
-          cross-city performance rankings. The scenario median aggregates four scenarios; it
+          cross-city performance rankings. The scenario median aggregates the original four environmental scenarios; it
           reduces the influence of a single weighting scheme but does not create democratic
           consensus or a neutral result. AI is used for explainable thermal validation—not to choose policy weights
           or define justice.
@@ -619,13 +639,16 @@ export default function ResearchInterface() {
         <h2>Inspect the mapped cells and validation evidence.</h2>
         <div>
           <a href="/data/grid_priority.geojson" download>
-            ↓ Grid priority GeoJSON
+            ↓ Grid priority GeoJSON <small>Environmental grid · cite Biçer v0.3 and mapped environmental providers; source terms below.</small>
+          </a>
+          <a href="/data/social_diagnostic.json" download>
+            ↓ Social diagnostic JSON <small>Derived cell values · IBSA/Statbel 2025 and CBS 2025, CC BY 4.0; cite Biçer v0.3 and both providers. Column order documented on the methods page.</small>
           </a>
           <a href="/data/evidence.json" download>
-            ↓ Evidence metrics JSON
+            ↓ Evidence metrics JSON <small>Derived metrics · cite Biçer v0.3, IBSA/Statbel and CBS; IBSA and CBS CC BY 4.0.</small>
           </a>
         </div>
-        <p>Source attribution and reuse terms: PDOK and UrbIS boundaries; ESA WorldCover 2021, Copernicus HRL 2021, GHSL GHS-POP 2020 and Landsat 8/9 JJA 2019–2023. Check each provider’s current licence before redistribution. The GeoJSON contains derived values; underlying imagery is not included. <a href="/methods.html">Methods, provenance and citation status</a>.</p>
+        <p>Environmental grid GeoJSON: cite Biçer (2026), Spatial Sensitivity Lab v0.3 and mapped sources. Social JSON joins by grid ID and uses the column order given in Methods. Evidence JSON: cite the same release and IBSA/CBS source tables. </p><p>Source attribution and reuse terms: PDOK and UrbIS boundaries; ESA WorldCover 2021, Copernicus HRL 2021, GHSL GHS-POP 2020 and Landsat 8/9 JJA 2019–2023. Check each provider’s current licence before redistribution. The GeoJSON contains derived values; underlying imagery is not included. <a href="/methods.html">Methods, provenance and citation status</a>.</p>
         <p>
           The displayed rankings are research outputs, not administrative decisions. A narrow score
           difference is descriptive and must not be presented as a statistical confidence interval

@@ -3355,3 +3355,13 @@ button:focus-visible {
   .decision-actors article { min-height: 220px; border-right: 0; border-bottom: 1px solid var(--ink); }
   .decision-actors article:last-child { border-bottom: 0; }
 }
+
+.procurement {padding: clamp(36px,6vw,100px); background:#f1f2ec; color:#171b1a}
+.procurement h2 {font-size:clamp(2rem,5vw,5rem); max-width:900px; line-height:1.03}
+.procurement a {color:#064f7b;text-decoration:underline}
+.procurement-chain {list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;padding:0;background:#9da7a4;margin:40px 0}
+.procurement-chain li {background:#fff;padding:18px;min-height:110px}
+.procurement-chain b,.procurement-chain small {display:block}.procurement-chain small {margin-top:12px;line-height:1.4}
+.procurement-table {overflow-x:auto;margin:35px 0}.procurement-table [role=row] {display:grid;grid-template-columns:1fr 2fr 2fr 1.5fr;min-width:760px;border-bottom:1px solid #abb3ae}.procurement-table [role=row]>* {padding:14px;line-height:1.45}
+.clause-simulator {border:2px solid #191e1b;padding:24px;max-width:940px;margin:32px 0}
+@media(max-width:700px){.procurement-chain{grid-template-columns:repeat(2,minmax(0,1fr))}.procurement{padding:30px 18px}}

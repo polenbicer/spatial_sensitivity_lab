@@ -625,20 +625,6 @@ export default function ResearchInterface() {
           </p>
         </aside>
       </section>
-      <section className="procurement" id="procurement">
-        <header><p className="eyebrow">08 · Possible later stages</p><h2>What happens after priorities are proposed?</h2><p>Procurement and budget decisions can later fix or alter priorities. They are prompts for further inquiry, not stages this study sets out to trace systematically. Neither city is asserted to procure this demonstrator.</p></header>
-        <details className="procurement-details"><summary>Explore procurement questions and the contract clause demonstrator</summary>
-        <ol className="procurement-chain">{["Data", "Indicator", "Weight", "Model", "Tender specification", "Contract", "Budget allocation", "Appeal"].map((step) => <li key={step}><b>{step}</b><small>Who decides? What is visible? Can residents challenge?</small></li>)}</ol>
-        <div className="procurement-table" role="table" aria-label="Procurement comparison"><div role="row"><b role="columnheader">Question</b><b role="columnheader">Amsterdam</b><b role="columnheader">Brussels</b><b role="columnheader">Verification status</b></div>
-          <div role="row"><span>Algorithm register</span><span><a href="https://www.amsterdam.nl/innovatie/digitalisering-technologie/algoritmes-ai/algoritmes/">Municipal algorithm descriptions</a> are public; relevance to cooling procurement requires inquiry.</span><span>Equivalent register for this use case not established.</span><span>Verified (Amsterdam publication); To verify (Brussels)</span></div>
-          <div role="row"><span>Standard procurement terms</span><span><a href="https://www.amsterdam.nl/innovatie/digitalisering-technologie/algoritmes-ai/inkoopvoorwaarden-algoritmes/">Algorithmic procurement terms</a> published.</span><span>Equivalent standard terms not established.</span><span>Verified (Amsterdam publication); Interview needed (Brussels use)</span></div>
-          <div role="row"><span>EU model clauses</span><span>EU full and light versions draw on Amsterdam's earlier approach; applicability depends on the system and contract.</span><span>Potential reference, with adoption unverified.</span><span>Verified (model text); Interview needed (adoption)</span></div>
-        </div>
-        <div className="clause-simulator"><h3>Contract clause simulator · demonstrator</h3><p>If <b>{SCENARIOS[scenario].title}</b> were fixed in a tender specification, {SCENARIOS[scenario].weights.toLowerCase()} would become a contractual baseline. A draft could require disclosure of the weights and source data, a version record for changes, independent audit access, a route for residents to challenge outputs, and a narrowly justified treatment of trade secrets. These are questions for a real procurement, not existing clauses in either city's cooling contract.</p><p>Compare the <a href="https://www.amsterdam.nl/innovatie/digitalisering-technologie/algoritmes-ai/inkoopvoorwaarden-algoritmes/">Amsterdam terms</a> and <a href="https://public-buyers-community.ec.europa.eu/communities/procurement-ai/resources/updated-eu-ai-model-contractual-clauses">EU model clauses and commentary</a> for the actual wording.</p></div>
-        <p><b>AI Act classification: to be assessed.</b> A transparent cooling priority index may fall outside high-risk AI categories, and the thermal validation component has a separate role. Whether the Act applies, and whether any full or light clauses are appropriate, requires expert assessment. See <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng">Regulation (EU) 2024/1689</a>.</p>
-        <p><b>If the weighting sits in a tender specification, who can still contest it?</b> Return to <a href="#participation">democratic participation</a>.</p>
-        </details>
-      </section>
       <section className="open-data" id="opendata">
         <p className="eyebrow">Open data & assumptions</p>
         <h2>Inspect the mapped cells and validation evidence.</h2>
@@ -664,6 +650,20 @@ export default function ResearchInterface() {
           suitability, intervention type, land availability, cost, ownership, displacement risk or
           residents’ preferences.
         </p>
+      </section>
+      <section className="procurement" id="procurement">
+        <header><p className="eyebrow">08 · Possible later stages</p><h2>What happens after priorities are proposed?</h2><p>Procurement and budget decisions can later fix or alter priorities. They are prompts for further inquiry, not stages this study sets out to trace systematically. Neither city is asserted to procure this demonstrator.</p></header>
+        <details className="procurement-details"><summary>Explore procurement questions and the contract clause demonstrator</summary>
+        <ol className="procurement-chain">{["Data", "Indicator", "Weight", "Model", "Tender specification", "Contract", "Budget allocation", "Appeal"].map((step) => <li key={step}><b>{step}</b><small>Who decides? What is visible? Can residents challenge?</small></li>)}</ol>
+        <div className="procurement-table" role="table" aria-label="Procurement comparison"><div role="row"><b role="columnheader">Question</b><b role="columnheader">Amsterdam</b><b role="columnheader">Brussels</b><b role="columnheader">Verification status</b></div>
+          <div role="row"><span>Algorithm register</span><span><a href="https://www.amsterdam.nl/innovatie/digitalisering-technologie/algoritmes-ai/algoritmes/">Municipal algorithm descriptions</a> are public; relevance to cooling procurement requires inquiry.</span><span>Equivalent register for this use case not established.</span><span>Verified (Amsterdam publication); To verify (Brussels)</span></div>
+          <div role="row"><span>Standard procurement terms</span><span><a href="https://www.amsterdam.nl/innovatie/digitalisering-technologie/algoritmes-ai/inkoopvoorwaarden-algoritmes/">Algorithmic procurement terms</a> published.</span><span>Equivalent standard terms not established.</span><span>Verified (Amsterdam publication); Interview needed (Brussels use)</span></div>
+          <div role="row"><span>EU model clauses</span><span>EU full and light versions draw on Amsterdam's earlier approach; applicability depends on the system and contract.</span><span>Potential reference, with adoption unverified.</span><span>Verified (model text); Interview needed (adoption)</span></div>
+        </div>
+        <div className="clause-simulator"><h3>Contract clause simulator · demonstrator</h3><p>If <b>{SCENARIOS[scenario].title}</b> were fixed in a tender specification, {SCENARIOS[scenario].weights.toLowerCase()} would become a contractual baseline. A draft could require disclosure of the weights and source data, a version record for changes, independent audit access, a route for residents to challenge outputs, and a narrowly justified treatment of trade secrets. These are questions for a real procurement, not existing clauses in either city's cooling contract.</p><p>Compare the <a href="https://www.amsterdam.nl/innovatie/digitalisering-technologie/algoritmes-ai/inkoopvoorwaarden-algoritmes/">Amsterdam terms</a> and <a href="https://public-buyers-community.ec.europa.eu/communities/procurement-ai/resources/updated-eu-ai-model-contractual-clauses">EU model clauses and commentary</a> for the actual wording.</p></div>
+        <p><b>AI Act classification: to be assessed.</b> A transparent cooling priority index may fall outside high-risk AI categories, and the thermal validation component has a separate role. Whether the Act applies, and whether any full or light clauses are appropriate, requires expert assessment. See <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng">Regulation (EU) 2024/1689</a>.</p>
+        <p><b>If the weighting sits in a tender specification, who can still contest it?</b> Return to <a href="#participation">democratic participation</a>.</p>
+        </details>
       </section>
       <footer>
         <b>Spatial Sensitivity Lab</b>

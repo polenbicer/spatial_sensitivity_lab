@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://spatial-sensitivity-lab.vercel.app';
-const siteTitle = 'Spatial Sensitivity Lab | Urban Cooling and AI Governance';
+const siteUrl = 'https://spatialsensitivitylab.vercel.app';
+const siteTitle = 'Spatial Sensitivity Lab | Urban Cooling and Algorithmic Decision Systems';
 const siteDescription =
-  'Who Gets Prioritised? A research demonstrator examining the democratic legitimacy of data-driven urban cooling decisions in Brussels and Amsterdam.';
+  'Who Gets Prioritised? A research demonstrator on the democratic legitimacy of algorithmic and data-driven decision systems for urban cooling in Brussels and Amsterdam.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     'heat vulnerability',
     'neighbourhood cooling',
     'spatial decision support',
-    'AI governance',
+    'algorithmic and data-driven decision systems',
     'Brussels urban heat',
     'Amsterdam urban heat',
   ],
@@ -76,7 +76,7 @@ const structuredData = {
     { '@type': 'Thing', name: 'Urban heat policy' },
     { '@type': 'Thing', name: 'Climate justice' },
     { '@type': 'Thing', name: 'Environmental justice' },
-    { '@type': 'Thing', name: 'AI-supported spatial decision making' },
+    { '@type': 'Thing', name: 'Algorithmic and data-driven decision systems' },
   ],
   spatialCoverage: ['Brussels', 'Amsterdam'],
 };

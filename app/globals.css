@@ -3356,14 +3356,37 @@ button:focus-visible {
   .decision-actors article:last-child { border-bottom: 0; }
 }
 
-.procurement {padding: clamp(36px,6vw,100px); background:#f1f2ec; color:#171b1a}
-.procurement h2 {font-size:clamp(2rem,5vw,5rem); max-width:900px; line-height:1.03}
-.procurement a {color:#064f7b;text-decoration:underline}
-.procurement-chain {list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;padding:0;background:#9da7a4;margin:40px 0}
-.procurement-chain li {background:#fff;padding:18px;min-height:110px}
+.procurement {padding:clamp(44px,5vw,76px) 4vw;background-color:var(--paper);background-image:linear-gradient(rgba(244,245,241,.9),rgba(244,245,241,.9)),url('/synoptic-reference.svg');background-position:center;background-size:cover;color:var(--ink);border-top:1px solid var(--ink)}
+.procurement header {display:grid;grid-template-columns:minmax(150px,.55fr) minmax(280px,1.35fr) minmax(220px,.8fr);gap:clamp(24px,4vw,72px);align-items:start;margin-bottom:32px}
+.procurement header .eyebrow {margin:0}.procurement header p:last-child {margin:4px 0 0;line-height:1.5}
+.procurement h2 {font-size:clamp(34px,5vw,72px);font-weight:500;letter-spacing:-.045em;max-width:900px;line-height:.94;margin:0}
+.procurement a {color:var(--ink);text-decoration-color:var(--red);text-underline-offset:4px}
+.procurement-details {border-top:1px solid var(--ink);padding-top:18px}
+.procurement-details summary {cursor:pointer;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:12px 0;list-style-position:inside}
+.procurement-details summary:focus-visible {outline:3px solid var(--red)}
+.procurement-chain {list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding:0;border:1px solid var(--ink);margin:32px 0}
+.procurement-chain li {background:rgba(244,245,241,.9);padding:18px;min-height:110px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink)}
 .procurement-chain b,.procurement-chain small {display:block}.procurement-chain small {margin-top:12px;line-height:1.4}
-.procurement-table {overflow-x:auto;margin:35px 0}.procurement-table [role=row] {display:grid;grid-template-columns:1fr 2fr 2fr 1.5fr;min-width:760px;border-bottom:1px solid #abb3ae}.procurement-table [role=row]>* {padding:14px;line-height:1.45}
-.clause-simulator {border:2px solid #191e1b;padding:24px;max-width:940px;margin:32px 0}
-@media(max-width:700px){.procurement-chain{grid-template-columns:repeat(2,minmax(0,1fr))}.procurement{padding:30px 18px}}
-.diagnostic-toggle{display:flex;gap:10px;align-items:flex-start;padding:14px 10px;font-size:13px;line-height:1.4}.diagnostic-toggle input{width:18px;height:18px;flex:none;accent-color:#0878ad}
+.procurement-table {overflow-x:auto;margin:35px 0;border-top:1px solid var(--ink)}.procurement-table [role=row] {display:grid;grid-template-columns:1fr 2fr 2fr 1.5fr;min-width:760px;border-bottom:1px solid var(--ink);background:rgba(244,245,241,.87)}.procurement-table [role=row]:first-child{background:var(--ink);color:var(--paper);text-transform:uppercase;font-size:12px}.procurement-table [role=row]>* {padding:14px;line-height:1.45;border-right:1px solid var(--ink)}.procurement-table [role=row]>*:last-child{border-right:0}
+.clause-simulator {border:1px solid var(--ink);border-left:8px solid var(--red);padding:24px;max-width:940px;margin:32px 0;background:rgba(244,245,241,.9)}
+.diagnostic-toggle{display:flex;gap:10px;align-items:flex-start;padding:14px 10px;font-size:13px;line-height:1.4}.diagnostic-toggle input{width:18px;height:18px;flex:none;accent-color:var(--red)}
 .open-data a small{display:block;font-size:11px;line-height:1.4;margin-top:8px;font-weight:400}
+.data-legibility {background-color:var(--paper);background-image:linear-gradient(rgba(244,245,241,.87),rgba(244,245,241,.87)),url('/blue-topography-reference.svg');background-position:center;background-size:cover;color:var(--ink)}
+.legibility-table {background:rgba(244,245,241,.92)}
+.legibility-row.head {background:var(--ink);color:var(--paper)}
+.scenario-comparator {background:var(--ink);color:var(--paper)}
+.participation {background-color:var(--paper);background-image:linear-gradient(rgba(244,245,241,.9),rgba(244,245,241,.9)),url('/synoptic-reference.svg');background-position:center;background-size:cover}
+.participation-question {background:rgba(244,245,241,.9)}
+.contestability {background-color:var(--paper);background-image:linear-gradient(rgba(244,245,241,.9),rgba(244,245,241,.9)),url('/red-topography-reference.svg');background-position:center;background-size:cover}
+.challenge-panel {background:rgba(244,245,241,.94)}
+.decision-chain-research {border:1px solid var(--ink);margin:30px 0;padding:24px;background:rgba(244,245,241,.92)}
+.decision-chain-research h3 {font-size:clamp(20px,2.4vw,34px);font-weight:500;letter-spacing:-.04em;margin:0 0 18px}
+.decision-chain-research ol {list-style:none;counter-reset:stage;display:grid;grid-template-columns:repeat(5,1fr);padding:0;margin:0;border:1px solid var(--ink)}
+.decision-chain-research li {counter-increment:stage;padding:20px 14px;border-right:1px solid var(--ink);font-weight:700;min-height:105px}
+.decision-chain-research li:last-child{border-right:0}.decision-chain-research li::before{content:'0' counter(stage);display:block;color:var(--red);font-size:12px;margin-bottom:12px}
+.decision-chain-research p {max-width:850px;line-height:1.5}
+.research-subquestions {display:grid;gap:14px;max-width:1040px;margin-top:30px}
+.research-subquestions p {margin:0;line-height:1.45}
+.research-subquestions b {color:var(--red);display:block;font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+@media(max-width:900px){.procurement header{grid-template-columns:150px 1fr}.procurement header p:last-child{grid-column:2}.decision-chain-research ol{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.procurement-chain{grid-template-columns:repeat(2,minmax(0,1fr))}.procurement{padding:36px 20px}.procurement header{grid-template-columns:1fr}.procurement header p:last-child{grid-column:1}.decision-chain-research ol{grid-template-columns:1fr}.decision-chain-research li{min-height:0;border-right:0;border-bottom:1px solid var(--ink)}.decision-chain-research li:last-child{border-bottom:0}}

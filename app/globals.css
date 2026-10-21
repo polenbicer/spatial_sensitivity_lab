@@ -3636,7 +3636,7 @@ footer { color:var(--paper); background:var(--ink); }
 /* Give the map and the concise ranking equal space. */
 .ranking-results { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
 .ranking-results.summary-columns .full-table table { table-layout:fixed; width:100%; }
-.ranking-results.summary-columns .full-table :is(th,td):nth-child(1) { width:48px; }
+.ranking-results.summary-columns .full-table :is(th,td):nth-child(1) { width:76px; }
 .ranking-results.summary-columns .full-table :is(th,td):nth-child(2) { width:92px; min-width:0; max-width:none; }
 .ranking-results.summary-columns.neighbourhoods .full-table :is(th,td):nth-child(7),
 .ranking-results.summary-columns.cells .full-table :is(th,td):nth-child(5) { width:110px; }

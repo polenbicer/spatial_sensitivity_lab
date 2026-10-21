@@ -192,21 +192,47 @@ export default function ResearchInterface() {
     socialSensitivity = evidence?.social_sensitivity_metrics?.find((x: any) => x.city === city);
   return (
     <main className="site-shell">
-      <section className="intro lab-intro" id="top">
+      <section className="intro" id="top">
         <header className="site-header">
           <a className="hero-brand" href="#top">SPATIAL SENSITIVITY LAB</a>
           <a className="hero-credit" href="https://polenbicer.dev">POLENBICER.DEV</a>
         </header>
+
+        <div className="hero-register">
+          <p>[AMS] [+] &nbsp; [BRU] [+]</p>
+          <p>URBAN COOLING &nbsp; 500 M CELLS</p>
+          <p>[2026] &nbsp; [RESEARCH INTERFACE]</p>
+        </div>
+
         <nav className="hero-nav" aria-label="Primary navigation">
-          <a href="#about">01 · About the lab</a>
-          <a href="#explore-chapter">02 · Explore &amp; compare</a>
-          <a href="#data-evidence">03 · Data &amp; evidence</a>
-          <a href="#politics">04 · Politics &amp; legitimacy</a>
-          <a href="#methods-sources">05 · Methods &amp; sources</a>
+          <a href="#explore">[01] EXPLORE</a>
+          <a href="/rankings">[02] RANKINGS</a>
+          <a href="#evidence">[03] EVIDENCE</a>
+          <a href="#method">[04] METHOD</a>
+          <a href="#participation">[05] DEMOCRACY</a>
+          <a href="#legitimacy">[06] LEGITIMACY</a>
+          <a href="#opendata">[07] DATA</a>
+          <a href="#procurement">[08] FURTHER STAGES</a>
+          <a href="/methods.html">METHODS & REPRODUCIBILITY</a>
         </nav>
-        <div className="lab-heading"><p className="eyebrow">Urban cooling · Brussels &amp; Amsterdam · Research demonstrator</p><h1>Who is prioritized?</h1><p>How values become spatial priorities.</p></div>
+
+        <div className="diagram-field" aria-hidden="true">
+          <img className="reference-drawing topo-drawing" src="/topography-reference.svg" alt="" />
+          <img className="reference-drawing synoptic-drawing" src="/synoptic-reference.svg" alt="" />
+          <div className="diagram-grid grid-a" />
+          <div className="diagram-grid grid-b" />
+          <div className="measure measure-x">734 CELLS / PRIORITY SURFACE</div>
+          <div className="measure measure-y">NEED → EVIDENCE → PRIORITY</div>
+        </div>
+
+        <div className="hero-title">
+          <span>SPATIAL</span>
+          <strong>SENSITIVITY</strong>
+          <span>LAB</span>
+        </div>
       </section>
       <section className="lab-chapter" id="about" aria-labelledby="about-title">
+        <div className="lab-heading"><p className="eyebrow">Urban cooling · Brussels &amp; Amsterdam · Research demonstrator</p><h1>Who is prioritized?</h1><p>How values become spatial priorities.</p></div>
         <header className="chapter-header"><p className="eyebrow">01 · About the lab</p><h2 id="about-title">What this lab is for</h2></header>
         <p className="lab-purpose">Spatial Sensitivity Lab is a critical research tool, rather than a proposed model for allocating urban cooling investment. Using data from Brussels and Amsterdam, it compares how different indicator weights change the priority rankings of 500-metre cells within each city. The scenarios make selected value priorities explicit; they do not reproduce particular political ideologies. The aim is to examine how ideological commitments and competing understandings of need can shape apparently technical decisions. This also opens a question about technopopulism: what happens when a ranking gains authority through both claims to technical expertise and claims to represent what people need? The lab makes these choices visible for explanation, debate and challenge.</p>
         <ol className="lab-instructions"><li><b>Choose a city and a scenario.</b> Each scenario assigns different weights to the available indicators.</li><li><b>Inspect the map and compare rankings.</b> Scores describe relative conditions within the selected city.</li><li><b>Examine the choices behind the result.</b> Review missing data, alternative priorities and opportunities for contestation.</li></ol>

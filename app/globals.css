@@ -3624,3 +3624,11 @@ footer { color:var(--paper); background:var(--ink); }
  .lab-chapter .legitimacy article p { grid-column:2; }
  .lab-chapter .thesis-proposition { display:block; }
 }
+/* Reset the former poster's positioned elements in the compact opening. */
+.site-shell .lab-intro { display:block; margin:0; border:0; box-shadow:none; }
+.lab-intro .site-header { height:auto; min-height:64px; display:flex; flex-direction:row; align-items:center; gap:20px; }
+.lab-intro .hero-nav { flex-direction:row; }
+.lab-intro .lab-heading h1 { position:static; inset:auto; width:auto; max-width:none; transform:none; white-space:normal; color:var(--ink); }
+.lab-chapter p, .lab-instructions li { font-family:Arial,sans-serif; }
+.lab-chapter p.eyebrow { font-family:"IBM Plex Mono",monospace; }
+.lab-chapter .blindspot > div p { border:0; padding:0; margin:0 0 16px; }

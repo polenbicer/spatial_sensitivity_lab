@@ -393,13 +393,13 @@ export default function ResearchInterface() {
       <section className="scenario-comparator" aria-labelledby="compare-title">
         <header>
           <p className="eyebrow">Compare value choices</p>
-          <h3 id="compare-title">The same city. Different priorities.</h3>
-        <p>A sensitivity analysis of available indicators and weights. Largest cell-level rank movements between the active logic and another scenario.</p>
+          <h3 id="compare-title">How do the rankings change?</h3>
+        <p>Compare two weighting scenarios for the selected city. The six rows below show the 500 m cells whose ranks change the most. Rank 1 is the highest priority; moving from 309 to 481 means falling 172 places. Neighbourhood names locate each cell: repeated names refer to different cells, not duplicate neighbourhood results.</p>
         </header>
         <div className="compare-controls">
-          <label>Active logic<strong>{SCENARIOS[scenario].title}</strong></label>
+          <label>Starting scenario<strong>{SCENARIOS[scenario].title}</strong></label>
           <label>
-            Compare with
+            Alternative scenario
             <select value={comparisonScenario} onChange={(e) => setComparisonScenario(e.target.value as Scenario)}>
               {(Object.keys(SCENARIOS) as Scenario[]).filter((key) => key !== scenario).map((key) => (
                 <option key={key} value={key}>{SCENARIOS[key].title}</option>
@@ -407,16 +407,18 @@ export default function ResearchInterface() {
             </select>
           </label>
         </div>
-        <div className="compare-list">
+        <div className="rank-comparison-table" role="table" aria-label="Cell rank changes between the starting and alternative scenarios">
+          <div className="rank-comparison-row comparison-head" role="row"><b role="columnheader">Cell location</b><b role="columnheader">Starting rank</b><b role="columnheader">Alternative rank</b><b role="columnheader">Change</b></div>
           {comparisonRows.map((row) => (
-            <article key={row.id}>
-              <b>{row.name}</b>
-              <span>#{row.a} → #{row.b}</span>
-              <strong className={row.shift > 0 ? "up" : "down"}>{row.shift > 0 ? `+${row.shift}` : row.shift}</strong>
-            </article>
+            <div className="rank-comparison-row" role="row" key={row.id}>
+              <span role="cell"><b>{row.name}</b><small>500 m cell · neighbourhood context</small></span>
+              <span role="cell">{row.a}</span>
+              <span role="cell">{row.b}</span>
+              <strong role="cell" className={row.shift > 0 ? "up" : "down"}>{Math.abs(row.shift)} places {row.shift > 0 ? "higher" : row.shift < 0 ? "lower" : "unchanged"}</strong>
+            </div>
           ))}
         </div>
-        {socialSensitivity && <p>Balanced versus vulnerability-informed on {socialSensitivity.n_complete_cells} complete cells: Spearman ρ {socialSensitivity.spearman_balanced_vs_vulnerability}; Kendall τ {socialSensitivity.kendall_balanced_vs_vulnerability}; top 20% overlap {(socialSensitivity.top20_overlap_fraction * 100).toFixed(1)}%. Rank comparisons above use only cells scored in both selected scenarios.</p>}
+        <p className="comparison-example">The two rank columns follow the scenario selections above. Only cells with scores in both scenarios are compared.</p>
         <p className="comparison-foot">Movement is evidence of value sensitivity, not evidence that either scenario is politically correct.</p>
       </section>
       </section>
@@ -520,6 +522,7 @@ export default function ResearchInterface() {
           </p>
         </div>
       </section>
+        {socialSensitivity && <div className="social-comparison-note"><h3>Additional check: social indicators</h3><p>This separate analysis compares balanced and vulnerability-informed weighting, independently of the scenarios selected above.</p><p>Balanced versus vulnerability-informed on {socialSensitivity.n_complete_cells} complete cells: Spearman ρ {socialSensitivity.spearman_balanced_vs_vulnerability}; Kendall τ {socialSensitivity.kendall_balanced_vs_vulnerability}; top 20% overlap {(socialSensitivity.top20_overlap_fraction * 100).toFixed(1)}%.</p></div>}
       </section>
       <section className="lab-chapter" id="politics" aria-labelledby="politics-title">
         <header className="chapter-header"><p className="eyebrow">04 · Politics &amp; legitimacy</p><h2 id="politics-title">Politics &amp; legitimacy</h2><p>From value choices in a model to justification, participation and public responsibility.</p></header>

@@ -3632,3 +3632,24 @@ footer { color:var(--paper); background:var(--ink); }
 .lab-chapter p, .lab-instructions li { font-family:Arial,sans-serif; }
 .lab-chapter p.eyebrow { font-family:"IBM Plex Mono",monospace; }
 .lab-chapter .blindspot > div p { border:0; padding:0; margin:0 0 16px; }
+
+/* Give the map and the concise ranking equal space. */
+.ranking-results { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+.ranking-results.summary-columns .full-table table { table-layout:fixed; width:100%; }
+.ranking-results.summary-columns .full-table :is(th,td):nth-child(1) { width:48px; }
+.ranking-results.summary-columns .full-table :is(th,td):nth-child(2) { width:92px; min-width:0; max-width:none; }
+.ranking-results.summary-columns.neighbourhoods .full-table :is(th,td):nth-child(7),
+.ranking-results.summary-columns.cells .full-table :is(th,td):nth-child(5) { width:110px; }
+.ranking-results.summary-columns .full-table :is(th,td):nth-child(4) { width:auto; white-space:normal; overflow-wrap:anywhere; }
+.ranking-results.summary-columns .full-table th .column-help { white-space:normal; }
+.rank-comparison-table { border-top:1px solid #b7bdcc; overflow-x:auto; }
+.rank-comparison-row { display:grid; grid-template-columns:minmax(200px,1.4fr) minmax(100px,.65fr) minmax(110px,.65fr) minmax(170px,1fr); align-items:center; border-bottom:1px solid #b7bdcc; min-width:640px; }
+.rank-comparison-row > * { padding:14px 16px; font-size:15px; }
+.rank-comparison-row small { display:block; margin-top:5px; font:12px Arial,sans-serif; color:#555; }
+.comparison-head > * { font:600 12px Arial,sans-serif; }
+.rank-comparison-row .up { color:#176644; }
+.rank-comparison-row .down { color:#a53332; }
+.comparison-example { font-size:14px; }
+.social-comparison-note { padding:22px 0; border-top:1px solid #c5c8d2; }
+@media(max-width:900px) { .ranking-results { grid-template-columns:1fr; } }
+@media print { .ranking-results { display:block; } }

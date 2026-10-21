@@ -196,6 +196,7 @@ export default function RankingExplorer() {
     [scenario, setScenario] = useState<Scenario>("priority_consensus"),
     [comparison, setComparison] = useState<Scenario>("priority_consensus"),
     [view, setView] = useState<ViewMode>("neighbourhoods"),
+    [showDetails, setShowDetails] = useState(false),
     [query, setQuery] = useState(""),
     [selected, setSelected] = useState("");
   useEffect(() => {
@@ -460,7 +461,9 @@ export default function RankingExplorer() {
         >
           500 m cells <small>full audit detail</small>
         </button>
-        <p>
+        <details className="ranking-explanation">
+          <summary>About these spatial units</summary>
+          <p>
           {view === "neighbourhoods" ? (
             <>
               Each official neighbourhood appears once. Values are{" "}
@@ -477,7 +480,8 @@ export default function RankingExplorer() {
               location labels—not duplicate observations or neighbourhood-level scores.
             </>
           )}
-        </p>
+          </p>
+        </details>
       </section>
       <section className="report-note">
         <div>
@@ -490,7 +494,13 @@ export default function RankingExplorer() {
           {SCENARIOS[comparison].title}. On first load, the scenario median is the reference.
         </small>
       </section>
-      <section className="ranking-results">
+      <div className="ranking-toolbar">
+        <p>Ranked within {city} · comparison: {SCENARIOS[comparison].title}</p>
+        <button type="button" aria-pressed={showDetails} onClick={() => setShowDetails(!showDetails)}>
+          {showDetails ? "Hide detailed columns" : "Show detailed columns"}
+        </button>
+      </div>
+      <section className={`ranking-results ${view} ${showDetails ? "show-details" : "summary-columns"}`}>
         {data && neighbourhoodData && (
           <RankingMap
             city={city}
@@ -519,8 +529,8 @@ export default function RankingExplorer() {
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label={`Δ vs ${SCENARIOS[comparison].title}`}>
-                      <b>Rank movement</b>
+                    <ColumnHelp label="Rank change">
+                      <b>Compared with {SCENARIOS[comparison].title}</b>
                       <span>
                         Previous rank minus current rank. Equal scores receive equal ranks; positive
                         means the neighbourhood moved up.
@@ -689,8 +699,8 @@ export default function RankingExplorer() {
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label={`Δ vs ${SCENARIOS[comparison].title}`}>
-                      <b>Rank movement</b>
+                    <ColumnHelp label="Rank change">
+                      <b>Compared with {SCENARIOS[comparison].title}</b>
                       <span>Previous rank minus current rank.</span>
                     </ColumnHelp>
                   </th>
@@ -710,12 +720,6 @@ export default function RankingExplorer() {
                         The neighbourhood containing the cell’s representative point. Repeated names
                         are expected; values remain cell-specific.
                       </span>
-                    </ColumnHelp>
-                  </th>
-                  <th>
-                    <ColumnHelp label="Cell ID">
-                      <b>Stable spatial unit</b>
-                      <span>The identifier of the 500 m European analysis-grid cell.</span>
                     </ColumnHelp>
                   </th>
                   <th>
@@ -761,6 +765,12 @@ export default function RankingExplorer() {
                       </span>
                     </ColumnHelp>
                   </th>
+                  <th>
+                    <ColumnHelp label="Cell ID">
+                      <b>Stable spatial unit</b>
+                      <span>The identifier of the 500 m European analysis-grid cell.</span>
+                    </ColumnHelp>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -790,7 +800,6 @@ export default function RankingExplorer() {
                         )}
                       </td>
                       <td>{String(p.neighbourhood_name || "Boundary cell")}</td>
-                      <td>{id}</td>
                       <td>
                         <b>{Number(p[scenario]).toFixed(1)}</b>
                       </td>
@@ -802,6 +811,7 @@ export default function RankingExplorer() {
                           ? "—"
                           : `${Number(p.summer_lst_median_c).toFixed(1)} °C`}
                       </td>
+                      <td>{id}</td>
                     </tr>
                   );
                 })}

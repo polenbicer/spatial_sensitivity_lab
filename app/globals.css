@@ -3500,3 +3500,33 @@ footer { color:var(--paper); background:var(--ink); }
   .research-bridge article { padding: 34px 5vw; }
   .research-bridge article + article { border-left: 0; border-top: 1px solid var(--ink); }
 }
+
+/* Rankings: compact overview with optional audit columns. */
+.ranking-toolbar { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 2vw; border-bottom:1px solid var(--ink); }
+.ranking-toolbar p { margin:0; font-size:13px; }
+.ranking-toolbar button { padding:9px 12px; border:1px solid var(--ink); background:transparent; color:var(--ink); cursor:pointer; font:inherit; font-size:13px; }
+.ranking-toolbar button[aria-pressed="true"] { background:var(--ink); color:var(--paper); }
+.ranking-explanation { grid-column:1 / -1; padding:12px 18px; font-size:13px; line-height:1.5; }
+.ranking-explanation summary { cursor:pointer; font-weight:600; }
+.ranking-explanation p { max-width:90ch; margin-bottom:0; }
+.ranking-results { grid-template-columns:minmax(280px,28%) minmax(0,1fr); }
+.ranking-results .full-table th { background:var(--paper); color:var(--ink); font-size:11px; }
+.ranking-results .full-table th:nth-child(2) { background:var(--paper); }
+.ranking-results .full-table th:nth-child(1), .ranking-results .full-table td:nth-child(1) { width:60px; }
+.ranking-results .full-table th:nth-child(2), .ranking-results .full-table td:nth-child(2) { width:108px; min-width:108px; max-width:108px; text-align:right; font-variant-numeric:tabular-nums; white-space:normal; }
+.ranking-results .full-table th:nth-child(2) .column-help { white-space:normal; text-align:left; }
+.ranking-results .full-table td { font-size:13px; font-variant-numeric:tabular-nums; }
+.ranking-results.summary-columns .full-table :is(th,td):nth-child(3),
+.ranking-results.summary-columns.neighbourhoods .full-table :is(th,td):nth-child(5),
+.ranking-results.summary-columns.neighbourhoods .full-table :is(th,td):nth-child(6),
+.ranking-results.summary-columns.neighbourhoods .full-table :is(th,td):nth-child(n+8),
+.ranking-results.summary-columns.cells .full-table :is(th,td):nth-child(n+6),
+.ranking-results.summary-columns .unit-code { display:none; }
+.ranking-results.summary-columns.neighbourhoods .full-table tr.limited td:nth-child(4)::after { content:" · limited coverage"; display:block; font-size:11px; font-weight:400; }
+.ranking-results.show-details .full-table table { width:max-content; min-width:100%; }
+@media(max-width:900px) { .ranking-results { grid-template-columns:1fr; } }
+@media(max-width:600px) { .ranking-toolbar { align-items:flex-start; flex-direction:column; } }
+@media print { .ranking-toolbar { display:none; } .ranking-explanation { display:none; } }
+
+.ranking-view-switch { grid-template-columns:230px 230px; }
+@media(max-width:600px) { .ranking-view-switch { grid-template-columns:1fr 1fr; } }

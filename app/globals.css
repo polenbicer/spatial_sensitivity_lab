@@ -3653,3 +3653,8 @@ footer { color:var(--paper); background:var(--ink); }
 .social-comparison-note { padding:22px 0; border-top:1px solid #c5c8d2; }
 @media(max-width:900px) { .ranking-results { grid-template-columns:1fr; } }
 @media print { .ranking-results { display:block; } }
+
+.cell-link { color:var(--ink); text-decoration:underline; text-underline-offset:3px; cursor:pointer; font:inherit; font-weight:600; }
+button.cell-link { border:0; padding:0; background:transparent; text-align:left; white-space:normal; }
+.cell-link:hover { color:var(--red); }
+.cell-link:focus-visible { outline:2px solid var(--ink); outline-offset:3px; }

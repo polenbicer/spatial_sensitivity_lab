@@ -1,4 +1,5 @@
 "use client";
+import { buildCellLabels } from "../lib/cell-labels";
 import { useEffect, useMemo, useState } from "react";
 
 type City = "Amsterdam" | "Brussels";
@@ -88,24 +89,26 @@ function MapFrame({
   showDiagnostic,
   selected,
   onSelect,
+  cellLabels,
 }: {
   city: City;
   scenario: Scenario;
   showDiagnostic: boolean;
   selected: string;
   onSelect: (id: string) => void;
+  cellLabels: Map<string, string>;
 }) {
   const [html, setHtml] = useState("");
   useEffect(() => {
     setHtml(
       `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>html,body,#map{height:100%;margin:0}.leaflet-container{font:13px Arial,sans-serif;background:#dce3df}.leaflet-popup-content-wrapper,.leaflet-popup-tip{border-radius:0}.legend{background:#fff;border:1px solid #111;padding:9px;line-height:19px}.legend i{display:inline-block;width:14px;height:14px;margin-right:7px;vertical-align:-2px}</style></head><body><div id="map"></div><script>
- const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},diagnostic=${JSON.stringify(showDiagnostic)},selected=${JSON.stringify(selected)};const map=L.map('map',{zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);
- Promise.all([fetch('/data/grid_priority.geojson').then(r=>{if(!r.ok)throw Error('grid');return r.json()}),fetch('/data/project_context.geojson').then(r=>{if(!r.ok)throw Error('context');return r.json()}),fetch('/data/social_diagnostic.json').then(r=>{if(!r.ok)throw Error('social');return r.json()})]).then(([grid,projects,social])=>{const byId=new Map(social.map(r=>[r[0],r]));for(const f of grid.features){const r=byId.get(f.properties.grid_id);if(r){['age65_pct','one_person_pct','median_taxable_income_eur','social_diagnostic','priority_vulnerability_informed','age65_pct_covered_area_pct','one_person_pct_covered_area_pct','social_overlap_count'].forEach((k,i)=>f.properties[k]=r[i+1])}}const vals=[['#440154','0–20'],['#3b528b','20–40'],['#21918c','40–60'],['#5ec962','60–80'],['#fde725','80–100']];const layer=L.geoJSON(grid,{filter:f=>f.properties.city===city,style:f=>{const v=diagnostic?f.properties.social_diagnostic:f.properties[field],c=v==null?'#777':v<20?'#440154':v<40?'#3b528b':v<60?'#21918c':v<80?'#5ec962':'#fde725';return{fillColor:c,fillOpacity:f.properties.eligible?.76:.35,color:f.properties.grid_id===selected?'#111':'rgba(255,255,255,.72)',weight:f.properties.grid_id===selected?3:.55}},onEachFeature:(f,l)=>{const p=f.properties,v=diagnostic?p.social_diagnostic:p[field];l.bindPopup('<b>'+(p.neighbourhood_name||'500 m cell')+'</b><br>'+(diagnostic?'Social diagnostic':'Priority')+' '+(v==null?'No data':Number(v).toFixed(1)+'/100')+'<br>Surface pressure '+fmt(p.score_impervious)+'<br>Green deficit '+fmt(p.score_green_deficit)+'<br>Population exposure '+fmt(p.score_population)+'<br>Age 65+ '+percent(p.age65_pct)+'<br>One-person households '+percent(p.one_person_pct)+'<br>Social diagnostic '+fmt(p.social_diagnostic)+'<br>Summer surface temperature '+(p.summer_lst_median_c==null?'Not available':Number(p.summer_lst_median_c).toFixed(1)+' °C')+'<br>Top-quintile scenarios '+(p.top20_scenario_count??'—')+'/4');l.on('click',()=>parent.postMessage({type:'grid-select',id:p.grid_id},'*'));l.on('add',()=>{const el=l.getElement();if(el){el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label',(p.neighbourhood_name||'Grid cell')+' '+(v==null?'no data':Number(v).toFixed(1)+' out of 100'));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();l.openPopup();parent.postMessage({type:'grid-select',id:p.grid_id},'*')}})}})}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]});L.geoJSON(projects,{filter:f=>f.properties.city===city,style:{color:'#5b22b4',weight:3,fillOpacity:.06,dashArray:'7 4'}}).addTo(map);const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>'+(diagnostic?'Social diagnostic':'Relative priority')+'</b><br>'+vals.map(x=>'<i style="background:'+x[0]+'"></i>'+x[1]).join('<br>');return d};legend.addTo(map)}).catch(()=>{document.getElementById('map').textContent='Map data could not be loaded. Refresh the page to retry.'});function fmt(v){return v==null?'No data':Number(v).toFixed(0)+'/100'}function percent(v){return v==null?'No data':Number(v).toFixed(1)+'%'}
+ const cellLabels=${JSON.stringify(Object.fromEntries(cellLabels))};const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},diagnostic=${JSON.stringify(showDiagnostic)},selected=${JSON.stringify(selected)};const map=L.map('map',{zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);
+ Promise.all([fetch('/data/grid_priority.geojson').then(r=>{if(!r.ok)throw Error('grid');return r.json()}),fetch('/data/project_context.geojson').then(r=>{if(!r.ok)throw Error('context');return r.json()}),fetch('/data/social_diagnostic.json').then(r=>{if(!r.ok)throw Error('social');return r.json()})]).then(([grid,projects,social])=>{const byId=new Map(social.map(r=>[r[0],r]));for(const f of grid.features){const r=byId.get(f.properties.grid_id);if(r){['age65_pct','one_person_pct','median_taxable_income_eur','social_diagnostic','priority_vulnerability_informed','age65_pct_covered_area_pct','one_person_pct_covered_area_pct','social_overlap_count'].forEach((k,i)=>f.properties[k]=r[i+1])}}const vals=[['#440154','0–20'],['#3b528b','20–40'],['#21918c','40–60'],['#5ec962','60–80'],['#fde725','80–100']];const layer=L.geoJSON(grid,{filter:f=>f.properties.city===city,style:f=>{const v=diagnostic?f.properties.social_diagnostic:f.properties[field],c=v==null?'#777':v<20?'#440154':v<40?'#3b528b':v<60?'#21918c':v<80?'#5ec962':'#fde725';return{fillColor:c,fillOpacity:f.properties.eligible?.76:.35,color:f.properties.grid_id===selected?'#111':'rgba(255,255,255,.72)',weight:f.properties.grid_id===selected?3:.55}},onEachFeature:(f,l)=>{const p=f.properties,v=diagnostic?p.social_diagnostic:p[field];l.bindPopup('<b>'+(cellLabels[p.grid_id]||p.neighbourhood_name||'500 m cell')+'</b><br>'+(diagnostic?'Social diagnostic':'Priority')+' '+(v==null?'No data':Number(v).toFixed(1)+'/100')+'<br>Surface pressure '+fmt(p.score_impervious)+'<br>Green deficit '+fmt(p.score_green_deficit)+'<br>Population exposure '+fmt(p.score_population)+'<br>Age 65+ '+percent(p.age65_pct)+'<br>One-person households '+percent(p.one_person_pct)+'<br>Social diagnostic '+fmt(p.social_diagnostic)+'<br>Summer surface temperature '+(p.summer_lst_median_c==null?'Not available':Number(p.summer_lst_median_c).toFixed(1)+' °C')+'<br>Top-quintile scenarios '+(p.top20_scenario_count??'—')+'/4');l.on('click',()=>parent.postMessage({type:'grid-select',id:p.grid_id},'*'));l.on('add',()=>{const el=l.getElement();if(el){el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label',(cellLabels[p.grid_id]||p.neighbourhood_name||'Grid cell')+' '+(v==null?'no data':Number(v).toFixed(1)+' out of 100'));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();l.openPopup();parent.postMessage({type:'grid-select',id:p.grid_id},'*')}})}})}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]});L.geoJSON(projects,{filter:f=>f.properties.city===city,style:{color:'#5b22b4',weight:3,fillOpacity:.06,dashArray:'7 4'}}).addTo(map);const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>'+(diagnostic?'Social diagnostic':'Relative priority')+'</b><br>'+vals.map(x=>'<i style="background:'+x[0]+'"></i>'+x[1]).join('<br>');return d};legend.addTo(map)}).catch(()=>{document.getElementById('map').textContent='Map data could not be loaded. Refresh the page to retry.'});function fmt(v){return v==null?'No data':Number(v).toFixed(0)+'/100'}function percent(v){return v==null?'No data':Number(v).toFixed(1)+'%'}
  </script></body></html>`
         .replace("Top-quintile scenarios", "Scenarios scoring ≥80")
         .replaceAll("#f07a4b", "#5ec962"),
     );
-  }, [city, scenario, showDiagnostic, selected]);
+  }, [city, scenario, showDiagnostic, selected, cellLabels]);
   useEffect(() => {
     const h = (e: MessageEvent) => {
       if (e.data?.type === "grid-select") onSelect(e.data.id);
@@ -154,6 +157,7 @@ export default function ResearchInterface() {
       })
       .catch(() => setLoadError("Spatial data could not be loaded. Please refresh the page."));
   }, []);
+  const cellLabels = useMemo(() => buildCellLabels(data?.features ?? []), [data]);
   const cells = useMemo(
     () => data?.features.filter((f) => f.properties.city === city) ?? [],
     [data, city],
@@ -309,6 +313,7 @@ export default function ResearchInterface() {
               showDiagnostic={showDiagnostic}
               selected={String(p?.grid_id ?? "")}
               onSelect={setSelected}
+              cellLabels={cellLabels}
             />
           )}
         </div>
@@ -320,7 +325,7 @@ export default function ResearchInterface() {
               <section className="inspect">
                 <p className="eyebrow">Selected cell</p>
                 <div className="inspect-title">
-                  <h3>{String(p?.neighbourhood_name || "Highest-ranked cell")}</h3>
+                  <h3>{cellLabels.get(String(p?.grid_id)) || "Highest-ranked cell"}</h3>
                   <div className="score" style={{ color: colour(Number(p?.[scenario] ?? 0)) }}>
                     {p?.[scenario] == null ? "N/A" : Number(p[scenario]).toFixed(1)}
                     <small>/100</small>
@@ -378,7 +383,7 @@ export default function ResearchInterface() {
                         onClick={() => setSelected(String(f.properties.grid_id))}
                       >
                         <span>{String(i + 1).padStart(2, "0")}</span>
-                        <b>{String(f.properties.neighbourhood_name || "Boundary cell")}</b>
+                        <b>{cellLabels.get(String(f.properties.grid_id)) || "Boundary cell"}</b>
                         <strong>{Number(f.properties[scenario]).toFixed(1)}</strong>
                       </button>
                     </li>
@@ -394,7 +399,7 @@ export default function ResearchInterface() {
         <header>
           <p className="eyebrow">Compare value choices</p>
           <h3 id="compare-title">How do the rankings change?</h3>
-        <p>Compare two weighting scenarios for the selected city. The six rows below show the 500 m cells whose ranks change the most. Rank 1 is the highest priority; moving from 309 to 481 means falling 172 places. Neighbourhood names locate each cell: repeated names refer to different cells, not duplicate neighbourhood results.</p>
+        <p>Compare two weighting scenarios for the selected city. The six rows below show the 500 m cells whose ranks change the most. Rank 1 is the highest priority; moving from 309 to 481 means falling 172 places. Each cell has a stable number within its neighbourhood, independent of its rank. Select its label to highlight it on the map.</p>
         </header>
         <div className="compare-controls">
           <label>Starting scenario<strong>{SCENARIOS[scenario].title}</strong></label>
@@ -411,14 +416,14 @@ export default function ResearchInterface() {
           <div className="rank-comparison-row comparison-head" role="row"><b role="columnheader">Cell location</b><b role="columnheader">Starting rank</b><b role="columnheader">Alternative rank</b><b role="columnheader">Change</b></div>
           {comparisonRows.map((row) => (
             <div className="rank-comparison-row" role="row" key={row.id}>
-              <span role="cell"><b>{row.name}</b><small>500 m cell · neighbourhood context</small></span>
+              <span role="cell"><a className="cell-link" href="#explore" onClick={() => setSelected(row.id)}>{cellLabels.get(row.id) || row.name}</a><small>Show this 500 m cell on the map</small></span>
               <span role="cell">{row.a}</span>
               <span role="cell">{row.b}</span>
               <strong role="cell" className={row.shift > 0 ? "up" : "down"}>{Math.abs(row.shift)} places {row.shift > 0 ? "higher" : row.shift < 0 ? "lower" : "unchanged"}</strong>
             </div>
           ))}
         </div>
-        <p className="comparison-example">The two rank columns follow the scenario selections above. Only cells with scores in both scenarios are compared.</p>
+        <p className="comparison-example">Cell numbers identify locations; they are not priority ranks. The two rank columns follow the scenario selections above. Only cells with scores in both scenarios are compared.</p>
         <p className="comparison-foot">Movement is evidence of value sensitivity, not evidence that either scenario is politically correct.</p>
       </section>
       </section>
@@ -579,7 +584,7 @@ export default function ResearchInterface() {
           <p>This is a demonstrator of an objection route. It does not send data or contact a municipality.</p>
         </div>
         <div className="challenge-panel">
-          <strong>{String(p?.neighbourhood_name || "Select a mapped cell")}</strong>
+          <strong>{cellLabels.get(String(p?.grid_id)) || "Select a mapped cell"}</strong>
           <div className="challenge-options">
             {["Local heat experience is missing", "The indicators misrepresent need", "The weighting is unacceptable", "The proposed unit or boundary is wrong", "Residents were not involved"].map((reason) => (
               <button key={reason} className={challengeReason === reason ? "active" : ""} onClick={() => { setChallengeReason(reason); setChallengeRecorded(false); }}>{reason}</button>

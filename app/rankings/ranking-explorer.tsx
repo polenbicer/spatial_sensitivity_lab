@@ -1,4 +1,5 @@
 "use client";
+import { buildCellLabels } from "../../lib/cell-labels";
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 
@@ -161,12 +162,14 @@ function RankingMap({
   view,
   selected,
   onSelect,
+  cellLabels,
 }: {
   city: City;
   scenario: Scenario;
   view: ViewMode;
   selected: string;
   onSelect: (id: string) => void;
+  cellLabels: Map<string, string>;
 }) {
   const [html, setHtml] = useState("");
   useEffect(() => {
@@ -175,9 +178,9 @@ function RankingMap({
         ? "/data/neighbourhood_priority.geojson"
         : "/data/grid_priority.geojson";
     setHtml(
-      `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>html,body,#map{height:100%;margin:0}.leaflet-container{background:#dbe3df;font:13px Arial}.leaflet-popup-content-wrapper,.leaflet-popup-tip{border-radius:0}</style></head><body><div id="map"></div><script>const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},selected=${JSON.stringify(selected)},view=${JSON.stringify(view)};const map=L.map('map',{zoomSnap:.25});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19,opacity:.58}).addTo(map);fetch('${source}').then(r=>r.json()).then(data=>{const layer=L.geoJSON(data,{filter:f=>f.properties.city===city,style:f=>{const p=f.properties,v=p[field],id=view==='neighbourhoods'?p.id:p.grid_id,c=v<20?'#0878ad':v<40?'#55a8c8':v<60?'#ecebe5':v<80?'#e89b32':'#c80032';return{fillColor:c,fillOpacity:p.eligible===0?.18:.72,color:id===selected?'#111':'rgba(30,30,30,.55)',weight:id===selected?4:view==='neighbourhoods'?1.1:.45,dashArray:p.ranking_eligible===false?'5 4':null}},onEachFeature:(f,l)=>{const p=f.properties,id=view==='neighbourhoods'?p.id:p.grid_id,name=p.neighbourhood_name||'Boundary cell';l.bindTooltip(name);l.on('click',()=>parent.postMessage({type:'ranking-select',id},'*'))}}).addTo(map);if(layer.getBounds().isValid()){const fit=()=>{map.invalidateSize({pan:false});map.fitBounds(layer.getBounds(),{padding:[20,20],animate:false})};requestAnimationFrame(fit);new ResizeObserver(fit).observe(document.getElementById('map'))}});</script></body></html>`,
+      `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>html,body,#map{height:100%;margin:0}.leaflet-container{background:#dbe3df;font:13px Arial}.leaflet-popup-content-wrapper,.leaflet-popup-tip{border-radius:0}</style></head><body><div id="map"></div><script>const cellLabels=${JSON.stringify(Object.fromEntries(cellLabels))};const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},selected=${JSON.stringify(selected)},view=${JSON.stringify(view)};const map=L.map('map',{zoomSnap:.25});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19,opacity:.58}).addTo(map);fetch('${source}').then(r=>r.json()).then(data=>{const layer=L.geoJSON(data,{filter:f=>f.properties.city===city,style:f=>{const p=f.properties,v=p[field],id=view==='neighbourhoods'?p.id:p.grid_id,c=v<20?'#0878ad':v<40?'#55a8c8':v<60?'#ecebe5':v<80?'#e89b32':'#c80032';return{fillColor:c,fillOpacity:p.eligible===0?.18:.72,color:id===selected?'#111':'rgba(30,30,30,.55)',weight:id===selected?4:view==='neighbourhoods'?1.1:.45,dashArray:p.ranking_eligible===false?'5 4':null}},onEachFeature:(f,l)=>{const p=f.properties,id=view==='neighbourhoods'?p.id:p.grid_id,name=view==='cells'?(cellLabels[id]||p.neighbourhood_name||'Boundary cell'):(p.neighbourhood_name||'Boundary cell');l.bindTooltip(name,{permanent:id===selected,direction:'top'});l.on('click',()=>parent.postMessage({type:'ranking-select',id},'*'))}}).addTo(map);if(layer.getBounds().isValid()){const fit=()=>{map.invalidateSize({pan:false});map.fitBounds(layer.getBounds(),{padding:[20,20],animate:false})};requestAnimationFrame(fit);new ResizeObserver(fit).observe(document.getElementById('map'))}});</script></body></html>`,
     );
-  }, [city, scenario, view, selected]);
+  }, [city, scenario, view, selected, cellLabels]);
   useEffect(() => {
     const handler = (event: MessageEvent) => {
       if (event.data?.type === "ranking-select") onSelect(String(event.data.id));
@@ -208,6 +211,7 @@ export default function RankingExplorer() {
       })
       .catch(() => setError("The ranking data could not be loaded."));
   }, []);
+  const cellLabels = useMemo(() => buildCellLabels(data?.features ?? []), [data]);
   const cityCells = useMemo(
     () =>
       data?.features.filter((f) => f.properties.city === city && Boolean(f.properties.eligible)) ??
@@ -275,9 +279,10 @@ export default function RankingExplorer() {
             String(f.properties.neighbourhood_name || "")
               .toLowerCase()
               .includes(q) ||
-            String(f.properties.grid_id).toLowerCase().includes(q),
+            String(f.properties.grid_id).toLowerCase().includes(q) ||
+            (cellLabels.get(String(f.properties.grid_id)) ?? "").toLowerCase().includes(q),
         ),
-    [cityCells, scenario, q],
+    [cityCells, scenario, q, cellLabels],
   );
   const chooseScenario = (next: Scenario) => {
     if (next !== scenario) {
@@ -477,7 +482,7 @@ export default function RankingExplorer() {
           ) : (
             <>
               Each row is a distinct 500 m analytical cell. Repeated neighbourhood names are
-              location labels—not duplicate observations or neighbourhood-level scores.
+              location labels—not duplicate observations or neighbourhood-level scores. Cell numbers stay fixed across scenarios and searches; they are not ranks. Select a cell label to highlight its location on the map.
             </>
           )}
           </p>
@@ -508,6 +513,7 @@ export default function RankingExplorer() {
             view={view}
             selected={selected}
             onSelect={setSelected}
+            cellLabels={cellLabels}
           />
         )}
         {error ? (
@@ -714,7 +720,7 @@ export default function RankingExplorer() {
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label="Neighbourhood context">
+                    <ColumnHelp label="Cell location">
                       <b>Orientation label only</b>
                       <span>
                         The neighbourhood containing the cell’s representative point. Repeated names
@@ -799,7 +805,7 @@ export default function RankingExplorer() {
                           comparison,
                         )}
                       </td>
-                      <td>{String(p.neighbourhood_name || "Boundary cell")}</td>
+                      <td><button type="button" className="cell-link" onClick={() => setSelected(id)}>{cellLabels.get(id) || "Boundary cell"}</button></td>
                       <td>
                         <b>{Number(p[scenario]).toFixed(1)}</b>
                       </td>

@@ -192,59 +192,42 @@ export default function ResearchInterface() {
     socialSensitivity = evidence?.social_sensitivity_metrics?.find((x: any) => x.city === city);
   return (
     <main className="site-shell">
-      <section className="intro" id="top">
+      <section className="intro lab-intro" id="top">
         <header className="site-header">
           <a className="hero-brand" href="#top">SPATIAL SENSITIVITY LAB</a>
           <a className="hero-credit" href="https://polenbicer.dev">POLENBICER.DEV</a>
         </header>
-
-        <div className="hero-register">
-          <p>[AMS] [+] &nbsp; [BRU] [+]</p>
-          <p>URBAN COOLING &nbsp; 500 M CELLS</p>
-          <p>[2026] &nbsp; [RESEARCH INTERFACE]</p>
-        </div>
-
         <nav className="hero-nav" aria-label="Primary navigation">
-          <a href="#explore">[01] EXPLORE</a>
-          <a href="/rankings">[02] RANKINGS</a>
-          <a href="#evidence">[03] EVIDENCE</a>
-          <a href="#method">[04] METHOD</a>
-          <a href="#participation">[05] DEMOCRACY</a>
-          <a href="#legitimacy">[06] LEGITIMACY</a>
-          <a href="#opendata">[07] DATA</a>
-          <a href="#procurement">[08] FURTHER STAGES</a>
-          <a href="/methods.html">METHODS & REPRODUCIBILITY</a>
+          <a href="#about">01 · About the lab</a>
+          <a href="#explore-chapter">02 · Explore &amp; compare</a>
+          <a href="#data-evidence">03 · Data &amp; evidence</a>
+          <a href="#politics">04 · Politics &amp; legitimacy</a>
+          <a href="#methods-sources">05 · Methods &amp; sources</a>
         </nav>
-
-        <div className="diagram-field" aria-hidden="true">
-          <img className="reference-drawing topo-drawing" src="/topography-reference.svg" alt="" />
-          <img className="reference-drawing synoptic-drawing" src="/synoptic-reference.svg" alt="" />
-          <div className="diagram-grid grid-a" />
-          <div className="diagram-grid grid-b" />
-          <div className="measure measure-x">734 CELLS / PRIORITY SURFACE</div>
-          <div className="measure measure-y">NEED → EVIDENCE → PRIORITY</div>
+        <div className="lab-heading"><p className="eyebrow">Urban cooling · Brussels &amp; Amsterdam · Research demonstrator</p><h1>Who is prioritized?</h1><p>How values become spatial priorities.</p></div>
+      </section>
+      <section className="lab-chapter" id="about" aria-labelledby="about-title">
+        <header className="chapter-header"><p className="eyebrow">01 · About the lab</p><h2 id="about-title">What this lab is for</h2></header>
+        <p className="lab-purpose">Spatial Sensitivity Lab is a critical research tool, rather than a proposed model for allocating urban cooling investment. Using data from Brussels and Amsterdam, it compares how different indicator weights change the priority rankings of 500-metre cells within each city. The scenarios make selected value priorities explicit; they do not reproduce particular political ideologies. The aim is to examine how ideological commitments and competing understandings of need can shape apparently technical decisions. This also opens a question about technopopulism: what happens when a ranking gains authority through both claims to technical expertise and claims to represent what people need? The lab makes these choices visible for explanation, debate and challenge.</p>
+        <ol className="lab-instructions"><li><b>Choose a city and a scenario.</b> Each scenario assigns different weights to the available indicators.</li><li><b>Inspect the map and compare rankings.</b> Scores describe relative conditions within the selected city.</li><li><b>Examine the choices behind the result.</b> Review missing data, alternative priorities and opportunities for contestation.</li></ol>
+      <section className="case-note">
+        <div>
+          <p className="eyebrow">Why two cities?</p>
+          <h3>Cases, not a league table.</h3>
         </div>
-
-        <div className="hero-title">
-          <span>SPATIAL</span>
-          <strong>SENSITIVITY</strong>
-          <span>LAB</span>
+        <div>
+          <p>
+            Amsterdam and Brussels test the same analytical framework in different data and
+            governance environments. The project does not rank which city governs better.
+          </p>
+          <p>
+            The two cities provide distinct institutional settings for examining these judgments. The aim is to develop and assess an argument about democratic legitimacy using empirical evidence. The prototype is a critical research instrument, not a representation of either city’s existing decision system or an account of actual public spending.
+          </p>
         </div>
       </section>
-      <section className="research-frame">
-        <p className="eyebrow">Who Is Prioritized? Data-Driven Urban Cooling and Democratic Legitimacy in Brussels and Amsterdam</p>
-        <p>Extreme heat forces cities to decide where limited adaptation resources should go. Spatial priorities depend on choices about indicators, data gaps, spatial units and weights. Who has the authority to define public need?</p>
-        <p className="eyebrow">Research question</p>
-        <h2>
-          How does data-driven spatial prioritization define urban cooling needs, and under what conditions can such prioritization be considered democratically legitimate in light of the AI and algorithm governance frameworks of Brussels and Amsterdam?
-        </h2>
-        <p>The prototype and institutional documents address different parts of this question.</p>
-        <div className="research-subquestions">
-          <p><b>01 · Value choices</b> When the prototype’s indicators, weights, social data, and spatial scale change, which areas move in the priority ranking, and which remain stable?</p>
-          <p><b>02 · Institutional frameworks</b> How do Amsterdam, Brussels, and relevant EU documents define transparency, oversight, and responsibility for AI and algorithmic tools that may inform public decisions? What can be established about the implementation of these stated principles?</p>
-          <p><b>03 · Democratic legitimacy</b> If a technical ranking is used to justify intervention priorities, whose knowledge should count, who should explain the choices behind it, and how should affected residents be able to challenge and revise them?</p>
-        </div>
       </section>
+      <section className="lab-chapter" id="explore-chapter" aria-labelledby="explore-chapter-title">
+        <header className="chapter-header"><p className="eyebrow">02 · Explore &amp; compare</p><h2 id="explore-chapter-title">Explore &amp; compare</h2><p>Choose a weighting, inspect a location, then see which priorities change.</p></header>
       <section className="workspace" id="explore">
         <aside className="controls">
           <p className="eyebrow">01 · City</p>
@@ -311,7 +294,7 @@ export default function ResearchInterface() {
               <section className="inspect">
                 <p className="eyebrow">Selected cell</p>
                 <div className="inspect-title">
-                  <h2>{String(p?.neighbourhood_name || "Highest-ranked cell")}</h2>
+                  <h3>{String(p?.neighbourhood_name || "Highest-ranked cell")}</h3>
                   <div className="score" style={{ color: colour(Number(p?.[scenario] ?? 0)) }}>
                     {p?.[scenario] == null ? "N/A" : Number(p[scenario]).toFixed(1)}
                     <small>/100</small>
@@ -380,10 +363,85 @@ export default function ResearchInterface() {
           )}
         </aside>
       </section>
+      <p className="full-ranking-link"><a href="/rankings">Open the full within-city ranking →</a></p>
+      <section className="scenario-comparator" aria-labelledby="compare-title">
+        <header>
+          <p className="eyebrow">Compare value choices</p>
+          <h3 id="compare-title">The same city. Different priorities.</h3>
+        <p>A sensitivity analysis of available indicators and weights. Largest cell-level rank movements between the active logic and another scenario.</p>
+        </header>
+        <div className="compare-controls">
+          <label>Active logic<strong>{SCENARIOS[scenario].title}</strong></label>
+          <label>
+            Compare with
+            <select value={comparisonScenario} onChange={(e) => setComparisonScenario(e.target.value as Scenario)}>
+              {(Object.keys(SCENARIOS) as Scenario[]).filter((key) => key !== scenario).map((key) => (
+                <option key={key} value={key}>{SCENARIOS[key].title}</option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <div className="compare-list">
+          {comparisonRows.map((row) => (
+            <article key={row.id}>
+              <b>{row.name}</b>
+              <span>#{row.a} → #{row.b}</span>
+              <strong className={row.shift > 0 ? "up" : "down"}>{row.shift > 0 ? `+${row.shift}` : row.shift}</strong>
+            </article>
+          ))}
+        </div>
+        {socialSensitivity && <p>Balanced versus vulnerability-informed on {socialSensitivity.n_complete_cells} complete cells: Spearman ρ {socialSensitivity.spearman_balanced_vs_vulnerability}; Kendall τ {socialSensitivity.kendall_balanced_vs_vulnerability}; top 20% overlap {(socialSensitivity.top20_overlap_fraction * 100).toFixed(1)}%. Rank comparisons above use only cells scored in both selected scenarios.</p>}
+        <p className="comparison-foot">Movement is evidence of value sensitivity, not evidence that either scenario is politically correct.</p>
+      </section>
+      </section>
+      <section className="lab-chapter" id="data-evidence" aria-labelledby="data-evidence-title">
+        <header className="chapter-header"><p className="eyebrow">03 · Data &amp; evidence</p><h2 id="data-evidence-title">Data &amp; evidence</h2><p>What the indicators capture, what they miss, and what thermal validation can establish.</p></header>
+      <section className="blindspot">
+        <p className="eyebrow">What the map cannot see</p>
+        <h3>Social indicators reveal another view of need.</h3>
+        <div>
+          <p>
+            Both cities now show a diagnostic layer combining 65+ population and one-person household shares. Brussels uses IBSA 2025; Amsterdam uses CBS 2025. This is not a complete social vulnerability index.
+          </p>
+          <p>
+            IBSA age and household measures are transferred from neighbourhoods to 500 m cells by polygon overlap area. Median taxable income (2023) is recorded separately, not treated as a directly comparable household income measure or included in the new weighting.
+          </p>
+          <p>
+            Health, housing quality and residents’ situated knowledge remain outside the index. Park and industrial neighbourhoods with suppressed or unavailable IBSA values leave some cells without a social score; partial intersections may mix distinct local conditions.
+          </p>
+        </div>
+      </section>
+      <section className="data-legibility" aria-labelledby="legibility-title">
+        <header>
+          <p className="eyebrow">Data legibility audit</p>
+          <h3 id="legibility-title">What is included in this release?</h3>
+          <p>Included does not mean complete; unavailable does not mean unimportant.</p>
+        </header>
+        <div className="legibility-table" role="table" aria-label="Data availability by city">
+          <div className="legibility-row head" role="row">
+            <b role="columnheader">Dimension</b><b role="columnheader">Brussels</b><b role="columnheader">Amsterdam</b>
+          </div>
+          {[
+            ["Sealed surface", "Included", "Included"],
+            ["Cooling green", "Included", "Included"],
+            ["Population exposure", "Included", "Included"],
+            ["Observed summer surface heat", "Included", "Included"],
+            ["Age 65+ / one-person households", "Included (IBSA 2025); some cells unscored", "Included (CBS 2025); some cells unscored"],
+            ["Income", "IBSA median taxable income 2023: diagnostic metadata only", "CBS income differs in definition; not in this scenario"],
+            ["Health", "Availability and spatial comparability to verify", "Not represented in this release"],
+            ["Housing quality", "Availability and spatial comparability to verify", "Not represented in this release"],
+            ["Residents’ situated knowledge", "Not yet represented", "Not yet represented"],
+          ].map(([dimension, brussels, amsterdam]) => (
+            <div className="legibility-row" role="row" key={dimension}>
+              <span role="cell">{dimension}</span><span role="cell">{brussels}</span><span role="cell">{amsterdam}</span>
+            </div>
+          ))}
+        </div>
+      </section>
       <section className="evidence" id="evidence">
         <div>
           <p className="eyebrow">Independent thermal validation</p>
-          <h2>Does the model correspond to observed heat?</h2>
+          <h3>Does the model correspond to observed heat?</h3>
           <p>
             Random Forest predicts Landsat summer land-surface temperature from sealed surface,
             cooling green, trees, grass, water and population density. Validation uses five-fold
@@ -419,96 +477,10 @@ export default function ResearchInterface() {
           </article>
         </div>
       </section>
-      <section className="blindspot">
-        <p className="eyebrow">What the map cannot see</p>
-        <h2>Social indicators reveal another view of need.</h2>
-        <div>
-          <p>
-            Both cities now show a diagnostic layer combining 65+ population and one-person household shares. Brussels uses IBSA 2025; Amsterdam uses CBS 2025. This is not a complete social vulnerability index.
-          </p>
-          <p>
-            IBSA age and household measures are transferred from neighbourhoods to 500 m cells by polygon overlap area. Median taxable income (2023) is recorded separately, not treated as a directly comparable household income measure or included in the new weighting.
-          </p>
-          <p>
-            Health, housing quality and residents’ situated knowledge remain outside the index. Park and industrial neighbourhoods with suppressed or unavailable IBSA values leave some cells without a social score; partial intersections may mix distinct local conditions.
-          </p>
-        </div>
-      </section>
-      <section className="data-legibility" aria-labelledby="legibility-title">
-        <header>
-          <p className="eyebrow">Data legibility audit</p>
-          <h2 id="legibility-title">What is included in this release?</h2>
-          <p>Included does not mean complete; unavailable does not mean unimportant.</p>
-        </header>
-        <div className="legibility-table" role="table" aria-label="Data availability by city">
-          <div className="legibility-row head" role="row">
-            <b role="columnheader">Dimension</b><b role="columnheader">Brussels</b><b role="columnheader">Amsterdam</b>
-          </div>
-          {[
-            ["Sealed surface", "Included", "Included"],
-            ["Cooling green", "Included", "Included"],
-            ["Population exposure", "Included", "Included"],
-            ["Observed summer surface heat", "Included", "Included"],
-            ["Age 65+ / one-person households", "Included (IBSA 2025); some cells unscored", "Included (CBS 2025); some cells unscored"],
-            ["Income", "IBSA median taxable income 2023: diagnostic metadata only", "CBS income differs in definition; not in this scenario"],
-            ["Health", "Availability and spatial comparability to verify", "Not represented in this release"],
-            ["Housing quality", "Availability and spatial comparability to verify", "Not represented in this release"],
-            ["Residents’ situated knowledge", "Not yet represented", "Not yet represented"],
-          ].map(([dimension, brussels, amsterdam]) => (
-            <div className="legibility-row" role="row" key={dimension}>
-              <span role="cell">{dimension}</span><span role="cell">{brussels}</span><span role="cell">{amsterdam}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-      <section className="scenario-comparator" aria-labelledby="compare-title">
-        <header>
-          <p className="eyebrow">Compare value choices</p>
-          <h2 id="compare-title">The same city. Different priorities.</h2>
-        <p>A sensitivity analysis of available indicators and weights. Largest cell-level rank movements between the active logic and another scenario.</p>
-        </header>
-        <div className="compare-controls">
-          <label>Active logic<strong>{SCENARIOS[scenario].title}</strong></label>
-          <label>
-            Compare with
-            <select value={comparisonScenario} onChange={(e) => setComparisonScenario(e.target.value as Scenario)}>
-              {(Object.keys(SCENARIOS) as Scenario[]).filter((key) => key !== scenario).map((key) => (
-                <option key={key} value={key}>{SCENARIOS[key].title}</option>
-              ))}
-            </select>
-          </label>
-        </div>
-        <div className="compare-list">
-          {comparisonRows.map((row) => (
-            <article key={row.id}>
-              <b>{row.name}</b>
-              <span>#{row.a} → #{row.b}</span>
-              <strong className={row.shift > 0 ? "up" : "down"}>{row.shift > 0 ? `+${row.shift}` : row.shift}</strong>
-            </article>
-          ))}
-        </div>
-        {socialSensitivity && <p>Balanced versus vulnerability-informed on {socialSensitivity.n_complete_cells} complete cells: Spearman ρ {socialSensitivity.spearman_balanced_vs_vulnerability}; Kendall τ {socialSensitivity.kendall_balanced_vs_vulnerability}; top 20% overlap {(socialSensitivity.top20_overlap_fraction * 100).toFixed(1)}%. Rank comparisons above use only cells scored in both selected scenarios.</p>}
-        <p className="comparison-foot">Movement is evidence of value sensitivity, not evidence that either scenario is politically correct.</p>
-      </section>
-      <section className="case-note">
-        <div>
-          <p className="eyebrow">Why two cities?</p>
-          <h2>Cases, not a league table.</h2>
-        </div>
-        <div>
-          <p>
-            Amsterdam and Brussels test the same analytical framework in different data and
-            governance environments. The project does not rank which city governs better.
-          </p>
-          <p>
-            The two cities provide distinct institutional settings for examining these judgments. The aim is to develop and assess an argument about democratic legitimacy using empirical evidence. The prototype is a critical research instrument, not a representation of either city’s existing decision system or an account of actual public spending.
-          </p>
-        </div>
-      </section>
       <section className="ai-role">
         <div>
           <p className="eyebrow">Where is AI?</p>
-          <h2>Validation is not authorization.</h2>
+          <h3>Validation is not authorization.</h3>
         </div>
         <div>
           <p>
@@ -522,25 +494,40 @@ export default function ResearchInterface() {
           </p>
         </div>
       </section>
+      </section>
+      <section className="lab-chapter" id="politics" aria-labelledby="politics-title">
+        <header className="chapter-header"><p className="eyebrow">04 · Politics &amp; legitimacy</p><h2 id="politics-title">Politics &amp; legitimacy</h2><p>From value choices in a model to justification, participation and public responsibility.</p></header>
+      <section className="research-frame">
+        <p className="eyebrow">Research question</p>
+        <h3>
+          How does data-driven spatial prioritization define urban cooling needs, and under what conditions can such prioritization be considered democratically legitimate in light of the AI and algorithm governance frameworks of Brussels and Amsterdam?
+        </h3>
+        <p>The prototype examines sensitivity to analytical choices. Institutional documents and interviews address how those choices are justified, governed and contested.</p>
+        <div className="research-subquestions">
+          <p><b>01 · Value choices</b> When the prototype’s indicators, weights, social data, and spatial scale change, which areas move in the priority ranking, and which remain stable?</p>
+          <p><b>02 · Institutional frameworks</b> How do Amsterdam, Brussels, and relevant EU documents define transparency, oversight, and responsibility for AI and algorithmic tools that may inform public decisions? What can be established about the implementation of these stated principles?</p>
+          <p><b>03 · Democratic legitimacy</b> If a technical ranking is used to justify intervention priorities, whose knowledge should count, who should explain the choices behind it, and how should affected residents be able to challenge and revise them?</p>
+        </div>
+      </section>
       <section className="research-bridge" aria-label="AI governance and the political question">
         <article id="ai-governance">
           <p className="eyebrow">AI governance in context</p>
-          <h2>What rules should govern a tool that informs a public decision?</h2>
+          <h3>What rules should govern a tool that informs a public decision?</h3>
           <p>This prototype is not a municipal AI system. Its priority rankings come from explicit indicators and weights; machine learning is used only to test their relationship with observed surface temperature.</p>
           <p>The research also examines <a href="https://www.amsterdam.nl/innovatie/ai-innovatie/" target="_blank" rel="noreferrer">Amsterdam’s AI vision and algorithm governance tools</a>, <a href="https://admin.be.brussels/sites/default/files/2024-10/Paradigm_livre%20blanc_2024_FR_240910.pdf" target="_blank" rel="noreferrer">Brussels’ regional AI policy documents</a>, and <a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-27" target="_blank" rel="noreferrer">relevant EU rules</a>. These sources do not show that either city uses this prototype, or AI, to allocate urban cooling resources. They show how public institutions define transparency, oversight and responsibility when computational tools enter decision-making.</p>
         </article>
         <article id="political-question">
-          <p className="eyebrow">When a ranking speaks for the public</p>
-          <h2>Can a single score stand in for public debate?</h2>
+          <p className="eyebrow">Technopopulism as a research question</p>
+          <h3>Can a single score stand in for public debate?</h3>
           <p>A map can make competing needs appear to have a single answer. Yet a ranking depends on prior choices: what counts as need, whose experience becomes data, and how different needs are weighed.</p>
-          <p>This research asks whether a technically persuasive ranking can come to stand in for public debate. It examines a possible connection between technocratic claims to a single correct solution and political claims to a single public interest. That connection is a question for the thesis, not a finding about Brussels or Amsterdam.</p>
+          <p>This research asks whether a technically persuasive ranking can come to stand in for public debate. It examines a possible connection between technocratic claims to a single correct solution and political claims to a single public interest. Here, technopopulism refers to the combination of appeals to expertise and claims to represent “the people”; changing a model weight is not, by itself, evidence of technopopulism. That connection is a question for the thesis, not a finding about Brussels or Amsterdam.</p>
           <p>The democratic test is whether a model’s choices can be explained, challenged and revised, and whether a public institution takes responsibility for decisions made with its help.</p>
         </article>
       </section>
       <section className="participation" id="participation">
         <header>
           <p className="eyebrow">Democratic participation</p>
-          <h2>Who should decide the weights?</h2>
+          <h3>Who should decide the weights?</h3>
           <p>
             Heat justice, governing by indicators and democratic legitimacy meet in the question of whose knowledge can influence priorities. The study examines opportunities for affected people to question or contest choices and how institutions justify and take responsibility for decisions.
           </p>
@@ -555,15 +542,11 @@ export default function ResearchInterface() {
             <article key={title}><span>{String(i + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{value}</p><small>{risk}</small></article>
           ))}
         </div>
-        <aside className="participation-question">
-          <b>Research sub-question</b>
-          <p>If a technical ranking is used to justify intervention priorities, whose knowledge should count, who should explain the choices behind it, and how should affected residents be able to challenge and revise them?</p>
-        </aside>
       </section>
       <section className="contestability" aria-labelledby="contest-title">
         <div>
           <p className="eyebrow">Contest this classification</p>
-          <h2 id="contest-title">What might this cell be missing?</h2>
+          <h3 id="contest-title">What might this cell be missing?</h3>
           <p>This is a demonstrator of an objection route. It does not send data or contact a municipality.</p>
         </div>
         <div className="challenge-panel">
@@ -577,50 +560,10 @@ export default function ResearchInterface() {
           {challengeRecorded && <p className="challenge-result"><b>Challenge recorded in this browser session:</b> {challengeReason}. A legitimate operational system would now identify a responsible official, response deadline, evidence route and appeal body.</p>}
         </div>
       </section>
-      <section className="method" id="method">
-        <header>
-          <p className="eyebrow">Method & sources</p>
-          <h2>Follow every choice from source to score.</h2>
-        </header>
-        <div className="chain">
-          {[
-            ["Source", "Official boundaries and dated public datasets"],
-            ["Pre-process", "Reproject, clip and align to a 500 m analytical grid"],
-            ["Measure", "Surface pressure, cooling-green deficit and population exposure"],
-            ["Normalise", "Convert indicators to within-city relative scores"],
-            ["Weight", "Apply four environmental logics and one social diagnostic scenario"],
-            ["Aggregate", "Calculate cell scores and overlap-area-weighted neighbourhood summaries"],
-            ["Validate", "Test thermal association and spatial-scale sensitivity"],
-            ["Interpret", "Examine institutional interpretation, feasibility, participation and intervention priorities"],
-          ].map(([x, detail], i) => (
-            <div key={x}>
-              <span>{String(i + 1).padStart(2, "0")}</span>
-              <b>{x}</b><small>{detail}</small>
-            </div>
-          ))}
-        </div>
-        <div className="decision-chain-research"><h3>Research decision chain</h3><ol><li>Define cooling need</li><li>Select data and indicators</li><li>Model and rank areas</li><li>Interpret spatial evidence</li><li>Set intervention priorities</li></ol><p>At each stage: who decides, what justification is visible, and who can challenge the choice? Procurement and budget decisions may follow; this study does not claim to trace them systematically.</p></div>
-        <div className="sources">
-          {SOURCES.map(([a, b, url]) => (
-            <a href={url} target="_blank" rel="noreferrer" key={url}>
-              <span>{a}</span>
-              <b>{b}</b>
-              <i>↗</i>
-            </a>
-          ))}
-        </div>
-        <p className="method-foot">
-          Priority scores are within-city percentiles, not temperatures, uncertainty intervals or
-          cross-city performance rankings. The scenario median aggregates the original four environmental scenarios; it
-          reduces the influence of a single weighting scheme but does not create democratic
-          consensus or a neutral result. AI is used for explainable thermal validation—not to choose policy weights
-          or define justice.
-        </p>
-      </section>
       <section className="legitimacy" id="legitimacy">
         <header>
           <p className="eyebrow">Institutional interpretation</p>
-          <h2>A ranking does not make a decision.</h2>
+          <h3>A ranking does not make a decision.</h3>
           <p>
             Policy and decision documents and semi-structured expert interviews will examine how institutions define cooling needs, interpret spatial evidence and set intervention priorities. The prototype exposes questions for this inquiry; its rankings are not assumed to determine actual spending, and it does not report findings from interviews that have not taken place.
           </p>
@@ -647,9 +590,51 @@ export default function ResearchInterface() {
           </p>
         </aside>
       </section>
+      </section>
+      <section className="lab-chapter" id="methods-sources" aria-labelledby="methods-sources-title">
+        <header className="chapter-header"><p className="eyebrow">05 · Methods &amp; sources</p><h2 id="methods-sources-title">Methods &amp; sources</h2></header>
+      <section className="method" id="method">
+        <header>
+          <p className="eyebrow">Method & sources</p>
+          <h3>Follow every choice from source to score.</h3>
+        </header>
+        <div className="chain">
+          {[
+            ["Source", "Official boundaries and dated public datasets"],
+            ["Pre-process", "Reproject, clip and align to a 500 m analytical grid"],
+            ["Measure", "Surface pressure, cooling-green deficit and population exposure"],
+            ["Normalise", "Convert indicators to within-city relative scores"],
+            ["Weight", "Apply four environmental logics and one social diagnostic scenario"],
+            ["Aggregate", "Calculate cell scores and overlap-area-weighted neighbourhood summaries"],
+            ["Validate", "Test thermal association and spatial-scale sensitivity"],
+            ["Interpret", "Examine institutional interpretation, feasibility, participation and intervention priorities"],
+          ].map(([x, detail], i) => (
+            <div key={x}>
+              <span>{String(i + 1).padStart(2, "0")}</span>
+              <b>{x}</b><small>{detail}</small>
+            </div>
+          ))}
+        </div>
+        <div className="sources">
+          {SOURCES.map(([a, b, url]) => (
+            <a href={url} target="_blank" rel="noreferrer" key={url}>
+              <span>{a}</span>
+              <b>{b}</b>
+              <i>↗</i>
+            </a>
+          ))}
+        </div>
+        <p className="method-foot">
+          Priority scores are within-city percentiles, not temperatures, uncertainty intervals or
+          cross-city performance rankings. The scenario median aggregates the original four environmental scenarios; it
+          reduces the influence of a single weighting scheme but does not create democratic
+          consensus or a neutral result. AI is used for explainable thermal validation—not to choose policy weights
+          or define justice.
+        </p>
+      </section>
       <section className="open-data" id="opendata">
         <p className="eyebrow">Open data & assumptions</p>
-        <h2>Inspect the mapped cells and validation evidence.</h2>
+        <h3>Inspect the mapped cells and validation evidence.</h3>
         <div>
           <a href="/data/grid_priority.geojson" download>
             ↓ Grid priority GeoJSON <small>Environmental grid · cite Biçer v0.3 and mapped environmental providers; source terms below.</small>
@@ -674,8 +659,8 @@ export default function ResearchInterface() {
         </p>
       </section>
       <section className="procurement" id="procurement">
-        <header><p className="eyebrow">08 · Possible later stages</p><h2>What happens after priorities are proposed?</h2><p>Procurement and budget decisions can later fix or alter priorities. They are prompts for further inquiry, not stages this study sets out to trace systematically. Neither city is asserted to procure this demonstrator.</p></header>
-        <details className="procurement-details"><summary>Explore procurement questions and the contract clause demonstrator</summary>
+        <header><p className="eyebrow">Possible later stages · outside the core study</p><h3>What happens after priorities are proposed?</h3><p>Procurement and budget decisions can later fix or alter priorities. They are prompts for further inquiry, not stages this study sets out to trace systematically. Neither city is asserted to procure this demonstrator.</p></header>
+        <div className="procurement-details"><h3>Procurement questions and the contract clause demonstrator</h3>
         <ol className="procurement-chain">{["Data", "Indicator", "Weight", "Model", "Tender specification", "Contract", "Budget allocation", "Appeal"].map((step) => <li key={step}><b>{step}</b><small>Who decides? What is visible? Can residents challenge?</small></li>)}</ol>
         <div className="procurement-table" role="table" aria-label="Procurement comparison"><div role="row"><b role="columnheader">Question</b><b role="columnheader">Amsterdam</b><b role="columnheader">Brussels</b><b role="columnheader">Verification status</b></div>
           <div role="row"><span>Algorithm register</span><span><a href="https://www.amsterdam.nl/innovatie/digitalisering-technologie/algoritmes-ai/algoritmes/">Municipal algorithm descriptions</a> are public; relevance to cooling procurement requires inquiry.</span><span>Equivalent register for this use case not established.</span><span>Verified (Amsterdam publication); To verify (Brussels)</span></div>
@@ -685,7 +670,8 @@ export default function ResearchInterface() {
         <div className="clause-simulator"><h3>Contract clause simulator · demonstrator</h3><p>If <b>{SCENARIOS[scenario].title}</b> were fixed in a tender specification, {SCENARIOS[scenario].weights.toLowerCase()} would become a contractual baseline. A draft could require disclosure of the weights and source data, a version record for changes, independent audit access, a route for residents to challenge outputs, and a narrowly justified treatment of trade secrets. These are questions for a real procurement, not existing clauses in either city's cooling contract.</p><p>Compare the <a href="https://www.amsterdam.nl/innovatie/digitalisering-technologie/algoritmes-ai/inkoopvoorwaarden-algoritmes/">Amsterdam terms</a> and <a href="https://public-buyers-community.ec.europa.eu/communities/procurement-ai/resources/updated-eu-ai-model-contractual-clauses">EU model clauses and commentary</a> for the actual wording.</p></div>
         <p><b>AI Act classification: to be assessed.</b> A transparent cooling priority index may fall outside high-risk AI categories, and the thermal validation component has a separate role. Whether the Act applies, and whether any full or light clauses are appropriate, requires expert assessment. See <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng">Regulation (EU) 2024/1689</a>.</p>
         <p><b>If the weighting sits in a tender specification, who can still contest it?</b> Return to <a href="#participation">democratic participation</a>.</p>
-        </details>
+        </div>
+      </section>
       </section>
       <footer>
         <b>Spatial Sensitivity Lab</b>

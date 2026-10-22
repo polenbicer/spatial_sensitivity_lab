@@ -6,6 +6,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (name) => JSON.parse(fs.readFileSync(path.join(root, "public", "data", name), "utf8"));
 const grid = read("grid_priority.geojson").features;
 const neighbourhoods = read("neighbourhood_priority.json").rows;
+const social = new Map(read("social_diagnostic.json").map(r => [r[0], r]));
+const socialAreas = read("social_neighbourhoods.json");
 const scenarios = [
   "priority_balanced",
   "priority_population_led",
@@ -73,6 +75,26 @@ for (const r of neighbourhoods) {
     fail(`${r.id}: invalid thermal coverage`);
   if (r.ranking_eligible !== r.eligible_coverage_pct >= 50)
     fail(`${r.id}: ranking eligibility mismatch`);
+}
+// The social scenario must use real age/household evidence and retain missing values.
+for (const { properties: p } of grid) {
+  const r = social.get(p.grid_id);
+  if (!r) fail(`${p.grid_id}: missing social overlay row`);
+  if (r[4] == null || [p.score_impervious, p.score_green_deficit, p.score_population].some(v => v == null)) {
+    if (r[5] != null) fail(`${p.grid_id}: missing social data received a priority`);
+  } else if (!close(r[5], .3*p.score_impervious + .2*p.score_green_deficit + .2*p.score_population + .3*r[4])) {
+    fail(`${p.grid_id}: social priority formula mismatch`);
+  }
+}
+if (socialAreas.length !== neighbourhoods.length || new Set(socialAreas.map(r => r.id)).size !== neighbourhoods.length)
+  fail("social neighbourhood count or uniqueness mismatch");
+const neighbourhoodById = new Map(neighbourhoods.map(r => [r.id, r]));
+for (const r of socialAreas) {
+  if (!neighbourhoodById.has(r.id)) fail(`${r.id}: unknown social neighbourhood`);
+  if (r.social_coverage_pct < 50 && r.priority_vulnerability_informed != null)
+    fail(`${r.id}: insufficient social coverage was ranked`);
+  for (const k of ["age65_pct", "one_person_pct", "social_diagnostic", "priority_vulnerability_informed"])
+    if (r[k] != null && (!Number.isFinite(r[k]) || r[k] < 0 || r[k] > 100)) fail(`${r.id}: invalid ${k}`);
 }
 console.log(
   `Validated ${grid.length} unique grid cells and ${neighbourhoods.length} unique official neighbourhood units.`,

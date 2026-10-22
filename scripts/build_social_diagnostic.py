@@ -90,6 +90,9 @@ def main():
     # Preserve missingness: cells without both social measures have no new scenario score.
     overlay=[[p['grid_id'],p.get('age65_pct'),p.get('one_person_pct'),p.get('median_taxable_income_eur'),p.get('social_diagnostic'),p.get('priority_vulnerability_informed'),p.get('age65_pct_covered_area_pct'),p.get('one_person_pct_covered_area_pct'),p.get('social_overlap_count')] for p in (f['properties'] for f in grid['features'])]
     (OUT/'social_diagnostic.json').write_text(json.dumps(overlay,separators=(',',':')))
+    # Keep the ranking page's area-weighted social summaries in sync.
+    from build_social_neighbourhoods import main as build_social_neighbourhoods
+    build_social_neighbourhoods()
     e=json.loads((OUT/'evidence.json').read_text())
     sensitivity=[]
     for city in ('Brussels','Amsterdam'):

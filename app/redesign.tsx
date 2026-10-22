@@ -1,5 +1,6 @@
 "use client";
 import { buildCellLabels } from "../lib/cell-labels";
+import { mergeSocialOverlay } from "../lib/social-overlay";
 import { useEffect, useMemo, useState } from "react";
 
 type City = "Amsterdam" | "Brussels";
@@ -46,7 +47,7 @@ const SCENARIOS: Record<Scenario, { title: string; weights: string; note: string
   },
   priority_vulnerability_informed: {
     title: "Vulnerability-informed",
-    weights: "30% surface · 20% green deficit · 20% population · 30% social diagnostic",
+    weights: "30% surface · 20% green deficit · 20% population · 15% age 65+ · 15% one-person households",
     note: "Adds age 65+ and one-person household shares. A policy coalition seeking to account for social exposure might defend this weighting. Cells lacking both social measures remain unscored.",
   },
 };
@@ -121,7 +122,7 @@ function MapFrame({
 
 export default function ResearchInterface() {
   const [city, setCity] = useState<City>("Brussels"),
-    [scenario, setScenario] = useState<Scenario>("priority_consensus"),
+    [scenario, setScenario] = useState<Scenario>("priority_vulnerability_informed"),
     [comparisonScenario, setComparisonScenario] = useState<Scenario>("priority_population_led"),
     [data, setData] = useState<Collection | null>(null),
     [evidence, setEvidence] = useState<any>(null),
@@ -146,12 +147,7 @@ export default function ResearchInterface() {
       }),
     ])
       .then(([g, social, e]) => {
-        const byId = new Map(social.map((row) => [String(row[0]), row]));
-        const fields = ["age65_pct", "one_person_pct", "median_taxable_income_eur", "social_diagnostic", "priority_vulnerability_informed", "age65_pct_covered_area_pct", "one_person_pct_covered_area_pct", "social_overlap_count"];
-        for (const feature of g.features) {
-          const row = byId.get(String(feature.properties.grid_id));
-          if (row) fields.forEach((field, i) => { feature.properties[field] = row[i + 1] as number | null; });
-        }
+        mergeSocialOverlay(g.features, social);
         setData(g);
         setEvidence(e);
       })

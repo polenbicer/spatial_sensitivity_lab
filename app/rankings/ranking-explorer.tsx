@@ -384,9 +384,11 @@ export default function RankingExplorer() {
   return (
     <main className="rankings-page">
       <header className="rankings-nav">
-        <a href="/">← Spatial Sensitivity Lab</a>
-        <span>Full within-city ranking</span>
-        <div>
+        <div className="rankings-nav-identity">
+          <a href="/">← Spatial Sensitivity Lab</a>
+          <span>Full within-city ranking</span>
+        </div>
+        <div className="rankings-nav-actions">
           <a href="/priority-lines">Priority Lines →</a>
           <button onClick={downloadCsv}>Download CSV</button>
           <button onClick={() => window.print()}>Save as PDF</button>

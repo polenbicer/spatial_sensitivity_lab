@@ -211,6 +211,7 @@ export default function ResearchInterface() {
         <nav className="hero-nav" aria-label="Primary navigation">
           <a href="#explore">[01] EXPLORE</a>
           <a href="/rankings">[02] RANKINGS</a>
+          <a href="/priority-lines">PRIORITY LINES</a>
           <a href="#evidence">[03] EVIDENCE</a>
           <a href="#method">[04] METHOD</a>
           <a href="#participation">[05] DEMOCRACY</a>

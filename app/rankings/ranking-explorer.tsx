@@ -387,6 +387,7 @@ export default function RankingExplorer() {
         <a href="/">← Spatial Sensitivity Lab</a>
         <span>Full within-city ranking</span>
         <div>
+          <a href="/priority-lines">Priority Lines →</a>
           <button onClick={downloadCsv}>Download CSV</button>
           <button onClick={() => window.print()}>Save as PDF</button>
         </div>

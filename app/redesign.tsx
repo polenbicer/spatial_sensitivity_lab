@@ -209,20 +209,16 @@ export default function ResearchInterface() {
         </div>
 
         <nav className="hero-nav" aria-label="Primary navigation">
-          <div className="hero-nav-tools">
-            <a href="#explore">Explore</a>
-            <a href="/rankings">Rankings</a>
-            <a href="/priority-lines">Priority Lines</a>
-          </div>
-          <div className="hero-nav-sections">
-            <a href="#evidence">Evidence</a>
-            <a href="#method">Method</a>
-            <a href="#participation">Democracy</a>
-            <a href="#legitimacy">Legitimacy</a>
-            <a href="#opendata">Data</a>
-            <a href="#procurement">Further stages</a>
-          </div>
-          <a className="hero-nav-methods" href="/methods.html">Methods &amp; reproducibility ↗</a>
+          <a href="#explore">[01] EXPLORE</a>
+          <a href="/rankings">[02] RANKINGS</a>
+          <a href="/priority-lines">[03] PRIORITY LINES</a>
+          <a href="#evidence">[04] EVIDENCE</a>
+          <a href="#method">[05] METHOD</a>
+          <a href="#participation">[06] DEMOCRACY</a>
+          <a href="#legitimacy">[07] LEGITIMACY</a>
+          <a href="#opendata">[08] DATA</a>
+          <a href="#procurement">[09] FURTHER STAGES</a>
+          <a href="/methods.html">[10] METHODS &amp; REPRODUCIBILITY</a>
         </nav>
 
         <div className="diagram-field" aria-hidden="true">

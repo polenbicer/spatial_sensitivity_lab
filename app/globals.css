@@ -3659,42 +3659,25 @@ button.cell-link { border:0; padding:0; background:transparent; text-align:left;
 .cell-link:hover { color:var(--red); }
 .cell-link:focus-visible { outline:2px solid var(--ink); outline-offset:3px; }
 
-/* Compact grouped navigation and consistent ranking actions. */
+/* Preserve the original hero typography with consistent numbered links. */
 .intro .hero-nav {
-  display: block;
-  width: min(350px, calc(100% - 60px));
-  max-width: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: max-content;
+  max-width: calc(100% - 60px);
   padding: 14px 16px;
-  gap: 0;
+  gap: 3px;
 }
 .intro .hero-nav a {
   display: block;
   width: auto;
-  padding: 5px 0;
-  font: 12px/1.4 "IBM Plex Mono", "Courier New", monospace;
-  text-transform: none;
+  padding: 2px 0;
+  font: 600 12px/1.25 "IBM Plex Mono", monospace;
+  letter-spacing: 0;
+  text-transform: uppercase;
   text-decoration: none;
-  white-space: nowrap;
-}
-.intro .hero-nav-tools {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 19px;
-  padding-bottom: 9px;
-  border-bottom: 1px solid #bbc0d0;
-}
-.intro .hero-nav-tools a { font-weight: 700; }
-.intro .hero-nav-sections {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 16px;
-  padding: 9px 0;
-}
-.intro .hero-nav-sections a { font-size: 11px; }
-.intro .hero-nav .hero-nav-methods {
-  border-top: 1px solid #bbc0d0;
-  padding-top: 11px;
-  font-size: 10px;
+  white-space: normal;
 }
 .intro .hero-nav a:hover, .intro .hero-nav a:focus-visible {
   color: var(--red);
@@ -3702,6 +3685,7 @@ button.cell-link { border:0; padding:0; background:transparent; text-align:left;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
+/* Keep ranking-page actions aligned independently of the home menu. */
 .rankings-nav {
   height: auto;
   min-height: 68px;
@@ -3761,6 +3745,6 @@ button.cell-link { border:0; padding:0; background:transparent; text-align:left;
 @media (max-width: 760px) {
   .rankings-nav { grid-template-columns: 1fr; gap: 12px; padding: 12px 18px; }
   .rankings-nav > .rankings-nav-actions { width: 100%; }
-  .intro .hero-nav { left: 18px; width: min(350px, calc(100% - 36px)); }
+  .intro .hero-nav { left: 18px; width: max-content; max-width: calc(100% - 36px); }
 }
 @media print { .rankings-nav { display: none; } }

@@ -517,7 +517,7 @@ export default function RankingExplorer() {
           </p>
         </details>
       </section>
-      {city === "Amsterdam" && <p className="report-note">Income model: 365/949 eligible cells scored. A cell needs at least 99.9% income coverage. Other cells stay unranked. The value is an area-weighted proxy of neighbourhood medians, not cell household income. <a href="/methods.html">Sources and method</a>.</p>}
+      {city === "Amsterdam" && <p className="income-coverage-note" style={{padding:"16px 2vw", margin:0, borderBottom:"1px solid currentColor", lineHeight:1.5}}>Income model: 365/949 eligible cells scored. A cell needs at least 99.9% income coverage. Other cells stay unranked. The value is an area-weighted proxy of neighbourhood medians, not cell household income. <a href="/methods.html">Sources and method</a>.</p>}
       <section className="report-note">
         <div>
           <span>Selected weights</span>

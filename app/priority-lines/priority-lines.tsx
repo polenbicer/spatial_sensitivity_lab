@@ -71,7 +71,7 @@ export default function PriorityLines() {
       <header className={styles.header}>
         <p className={styles.eyebrow}>Cartographic experiment / Brussels &amp; Amsterdam</p>
         <h1>Same city.<br />Different priorities.</h1>
-        <p className={styles.intro}>Choose a neighbourhood and follow its line across four scenarios. The place stays the same; the importance assigned to each indicator changes.</p>
+        <p className={styles.intro}>This chart compares the four population-based scenarios. Amsterdam’s income model is available in Full rankings. Choose a neighbourhood and follow its line across these four scenarios. The place stays the same; the importance assigned to each indicator changes.</p>
       </header>
       <div className={styles.how}>
         <p><b>01 · Find a place.</b> Select a name or click a neighbourhood on the map.</p>

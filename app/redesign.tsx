@@ -1,9 +1,11 @@
 "use client";
+import { applyIncome, type IncomeOverlay } from "../lib/income-data";
 import { buildCellLabels } from "../lib/cell-labels";
 import { useEffect, useMemo, useState } from "react";
 
 type City = "Amsterdam" | "Brussels";
 type Scenario =
+  | "priority_income"
   | "priority_consensus"
   | "priority_balanced"
   | "priority_population_led"
@@ -18,6 +20,7 @@ type Collection = { type: "FeatureCollection"; features: Feature[] };
 
 const CITIES: City[] = ["Brussels", "Amsterdam"];
 const SCENARIOS: Record<Scenario, { title: string; weights: string; note: string }> = {
+  priority_income: { title: "Income model · Amsterdam", weights: "40% surface · 30% green deficit · 30% low income", note: "Lower neighbourhood income increases priority. The grid value is an area-weighted proxy of neighbourhood medians, not measured cell income. Only cells with at least 99.9% income coverage are scored. These weights are an analytical choice." },
   priority_consensus: {
     title: "Scenario median",
     weights: "Median of four scenarios",
@@ -69,7 +72,7 @@ const SOURCES = [
     "https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2",
   ],
 
-  ["Amsterdam income · prepared, not scored", "CBS · median standardised disposable household income · 2023", "https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/wijk-en-buurtstatistieken/tijdreeks-wijk-en-buurtcijfers"],
+  ["Amsterdam income · income model", "CBS · median standardised disposable household income · 2023", "https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/wijk-en-buurtstatistieken/tijdreeks-wijk-en-buurtcijfers"],
   ["Amsterdam income · original workbook", "CBS neighbourhood income and wealth time series · XLSX", "https://download.cbs.nl/regionale-kaarten/Tijdreeks_wijken_en_buurten_inkomenvermogen2.XLSX"],
   ["Brussels income · municipality only, not scored", "Statbel · administrative disposable income · neighbourhood comparison unresolved", "https://statbel.fgov.be/fr/themes/datalab/revenu-disponible-administratif"],
   ["Brussels income · alternative definition, not scored", "IBSA indicator 2498 · income after tax; not equivalent to disposable income", "https://monitoringdesquartiers.brussels/Indicator/IndicatorPage/2498?tab=Sheet&SubTheme=28"],
@@ -100,7 +103,7 @@ function MapFrame({
     setHtml(
       `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>html,body,#map{height:100%;margin:0}.leaflet-container{font:13px Arial,sans-serif;background:#dce3df}.leaflet-popup-content-wrapper,.leaflet-popup-tip{border-radius:0}.legend{background:#fff;border:1px solid #111;padding:9px;line-height:19px}.legend i{display:inline-block;width:14px;height:14px;margin-right:7px;vertical-align:-2px}</style></head><body><div id="map"></div><script>
  const cellLabels=${JSON.stringify(Object.fromEntries(cellLabels))};const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},selected=${JSON.stringify(selected)};const map=L.map('map',{zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);
- Promise.all([fetch('/data/grid_priority.geojson').then(r=>{if(!r.ok)throw Error('grid');return r.json()}),fetch('/data/project_context.geojson').then(r=>{if(!r.ok)throw Error('context');return r.json()})]).then(([grid,projects])=>{const vals=[['#440154','0–20'],['#3b528b','20–40'],['#21918c','40–60'],['#5ec962','60–80'],['#fde725','80–100']];const layer=L.geoJSON(grid,{filter:f=>f.properties.city===city,style:f=>{const v=f.properties[field],c=v==null?'#777':v<20?'#440154':v<40?'#3b528b':v<60?'#21918c':v<80?'#5ec962':'#fde725';return{fillColor:c,fillOpacity:f.properties.eligible?.76:.35,color:f.properties.grid_id===selected?'#111':'rgba(255,255,255,.72)',weight:f.properties.grid_id===selected?3:.55}},onEachFeature:(f,l)=>{const p=f.properties,v=p[field];l.bindPopup('<b>'+(cellLabels[p.grid_id]||p.neighbourhood_name||'500 m cell')+'</b><br>'+'Priority'+' '+(v==null?'No data':Number(v).toFixed(1)+'/100')+'<br>Surface pressure '+fmt(p.score_impervious)+'<br>Green deficit '+fmt(p.score_green_deficit)+'<br>Population exposure '+fmt(p.score_population)+'<br>Summer surface temperature '+(p.summer_lst_median_c==null?'Not available':Number(p.summer_lst_median_c).toFixed(1)+' °C')+'<br>Top-quintile scenarios '+(p.top20_scenario_count??'—')+'/4');l.on('click',()=>parent.postMessage({type:'grid-select',id:p.grid_id},'*'));l.on('add',()=>{const el=l.getElement();if(el){el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label',(cellLabels[p.grid_id]||p.neighbourhood_name||'Grid cell')+' '+(v==null?'no data':Number(v).toFixed(1)+' out of 100'));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();l.openPopup();parent.postMessage({type:'grid-select',id:p.grid_id},'*')}})}})}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]});L.geoJSON(projects,{filter:f=>f.properties.city===city,style:{color:'#5b22b4',weight:3,fillOpacity:.06,dashArray:'7 4'}}).addTo(map);const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>'+'Relative priority'+'</b><br>'+vals.map(x=>'<i style="background:'+x[0]+'"></i>'+x[1]).join('<br>');return d};legend.addTo(map)}).catch(()=>{document.getElementById('map').textContent='Map data could not be loaded. Refresh the page to retry.'});function fmt(v){return v==null?'No data':Number(v).toFixed(0)+'/100'}function percent(v){return v==null?'No data':Number(v).toFixed(1)+'%'}
+ Promise.all([fetch('/data/amsterdam_income.json').then(r=>r.json()),fetch('/data/grid_priority.geojson').then(r=>{if(!r.ok)throw Error('grid');return r.json()}),fetch('/data/project_context.geojson').then(r=>{if(!r.ok)throw Error('context');return r.json()})]).then(([income,grid,projects])=>{const byId=new Map(income.grid_rows.map(r=>[r.grid_id,r]));grid.features.forEach(f=>Object.assign(f.properties,byId.get(f.properties.grid_id)||{}));const vals=[['#440154','0–20'],['#3b528b','20–40'],['#21918c','40–60'],['#5ec962','60–80'],['#fde725','80–100']];const layer=L.geoJSON(grid,{filter:f=>f.properties.city===city,style:f=>{const v=f.properties[field],c=v==null?'#777':v<20?'#440154':v<40?'#3b528b':v<60?'#21918c':v<80?'#5ec962':'#fde725';return{fillColor:c,fillOpacity:f.properties.eligible?.76:.35,color:f.properties.grid_id===selected?'#111':'rgba(255,255,255,.72)',weight:f.properties.grid_id===selected?3:.55}},onEachFeature:(f,l)=>{const p=f.properties,v=p[field];l.bindPopup('<b>'+(cellLabels[p.grid_id]||p.neighbourhood_name||'500 m cell')+'</b><br>'+'Priority'+' '+(v==null?'No data':Number(v).toFixed(1)+'/100')+'<br>Surface pressure '+fmt(p.score_impervious)+'<br>Green deficit '+fmt(p.score_green_deficit)+(field==='priority_income'?'<br>Low income '+fmt(p.score_income_deprivation)+'<br>Income proxy '+(p.income_proxy_eur==null?'Not scored':'€'+Number(p.income_proxy_eur).toLocaleString('en-GB'))+'<br>Income coverage '+percent(p.income_coverage_pct):'<br>Population exposure '+fmt(p.score_population))+'<br>Summer surface temperature '+(p.summer_lst_median_c==null?'Not available':Number(p.summer_lst_median_c).toFixed(1)+' °C')+'<br>Top-quintile scenarios '+(p.top20_scenario_count??'—')+'/4');l.on('click',()=>parent.postMessage({type:'grid-select',id:p.grid_id},'*'));l.on('add',()=>{const el=l.getElement();if(el){el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label',(cellLabels[p.grid_id]||p.neighbourhood_name||'Grid cell')+' '+(v==null?'no data':Number(v).toFixed(1)+' out of 100'));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();l.openPopup();parent.postMessage({type:'grid-select',id:p.grid_id},'*')}})}})}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]});L.geoJSON(projects,{filter:f=>f.properties.city===city,style:{color:'#5b22b4',weight:3,fillOpacity:.06,dashArray:'7 4'}}).addTo(map);const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>'+'Relative priority'+'</b><br>'+vals.map(x=>'<i style="background:'+x[0]+'"></i>'+x[1]).join('<br>');return d};legend.addTo(map)}).catch(()=>{document.getElementById('map').textContent='Map data could not be loaded. Refresh the page to retry.'});function fmt(v){return v==null?'No data':Number(v).toFixed(0)+'/100'}function percent(v){return v==null?'No data':Number(v).toFixed(1)+'%'}
  </script></body></html>`
         .replace("Top-quintile scenarios", "Scenarios scoring ≥80")
         .replaceAll("#f07a4b", "#5ec962"),
@@ -117,8 +120,8 @@ function MapFrame({
 }
 
 export default function ResearchInterface() {
-  const [city, setCity] = useState<City>("Brussels"),
-    [scenario, setScenario] = useState<Scenario>("priority_balanced"),
+  const [city, setCity] = useState<City>("Amsterdam"),
+    [scenario, setScenario] = useState<Scenario>("priority_income"),
     [comparisonScenario, setComparisonScenario] = useState<Scenario>("priority_population_led"),
     [data, setData] = useState<Collection | null>(null),
     [evidence, setEvidence] = useState<any>(null),
@@ -132,12 +135,14 @@ export default function ResearchInterface() {
         if (!r.ok) throw new Error("grid");
         return r.json() as Promise<Collection>;
       }),
+      fetch("/data/amsterdam_income.json").then(r => { if (!r.ok) throw new Error("income"); return r.json(); }),
       fetch("/data/evidence.json").then((r) => {
         if (!r.ok) throw new Error("evidence");
         return r.json();
       }),
     ])
-      .then(([g, e]) => {
+      .then(([g, income, e]) => {
+        applyIncome(g, null, income as IncomeOverlay);
         setData(g);
         setEvidence(e);
       })
@@ -243,7 +248,7 @@ export default function ResearchInterface() {
       </section>
       </section>
       <section className="lab-chapter" id="explore-chapter" aria-labelledby="explore-chapter-title">
-        <header className="chapter-header"><p className="eyebrow">02 · Explore &amp; compare</p><h2 id="explore-chapter-title">Explore &amp; compare</h2><p>Choose a weighting, inspect a location, then see which priorities change.</p></header>
+        <header className="chapter-header"><p className="eyebrow">02 · Explore &amp; compare</p><h2 id="explore-chapter-title">Explore &amp; compare</h2><p>Choose a model, inspect a location, then compare priorities.</p></header>
       <section className="workspace" id="explore">
         <aside className="controls">
           <p className="eyebrow">01 · City</p>
@@ -253,7 +258,9 @@ export default function ResearchInterface() {
                 className={x === city ? "active" : ""}
                 onClick={() => {
                   setCity(x);
+                  setScenario(x === "Amsterdam" ? "priority_income" : "priority_balanced");
                   setSelected("");
+                  setComparisonScenario("priority_balanced");
                 }}
                 key={x}
               >
@@ -263,7 +270,7 @@ export default function ResearchInterface() {
           </div>
           <p className="eyebrow">02 · Policy logic</p>
           <div className="scenario-list">
-            {(Object.keys(SCENARIOS) as Scenario[]).map((k) => (
+            {(Object.keys(SCENARIOS) as Scenario[]).filter(k => city === "Amsterdam" || k !== "priority_income").map((k) => (
               <button
                 className={k === scenario ? "active" : ""}
                 onClick={() => setScenario(k)}
@@ -274,6 +281,7 @@ export default function ResearchInterface() {
               </button>
             ))}
           </div>
+          {city === "Amsterdam" && <p>Income: 365 of 949 eligible cells scored. Missing or incomplete income stays unranked. <a href="/methods.html">Method and coverage</a>.</p>}
           <div className="policy-note">
             <b>{SCENARIOS[scenario].title}</b>
             <p>{SCENARIOS[scenario].note}</p>
@@ -310,7 +318,7 @@ export default function ResearchInterface() {
                 <p className="eyebrow">Selected cell</p>
                 <div className="inspect-title">
                   <h3>{cellLabels.get(String(p?.grid_id)) || "Highest-ranked cell"}</h3>
-                  <div className="score" style={{ color: colour(Number(p?.[scenario] ?? 0)) }}>
+                  <div className="score" style={{ color: colour(p?.[scenario] == null ? null : Number(p[scenario])) }}>
                     {p?.[scenario] == null ? "N/A" : Number(p[scenario]).toFixed(1)}
                     <small>/100</small>
                   </div>
@@ -318,7 +326,7 @@ export default function ResearchInterface() {
                 {[
                   ["Surface pressure", "score_impervious"],
                   ["Green deficit", "score_green_deficit"],
-                  ["Population exposure", "score_population"],
+                  scenario === "priority_income" ? ["Low income", "score_income_deprivation"] : ["Population exposure", "score_population"],
                 ].map(([label, key]) => (
                   <div className="meter" key={key}>
                     <span>
@@ -331,6 +339,7 @@ export default function ResearchInterface() {
                   </div>
                 ))}
                 <dl>
+                  {city === "Amsterdam" && <><div><dt>Income proxy · 2023</dt><dd>{p?.income_proxy_eur == null ? "Not scored" : `€${Number(p.income_proxy_eur).toLocaleString("en-GB")}`}</dd></div><div><dt>Income area coverage</dt><dd>{p?.income_coverage_pct == null ? "—" : `${Number(p.income_coverage_pct).toFixed(1)}%`}</dd></div></>}
                   <div><dt>Summer LST</dt>
                     <dd>
                       {p?.summer_lst_median_c == null
@@ -386,7 +395,7 @@ export default function ResearchInterface() {
           <label>
             Alternative scenario
             <select value={comparisonScenario} onChange={(e) => setComparisonScenario(e.target.value as Scenario)}>
-              {(Object.keys(SCENARIOS) as Scenario[]).filter((key) => key !== scenario).map((key) => (
+              {(Object.keys(SCENARIOS) as Scenario[]).filter((key) => key !== scenario && (city === "Amsterdam" || key !== "priority_income")).map((key) => (
                 <option key={key} value={key}>{SCENARIOS[key].title}</option>
               ))}
             </select>
@@ -411,8 +420,8 @@ export default function ResearchInterface() {
         <header className="chapter-header"><p className="eyebrow">03 · Data &amp; evidence</p><h2 id="data-evidence-title">Data &amp; evidence</h2><p>What the indicators capture, what they miss, and what thermal validation can establish.</p></header>
       <section className="blindspot">
         <p className="eyebrow">What the map cannot see</p>
-        <h3>Income is not included in these rankings yet.</h3>
-        <div><p>Amsterdam neighbourhood income data are being prepared. Their definition, missing values and spatial transfer must be checked before they affect priority scores.</p><p>The current scenarios use surface pressure, green deficit and population exposure. Health, housing conditions and residents’ knowledge need separate evidence.</p></div>
+        <h3>Income coverage limits what this map can show.</h3>
+        <div><p>Amsterdam’s income model uses 2023 CBS neighbourhood income transferred to the 500 m grid. It scores 365 of 949 eligible cells; the other 584 lack complete income coverage. Grey means unscored, not low priority.</p><p>The income model combines surface pressure, green deficit and low income. Earlier population-based scenarios remain available for comparison. Brussels has no income model yet. Health, housing and residents’ knowledge need separate evidence.</p></div>
       </section>
       <section className="data-legibility" aria-labelledby="legibility-title">
         <header>
@@ -429,7 +438,7 @@ export default function ResearchInterface() {
             ["Cooling green", "Included", "Included"],
             ["Population exposure", "Included", "Included"],
             ["Observed summer surface heat", "Included", "Included"],
-            ["Income", "Comparable neighbourhood data under review; not scored", "2023 neighbourhood data prepared; not scored"],
+            ["Income", "Comparable neighbourhood data under review; not scored", "2023 income proxy in a separate model; 365/949 cells scored"],
             ["Health", "Availability and spatial comparability to verify", "Not represented in this release"],
             ["Housing quality", "Availability and spatial comparability to verify", "Not represented in this release"],
             ["Residents’ situated knowledge", "Not yet represented", "Not yet represented"],
@@ -641,6 +650,8 @@ export default function ResearchInterface() {
           <a href="/data/grid_priority.geojson" download>
             ↓ Grid priority GeoJSON <small>Environmental grid · cite Biçer v0.3 and mapped environmental providers; source terms below.</small>
           </a>
+          <a href="/data/amsterdam_income.json" download>↓ Amsterdam income JSON <small>Grid and neighbourhood overlay, source definitions, coverage and weights.</small></a>
+          <a href="/data/amsterdam_income_grid.csv" download>↓ Amsterdam income grid CSV <small>Missing values remain blank. Area-weighted proxy, not cell median income.</small></a>
           <a href="/data/evidence.json" download>
             ↓ Evidence metrics JSON <small>Derived metrics · cite Biçer v0.3, IBSA/Statbel and CBS; IBSA and CBS CC BY 4.0.</small>
           </a>

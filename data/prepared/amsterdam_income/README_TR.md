@@ -1,30 +1,34 @@
-# Amsterdam gelir verisi — site için hazırlık
+# Amsterdam gelir modeli — grid ve site dosyaları
 
-Gelir yılı: 2023. Kaynak coğrafya: CBS 2025 mahalle sınırları.
-Gösterge: özel hanelerin medyan standartlaştırılmış kullanılabilir geliri. Kişi medyanı, maaş, yoksulluk oranı veya vergi miktarı değildir.
+Kaynak: CBS, özel hanelerin medyan standartlaştırılmış kullanılabilir geliri, 2023; mahalle sınırları 2025. Kaynak bin avro, hazırlanan gelir alanları avro. 517 kaynak mahalleden 420’sinde yayımlanmış gelir var, 97’sinde yok. Sitedeki iki ek su alanı kaynakta eşleşmiyor.
 
-Resmî dosya: https://download.cbs.nl/regionale-kaarten/Tijdreeks_wijken_en_buurten_inkomenvermogen2.XLSX
-Resmî açıklama: https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/wijk-en-buurtstatistieken/tijdreeks-wijk-en-buurtcijfers
-REGIOTABEL2 sayfası F sütunu. Kaynak bin avro; hazırlanan income_median_standardized_eur alanı avrodur. Ham kaynak değeri ayrıca korunur.
+- Resmî Excel: https://download.cbs.nl/regionale-kaarten/Tijdreeks_wijken_en_buurten_inkomenvermogen2.XLSX
+- Kaynak açıklaması: https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/wijk-en-buurtstatistieken/tijdreeks-wijk-en-buurtcijfers
+- Sınırlar: https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/wijk-en-buurtkaart-2025
+- Resmî sınır servisi: https://service.pdok.nl/cbs/wijken-en-buurten-2025/wfs/v1_0
 
-## Kontrol sonucu
-517 kaynak mahallesi: 420 yayımlanmış gelir, 97 yayımlanmamış değer. Sitenin 519 Amsterdam alanı ile kod üzerinden eşleştirme yapıldı. 517 kod ve ad eşleşti; hiçbir kaynak mahallesi eşleşmeden kalmadı. BU03639997 ve BU03639998 kaynakta bulunmadığı için boundary_code_unmatched durumunda. Bu iki alanın gelirinin sıfır olduğu veya veri üretilmediği sonucuna varılmaz. Son grid aktarımından önce sınır geometrilerinin aynı sürüm olduğu ayrıca kontrol edilmelidir.
+## Aktarım
+EPSG:3035’te grid ile mahallelerin tam poligon kesişimleri hesaplandı. Mahalle medyanları kesişim alanlarıyla ağırlıklandırıldı. Bu sonuç **gerçek hücre medyan geliri değil, mahalle gelirine dayalı temsili bir göstergedir**. Hane sayısı veya mahalle içi gelir dağılımı tahmin edilmedi.
 
-## Dosyalar ve alanlar
-- amsterdam_income_neighbourhoods_2023.csv/json: 517 kaynak mahalle, yerel kodlar, gelir ve eksik değer durumu.
-- amsterdam_income_website_overlay.json: mevcut site id alanına göre eşleşmiş 519 satır. id değeri Amsterdam:BU... biçimindedir. Mevcut sitenin mahalle nesnelerine id üzerinden eklenebilir.
-- income_median_standardized_eur: kaynak geliri, avro; yayımlanmamış değer JSON null, CSV boş hücre.
-- score_income_deprivation: 0–100 aralığında ters yönlü, eşit değerlere eşit puan veren sıra yüzdeliği. Daha düşük gelir daha yüksek puan verir. Yalnızca sayısal gelir yayımlanan 420 mahalle referans alınır. Bir sağlık riski veya yoksulluk oranı değildir.
-- income_status: published / not_published_reason_unspecified / boundary_code_unmatched.
-- income_source_raw: kaynak hücrenin özgün içeriği. Nokta gibi işaretler sıfıra çevrilmez.
-- metadata.json: kaynak, ham dosya SHA256 özeti, tanım, birim ve puanlama yöntemi.
-- audit.json: eşleşme ve eksik değer sayıları.
+Hücre alanının en az %99,9’unda yayımlanmış gelir bulunması gerekiyor. Bu araştırmacının tamlık tercihidir, CBS kuralı değildir. %0,1 geometri toleransıdır. Eksik değerler sıfıra çevrilmedi, komşu/üst bölge değerleriyle doldurulmadı. Kısmi kapsamdaki hücrelerin gelir göstergesi ve gelir puanı null bırakıldı. Yayımlanmama nedeni her mahalle için ayrıca bilinmiyor.
 
-## Eksik değer politikası
-Yayımlanmış gerçek sıfırlar mevcutsa sıfır olarak korunur; eksik veri yerine sıfır yazılmaz. Bu kaynakta sayısal medyan gelirler pozitiftir. Eksik gelire puan verilmez. Ebeveyn bölge veya komşu alan ortalamasıyla doldurma yapılmadı. CBS açıklaması kesin yıllarda medyanın en az 100 gözlemde yayımlandığını belirtir; ancak her bir boş kaydın nedenini yalnızca bu genel kuraldan çıkarmadık. Eksik kayıtlar için kullanıcıya “Gelir değeri kaynakta yayımlanmamış” gösterilebilir. Kod eşleşmeyen kayıt için “Kaynak tabloda eşleşen mahalle kaydı yok” kullanılmalıdır. “Gelir sıfır” veya “bu veri hiç üretilmemiş” yazılmamalıdır.
+Resmî CBS/PDOK 2025 sınırları kontrol edildi: 519 kod eşleşiyor; aynı kodun site geometrisiyle örtüşmesi en az %99,5. Sonuç boundary_audit.json dosyasında.
 
-## Kapsam
-Bu paket sitenin veri formatına hazırlıktır. Canlı arayüz, mevcut sıralamalar, yaş göstergesi ve Brüksel verileri değiştirilmedi. 500m grid aktarımı yapılmadı. Mahalle medyanları alan ağırlıklarıyla birleştirildiğinde gerçek hücre medyanı elde edilmiş sayılmaz; sonraki aşamada ayrı bir aktarım yöntemi kararı gerekir. Brüksel ile yöntem uyumu hâlâ açıktır.
+## Sonuç ve puanlama
+949 uygun hücrenin 365’i puanlandı; 584’ü yetersiz gelir kapsamı nedeniyle puansız. 1049 toplam hücrenin diğer 100’ü mevcut çevresel analizde zaten kapsam dışı. Kapsam alan yüzdesidir, hane yüzdesi değildir.
+
+365 tam kapsamlı uygun hücrenin gelir göstergesi ters sıraya dizilir; eşit gelirler eşit puan alır. 0–100 ölçeğinde düşük gelir yüksek puan verir. Model: **%40 yüzey baskısı + %30 yeşil alan eksikliği + %30 düşük gelir**. Ağırlıklar analitik tercihtir. Bu model nüfus, 65+ veya yalnız yaşama göstergesi kullanmaz; yoksulluk oranını veya sağlık riskini ölçmez.
+
+Mahalle senaryo özeti, uygun grid hücrelerinin alan ağırlıklı puanıdır. Uygun kesişim alanının en az %99,9’u gelir puanına sahip olmalıdır; 125 mahallede özet hesaplanabildi. Mevcut analitik alan kapsamı kuralı ayrıca geçerlidir. Bu özet özgün CBS mahalle medyanıyla aynı şey değildir. Senaryo sıra değişimleri iki seçenekte de puanı bulunan yerler arasında yeniden hesaplanır.
+
+Brüksel için karşılaştırılabilir mahalle geliri henüz eklenmedi; Brüksel gelir modeli ve şehirler arası gelir sıralaması yok. Eski nüfuslu senaryolar karşılaştırma için korunuyor. Priority Lines ve dört senaryo medyanı eski nüfuslu senaryoları özetliyor.
+
+## Dosyalar
+- public/data/amsterdam_income.json: kaynak, yöntem, SHA256, kapsam, ağırlıklar; grid_rows ve neighbourhood_rows. Siteye grid_id / id ile eklenir.
+- public/data/amsterdam_income_grid.csv: tüm Amsterdam grid kayıtları. Boş hücreler eksik veridir.
+- grid_audit.json ve boundary_audit.json: güncel kontroller.
+- amsterdam_income_neighbourhoods_2023.csv/json: özgün mahalle gelirleri; 420 mahalle arasındaki hazırlık puanı grid puanının referansı değildir.
+- metadata.json ve audit.json: ilk mahalle hazırlığına ilişkin kaynak tanımı ve eşleştirme.
 
 ## Yeniden üretme
-Paket içindeki prepare_amsterdam_income.py dosyası proje scripts klasöründe çalıştırılır. Ham XLSX data/source/amsterdam_income/CBS_income_time_series.xlsx konumunda bulunmalıdır. Script yinelenen kayıtları, eksik değere puan verilmemesini ve puan yönünü kontrol eder.
+Önce scripts/prepare_amsterdam_income.py, sonra scripts/build_amsterdam_income_grid.py çalıştırılır. İlk script kaynak Excel’i, ikinci script mevcut grid ve mahalle geometrilerini ve boundary_audit.json kontrolünü kullanır. Gereken uzamsal paketler requirements-social.txt içinde. node scripts/validate-data.mjs formülü, eksikleri, puan yönünü ve kayıt sayılarını denetler.

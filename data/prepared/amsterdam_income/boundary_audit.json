@@ -1,0 +1,9 @@
+{
+  "official_source": "https://service.pdok.nl/cbs/wijken-en-buurten-2025/wfs/v1_0",
+  "filter": "gemeentecode = GM0363",
+  "official_count": 519,
+  "site_count": 519,
+  "minimum_same_code_geometry_iou": 0.9950959074779648,
+  "median_same_code_geometry_iou": 0.9996739484055583,
+  "below_99_percent": []
+}

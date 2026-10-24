@@ -1,10 +1,12 @@
 "use client";
+import { applyIncome } from "../../lib/income-data";
 import { buildCellLabels } from "../../lib/cell-labels";
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 
 type City = "Amsterdam" | "Brussels";
 type Scenario =
+  | "priority_income"
   | "priority_consensus"
   | "priority_balanced"
   | "priority_population_led"
@@ -29,6 +31,9 @@ type NeighbourhoodRow = {
   score_impervious: number;
   score_green_deficit: number;
   score_population: number;
+  income: number | null;
+  score_income_deprivation?: number | null;
+  income_scenario_coverage_pct?: number;
 } & Record<Scenario, number | null>;
 type NeighbourhoodCollection = { method: string; rows: NeighbourhoodRow[] };
 type Summary = {
@@ -45,11 +50,13 @@ type Summary = {
   surface: number;
   green: number;
   population: number;
+  income: number | null;
   lst: number | null;
 };
 
 const CITIES: City[] = ["Brussels", "Amsterdam"];
 const SCENARIOS: Record<Scenario, { title: string; weights: string; interpretation: string }> = {
+  priority_income: { title: "Income model · Amsterdam", weights: "40% surface · 30% green deficit · 30% low income", interpretation: "Lower neighbourhood income increases priority. The grid value is an area-weighted proxy of neighbourhood medians, not measured cell income. Only cells with at least 99.9% income coverage are scored. These weights are an analytical choice." },
   priority_consensus: {
     title: "Scenario median",
     weights: "Median of four scenarios",
@@ -66,7 +73,7 @@ const SCENARIOS: Record<Scenario, { title: string; weights: string; interpretati
     title: "Demographic exposure first",
     weights: "25% surface · 20% green deficit · 55% population",
     interpretation:
-      "This population-led logic moves densely inhabited places upward. It measures population exposure; income, health and housing are not included in the current ranking.",
+      "This population-led logic moves densely inhabited places upward. It measures population exposure; income, health and housing are not included in this population-based scenario.",
   },
   priority_surface_led: {
     title: "Built environment / sealed surfaces",
@@ -92,11 +99,12 @@ function summarise(rows: NeighbourhoodRow[], scenario: Scenario): Summary[] {
     coverage: r.eligible_coverage_pct,
     thermalCoverage: r.thermal_coverage_pct,
     rankingEligible: r.ranking_eligible && r[scenario] != null,
-    quality: r.data_quality,
+    quality: scenario === "priority_income" && r.priority_income == null ? "insufficient income coverage" : r.data_quality,
     priority: r[scenario] ?? NaN,
     surface: r.score_impervious,
     green: r.score_green_deficit,
     population: r.score_population,
+    income: r.score_income_deprivation ?? null,
     lst: r.summer_lst_median_c,
   }));
 }
@@ -111,6 +119,14 @@ function rankMap<T extends { id: string; priority: number }>(rows: T[]) {
     last = row.priority;
   });
   return out;
+}
+function sharedDeltas(a: Array<{id: string; priority: number}>, b: Array<{id: string; priority: number}>) {
+  const validA = a.filter(r => Number.isFinite(r.priority));
+  const validB = b.filter(r => Number.isFinite(r.priority));
+  const idsA = new Set(validA.map(r => r.id)), idsB = new Set(validB.map(r => r.id));
+  const left = rankMap(validA.filter(r => idsB.has(r.id)));
+  const right = rankMap(validB.filter(r => idsA.has(r.id)));
+  return new Map([...left].map(([id, rank]) => [id, right.get(id)! - rank]));
 }
 function ColumnHelp({ label, children }: { label: string; children: ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -133,14 +149,15 @@ function ColumnHelp({ label, children }: { label: string; children: ReactNode })
   );
 }
 
-const WEIGHTS: Partial<Record<Scenario, [number, number, number]>> = {
-  priority_balanced: [0.4, 0.3, 0.3],
-  priority_population_led: [0.25, 0.2, 0.55],
-  priority_surface_led: [0.6, 0.2, 0.2],
-  priority_nature_deficit_led: [0.25, 0.55, 0.2],
+const WEIGHTS: Partial<Record<Scenario, [number, number, number, number]>> = {
+  priority_income: [0.4, 0.3, 0, 0.3],
+  priority_balanced: [0.4, 0.3, 0.3, 0],
+  priority_population_led: [0.25, 0.2, 0.55, 0],
+  priority_surface_led: [0.6, 0.2, 0.2, 0],
+  priority_nature_deficit_led: [0.25, 0.55, 0.2, 0],
 };
 function movementReason(
-  row: { surface: number; green: number; population: number },
+  row: { surface: number; green: number; population: number; income?: number | null },
   current: Scenario,
   previous: Scenario,
 ) {
@@ -149,8 +166,9 @@ function movementReason(
     return current === "priority_consensus"
       ? "Moved under the four-scenario median"
       : "Moved away from the four-scenario median";
-  const labels = ["surface pressure", "green deficit", "population exposure"];
-  const values = [row.surface, row.green, row.population];
+  const labels = ["surface pressure", "green deficit", "population exposure", "low income"];
+  if ((current === "priority_income" || previous === "priority_income") && row.income == null) return "No comparable income score";
+  const values = [row.surface, row.green, row.population, row.income ?? 0];
   const effects = values.map((value, i) => value * (WEIGHTS[current]![i] - WEIGHTS[previous]![i]));
   const index = effects.map(Math.abs).indexOf(Math.max(...effects.map(Math.abs)));
   return `${labels[index]} received ${effects[index] >= 0 ? "more" : "less"} influence`;
@@ -178,7 +196,7 @@ function RankingMap({
         ? "/data/neighbourhood_priority.geojson"
         : "/data/grid_priority.geojson";
     setHtml(
-      `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>html,body,#map{height:100%;margin:0}.leaflet-container{background:#dbe3df;font:13px Arial}.leaflet-popup-content-wrapper,.leaflet-popup-tip{border-radius:0}</style></head><body><div id="map"></div><script>const cellLabels=${JSON.stringify(Object.fromEntries(cellLabels))};const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},selected=${JSON.stringify(selected)},view=${JSON.stringify(view)};const map=L.map('map',{zoomSnap:.25});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19,opacity:.58}).addTo(map);fetch('${source}').then(r=>r.json()).then(data=>{const layer=L.geoJSON(data,{filter:f=>f.properties.city===city,style:f=>{const p=f.properties,v=p[field],id=view==='neighbourhoods'?p.id:p.grid_id,c=v==null?'#777':v<20?'#0878ad':v<40?'#55a8c8':v<60?'#ecebe5':v<80?'#e89b32':'#c80032';return{fillColor:c,fillOpacity:p.eligible===0||v==null?.18:.72,color:id===selected?'#111':'rgba(30,30,30,.55)',weight:id===selected?4:view==='neighbourhoods'?1.1:.45,dashArray:p.ranking_eligible===false?'5 4':null}},onEachFeature:(f,l)=>{const p=f.properties,id=view==='neighbourhoods'?p.id:p.grid_id,name=view==='cells'?(cellLabels[id]||p.neighbourhood_name||'Boundary cell'):(p.neighbourhood_name||'Boundary cell');l.bindTooltip(name,{permanent:id===selected,direction:'top'});l.on('click',()=>parent.postMessage({type:'ranking-select',id},'*'))}}).addTo(map);if(layer.getBounds().isValid()){const fit=()=>{map.invalidateSize({pan:false});map.fitBounds(layer.getBounds(),{padding:[20,20],animate:false})};requestAnimationFrame(fit);new ResizeObserver(fit).observe(document.getElementById('map'))}});</script></body></html>`,
+      `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>html,body,#map{height:100%;margin:0}.leaflet-container{background:#dbe3df;font:13px Arial}.leaflet-popup-content-wrapper,.leaflet-popup-tip{border-radius:0}</style></head><body><div id="map"></div><script>const cellLabels=${JSON.stringify(Object.fromEntries(cellLabels))};const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},selected=${JSON.stringify(selected)},view=${JSON.stringify(view)};const map=L.map('map',{zoomSnap:.25});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19,opacity:.58}).addTo(map);Promise.all([fetch('${source}').then(r=>r.json()),fetch('/data/amsterdam_income.json').then(r=>r.json())]).then(([data,income])=>{const byId=new Map((view==='cells'?income.grid_rows:income.neighbourhood_rows).map(r=>[view==='cells'?r.grid_id:r.id,r]));data.features.forEach(f=>Object.assign(f.properties,byId.get(view==='cells'?f.properties.grid_id:f.properties.id)||{}));const layer=L.geoJSON(data,{filter:f=>f.properties.city===city,style:f=>{const p=f.properties,v=p[field],id=view==='neighbourhoods'?p.id:p.grid_id,c=v==null?'#777':v<20?'#0878ad':v<40?'#55a8c8':v<60?'#ecebe5':v<80?'#e89b32':'#c80032';return{fillColor:c,fillOpacity:p.eligible===0||v==null?.18:.72,color:id===selected?'#111':'rgba(30,30,30,.55)',weight:id===selected?4:view==='neighbourhoods'?1.1:.45,dashArray:p.ranking_eligible===false?'5 4':null}},onEachFeature:(f,l)=>{const p=f.properties,id=view==='neighbourhoods'?p.id:p.grid_id,name=view==='cells'?(cellLabels[id]||p.neighbourhood_name||'Boundary cell'):(p.neighbourhood_name||'Boundary cell');l.bindTooltip(name,{permanent:id===selected,direction:'top'});l.on('click',()=>parent.postMessage({type:'ranking-select',id},'*'))}}).addTo(map);if(layer.getBounds().isValid()){const fit=()=>{map.invalidateSize({pan:false});map.fitBounds(layer.getBounds(),{padding:[20,20],animate:false})};requestAnimationFrame(fit);new ResizeObserver(fit).observe(document.getElementById('map'))}});</script></body></html>`,
     );
   }, [city, scenario, view, selected, cellLabels]);
   useEffect(() => {
@@ -195,16 +213,17 @@ export default function RankingExplorer() {
   const [data, setData] = useState<Collection | null>(null),
     [neighbourhoodData, setNeighbourhoodData] = useState<NeighbourhoodCollection | null>(null),
     [error, setError] = useState(""),
-    [city, setCity] = useState<City>("Brussels"),
-    [scenario, setScenario] = useState<Scenario>("priority_balanced"),
+    [city, setCity] = useState<City>("Amsterdam"),
+    [scenario, setScenario] = useState<Scenario>("priority_income"),
     [comparison, setComparison] = useState<Scenario>("priority_consensus"),
-    [view, setView] = useState<ViewMode>("neighbourhoods"),
+    [view, setView] = useState<ViewMode>("cells"),
     [showDetails, setShowDetails] = useState(false),
     [query, setQuery] = useState(""),
     [selected, setSelected] = useState("");
   useEffect(() => {
-    Promise.all(["grid_priority.geojson", "neighbourhood_priority.json"].map(name => fetch(`/data/${name}`).then(r => { if (!r.ok) throw new Error(name); return r.json(); })))
-      .then(([grid, neighbourhoods]: any[]) => {
+    Promise.all(["grid_priority.geojson", "neighbourhood_priority.json", "amsterdam_income.json"].map(name => fetch(`/data/${name}`).then(r => { if (!r.ok) throw new Error(name); return r.json(); })))
+      .then(([grid, neighbourhoods, income]: any[]) => {
+        applyIncome(grid, neighbourhoods, income);
         setData(grid as Collection);
         setNeighbourhoodData(neighbourhoods as NeighbourhoodCollection);
       })
@@ -257,6 +276,13 @@ export default function RankingExplorer() {
       ),
     [cityCells, comparison],
   );
+  const neighbourhoodMovement = useMemo(() => sharedDeltas(
+    currentSummaries.filter(r => r.rankingEligible), previousSummaries.filter(r => r.rankingEligible)
+  ), [currentSummaries, previousSummaries]);
+  const cellMovement = useMemo(() => sharedDeltas(
+    cityCells.map(f => ({id: String(f.properties.grid_id), priority: f.properties[scenario] == null ? NaN : Number(f.properties[scenario])})),
+    cityCells.map(f => ({id: String(f.properties.grid_id), priority: f.properties[comparison] == null ? NaN : Number(f.properties[comparison])}))
+  ), [cityCells, scenario, comparison]);
   const q = query.trim().toLowerCase();
   const neighbourhoodRows = useMemo(
     () =>
@@ -310,7 +336,7 @@ export default function RankingExplorer() {
             "mean_priority",
             "mean_surface_pressure",
             "mean_green_deficit",
-            "mean_population_exposure",
+            scenario === "priority_income" ? "mean_low_income_score" : "mean_population_exposure",
             "mean_summer_lst_c",
           ]
         : [
@@ -322,16 +348,14 @@ export default function RankingExplorer() {
             "priority",
             "surface_pressure",
             "green_deficit",
-            "population_exposure",
+            scenario === "priority_income" ? "low_income_score" : "population_exposure",
             "summer_lst_c",
           ];
     const body =
       view === "neighbourhoods"
         ? neighbourhoodRows.map((r) => [
             summaryRanks.get(r.id) ?? "",
-            summaryRanks.has(r.id) && previousSummaryRanks.has(r.id)
-              ? Number(previousSummaryRanks.get(r.id)) - Number(summaryRanks.get(r.id))
-              : "",
+            neighbourhoodMovement.get(r.id) ?? "",
             movementReason(r, scenario, comparison),
             r.code,
             r.name,
@@ -342,7 +366,7 @@ export default function RankingExplorer() {
             (Number.isFinite(r.priority) ? r.priority.toFixed(1) : ""),
             r.surface.toFixed(0),
             r.green.toFixed(0),
-            r.population.toFixed(0),
+            scenario === "priority_income" ? (r.income == null ? "" : r.income.toFixed(0)) : r.population.toFixed(0),
             r.lst == null ? "" : r.lst.toFixed(1),
           ])
         : cellRows.map((f) => {
@@ -350,12 +374,13 @@ export default function RankingExplorer() {
               id = String(p.grid_id);
             return [
               cellRanks.get(id),
-              (previousCellRanks.has(id) && cellRanks.has(id) ? Number(previousCellRanks.get(id)) - Number(cellRanks.get(id)) : ""),
+              cellMovement.get(id) ?? "",
               movementReason(
                 {
                   surface: Number(p.score_impervious),
                   green: Number(p.score_green_deficit),
                   population: Number(p.score_population),
+                  income: p.score_income_deprivation == null ? null : Number(p.score_income_deprivation),
                 },
                 scenario,
                 comparison,
@@ -365,7 +390,7 @@ export default function RankingExplorer() {
               Number(p[scenario]).toFixed(1),
               Number(p.score_impervious).toFixed(0),
               Number(p.score_green_deficit).toFixed(0),
-              Number(p.score_population).toFixed(0),
+              scenario === "priority_income" ? (p.score_income_deprivation == null ? "" : Number(p.score_income_deprivation).toFixed(0)) : Number(p.score_population).toFixed(0),
               p.summer_lst_median_c == null ? "" : Number(p.summer_lst_median_c).toFixed(1),
             ];
           });
@@ -407,7 +432,7 @@ export default function RankingExplorer() {
           <b>{count}</b>
           <span>{view === "neighbourhoods" ? "neighbourhoods" : "eligible cells"} ranked</span>
           {view === "neighbourhoods" && excludedNeighbourhoodCount > 0 && (
-            <small>{excludedNeighbourhoodCount} additional official units shown but excluded for insufficient mapped coverage</small>
+            <small>{excludedNeighbourhoodCount} additional official units shown but excluded for insufficient mapped or income coverage</small>
           )}
         </div>
       </section>
@@ -420,6 +445,8 @@ export default function RankingExplorer() {
               className={x === city ? "active" : ""}
               onClick={() => {
                 setCity(x);
+                  setScenario(x === "Amsterdam" ? "priority_income" : "priority_balanced");
+                setComparison("priority_balanced");
                 setQuery("");
                 setSelected("");
               }}
@@ -430,7 +457,7 @@ export default function RankingExplorer() {
         </fieldset>
         <fieldset>
           <legend>02 · Policy logic</legend>
-          {(Object.keys(SCENARIOS) as Scenario[]).map((x) => (
+          {(Object.keys(SCENARIOS) as Scenario[]).filter(k => city === "Amsterdam" || k !== "priority_income").map((x) => (
             <button
               key={x}
               className={x === scenario ? "active" : ""}
@@ -479,7 +506,7 @@ export default function RankingExplorer() {
               Amsterdam uses 519 fine-grained CBS <i>buurten</i> (508 rankable here), while
               Brussels uses 145 Monitoring des Quartiers units. These local geographies are not
               equivalent in size or granularity, so neighbourhood ranks must not be compared
-              between cities. Use the common 500 m cell view for cross-city spatial comparison.
+              between cities. The income model is available for Amsterdam only. Its ranks cannot be compared with Brussels.
             </>
           ) : (
             <>
@@ -490,6 +517,7 @@ export default function RankingExplorer() {
           </p>
         </details>
       </section>
+      {city === "Amsterdam" && <p className="report-note">Income model: 365/949 eligible cells scored. A cell needs at least 99.9% income coverage. Other cells stay unranked. The value is an area-weighted proxy of neighbourhood medians, not cell household income. <a href="/methods.html">Sources and method</a>.</p>}
       <section className="report-note">
         <div>
           <span>Selected weights</span>
@@ -497,7 +525,7 @@ export default function RankingExplorer() {
         </div>
         <p>{SCENARIOS[scenario].interpretation}</p>
         <small>
-          Rank movement compares this selection with the previously selected policy logic:{" "}
+          Rank movement is recalculated among locations with scores in both scenarios. The comparison is:{" "}
           {SCENARIOS[comparison].title}. Start with balanced weighting, then choose another scenario to see how ranks change.
         </small>
       </section>
@@ -609,11 +637,10 @@ export default function RankingExplorer() {
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label="Mean population">
-                      <b>Area-weighted population exposure</b>
+                    <ColumnHelp label={scenario === "priority_income" ? "Mean low income" : "Mean population"}>
+                      <b>{scenario === "priority_income" ? "Area-weighted low-income score" : "Area-weighted population exposure"}</b>
                       <span>
-                        Overlap-area-weighted mean of cell-level population-exposure scores; not
-                        total neighbourhood population.
+                        {scenario === "priority_income" ? "Mean of eligible cell income scores. At least 99.9% of eligible overlap area must have a score. This is not neighbourhood median income." : "Overlap-area-weighted mean of cell population-exposure scores; not total neighbourhood population."}
                       </span>
                     </ColumnHelp>
                   </th>
@@ -642,9 +669,7 @@ export default function RankingExplorer() {
                   const currentRank = summaryRanks.get(r.id),
                     previousRank = previousSummaryRanks.get(r.id);
                   const delta =
-                    currentRank !== undefined && previousRank !== undefined
-                      ? previousRank - currentRank
-                      : null;
+                    neighbourhoodMovement.get(r.id) ?? null;
                   return (
                     <tr
                       key={r.id}
@@ -675,7 +700,7 @@ export default function RankingExplorer() {
                       </td>
                       <td>{r.surface.toFixed(0)}</td>
                       <td>{r.green.toFixed(0)}</td>
-                      <td>{r.population.toFixed(0)}</td>
+                      <td>{scenario === "priority_income" ? (r.income == null ? "—" : r.income.toFixed(0)) : r.population.toFixed(0)}</td>
                       <td>{r.lst == null ? "—" : `${r.lst.toFixed(1)} °C`}</td>
                       <td>
                         <span
@@ -735,7 +760,7 @@ export default function RankingExplorer() {
                       <b>Selected-policy score</b>
                       <span>
                         A 0–100 within-city composite derived from surface pressure, green deficit
-                        and population exposure. Income is being prepared separately and is not included yet.
+                        and either population exposure or low income, depending on the selected model.
                       </span>
                     </ColumnHelp>
                   </th>
@@ -757,10 +782,10 @@ export default function RankingExplorer() {
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label="Population">
-                      <b>Population exposure</b>
+                    <ColumnHelp label={scenario === "priority_income" ? "Low income" : "Population"}>
+                      <b>{scenario === "priority_income" ? "Lower income gives a higher score" : "Population exposure"}</b>
                       <span>
-                        A within-city 0–100 score derived from JRC GHSL population density for 2020.
+                        {scenario === "priority_income" ? "Inverse income-proxy percentile among complete-coverage Amsterdam cells; higher means lower income. It is not a poverty rate." : "A within-city 0–100 score derived from JRC GHSL population density for 2020."}
                       </span>
                     </ColumnHelp>
                   </th>
@@ -785,7 +810,7 @@ export default function RankingExplorer() {
                 {cellRows.map((f) => {
                   const p = f.properties,
                     id = String(p.grid_id),
-                    delta = (previousCellRanks.has(id) && cellRanks.has(id) ? Number(previousCellRanks.get(id)) - Number(cellRanks.get(id)) : NaN);
+                    delta = cellMovement.get(id) ?? NaN;
                   return (
                     <tr
                       key={id}
@@ -802,6 +827,7 @@ export default function RankingExplorer() {
                             surface: Number(p.score_impervious),
                             green: Number(p.score_green_deficit),
                             population: Number(p.score_population),
+                  income: p.score_income_deprivation == null ? null : Number(p.score_income_deprivation),
                           },
                           scenario,
                           comparison,
@@ -813,7 +839,7 @@ export default function RankingExplorer() {
                       </td>
                       <td>{Number(p.score_impervious).toFixed(0)}</td>
                       <td>{Number(p.score_green_deficit).toFixed(0)}</td>
-                      <td>{Number(p.score_population).toFixed(0)}</td>
+                      <td>{scenario === "priority_income" ? (p.score_income_deprivation == null ? "—" : Number(p.score_income_deprivation).toFixed(0)) : Number(p.score_population).toFixed(0)}</td>
                       <td>
                         {p.summer_lst_median_c == null
                           ? "—"
@@ -848,7 +874,7 @@ export default function RankingExplorer() {
         <div>
           <span>Evidence boundary</span>
           <p>
-            The ranking does not fully measure health, income, housing quality, land feasibility,
+            Income is represented only in Amsterdam’s income model, through a neighbourhood-based proxy. The ranking does not fully measure health, housing quality, land feasibility,
             displacement risk or residents’ preferences. Landsat records land-surface—not
             air—temperature.
           </p>

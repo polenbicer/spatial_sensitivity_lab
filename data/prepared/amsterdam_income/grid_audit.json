@@ -1,0 +1,56 @@
+{
+  "version": "amsterdam-income-grid-v1",
+  "source_url": "https://download.cbs.nl/regionale-kaarten/Tijdreeks_wijken_en_buurten_inkomenvermogen2.XLSX",
+  "source_page": "https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/wijk-en-buurtstatistieken/tijdreeks-wijk-en-buurtcijfers",
+  "source_sha256": "8c84700e530b5c52c53e8b8f589ede0f150915a52a62755634d26bf64b988ac3",
+  "source_sheet": "REGIOTABEL2",
+  "source_column": "F",
+  "source_unit": "1000 EUR",
+  "indicator": "Median standardised disposable household income",
+  "population_unit": "private households with observed income",
+  "income_year": 2023,
+  "boundary_year": 2025,
+  "score": "inverse average-rank percentile of rounded income proxy among eligible, complete-coverage Amsterdam cells; ties equal; lower income = higher score",
+  "grid_transfer": "exact polygon overlap in EPSG:3035; area-weighted mean of published neighbourhood medians; NOT a cell median or household estimate",
+  "publication": "income scenario enabled for Amsterdam only",
+  "missing_policy": "null values; no zero substitution, no parent-area imputation, no name-based matching",
+  "missing_reason": "source non-publication confirmed by raw marker; individual cause not inferred",
+  "boundary_policy": "exact code join candidate; spatial boundaries must be checked before grid transfer",
+  "comparability": "Brussels equivalence scale, coverage and household/person weighting remain unresolved",
+  "boundary_verification": {
+    "official_source": "https://service.pdok.nl/cbs/wijken-en-buurten-2025/wfs/v1_0",
+    "filter": "gemeentecode = GM0363",
+    "official_count": 519,
+    "site_count": 519,
+    "minimum_same_code_geometry_iou": 0.9950959074779648,
+    "median_same_code_geometry_iou": 0.9996739484055583,
+    "below_99_percent": []
+  },
+  "boundary_source": "site CBS 2025 neighbourhood polygons, export_web_data.py layer amsterdam_neighbourhoods_2025",
+  "boundary_sha256": "2f57d3ae2c52a05d5824affdcfbd3aed5133caf31066ec4dfb0765eb9a79868e",
+  "grid_sha256": "585776c89c14a52da34593bf006ecaa378e490a2b4cf7b6ba1426d8ca1407f33",
+  "minimum_income_coverage_pct": 99.9,
+  "coverage_rule": "minimum 99.9% of clipped cell area; within 0.1% is a geometric tolerance, not income imputation; partial values remain unscored",
+  "scenario_weights": {
+    "score_impervious": 0.4,
+    "score_green_deficit": 0.3,
+    "score_income_deprivation": 0.3
+  },
+  "neighbourhood_summary": "area-weighted mean of eligible cell scores, only if >=99.9% of eligible-cell overlap area has income scenario scores; direct source median also shown separately",
+  "not_in_scenario": [
+    "population",
+    "age",
+    "one-person households"
+  ],
+  "reference_count": 365,
+  "grid_counts": {
+    "no_published_income": 263,
+    "incomplete_income_coverage": 406,
+    "complete_proxy": 380
+  },
+  "eligible_cells": 949,
+  "scored_eligible_cells": 365,
+  "unscored_eligible_cells": 584,
+  "neighbourhoods_with_scenario": 125,
+  "brussels": "no comparable neighbourhood income integrated; no income scenario score"
+}

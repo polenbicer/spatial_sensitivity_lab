@@ -77,3 +77,32 @@ for (const r of neighbourhoods) {
 console.log(
   `Validated ${grid.length} unique grid cells and ${neighbourhoods.length} unique official neighbourhood units.`,
 );
+
+// Income is a separate Amsterdam overlay; the original four scenarios stay intact.
+const income = read("amsterdam_income.json");
+const incomeRows = income.grid_rows;
+const gridById = new Map(grid.map(f => [f.properties.grid_id, f.properties]));
+if (incomeRows.length !== expected.Amsterdam.all || new Set(incomeRows.map(r => r.grid_id)).size !== incomeRows.length) fail("income overlay row count or duplicate id");
+let scored = 0;
+const scoresByProxy = new Map();
+for (const r of incomeRows) {
+  const p = gridById.get(r.grid_id);
+  if (!p || p.city !== "Amsterdam") fail("income joined to wrong city or unknown cell");
+  if (r.income_coverage_pct < 0 || r.income_coverage_pct > 100) fail("invalid income coverage");
+  if (r.income_status !== "complete_proxy" && (r.income_proxy_eur !== null || r.score_income_deprivation !== null || r.priority_income !== null)) fail("incomplete income was scored");
+  if (r.priority_income !== null) {
+    scored++;
+    if (p.eligible !== 1 || r.income_coverage_pct < income.metadata.minimum_income_coverage_pct || !Number.isFinite(r.income_proxy_eur)) fail("ineligible income score");
+    if (!close(r.priority_income, .4*p.score_impervious + .3*p.score_green_deficit + .3*r.score_income_deprivation, .0002)) fail("income formula mismatch");
+    if (!(r.score_income_deprivation >= 0 && r.score_income_deprivation <= 100)) fail("invalid income percentile");
+    if (scoresByProxy.has(r.income_proxy_eur) && scoresByProxy.get(r.income_proxy_eur) !== r.score_income_deprivation) fail("income ties have different scores");
+    scoresByProxy.set(r.income_proxy_eur,r.score_income_deprivation);
+  }
+}
+if (scored !== income.metadata.scored_eligible_cells || scored !== 365) fail("income coverage changed; review displayed counts and method");
+const ordered = [...scoresByProxy].sort((a,b)=>a[0]-b[0]);
+for(let i=1;i<ordered.length;i++) if(ordered[i][1] > ordered[i-1][1]) fail("higher income incorrectly receives higher deprivation score");
+for(const r of income.neighbourhood_rows) {
+  if(r.priority_income !== null && r.income_scenario_coverage_pct < income.metadata.minimum_income_coverage_pct) fail("partial neighbourhood income scored");
+}
+console.log(`Validated income overlay: ${scored} scored eligible cells; missing coverage retained; lower income gives higher priority.`);

@@ -526,7 +526,7 @@ export default function RankingExplorer() {
         <p>{SCENARIOS[scenario].interpretation}</p>
         <small>
           Rank movement is recalculated among locations with scores in both scenarios. The comparison is:{" "}
-          {SCENARIOS[comparison].title}. Start with balanced weighting, then choose another scenario to see how ranks change.
+          {SCENARIOS[comparison].title}. Choose another model to compare ranks.
         </small>
       </section>
       <div className="ranking-toolbar">
@@ -880,10 +880,10 @@ export default function RankingExplorer() {
           </p>
         </div>
         <div>
-          <span>Sources · physical data 2020–2023 · social data 2025</span>
+          <span>Sources · income 2023 · boundaries 2025</span>
           <p>
             ESA WorldCover 2021 · Copernicus Imperviousness 2021 · JRC GHSL population 2020 ·
-            Landsat 8/9 JJA 2019–2023 · CBS 2025 · IBSA 2025 · PDOK / perspective.brussels.
+            Landsat 8/9 JJA 2019–2023 · CBS income 2023 · CBS boundaries 2025 · PDOK / perspective.brussels.
           </p>
         </div>
       </section>
@@ -917,7 +917,7 @@ export default function RankingExplorer() {
           <article>
             <b>04 · Evidence, not authorization</b>
             <p>
-              Rank movement exposes the effect of policy weights. It does not identify a politically
+              Rank movement exposes the effect of indicator choices and policy weights. It does not identify a politically
               legitimate budget winner without participation, review and appeal.
             </p>
           </article>

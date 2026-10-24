@@ -1,0 +1,518 @@
+﻿id,city,neighbourhood_code,neighbourhood_name,income_median_standardized_eur,income_status,income_source_raw,income_year,income_boundary_year,score_income_deprivation
+Amsterdam:BU0363AA01,Amsterdam,BU0363AA01,Planciusbuurt-Noord,30400.0,published,30.4,2023,2025,63.0952
+Amsterdam:BU0363AA02,Amsterdam,BU0363AA02,Westelijke eilanden,32200.0,published,32.200000000000003,2023,2025,52.8571
+Amsterdam:BU0363AA03,Amsterdam,BU0363AA03,Westerdokseiland,45800.0,published,45.8,2023,2025,9.2857
+Amsterdam:BU0363AA04,Amsterdam,BU0363AA04,Planciusbuurt-Zuid,22700.0,published,22.7,2023,2025,96.3095
+Amsterdam:BU0363AA05,Amsterdam,BU0363AA05,Haarlemmerbuurt-West,31800.0,published,31.8,2023,2025,55.4762
+Amsterdam:BU0363AA06,Amsterdam,BU0363AA06,Haarlemmerbuurt-Oost,34100.0,published,34.1,2023,2025,42.619
+Amsterdam:BU0363AB01,Amsterdam,BU0363AB01,Marnixbuurt-Noord,29600.0,published,29.6,2023,2025,66.5476
+Amsterdam:BU0363AB02,Amsterdam,BU0363AB02,Driehoekbuurt,31000.0,published,31,2023,2025,59.6429
+Amsterdam:BU0363AB03,Amsterdam,BU0363AB03,Anjeliersbuurt-Noord,32700.0,published,32.700000000000003,2023,2025,50.2381
+Amsterdam:BU0363AB04,Amsterdam,BU0363AB04,Zaagpoortbuurt,25800.0,published,25.8,2023,2025,87.619
+Amsterdam:BU0363AB05,Amsterdam,BU0363AB05,Anjeliersbuurt-Zuid,31000.0,published,31,2023,2025,59.6429
+Amsterdam:BU0363AB06,Amsterdam,BU0363AB06,Marnixbuurt-Midden,37400.0,published,37.4,2023,2025,28.8095
+Amsterdam:BU0363AB07,Amsterdam,BU0363AB07,Bloemgrachtbuurt,34500.0,published,34.5,2023,2025,40.2381
+Amsterdam:BU0363AB08,Amsterdam,BU0363AB08,Groenmarktkadebuurt,37300.0,published,37.299999999999997,2023,2025,29.7619
+Amsterdam:BU0363AB09,Amsterdam,BU0363AB09,Marnixbuurt-Zuid,30700.0,published,30.7,2023,2025,61.7857
+Amsterdam:BU0363AB10,Amsterdam,BU0363AB10,Elandsgrachtbuurt,31000.0,published,31,2023,2025,59.6429
+Amsterdam:BU0363AB11,Amsterdam,BU0363AB11,Passeerdersgrachtbuurt,32900.0,published,32.9,2023,2025,48.9286
+Amsterdam:BU0363AC01,Amsterdam,BU0363AC01,Langestraat e.o.,41200.0,published,41.2,2023,2025,15.7143
+Amsterdam:BU0363AC02,Amsterdam,BU0363AC02,Leliegracht e.o.,42200.0,published,42.2,2023,2025,13.2143
+Amsterdam:BU0363AC03,Amsterdam,BU0363AC03,Felix Meritisbuurt,40800.0,published,40.799999999999997,2023,2025,17.7381
+Amsterdam:BU0363AC04,Amsterdam,BU0363AC04,Leidsegracht-Noord,40900.0,published,40.9,2023,2025,16.7857
+Amsterdam:BU0363AD01,Amsterdam,BU0363AD01,Stationsplein e.o.,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363AD02,Amsterdam,BU0363AD02,Hemelrijk,31100.0,published,31.1,2023,2025,58.6905
+Amsterdam:BU0363AD03,Amsterdam,BU0363AD03,Nieuwendijk-Noord,29500.0,published,29.5,2023,2025,67.381
+Amsterdam:BU0363AD04,Amsterdam,BU0363AD04,Spuistraat-Noord,33100.0,published,33.1,2023,2025,47.381
+Amsterdam:BU0363AD05,Amsterdam,BU0363AD05,Nieuwe Kerk e.o.,33400.0,published,33.4,2023,2025,45.3571
+Amsterdam:BU0363AD06,Amsterdam,BU0363AD06,Spuistraat-Zuid,33200.0,published,33.200000000000003,2023,2025,46.4286
+Amsterdam:BU0363AD07,Amsterdam,BU0363AD07,Begijnhofbuurt,31600.0,published,31.6,2023,2025,56.5476
+Amsterdam:BU0363AD08,Amsterdam,BU0363AD08,Kalverdriehoek,32800.0,published,32.799999999999997,2023,2025,49.6429
+Amsterdam:BU0363AE01,Amsterdam,BU0363AE01,Kop Zeedijk,30500.0,published,30.5,2023,2025,62.5
+Amsterdam:BU0363AE02,Amsterdam,BU0363AE02,Oude Kerk e.o.,26300.0,published,26.3,2023,2025,83.8095
+Amsterdam:BU0363AE03,Amsterdam,BU0363AE03,Burgwallen-Oost,27500.0,published,27.5,2023,2025,76.6667
+Amsterdam:BU0363AE04,Amsterdam,BU0363AE04,Nes e.o.,37200.0,published,37.200000000000003,2023,2025,30.5952
+Amsterdam:BU0363AE05,Amsterdam,BU0363AE05,BG-terrein e.o.,27800.0,published,27.8,2023,2025,75.4762
+Amsterdam:BU0363AF01,Amsterdam,BU0363AF01,Oosterdokseiland,44000.0,published,44,2023,2025,10.5952
+Amsterdam:BU0363AF02,Amsterdam,BU0363AF02,Lastage,35100.0,published,35.1,2023,2025,38.2143
+Amsterdam:BU0363AF03,Amsterdam,BU0363AF03,Scheepvaarthuisbuurt,37300.0,published,37.299999999999997,2023,2025,29.7619
+Amsterdam:BU0363AF04,Amsterdam,BU0363AF04,Rapenburg,33000.0,published,33,2023,2025,48.2143
+Amsterdam:BU0363AF05,Amsterdam,BU0363AF05,Nieuwmarkt,27500.0,published,27.5,2023,2025,76.6667
+Amsterdam:BU0363AF06,Amsterdam,BU0363AF06,Uilenburg,35900.0,published,35.9,2023,2025,35.5952
+Amsterdam:BU0363AF07,Amsterdam,BU0363AF07,Valkenburg,34100.0,published,34.1,2023,2025,42.619
+Amsterdam:BU0363AF08,Amsterdam,BU0363AF08,Zuiderkerkbuurt,30900.0,published,30.9,2023,2025,60.4762
+Amsterdam:BU0363AF09,Amsterdam,BU0363AF09,Waterloopleinbuurt,32100.0,published,32.1,2023,2025,53.4524
+Amsterdam:BU0363AG01,Amsterdam,BU0363AG01,Leidsegracht-Zuid,39400.0,published,39.4,2023,2025,22.1429
+Amsterdam:BU0363AG02,Amsterdam,BU0363AG02,Geelvinckbuurt,33100.0,published,33.1,2023,2025,47.381
+Amsterdam:BU0363AG03,Amsterdam,BU0363AG03,Rembrandtplein e.o.,36200.0,published,36.200000000000003,2023,2025,34.1667
+Amsterdam:BU0363AG04,Amsterdam,BU0363AG04,Spiegelbuurt,40400.0,published,40.4,2023,2025,19.6429
+Amsterdam:BU0363AG05,Amsterdam,BU0363AG05,Vijzelstraatbuurt,41300.0,published,41.3,2023,2025,15.3571
+Amsterdam:BU0363AG06,Amsterdam,BU0363AG06,Amstelveldbuurt,40800.0,published,40.799999999999997,2023,2025,17.7381
+Amsterdam:BU0363AH01,Amsterdam,BU0363AH01,Leidsebuurt-Noordwest,37000.0,published,37,2023,2025,31.4286
+Amsterdam:BU0363AH02,Amsterdam,BU0363AH02,Leidsebuurt-Noordoost,34300.0,published,34.299999999999997,2023,2025,41.3095
+Amsterdam:BU0363AH03,Amsterdam,BU0363AH03,Weteringbuurt,38500.0,published,38.5,2023,2025,25.5952
+Amsterdam:BU0363AH04,Amsterdam,BU0363AH04,Utrechtsebuurt-Zuid,38300.0,published,38.299999999999997,2023,2025,26.4286
+Amsterdam:BU0363AH05,Amsterdam,BU0363AH05,Leidsebuurt-Zuidwest,30800.0,published,30.8,2023,2025,61.0714
+Amsterdam:BU0363AH06,Amsterdam,BU0363AH06,Leidsebuurt-Zuidoost,34900.0,published,34.9,2023,2025,39.0476
+Amsterdam:BU0363AH07,Amsterdam,BU0363AH07,Den Texbuurt,42400.0,published,42.4,2023,2025,12.2619
+Amsterdam:BU0363AH08,Amsterdam,BU0363AH08,Frederikspleinbuurt,44100.0,published,44.1,2023,2025,10.3571
+Amsterdam:BU0363AJ01,Amsterdam,BU0363AJ01,Weesperbuurt,33400.0,published,33.4,2023,2025,45.3571
+Amsterdam:BU0363AJ02,Amsterdam,BU0363AJ02,Plantage,42300.0,published,42.3,2023,2025,12.7381
+Amsterdam:BU0363AJ03,Amsterdam,BU0363AJ03,Sarphatistrook,33200.0,published,33.200000000000003,2023,2025,46.4286
+Amsterdam:BU0363AJ04,Amsterdam,BU0363AJ04,Alexanderplein e.o.,40500.0,published,40.5,2023,2025,18.8095
+Amsterdam:BU0363AK01,Amsterdam,BU0363AK01,Marine-Etablissement,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363AK02,Amsterdam,BU0363AK02,Kattenburg,25600.0,published,25.6,2023,2025,89.4048
+Amsterdam:BU0363AK03,Amsterdam,BU0363AK03,Wittenburg,31200.0,published,31.2,2023,2025,57.9762
+Amsterdam:BU0363AK04,Amsterdam,BU0363AK04,Oostenburg,36300.0,published,36.299999999999997,2023,2025,33.4524
+Amsterdam:BU0363AK05,Amsterdam,BU0363AK05,Czaar Peterbuurt,29700.0,published,29.7,2023,2025,65.8333
+Amsterdam:BU0363AK06,Amsterdam,BU0363AK06,Het Funen,42400.0,published,42.4,2023,2025,12.2619
+Amsterdam:BU0363AK07,Amsterdam,BU0363AK07,Kadijken,32900.0,published,32.9,2023,2025,48.9286
+Amsterdam:BU0363AK08,Amsterdam,BU0363AK08,Kazernebuurt,31000.0,published,31,2023,2025,59.6429
+Amsterdam:BU0363BA01,Amsterdam,BU0363BA01,Afrikahaven,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363BA02,Amsterdam,BU0363BA02,Amerikahaven,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363BA03,Amsterdam,BU0363BA03,Westhaven-Noord,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363BA04,Amsterdam,BU0363BA04,Petroleumhaven,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363BA05,Amsterdam,BU0363BA05,Vervoerscentrum,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363BA06,Amsterdam,BU0363BA06,Westhaven-Zuid,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363BB01,Amsterdam,BU0363BB01,Coenhaven,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363BB02,Amsterdam,BU0363BB02,Vlothaven,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363BB03,Amsterdam,BU0363BB03,Minervahaven-Noordoost,4000.0,published,4,2023,2025,99.881
+Amsterdam:BU0363BB04,Amsterdam,BU0363BB04,Minervahaven-Noordwest,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363BB05,Amsterdam,BU0363BB05,Minervahaven-Zuidwest,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363BB06,Amsterdam,BU0363BB06,Minervahaven-Zuidoost,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363BB07,Amsterdam,BU0363BB07,Alfa-driehoek,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363BB08,Amsterdam,BU0363BB08,Hemknoop-Noord,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363EA01,Amsterdam,BU0363EA01,Isolatorbuurt,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363EA02,Amsterdam,BU0363EA02,Contactbuurt,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363EA03,Amsterdam,BU0363EA03,Woon- en Groengebied Sloterdijk,50000.0,published,50,2023,2025,4.1667
+Amsterdam:BU0363EB01,Amsterdam,BU0363EB01,Hemknoop-Zuid,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363EB02,Amsterdam,BU0363EB02,Overbraker Binnenpolder,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363EB03,Amsterdam,BU0363EB03,Zaanstraat emplacement,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363EB04,Amsterdam,BU0363EB04,Spaarndammerbuurt-Noordwest,29700.0,published,29.7,2023,2025,65.8333
+Amsterdam:BU0363EB05,Amsterdam,BU0363EB05,Spaarndammerbuurt-Midden,31200.0,published,31.2,2023,2025,57.9762
+Amsterdam:BU0363EB06,Amsterdam,BU0363EB06,Spaarndammerbuurt-Zuidwest,29700.0,published,29.7,2023,2025,65.8333
+Amsterdam:BU0363EB07,Amsterdam,BU0363EB07,Spaarndammerbuurt-Noordoost,27900.0,published,27.9,2023,2025,75.119
+Amsterdam:BU0363EB08,Amsterdam,BU0363EB08,Zeeheldenbuurt,30400.0,published,30.4,2023,2025,63.0952
+Amsterdam:BU0363EB09,Amsterdam,BU0363EB09,Westergasfabriek,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363EB10,Amsterdam,BU0363EB10,Spaarndammerbuurt-Zuidoost,31100.0,published,31.1,2023,2025,58.6905
+Amsterdam:BU0363EC01,Amsterdam,BU0363EC01,Houthavens-West,53700.0,published,53.7,2023,2025,2.2619
+Amsterdam:BU0363EC02,Amsterdam,BU0363EC02,Houthavens-Oost,38600.0,published,38.6,2023,2025,25.2381
+Amsterdam:BU0363ED01,Amsterdam,BU0363ED01,Kolenkitbuurt-Noord,27600.0,published,27.6,2023,2025,76.1905
+Amsterdam:BU0363ED02,Amsterdam,BU0363ED02,Kolenkitbuurt-Zuid,31700.0,published,31.7,2023,2025,56.0714
+Amsterdam:BU0363ED03,Amsterdam,BU0363ED03,Laan van Spartaan,32000.0,published,32,2023,2025,54.4048
+Amsterdam:BU0363ED04,Amsterdam,BU0363ED04,Robert Scottbuurt-West,26600.0,published,26.6,2023,2025,82.619
+Amsterdam:BU0363EE01,Amsterdam,BU0363EE01,Bosleeuw,28400.0,published,28.4,2023,2025,71.9048
+Amsterdam:BU0363EE02,Amsterdam,BU0363EE02,Gibraltarbuurt,29500.0,published,29.5,2023,2025,67.381
+Amsterdam:BU0363EE03,Amsterdam,BU0363EE03,Bedrijventerrein Landlust,38600.0,published,38.6,2023,2025,25.2381
+Amsterdam:BU0363EE04,Amsterdam,BU0363EE04,Landlust-Noord,29400.0,published,29.4,2023,2025,68.2143
+Amsterdam:BU0363EE05,Amsterdam,BU0363EE05,Erasmusparkbuurt-Oost,35200.0,published,35.200000000000003,2023,2025,37.5
+Amsterdam:BU0363EE06,Amsterdam,BU0363EE06,Landlust-Zuid,33300.0,published,33.299999999999997,2023,2025,45.8333
+Amsterdam:BU0363EF01,Amsterdam,BU0363EF01,Robert Scottbuurt-Oost,33600.0,published,33.6,2023,2025,44.6429
+Amsterdam:BU0363EF02,Amsterdam,BU0363EF02,Erasmusparkbuurt-West,38300.0,published,38.299999999999997,2023,2025,26.4286
+Amsterdam:BU0363EG01,Amsterdam,BU0363EG01,Bedrijvencentrum Westerkwartier,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363EG02,Amsterdam,BU0363EG02,GWL-terrein,39200.0,published,39.200000000000003,2023,2025,23.3333
+Amsterdam:BU0363EG03,Amsterdam,BU0363EG03,Markthallen,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363EG04,Amsterdam,BU0363EG04,Marcanti,32400.0,published,32.4,2023,2025,51.4286
+Amsterdam:BU0363EH01,Amsterdam,BU0363EH01,Westerstaatsman,34200.0,published,34.200000000000003,2023,2025,41.7857
+Amsterdam:BU0363EH02,Amsterdam,BU0363EH02,Fannius Scholtenbuurt,32000.0,published,32,2023,2025,54.4048
+Amsterdam:BU0363EH03,Amsterdam,BU0363EH03,Staatsliedenbuurt-Noordoost,26300.0,published,26.3,2023,2025,83.8095
+Amsterdam:BU0363EH04,Amsterdam,BU0363EH04,De Wittenbuurt-Noord,31200.0,published,31.2,2023,2025,57.9762
+Amsterdam:BU0363EH05,Amsterdam,BU0363EH05,De Wittenbuurt-Zuid,26100.0,published,26.1,2023,2025,85.0
+Amsterdam:BU0363EH06,Amsterdam,BU0363EH06,Buyskade e.o.,35100.0,published,35.1,2023,2025,38.2143
+Amsterdam:BU0363EJ01,Amsterdam,BU0363EJ01,Frederik Hendrikbuurt-Noord,33200.0,published,33.200000000000003,2023,2025,46.4286
+Amsterdam:BU0363EJ02,Amsterdam,BU0363EJ02,Frederik Hendrikbuurt-Zuidwest,34800.0,published,34.799999999999997,2023,2025,39.5238
+Amsterdam:BU0363EJ03,Amsterdam,BU0363EJ03,Frederik Hendrikbuurt-Zuidoost,33000.0,published,33,2023,2025,48.2143
+Amsterdam:BU0363EK01,Amsterdam,BU0363EK01,Mercatorpark,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363EK02,Amsterdam,BU0363EK02,Orteliusbuurt-Noord,30700.0,published,30.7,2023,2025,61.7857
+Amsterdam:BU0363EK03,Amsterdam,BU0363EK03,Jan Maijenbuurt,27100.0,published,27.1,2023,2025,78.0952
+Amsterdam:BU0363EK04,Amsterdam,BU0363EK04,John Franklinbuurt,28700.0,published,28.7,2023,2025,70.5952
+Amsterdam:BU0363EL01,Amsterdam,BU0363EL01,Pieter van der Doesbuurt,29200.0,published,29.2,2023,2025,69.2857
+Amsterdam:BU0363EL02,Amsterdam,BU0363EL02,Trompbuurt,34800.0,published,34.799999999999997,2023,2025,39.5238
+Amsterdam:BU0363EL03,Amsterdam,BU0363EL03,Geuzenhofbuurt,38900.0,published,38.9,2023,2025,24.4048
+Amsterdam:BU0363EM01,Amsterdam,BU0363EM01,Orteliusbuurt-Midden,32500.0,published,32.5,2023,2025,50.9524
+Amsterdam:BU0363EM02,Amsterdam,BU0363EM02,Balboaplein e.o.,29800.0,published,29.8,2023,2025,65.119
+Amsterdam:BU0363EM03,Amsterdam,BU0363EM03,Orteliusbuurt-Zuid,32100.0,published,32.1,2023,2025,53.4524
+Amsterdam:BU0363EM04,Amsterdam,BU0363EM04,Columbusplein e.o.,28100.0,published,28.1,2023,2025,73.3333
+Amsterdam:BU0363EN01,Amsterdam,BU0363EN01,Filips van Almondekwartier,33800.0,published,33.799999999999997,2023,2025,44.0476
+Amsterdam:BU0363EN02,Amsterdam,BU0363EN02,Kortenaerkwartier,33200.0,published,33.200000000000003,2023,2025,46.4286
+Amsterdam:BU0363EN03,Amsterdam,BU0363EN03,Van Brakelkwartier,28200.0,published,28.2,2023,2025,72.5
+Amsterdam:BU0363EN04,Amsterdam,BU0363EN04,De Wester Quartier,30000.0,published,30,2023,2025,64.2857
+Amsterdam:BU0363EP01,Amsterdam,BU0363EP01,Bellamybuurt-Noord,33000.0,published,33,2023,2025,48.2143
+Amsterdam:BU0363EP02,Amsterdam,BU0363EP02,Bellamybuurt-Zuid,34400.0,published,34.4,2023,2025,40.8333
+Amsterdam:BU0363EQ01,Amsterdam,BU0363EQ01,Da Costabuurt-Noord,35900.0,published,35.9,2023,2025,35.5952
+Amsterdam:BU0363ER01,Amsterdam,BU0363ER01,Postjeskade e.o.,35900.0,published,35.9,2023,2025,35.5952
+Amsterdam:BU0363ER02,Amsterdam,BU0363ER02,Paramariboplein e.o.,37000.0,published,37,2023,2025,31.4286
+Amsterdam:BU0363ES01,Amsterdam,BU0363ES01,Lootsbuurt,28800.0,published,28.8,2023,2025,70.0
+Amsterdam:BU0363ES02,Amsterdam,BU0363ES02,Borgerbuurt,25600.0,published,25.6,2023,2025,89.4048
+Amsterdam:BU0363ES03,Amsterdam,BU0363ES03,Da Costabuurt-Zuid,34100.0,published,34.1,2023,2025,42.619
+Amsterdam:BU0363ET01,Amsterdam,BU0363ET01,Cremerbuurt-West,37300.0,published,37.299999999999997,2023,2025,29.7619
+Amsterdam:BU0363ET02,Amsterdam,BU0363ET02,Vondelparkbuurt-West,38200.0,published,38.200000000000003,2023,2025,27.0238
+Amsterdam:BU0363EU01,Amsterdam,BU0363EU01,Cremerbuurt-Oost,38900.0,published,38.9,2023,2025,24.4048
+Amsterdam:BU0363EU02,Amsterdam,BU0363EU02,WG-terrein,31700.0,published,31.7,2023,2025,56.0714
+Amsterdam:BU0363EU03,Amsterdam,BU0363EU03,Helmersbuurt-Oost,40800.0,published,40.799999999999997,2023,2025,17.7381
+Amsterdam:BU0363EV01,Amsterdam,BU0363EV01,Vondelparkbuurt-Midden,34400.0,published,34.4,2023,2025,40.8333
+Amsterdam:BU0363EV02,Amsterdam,BU0363EV02,Vondelparkbuurt-Oost,40000.0,published,40,2023,2025,20.4762
+Amsterdam:BU0363FA01,Amsterdam,BU0363FA01,Sloterdijk De Heining,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363FA02,Amsterdam,BU0363FA02,Sloterdijk Poort-Noord,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363FA03,Amsterdam,BU0363FA03,Sloterdijk Poort-Zuid,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363FA04,Amsterdam,BU0363FA04,Sloterdijk Rhônepark,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363FA05,Amsterdam,BU0363FA05,Sloterdijk Donauhoek,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363FA06,Amsterdam,BU0363FA06,Bretten-West,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363FA07,Amsterdam,BU0363FA07,Bretten-Oost,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363FA08,Amsterdam,BU0363FA08,Sloterdijk Stationskwartier,23300.0,published,23.3,2023,2025,95.2381
+Amsterdam:BU0363FB01,Amsterdam,BU0363FB01,Osdorper Binnenpolder,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363FB02,Amsterdam,BU0363FB02,De Eendracht,32800.0,published,32.799999999999997,2023,2025,49.6429
+Amsterdam:BU0363FB03,Amsterdam,BU0363FB03,Ruys de Beerenbrouckbuurt,26000.0,published,26,2023,2025,85.9524
+Amsterdam:BU0363FB04,Amsterdam,BU0363FB04,Eendrachtspark,26000.0,published,26,2023,2025,85.9524
+Amsterdam:BU0363FB05,Amsterdam,BU0363FB05,Van Tijenbuurt,29600.0,published,29.6,2023,2025,66.5476
+Amsterdam:BU0363FB06,Amsterdam,BU0363FB06,Dudokbuurt,25800.0,published,25.8,2023,2025,87.619
+Amsterdam:BU0363FB07,Amsterdam,BU0363FB07,Bakemabuurt,28100.0,published,28.1,2023,2025,73.3333
+Amsterdam:BU0363FB08,Amsterdam,BU0363FB08,Wegener Sleeswijkbuurt,25900.0,published,25.9,2023,2025,86.6667
+Amsterdam:BU0363FC01,Amsterdam,BU0363FC01,Jan de Louterbuurt,27200.0,published,27.2,2023,2025,77.5
+Amsterdam:BU0363FC02,Amsterdam,BU0363FC02,Lodewijk van Deysselbuurt,24100.0,published,24.1,2023,2025,93.6905
+Amsterdam:BU0363FC03,Amsterdam,BU0363FC03,Confuciusbuurt,25200.0,published,25.2,2023,2025,90.7143
+Amsterdam:BU0363FD01,Amsterdam,BU0363FD01,Arondeusbuurt,24400.0,published,24.4,2023,2025,92.619
+Amsterdam:BU0363FD02,Amsterdam,BU0363FD02,Coronelbuurt,36000.0,published,36,2023,2025,34.881
+Amsterdam:BU0363FD03,Amsterdam,BU0363FD03,Meerwaldtbuurt,23100.0,published,23.1,2023,2025,95.8333
+Amsterdam:BU0363FD04,Amsterdam,BU0363FD04,Dobbebuurt,27200.0,published,27.2,2023,2025,77.5
+Amsterdam:BU0363FE01,Amsterdam,BU0363FE01,Dichtersbuurt,23400.0,published,23.4,2023,2025,94.6429
+Amsterdam:BU0363FE02,Amsterdam,BU0363FE02,Louis Couperusbuurt,24700.0,published,24.7,2023,2025,92.0238
+Amsterdam:BU0363FE03,Amsterdam,BU0363FE03,Noordoever Sloterplas,31700.0,published,31.7,2023,2025,56.0714
+Amsterdam:BU0363FE04,Amsterdam,BU0363FE04,Sloterpark,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363FF01,Amsterdam,BU0363FF01,Osdorper Bovenpolder,32300.0,published,32.299999999999997,2023,2025,52.1429
+Amsterdam:BU0363FF02,Amsterdam,BU0363FF02,Ookmeer,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363FF03,Amsterdam,BU0363FF03,Bedrijvenpark Lutkemeer,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363FG01,Amsterdam,BU0363FG01,Middelveldsche Akerpolder,31400.0,published,31.4,2023,2025,57.1429
+Amsterdam:BU0363FG02,Amsterdam,BU0363FG02,De Aker-West,37900.0,published,37.9,2023,2025,27.8571
+Amsterdam:BU0363FG03,Amsterdam,BU0363FG03,De Aker-Oost,39000.0,published,39,2023,2025,23.8095
+Amsterdam:BU0363FH01,Amsterdam,BU0363FH01,Bedrijvencentrum Osdorp,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363FH02,Amsterdam,BU0363FH02,Dijkgraafpleinbuurt,28100.0,published,28.1,2023,2025,73.3333
+Amsterdam:BU0363FJ01,Amsterdam,BU0363FJ01,Reimerswaal,24700.0,published,24.7,2023,2025,92.0238
+Amsterdam:BU0363FJ02,Amsterdam,BU0363FJ02,Botteskerkbuurt,26000.0,published,26,2023,2025,85.9524
+Amsterdam:BU0363FJ03,Amsterdam,BU0363FJ03,Zuidwestkwadrant-Noord,26400.0,published,26.4,2023,2025,83.4524
+Amsterdam:BU0363FJ04,Amsterdam,BU0363FJ04,Zuidwestkwadrant-Zuid,32100.0,published,32.1,2023,2025,53.4524
+Amsterdam:BU0363FK01,Amsterdam,BU0363FK01,Wildeman,23800.0,published,23.8,2023,2025,93.9286
+Amsterdam:BU0363FK02,Amsterdam,BU0363FK02,Meer en Oever,35500.0,published,35.5,2023,2025,37.0238
+Amsterdam:BU0363FK03,Amsterdam,BU0363FK03,Osdorpplein e.o.,31300.0,published,31.3,2023,2025,57.5
+Amsterdam:BU0363FK04,Amsterdam,BU0363FK04,Calandlaan/Lelylaan,27200.0,published,27.2,2023,2025,77.5
+Amsterdam:BU0363FK05,Amsterdam,BU0363FK05,Osdorp-Zuidoost,26100.0,published,26.1,2023,2025,85.0
+Amsterdam:BU0363FL01,Amsterdam,BU0363FL01,Oostoever Sloterplas,37300.0,published,37.299999999999997,2023,2025,29.7619
+Amsterdam:BU0363FL02,Amsterdam,BU0363FL02,Emanuel van Meterenbuurt,29500.0,published,29.5,2023,2025,67.381
+Amsterdam:BU0363FL03,Amsterdam,BU0363FL03,Jacob Geelbuurt,25200.0,published,25.2,2023,2025,90.7143
+Amsterdam:BU0363FM01,Amsterdam,BU0363FM01,Lucas/Andreasziekenhuis e.o.,32000.0,published,32,2023,2025,54.4048
+Amsterdam:BU0363FM02,Amsterdam,BU0363FM02,Overtoomse Veld-Noord,29600.0,published,29.6,2023,2025,66.5476
+Amsterdam:BU0363FM03,Amsterdam,BU0363FM03,Rembrandtpark-Noord,19800.0,published,19.8,2023,2025,97.9762
+Amsterdam:BU0363FM04,Amsterdam,BU0363FM04,Overtoomse Veld-Zuid,32300.0,published,32.299999999999997,2023,2025,52.1429
+Amsterdam:BU0363FM05,Amsterdam,BU0363FM05,Rembrandtpark-Zuid,41800.0,published,41.8,2023,2025,14.6429
+Amsterdam:BU0363FM06,Amsterdam,BU0363FM06,Johan Jongkindbuurt,22500.0,published,22.5,2023,2025,97.0238
+Amsterdam:BU0363FN01,Amsterdam,BU0363FN01,Louis Crispijnbuurt,26900.0,published,26.9,2023,2025,79.881
+Amsterdam:BU0363FN02,Amsterdam,BU0363FN02,Jacques Veltmanbuurt,29500.0,published,29.5,2023,2025,67.381
+Amsterdam:BU0363FN03,Amsterdam,BU0363FN03,Medisch Centrum Slotervaart,16100.0,published,16.100000000000001,2023,2025,99.4048
+Amsterdam:BU0363FN04,Amsterdam,BU0363FN04,Staalmanbuurt,29200.0,published,29.2,2023,2025,69.2857
+Amsterdam:BU0363FP01,Amsterdam,BU0363FP01,Schipluidenbuurt,29300.0,published,29.3,2023,2025,68.8095
+Amsterdam:BU0363FP02,Amsterdam,BU0363FP02,Koningin Wilhelminaplein,42200.0,published,42.2,2023,2025,13.2143
+Amsterdam:BU0363FP03,Amsterdam,BU0363FP03,Andreasterrein,43500.0,published,43.5,2023,2025,10.9524
+Amsterdam:BU0363FP04,Amsterdam,BU0363FP04,Delflandpleinbuurt-West,26700.0,published,26.7,2023,2025,81.4286
+Amsterdam:BU0363FP05,Amsterdam,BU0363FP05,Delflandpleinbuurt-Oost,22300.0,published,22.3,2023,2025,97.2619
+Amsterdam:BU0363FP06,Amsterdam,BU0363FP06,Riekerhaven,17800.0,published,17.8,2023,2025,98.6905
+Amsterdam:BU0363FQ01,Amsterdam,BU0363FQ01,Dorp Sloten,39400.0,published,39.4,2023,2025,22.1429
+Amsterdam:BU0363FQ02,Amsterdam,BU0363FQ02,Nieuw-Sloten-Noordwest,37400.0,published,37.4,2023,2025,28.8095
+Amsterdam:BU0363FQ03,Amsterdam,BU0363FQ03,Nieuw-Sloten-Noordoost,36200.0,published,36.200000000000003,2023,2025,34.1667
+Amsterdam:BU0363FQ04,Amsterdam,BU0363FQ04,Nieuw-Sloten-Zuidwest,45900.0,published,45.9,2023,2025,8.8095
+Amsterdam:BU0363FQ05,Amsterdam,BU0363FQ05,Belgiëplein e.o.,30400.0,published,30.4,2023,2025,63.0952
+Amsterdam:BU0363FQ06,Amsterdam,BU0363FQ06,Nieuw-Sloten-Zuidoost,37100.0,published,37.1,2023,2025,31.0714
+Amsterdam:BU0363FQ07,Amsterdam,BU0363FQ07,Sloterweg e.o.,47800.0,published,47.8,2023,2025,6.3095
+Amsterdam:BU0363FQ08,Amsterdam,BU0363FQ08,Park Haagseweg,49400.0,published,49.4,2023,2025,4.4048
+Amsterdam:BU0363FQ09,Amsterdam,BU0363FQ09,Riekerpolder,40400.0,published,40.4,2023,2025,19.6429
+Amsterdam:BU0363FQ10,Amsterdam,BU0363FQ10,Nieuwe Meer,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363KA01,Amsterdam,BU0363KA01,Westlandgrachtbuurt,39000.0,published,39,2023,2025,23.8095
+Amsterdam:BU0363KA02,Amsterdam,BU0363KA02,Surinamepleinbuurt,36000.0,published,36,2023,2025,34.881
+Amsterdam:BU0363KA03,Amsterdam,BU0363KA03,Legmeerpleinbuurt,37200.0,published,37.200000000000003,2023,2025,30.5952
+Amsterdam:BU0363KA04,Amsterdam,BU0363KA04,Aalsmeerwegbuurt-West,40400.0,published,40.4,2023,2025,19.6429
+Amsterdam:BU0363KA05,Amsterdam,BU0363KA05,Aalsmeerwegbuurt-Oost,38800.0,published,38.799999999999997,2023,2025,24.881
+Amsterdam:BU0363KA06,Amsterdam,BU0363KA06,Bedrijventerrein Schinkel,27000.0,published,27,2023,2025,79.0476
+Amsterdam:BU0363KB01,Amsterdam,BU0363KB01,Schinkelbuurt-Noord,36000.0,published,36,2023,2025,34.881
+Amsterdam:BU0363KB02,Amsterdam,BU0363KB02,Schinkelbuurt-Zuid,29900.0,published,29.9,2023,2025,64.6429
+Amsterdam:BU0363KC01,Amsterdam,BU0363KC01,Vondelpark-West,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363KC02,Amsterdam,BU0363KC02,Willemsparkbuurt-Noord,49000.0,published,49,2023,2025,4.881
+Amsterdam:BU0363KC03,Amsterdam,BU0363KC03,Valeriusbuurt-West,46600.0,published,46.6,2023,2025,7.7381
+Amsterdam:BU0363KC04,Amsterdam,BU0363KC04,Valeriusbuurt-Oost,58900.0,published,58.9,2023,2025,0.5952
+Amsterdam:BU0363KD01,Amsterdam,BU0363KD01,Vondelpark-Oost,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363KD02,Amsterdam,BU0363KD02,Cornelis Schuytbuurt,55200.0,published,55.2,2023,2025,1.3095
+Amsterdam:BU0363KD03,Amsterdam,BU0363KD03,Concertgebouwbuurt,51500.0,published,51.5,2023,2025,3.4524
+Amsterdam:BU0363KD04,Amsterdam,BU0363KD04,P.C. Hooftbuurt,48200.0,published,48.2,2023,2025,5.9524
+Amsterdam:BU0363KD05,Amsterdam,BU0363KD05,Museumplein,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363KD06,Amsterdam,BU0363KD06,Banpleinbuurt,54300.0,published,54.3,2023,2025,1.7857
+Amsterdam:BU0363KD07,Amsterdam,BU0363KD07,Hondecoeterbuurt,44300.0,published,44.3,2023,2025,10.119
+Amsterdam:BU0363KD08,Amsterdam,BU0363KD08,Johannes Vermeerbuurt,50400.0,published,50.4,2023,2025,3.6905
+Amsterdam:BU0363KD09,Amsterdam,BU0363KD09,Duivelseiland,38400.0,published,38.4,2023,2025,25.8333
+Amsterdam:BU0363KD10,Amsterdam,BU0363KD10,Harmoniehofbuurt,35600.0,published,35.6,2023,2025,36.5476
+Amsterdam:BU0363KE01,Amsterdam,BU0363KE01,Frans Halsbuurt,33500.0,published,33.5,2023,2025,44.881
+Amsterdam:BU0363KE02,Amsterdam,BU0363KE02,Gerard Doubuurt,31400.0,published,31.4,2023,2025,57.1429
+Amsterdam:BU0363KE03,Amsterdam,BU0363KE03,Hercules Seghersbuurt,30900.0,published,30.9,2023,2025,60.4762
+Amsterdam:BU0363KE04,Amsterdam,BU0363KE04,Sarphatiparkbuurt,32200.0,published,32.200000000000003,2023,2025,52.8571
+Amsterdam:BU0363KE05,Amsterdam,BU0363KE05,Hemonybuurt,36700.0,published,36.700000000000003,2023,2025,32.5
+Amsterdam:BU0363KF01,Amsterdam,BU0363KF01,Cornelis Troostbuurt,34000.0,published,34,2023,2025,43.2143
+Amsterdam:BU0363KF02,Amsterdam,BU0363KF02,Lizzy Ansinghbuurt,32900.0,published,32.9,2023,2025,48.9286
+Amsterdam:BU0363KF03,Amsterdam,BU0363KF03,Van der Helstpleinbuurt,34500.0,published,34.5,2023,2025,40.2381
+Amsterdam:BU0363KF04,Amsterdam,BU0363KF04,Willibrordusbuurt,28700.0,published,28.7,2023,2025,70.5952
+Amsterdam:BU0363KG01,Amsterdam,BU0363KG01,BurgemeesterTellegenbuurt-West,27000.0,published,27,2023,2025,79.0476
+Amsterdam:BU0363KG02,Amsterdam,BU0363KG02,Burgemeester Tellegenbuurt-Oost,27800.0,published,27.8,2023,2025,75.4762
+Amsterdam:BU0363KG03,Amsterdam,BU0363KG03,Diamantbuurt,25700.0,published,25.7,2023,2025,88.6905
+Amsterdam:BU0363KH01,Amsterdam,BU0363KH01,Bertelmanpleinbuurt,28100.0,published,28.1,2023,2025,73.3333
+Amsterdam:BU0363KH02,Amsterdam,BU0363KH02,Olympisch Stadion e.o.,40900.0,published,40.9,2023,2025,16.7857
+Amsterdam:BU0363KH03,Amsterdam,BU0363KH03,Marathonbuurt-West,25800.0,published,25.8,2023,2025,87.619
+Amsterdam:BU0363KH04,Amsterdam,BU0363KH04,Marathonbuurt-Oost,28500.0,published,28.5,2023,2025,71.4286
+Amsterdam:BU0363KH05,Amsterdam,BU0363KH05,Van Tuyllbuurt,37400.0,published,37.4,2023,2025,28.8095
+Amsterdam:BU0363KH06,Amsterdam,BU0363KH06,IJsbaanpad e.o.,46800.0,published,46.8,2023,2025,7.1429
+Amsterdam:BU0363KJ01,Amsterdam,BU0363KJ01,Hiltonbuurt,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363KJ02,Amsterdam,BU0363KJ02,Minervabuurt-Noord,60000.0,published,60,2023,2025,0.3571
+Amsterdam:BU0363KJ03,Amsterdam,BU0363KJ03,Minervabuurt-Midden,56300.0,published,56.3,2023,2025,0.8333
+Amsterdam:BU0363KJ04,Amsterdam,BU0363KJ04,Minervabuurt-Zuid,48300.0,published,48.3,2023,2025,5.4762
+Amsterdam:BU0363KJ05,Amsterdam,BU0363KJ05,Beethovenbuurt,47700.0,published,47.7,2023,2025,6.5476
+Amsterdam:BU0363KJ06,Amsterdam,BU0363KJ06,Diepenbrockbuurt,66900.0,published,66.900000000000006,2023,2025,0.119
+Amsterdam:BU0363KK01,Amsterdam,BU0363KK01,Wielingenbuurt,42400.0,published,42.4,2023,2025,12.2619
+Amsterdam:BU0363KK02,Amsterdam,BU0363KK02,Scheldebuurt-West,38100.0,published,38.1,2023,2025,27.2619
+Amsterdam:BU0363KK03,Amsterdam,BU0363KK03,Scheldebuurt-Midden,41000.0,published,41,2023,2025,16.3095
+Amsterdam:BU0363KK04,Amsterdam,BU0363KK04,Scheldebuurt-Oost,39200.0,published,39.200000000000003,2023,2025,23.3333
+Amsterdam:BU0363KK05,Amsterdam,BU0363KK05,Veluwebuurt,31000.0,published,31,2023,2025,59.6429
+Amsterdam:BU0363KK06,Amsterdam,BU0363KK06,Kop Zuidas,54100.0,published,54.1,2023,2025,2.0238
+Amsterdam:BU0363KL01,Amsterdam,BU0363KL01,IJselbuurt-West,29400.0,published,29.4,2023,2025,68.2143
+Amsterdam:BU0363KL02,Amsterdam,BU0363KL02,IJselbuurt-Oost,32300.0,published,32.299999999999997,2023,2025,52.1429
+Amsterdam:BU0363KM01,Amsterdam,BU0363KM01,Kromme Mijdrechtbuurt,30100.0,published,30.1,2023,2025,63.9286
+Amsterdam:BU0363KM02,Amsterdam,BU0363KM02,Rijnbuurt-West,24700.0,published,24.7,2023,2025,92.0238
+Amsterdam:BU0363KM03,Amsterdam,BU0363KM03,Rijnbuurt-Midden,35400.0,published,35.4,2023,2025,37.2619
+Amsterdam:BU0363KM04,Amsterdam,BU0363KM04,Rijnbuurt-Oost,36200.0,published,36.200000000000003,2023,2025,34.1667
+Amsterdam:BU0363KM05,Amsterdam,BU0363KM05,Zorgvlied,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363KN01,Amsterdam,BU0363KN01,Prinses Irenebuurt,54700.0,published,54.7,2023,2025,1.5476
+Amsterdam:BU0363KN02,Amsterdam,BU0363KN02,Beatrixpark,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363KP01,Amsterdam,BU0363KP01,Zuidas-Noord,46600.0,published,46.6,2023,2025,7.7381
+Amsterdam:BU0363KP02,Amsterdam,BU0363KP02,RAI,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363KP03,Amsterdam,BU0363KP03,VU-kwartier,35600.0,published,35.6,2023,2025,36.5476
+Amsterdam:BU0363KP04,Amsterdam,BU0363KP04,Zuidas-Zuid,48500.0,published,48.5,2023,2025,5.119
+Amsterdam:BU0363KP05,Amsterdam,BU0363KP05,Vivaldi,23100.0,published,23.1,2023,2025,95.8333
+Amsterdam:BU0363KQ01,Amsterdam,BU0363KQ01,Amsterdamse Bos,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363KQ02,Amsterdam,BU0363KQ02,Zuiderhof,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363KQ03,Amsterdam,BU0363KQ03,Buitenveldert-West-Midden,39300.0,published,39.299999999999997,2023,2025,22.8571
+Amsterdam:BU0363KQ04,Amsterdam,BU0363KQ04,Gelderlandpleinbuurt,35100.0,published,35.1,2023,2025,38.2143
+Amsterdam:BU0363KQ05,Amsterdam,BU0363KQ05,Buitenveldert-Zuidwest,33400.0,published,33.4,2023,2025,45.3571
+Amsterdam:BU0363KQ06,Amsterdam,BU0363KQ06,Buitenveldert-Zuid-Midden,36500.0,published,36.5,2023,2025,32.8571
+Amsterdam:BU0363KR01,Amsterdam,BU0363KR01,De Klenckebuurt,41900.0,published,41.9,2023,2025,13.9286
+Amsterdam:BU0363KR02,Amsterdam,BU0363KR02,Buitenveldert-Oost-Midden,30800.0,published,30.8,2023,2025,61.0714
+Amsterdam:BU0363KR03,Amsterdam,BU0363KR03,Buitenveldert-Zuidoost,35100.0,published,35.1,2023,2025,38.2143
+Amsterdam:BU0363KR04,Amsterdam,BU0363KR04,Amstelpark,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MA01,Amsterdam,BU0363MA01,Java-eiland,40200.0,published,40.200000000000003,2023,2025,20.119
+Amsterdam:BU0363MA02,Amsterdam,BU0363MA02,KNSM-eiland,40500.0,published,40.5,2023,2025,18.8095
+Amsterdam:BU0363MA03,Amsterdam,BU0363MA03,Oostelijke Handelskade,45900.0,published,45.9,2023,2025,8.8095
+Amsterdam:BU0363MA04,Amsterdam,BU0363MA04,Rietlanden,41900.0,published,41.9,2023,2025,13.9286
+Amsterdam:BU0363MA05,Amsterdam,BU0363MA05,Sporenburg,46800.0,published,46.8,2023,2025,7.1429
+Amsterdam:BU0363MA06,Amsterdam,BU0363MA06,Borneo,43000.0,published,43,2023,2025,11.5476
+Amsterdam:BU0363MA07,Amsterdam,BU0363MA07,Entrepot-Noordwest,33100.0,published,33.1,2023,2025,47.381
+Amsterdam:BU0363MA08,Amsterdam,BU0363MA08,Bedrijvengebied Veelaan,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MA09,Amsterdam,BU0363MA09,Architectenbuurt,37900.0,published,37.9,2023,2025,27.8571
+Amsterdam:BU0363MA10,Amsterdam,BU0363MA10,Cruquiusbuurt,46600.0,published,46.6,2023,2025,7.7381
+Amsterdam:BU0363MA11,Amsterdam,BU0363MA11,Bedrijvengebied Zeeburgerkade,32000.0,published,32,2023,2025,54.4048
+Amsterdam:BU0363MB01,Amsterdam,BU0363MB01,Weesperzijde-Noord,40800.0,published,40.799999999999997,2023,2025,17.7381
+Amsterdam:BU0363MB02,Amsterdam,BU0363MB02,Weesperzijde-Midden/Zuid,39700.0,published,39.700000000000003,2023,2025,21.3095
+Amsterdam:BU0363MB03,Amsterdam,BU0363MB03,Parooldriehoek,19200.0,published,19.2,2023,2025,98.2143
+Amsterdam:BU0363MC01,Amsterdam,BU0363MC01,Oosterparkbuurt-Noordwest,29300.0,published,29.3,2023,2025,68.8095
+Amsterdam:BU0363MC02,Amsterdam,BU0363MC02,Oosterpark,24200.0,published,24.2,2023,2025,93.2143
+Amsterdam:BU0363MC03,Amsterdam,BU0363MC03,Oosterparkbuurt-Zuidwest,27000.0,published,27,2023,2025,79.0476
+Amsterdam:BU0363MC04,Amsterdam,BU0363MC04,Oosterparkbuurt-Zuidoost,33700.0,published,33.700000000000003,2023,2025,44.4048
+Amsterdam:BU0363MD01,Amsterdam,BU0363MD01,Transvaalbuurt-West,28100.0,published,28.1,2023,2025,73.3333
+Amsterdam:BU0363MD02,Amsterdam,BU0363MD02,Transvaalbuurt-Oost,29400.0,published,29.4,2023,2025,68.2143
+Amsterdam:BU0363ME01,Amsterdam,BU0363ME01,Dapperbuurt-Noord,28300.0,published,28.3,2023,2025,72.2619
+Amsterdam:BU0363ME02,Amsterdam,BU0363ME02,Dapperbuurt-Zuid,28400.0,published,28.4,2023,2025,71.9048
+Amsterdam:BU0363ME03,Amsterdam,BU0363ME03,Oostpoort,35700.0,published,35.700000000000003,2023,2025,36.0714
+Amsterdam:BU0363MF01,Amsterdam,BU0363MF01,Timorpleinbuurt-Noord,31900.0,published,31.9,2023,2025,55.119
+Amsterdam:BU0363MF02,Amsterdam,BU0363MF02,Timorpleinbuurt-Zuid,30000.0,published,30,2023,2025,64.2857
+Amsterdam:BU0363MF03,Amsterdam,BU0363MF03,Ambonpleinbuurt,26600.0,published,26.6,2023,2025,82.619
+Amsterdam:BU0363MG01,Amsterdam,BU0363MG01,Makassarpleinbuurt,25800.0,published,25.8,2023,2025,87.619
+Amsterdam:BU0363MG02,Amsterdam,BU0363MG02,Zeeburgerdijk-Oost,41900.0,published,41.9,2023,2025,13.9286
+Amsterdam:BU0363MG03,Amsterdam,BU0363MG03,Sumatraplantsoenbuurt,28800.0,published,28.8,2023,2025,70.0
+Amsterdam:BU0363MG04,Amsterdam,BU0363MG04,Flevopark,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MH01,Amsterdam,BU0363MH01,Sluisbuurt,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MH02,Amsterdam,BU0363MH02,Sportheldenbuurt,36300.0,published,36.299999999999997,2023,2025,33.4524
+Amsterdam:BU0363MH03,Amsterdam,BU0363MH03,Oostpunt Zeeburgereiland,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MH04,Amsterdam,BU0363MH04,Baaibuurt-West,11900.0,published,11.9,2023,2025,99.6429
+Amsterdam:BU0363MH05,Amsterdam,BU0363MH05,Baaibuurt-Oost,17600.0,published,17.600000000000001,2023,2025,98.9286
+Amsterdam:BU0363MH06,Amsterdam,BU0363MH06,Bovendiep/Diemerpark,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MJ01,Amsterdam,BU0363MJ01,Steigereiland-Zuid,41100.0,published,41.1,2023,2025,16.0714
+Amsterdam:BU0363MJ02,Amsterdam,BU0363MJ02,Steigereiland-Noord,40000.0,published,40,2023,2025,20.4762
+Amsterdam:BU0363MJ03,Amsterdam,BU0363MJ03,Rieteilanden-West,53100.0,published,53.1,2023,2025,2.7381
+Amsterdam:BU0363MJ04,Amsterdam,BU0363MJ04,Joris Ivenspleinbuurt,36500.0,published,36.5,2023,2025,32.8571
+Amsterdam:BU0363MJ05,Amsterdam,BU0363MJ05,Ed Pelsterparkbuurt,38900.0,published,38.9,2023,2025,24.4048
+Amsterdam:BU0363MK01,Amsterdam,BU0363MK01,Buiteneiland,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MK02,Amsterdam,BU0363MK02,Pampusbuurt-West,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MK03,Amsterdam,BU0363MK03,Pampusbuurt-Oost,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MK04,Amsterdam,BU0363MK04,Centrumeiland,40900.0,published,40.9,2023,2025,16.7857
+Amsterdam:BU0363MK05,Amsterdam,BU0363MK05,Muidenbuurt-West,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363ML01,Amsterdam,BU0363ML01,Havenkwartier IJburg,33800.0,published,33.799999999999997,2023,2025,44.0476
+Amsterdam:BU0363ML02,Amsterdam,BU0363ML02,Theo van Goghparkbuurt,42800.0,published,42.8,2023,2025,11.7857
+Amsterdam:BU0363ML03,Amsterdam,BU0363ML03,Rieteiland-Oost,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MM01,Amsterdam,BU0363MM01,Van der Kunbuurt,26600.0,published,26.6,2023,2025,82.619
+Amsterdam:BU0363MM02,Amsterdam,BU0363MM02,De Eenhoorn,25600.0,published,25.6,2023,2025,89.4048
+Amsterdam:BU0363MM03,Amsterdam,BU0363MM03,Don Bosco,37200.0,published,37.200000000000003,2023,2025,30.5952
+Amsterdam:BU0363MM04,Amsterdam,BU0363MM04,Julianapark,45800.0,published,45.8,2023,2025,9.2857
+Amsterdam:BU0363MM05,Amsterdam,BU0363MM05,Frankendael,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MM06,Amsterdam,BU0363MM06,Tuindorp Amstelstation,22600.0,published,22.6,2023,2025,96.6667
+Amsterdam:BU0363MM07,Amsterdam,BU0363MM07,De Wetbuurt,32800.0,published,32.799999999999997,2023,2025,49.6429
+Amsterdam:BU0363MM08,Amsterdam,BU0363MM08,Tuindorp Frankendael,29000.0,published,29,2023,2025,69.6429
+Amsterdam:BU0363MN01,Amsterdam,BU0363MN01,Linnaeusparkbuurt,41800.0,published,41.8,2023,2025,14.6429
+Amsterdam:BU0363MN02,Amsterdam,BU0363MN02,Middenmeer-Noord,40500.0,published,40.5,2023,2025,18.8095
+Amsterdam:BU0363MN03,Amsterdam,BU0363MN03,Middenmeer-Zuid,39400.0,published,39.4,2023,2025,22.1429
+Amsterdam:BU0363MN04,Amsterdam,BU0363MN04,Science Park-Noord,18400.0,published,18.399999999999999,2023,2025,98.4524
+Amsterdam:BU0363MN05,Amsterdam,BU0363MN05,Science Park-Zuid,20300.0,published,20.3,2023,2025,97.7381
+Amsterdam:BU0363MN06,Amsterdam,BU0363MN06,Sportpark Middenmeer-Zuid,36900.0,published,36.9,2023,2025,31.9048
+Amsterdam:BU0363MN07,Amsterdam,BU0363MN07,Sportpark Middenmeer-Noord,21400.0,published,21.4,2023,2025,97.5
+Amsterdam:BU0363MN08,Amsterdam,BU0363MN08,Park de Meer,42200.0,published,42.2,2023,2025,13.2143
+Amsterdam:BU0363MN09,Amsterdam,BU0363MN09,Sportpark Voorland,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MP01,Amsterdam,BU0363MP01,Drieburg,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MP02,Amsterdam,BU0363MP02,Nieuwe Oosterbegraafplaats,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MP03,Amsterdam,BU0363MP03,Betondorp,26000.0,published,26,2023,2025,85.9524
+Amsterdam:BU0363MQ01,Amsterdam,BU0363MQ01,De Omval,52300.0,published,52.3,2023,2025,3.2143
+Amsterdam:BU0363MQ02,Amsterdam,BU0363MQ02,Overamstel,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MQ03,Amsterdam,BU0363MQ03,Amstelglorie,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MQ04,Amsterdam,BU0363MQ04,Amstelkwartier-West,26500.0,published,26.5,2023,2025,83.2143
+Amsterdam:BU0363MQ05,Amsterdam,BU0363MQ05,Amstelkwartier-Noord,38300.0,published,38.299999999999997,2023,2025,26.4286
+Amsterdam:BU0363MQ06,Amsterdam,BU0363MQ06,Amstelkwartier-Zuid,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363MQ07,Amsterdam,BU0363MQ07,Weespertrekvaart,41200.0,published,41.2,2023,2025,15.7143
+Amsterdam:BU0363NA01,Amsterdam,BU0363NA01,Noorder IJplas,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NA02,Amsterdam,BU0363NA02,Melkweg/Oostzanerwerf,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NA03,Amsterdam,BU0363NA03,Walvisbuurt,38300.0,published,38.299999999999997,2023,2025,26.4286
+Amsterdam:BU0363NA04,Amsterdam,BU0363NA04,Twiske-West,39300.0,published,39.299999999999997,2023,2025,22.8571
+Amsterdam:BU0363NA05,Amsterdam,BU0363NA05,Oostzanerdijk,41700.0,published,41.7,2023,2025,15.119
+Amsterdam:BU0363NA06,Amsterdam,BU0363NA06,Circus/Kermisbuurt,33900.0,published,33.9,2023,2025,43.5714
+Amsterdam:BU0363NA07,Amsterdam,BU0363NA07,Molenwijk,25400.0,published,25.4,2023,2025,90.119
+Amsterdam:BU0363NB01,Amsterdam,BU0363NB01,Cornelis Douwesterrein-West,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NB02,Amsterdam,BU0363NB02,Cornelis Douwesterrein-Oost,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NB03,Amsterdam,BU0363NB03,NDSM terrein,32300.0,published,32.299999999999997,2023,2025,52.1429
+Amsterdam:BU0363NB04,Amsterdam,BU0363NB04,Buiksloterham-Zuid,34700.0,published,34.700000000000003,2023,2025,39.881
+Amsterdam:BU0363NB05,Amsterdam,BU0363NB05,Buiksloterham-Noord,43500.0,published,43.5,2023,2025,10.9524
+Amsterdam:BU0363NB06,Amsterdam,BU0363NB06,Klaprozenbuurt,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NB07,Amsterdam,BU0363NB07,Overhoeks,46200.0,published,46.2,2023,2025,8.4524
+Amsterdam:BU0363NC01,Amsterdam,BU0363NC01,Tuindorp Oostzaan-West,27600.0,published,27.6,2023,2025,76.1905
+Amsterdam:BU0363NC02,Amsterdam,BU0363NC02,Tuindorp Oostzaan-Oost,28500.0,published,28.5,2023,2025,71.4286
+Amsterdam:BU0363NC03,Amsterdam,BU0363NC03,Terrasdorp,26600.0,published,26.6,2023,2025,82.619
+Amsterdam:BU0363NC04,Amsterdam,BU0363NC04,De Bongerd,40500.0,published,40.5,2023,2025,18.8095
+Amsterdam:BU0363ND01,Amsterdam,BU0363ND01,Twiske-Oost,34200.0,published,34.200000000000003,2023,2025,41.7857
+Amsterdam:BU0363ND02,Amsterdam,BU0363ND02,Kadoelen,41800.0,published,41.8,2023,2025,14.6429
+Amsterdam:BU0363NE01,Amsterdam,BU0363NE01,Banne-Noordwest,25400.0,published,25.4,2023,2025,90.119
+Amsterdam:BU0363NE02,Amsterdam,BU0363NE02,Banne-Noordoost,28000.0,published,28,2023,2025,74.5238
+Amsterdam:BU0363NE03,Amsterdam,BU0363NE03,Banne-Zuidwest,26800.0,published,26.8,2023,2025,80.3571
+Amsterdam:BU0363NE04,Amsterdam,BU0363NE04,Banne-Zuidoost,30400.0,published,30.4,2023,2025,63.0952
+Amsterdam:BU0363NE05,Amsterdam,BU0363NE05,Buiksloterbreek,47400.0,published,47.4,2023,2025,6.7857
+Amsterdam:BU0363NE06,Amsterdam,BU0363NE06,Marjoleinterrein,36800.0,published,36.799999999999997,2023,2025,32.2619
+Amsterdam:BU0363NF01,Amsterdam,BU0363NF01,Buiksloterdijk-West,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NF02,Amsterdam,BU0363NF02,Buiksloterdijk-Oost,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NF03,Amsterdam,BU0363NF03,Nieuwendammerdijk-West,49300.0,published,49.3,2023,2025,4.6429
+Amsterdam:BU0363NF04,Amsterdam,BU0363NF04,Nieuwendammerdijk-Oost,52700.0,published,52.7,2023,2025,2.9762
+Amsterdam:BU0363NF05,Amsterdam,BU0363NF05,Nieuwendammerdijk-Zuid,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NG01,Amsterdam,BU0363NG01,Elzenhagen-Noord,35600.0,published,35.6,2023,2025,36.5476
+Amsterdam:BU0363NG02,Amsterdam,BU0363NG02,Elzenhagen-Zuid,23400.0,published,23.4,2023,2025,94.6429
+Amsterdam:BU0363NG03,Amsterdam,BU0363NG03,Nintemanterrein,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NH01,Amsterdam,BU0363NH01,Buikslotermeer-Noord,26800.0,published,26.8,2023,2025,80.3571
+Amsterdam:BU0363NH02,Amsterdam,BU0363NH02,De Kleine Wereld,25700.0,published,25.7,2023,2025,88.6905
+Amsterdam:BU0363NH03,Amsterdam,BU0363NH03,Loenermark,31100.0,published,31.1,2023,2025,58.6905
+Amsterdam:BU0363NH04,Amsterdam,BU0363NH04,Buikslotermeerplein,26200.0,published,26.2,2023,2025,84.2857
+Amsterdam:BU0363NH05,Amsterdam,BU0363NH05,Plan van Gool,28000.0,published,28,2023,2025,74.5238
+Amsterdam:BU0363NH06,Amsterdam,BU0363NH06,Rode Kruisbuurt,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NJ01,Amsterdam,BU0363NJ01,Markengouw-Noord,34400.0,published,34.4,2023,2025,40.8333
+Amsterdam:BU0363NJ02,Amsterdam,BU0363NJ02,Markengouw-Midden,29800.0,published,29.8,2023,2025,65.119
+Amsterdam:BU0363NJ03,Amsterdam,BU0363NJ03,Markengouw-Zuid,28100.0,published,28.1,2023,2025,73.3333
+Amsterdam:BU0363NJ04,Amsterdam,BU0363NJ04,Werengouw-Noord,37900.0,published,37.9,2023,2025,27.8571
+Amsterdam:BU0363NJ05,Amsterdam,BU0363NJ05,Werengouw-Midden,27000.0,published,27,2023,2025,79.0476
+Amsterdam:BU0363NJ06,Amsterdam,BU0363NJ06,Werengouw-Zuid,28700.0,published,28.7,2023,2025,70.5952
+Amsterdam:BU0363NK01,Amsterdam,BU0363NK01,Bloemenbuurt-Noord,27700.0,published,27.7,2023,2025,75.8333
+Amsterdam:BU0363NK02,Amsterdam,BU0363NK02,Bloemenbuurt-Zuid,25000.0,published,25,2023,2025,91.0714
+Amsterdam:BU0363NK03,Amsterdam,BU0363NK03,Van der Pekbuurt,24800.0,published,24.8,2023,2025,91.5476
+Amsterdam:BU0363NL01,Amsterdam,BU0363NL01,Vogelbuurt-Noord,26700.0,published,26.7,2023,2025,81.4286
+Amsterdam:BU0363NL02,Amsterdam,BU0363NL02,Vliegenbos,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NL03,Amsterdam,BU0363NL03,Vogelbuurt-Zuid,25800.0,published,25.8,2023,2025,87.619
+Amsterdam:BU0363NL04,Amsterdam,BU0363NL04,IJplein e.o.,26700.0,published,26.7,2023,2025,81.4286
+Amsterdam:BU0363NM01,Amsterdam,BU0363NM01,Blauwe Zand,27000.0,published,27,2023,2025,79.0476
+Amsterdam:BU0363NN01,Amsterdam,BU0363NN01,Tuindorp Nieuwendam-West,28000.0,published,28,2023,2025,74.5238
+Amsterdam:BU0363NN02,Amsterdam,BU0363NN02,Tuindorp Nieuwendam-Oost,27100.0,published,27.1,2023,2025,78.0952
+Amsterdam:BU0363NP01,Amsterdam,BU0363NP01,Hamerstraatkwartier-West,26200.0,published,26.2,2023,2025,84.2857
+Amsterdam:BU0363NP02,Amsterdam,BU0363NP02,Hamerstraatkwartier-Oost,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NP03,Amsterdam,BU0363NP03,Bedrijventerrein Nieuwendammerdijk,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NQ01,Amsterdam,BU0363NQ01,Noorderstrook-West,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NQ02,Amsterdam,BU0363NQ02,Noorderstrook-Oost,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NQ03,Amsterdam,BU0363NQ03,Zunderdorp,40800.0,published,40.799999999999997,2023,2025,17.7381
+Amsterdam:BU0363NQ04,Amsterdam,BU0363NQ04,Schellingwoude-West,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NQ05,Amsterdam,BU0363NQ05,Schellingwoude-Oost,48200.0,published,48.2,2023,2025,5.9524
+Amsterdam:BU0363NQ06,Amsterdam,BU0363NQ06,Schellingwoude-Noord,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NQ07,Amsterdam,BU0363NQ07,Zwarte Gouw,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363NQ08,Amsterdam,BU0363NQ08,Holysloot,43400.0,published,43.4,2023,2025,11.3095
+Amsterdam:BU0363NQ09,Amsterdam,BU0363NQ09,Ransdorp,45600.0,published,45.6,2023,2025,9.6429
+Amsterdam:BU0363NQ10,Amsterdam,BU0363NQ10,Durgerdam,48300.0,published,48.3,2023,2025,5.4762
+Amsterdam:BU0363SA01,Amsterdam,BU0363SA01,Landelijk gebied Driemond,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363SA02,Amsterdam,BU0363SA02,Dorp Driemond,36300.0,published,36.299999999999997,2023,2025,33.4524
+Amsterdam:BU0363SB01,Amsterdam,BU0363SB01,Weespersluis-Noord,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363SB02,Amsterdam,BU0363SB02,Waterrijk,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363SB03,Amsterdam,BU0363SB03,Lanenrijk,56000.0,published,56,2023,2025,1.0714
+Amsterdam:BU0363SB04,Amsterdam,BU0363SB04,Vechtrijk,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363SB05,Amsterdam,BU0363SB05,Leeuwenveld,53300.0,published,53.3,2023,2025,2.5
+Amsterdam:BU0363SB06,Amsterdam,BU0363SB06,Bedrijventerrein Nijverheidslaan,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363SC01,Amsterdam,BU0363SC01,Bedrijventerrein-Noord Weesp,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363SC02,Amsterdam,BU0363SC02,Hogewey-Noord,39500.0,published,39.5,2023,2025,21.5476
+Amsterdam:BU0363SC03,Amsterdam,BU0363SC03,Hogewey-Midden,32000.0,published,32,2023,2025,54.4048
+Amsterdam:BU0363SC04,Amsterdam,BU0363SC04,Hogewey-Zuid,29800.0,published,29.8,2023,2025,65.119
+Amsterdam:BU0363SC05,Amsterdam,BU0363SC05,Weesp Dichtersbuurt,33900.0,published,33.9,2023,2025,43.5714
+Amsterdam:BU0363SC06,Amsterdam,BU0363SC06,Weesp Schildersbuurt,26700.0,published,26.7,2023,2025,81.4286
+Amsterdam:BU0363SD01,Amsterdam,BU0363SD01,Herensingelkwartier,36900.0,published,36.9,2023,2025,31.9048
+Amsterdam:BU0363SD02,Amsterdam,BU0363SD02,Bedrijventerrein Van Houten,32700.0,published,32.700000000000003,2023,2025,50.2381
+Amsterdam:BU0363SD03,Amsterdam,BU0363SD03,Weesp Centrum,37400.0,published,37.4,2023,2025,28.8095
+Amsterdam:BU0363SD04,Amsterdam,BU0363SD04,Weesp-Zuid I,26100.0,published,26.1,2023,2025,85.0
+Amsterdam:BU0363SD05,Amsterdam,BU0363SD05,Weesp-Zuid II,30600.0,published,30.6,2023,2025,62.2619
+Amsterdam:BU0363SD06,Amsterdam,BU0363SD06,De Klomp,45300.0,published,45.3,2023,2025,9.881
+Amsterdam:BU0363SE01,Amsterdam,BU0363SE01,Aetsveldsepolder,50200.0,published,50.2,2023,2025,3.9286
+Amsterdam:BU0363SE02,Amsterdam,BU0363SE02,Aetsveld-Zuid,39400.0,published,39.4,2023,2025,22.1429
+Amsterdam:BU0363SE03,Amsterdam,BU0363SE03,Aetsveld-Noord,37900.0,published,37.9,2023,2025,27.8571
+Amsterdam:BU0363SE04,Amsterdam,BU0363SE04,Oostelijke Vechtoever,46400.0,published,46.4,2023,2025,8.2143
+Amsterdam:BU0363TA01,Amsterdam,BU0363TA01,Hoofdcentrum-Zuidoost,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363TA02,Amsterdam,BU0363TA02,Amstel III deel C/D-Noord,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363TA03,Amsterdam,BU0363TA03,Amstel III deel A/B-Noord,35100.0,published,35.1,2023,2025,38.2143
+Amsterdam:BU0363TA04,Amsterdam,BU0363TA04,Amstel III deel C/D-Zuid,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363TA05,Amsterdam,BU0363TA05,Amstel III deel A/B-Zuid,26100.0,published,26.1,2023,2025,85.0
+Amsterdam:BU0363TA06,Amsterdam,BU0363TA06,AMC,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363TA07,Amsterdam,BU0363TA07,Hoge Dijk,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363TB01,Amsterdam,BU0363TB01,Venserpolder-West,25800.0,published,25.8,2023,2025,87.619
+Amsterdam:BU0363TB02,Amsterdam,BU0363TB02,Venserpolder-Oost,26800.0,published,26.8,2023,2025,80.3571
+Amsterdam:BU0363TC01,Amsterdam,BU0363TC01,D-buurt,16200.0,published,16.2,2023,2025,99.1667
+Amsterdam:BU0363TC02,Amsterdam,BU0363TC02,F-buurt,30800.0,published,30.8,2023,2025,61.0714
+Amsterdam:BU0363TC03,Amsterdam,BU0363TC03,Amsterdamse Poort,23300.0,published,23.3,2023,2025,95.2381
+Amsterdam:BU0363TC04,Amsterdam,BU0363TC04,Vogeltjeswei,34100.0,published,34.1,2023,2025,42.619
+Amsterdam:BU0363TC05,Amsterdam,BU0363TC05,Nelson Mandelapark,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363TD01,Amsterdam,BU0363TD01,Hoptille,22600.0,published,22.6,2023,2025,96.6667
+Amsterdam:BU0363TD02,Amsterdam,BU0363TD02,Rechte H-buurt,24400.0,published,24.4,2023,2025,92.619
+Amsterdam:BU0363TD03,Amsterdam,BU0363TD03,Hakfort/Huigenbos,24200.0,published,24.2,2023,2025,93.2143
+Amsterdam:BU0363TD04,Amsterdam,BU0363TD04,Huntum,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363TE01,Amsterdam,BU0363TE01,E-buurt,34200.0,published,34.200000000000003,2023,2025,41.7857
+Amsterdam:BU0363TE02,Amsterdam,BU0363TE02,G-buurt-West,30300.0,published,30.3,2023,2025,63.6905
+Amsterdam:BU0363TE03,Amsterdam,BU0363TE03,G-buurt-Noord,23100.0,published,23.1,2023,2025,95.8333
+Amsterdam:BU0363TF01,Amsterdam,BU0363TF01,G-buurt-Oost,32600.0,published,32.6,2023,2025,50.5952
+Amsterdam:BU0363TF02,Amsterdam,BU0363TF02,Grunder/Koningshoef,33100.0,published,33.1,2023,2025,47.381
+Amsterdam:BU0363TF03,Amsterdam,BU0363TF03,Kantershof,27300.0,published,27.3,2023,2025,77.0238
+Amsterdam:BU0363TG01,Amsterdam,BU0363TG01,Bijlmermuseum-Noord,23500.0,published,23.5,2023,2025,94.1667
+Amsterdam:BU0363TG02,Amsterdam,BU0363TG02,Bijlmermuseum-Zuid,25400.0,published,25.4,2023,2025,90.119
+Amsterdam:BU0363TG03,Amsterdam,BU0363TG03,De Kameleon e.o.,24200.0,published,24.2,2023,2025,93.2143
+Amsterdam:BU0363TH01,Amsterdam,BU0363TH01,Gooise Kant,39900.0,published,39.9,2023,2025,20.9524
+Amsterdam:BU0363TH02,Amsterdam,BU0363TH02,Kortvoort,24900.0,published,24.9,2023,2025,91.3095
+Amsterdam:BU0363TH03,Amsterdam,BU0363TH03,Kelbergen,27000.0,published,27,2023,2025,79.0476
+Amsterdam:BU0363TH04,Amsterdam,BU0363TH04,K-buurt-Zuidwest,31500.0,published,31.5,2023,2025,56.7857
+Amsterdam:BU0363TH05,Amsterdam,BU0363TH05,K-buurt-Zuidoost,31800.0,published,31.8,2023,2025,55.4762
+Amsterdam:BU0363TJ01,Amsterdam,BU0363TJ01,Holendrecht-West,23400.0,published,23.4,2023,2025,94.6429
+Amsterdam:BU0363TJ02,Amsterdam,BU0363TJ02,Holendrecht-Oost,34900.0,published,34.9,2023,2025,39.0476
+Amsterdam:BU0363TJ03,Amsterdam,BU0363TJ03,Holendrecht-Zuid,25700.0,published,25.7,2023,2025,88.6905
+Amsterdam:BU0363TK01,Amsterdam,BU0363TK01,L-buurt,32500.0,published,32.5,2023,2025,50.9524
+Amsterdam:BU0363TK02,Amsterdam,BU0363TK02,Gaasperpark,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363TK03,Amsterdam,BU0363TK03,Gaasperplas,,not_published_reason_unspecified,.,2023,2025,
+Amsterdam:BU0363TL01,Amsterdam,BU0363TL01,Reigersbos 1,28600.0,published,28.6,2023,2025,71.0714
+Amsterdam:BU0363TL02,Amsterdam,BU0363TL02,Reigersbos 2,26700.0,published,26.7,2023,2025,81.4286
+Amsterdam:BU0363TL03,Amsterdam,BU0363TL03,Reigersbos 3,28000.0,published,28,2023,2025,74.5238
+Amsterdam:BU0363TL04,Amsterdam,BU0363TL04,Reigersbos 4,32400.0,published,32.4,2023,2025,51.4286
+Amsterdam:BU0363TM01,Amsterdam,BU0363TM01,Gein 1,25900.0,published,25.9,2023,2025,86.6667
+Amsterdam:BU0363TM02,Amsterdam,BU0363TM02,Gein 2,26700.0,published,26.7,2023,2025,81.4286
+Amsterdam:BU0363TM03,Amsterdam,BU0363TM03,Gein 3,39900.0,published,39.9,2023,2025,20.9524
+Amsterdam:BU0363TM04,Amsterdam,BU0363TM04,Gein 4,30700.0,published,30.7,2023,2025,61.7857

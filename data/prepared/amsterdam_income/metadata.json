@@ -1,0 +1,20 @@
+{
+  "version": "amsterdam-income-preparation-v1",
+  "source_url": "https://download.cbs.nl/regionale-kaarten/Tijdreeks_wijken_en_buurten_inkomenvermogen2.XLSX",
+  "source_page": "https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/wijk-en-buurtstatistieken/tijdreeks-wijk-en-buurtcijfers",
+  "source_sha256": "8c84700e530b5c52c53e8b8f589ede0f150915a52a62755634d26bf64b988ac3",
+  "source_sheet": "REGIOTABEL2",
+  "source_column": "F",
+  "source_unit": "1000 EUR",
+  "indicator": "Median standardised disposable household income",
+  "population_unit": "private households with observed income",
+  "income_year": 2023,
+  "boundary_year": 2025,
+  "score": "descending midrank percentile among all published Amsterdam source buurten; 0-100; higher means lower income; ties equal",
+  "grid_transfer": "not performed",
+  "publication": "staging only; not connected to live ranking",
+  "missing_policy": "null values; no zero substitution, no parent-area imputation, no name-based matching",
+  "missing_reason": "source non-publication confirmed by raw marker; individual cause not inferred",
+  "boundary_policy": "exact code join candidate; spatial boundaries must be checked before grid transfer",
+  "comparability": "Brussels equivalence scale, coverage and household/person weighting remain unresolved"
+}

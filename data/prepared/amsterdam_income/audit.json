@@ -1,0 +1,17 @@
+{
+  "source_neighbourhoods": 517,
+  "source_numeric": 420,
+  "source_missing": 97,
+  "website_neighbourhoods": 519,
+  "website_status_counts": {
+    "boundary_code_unmatched": 2,
+    "published": 420,
+    "not_published_reason_unspecified": 97
+  },
+  "website_unmatched_codes": [
+    "BU03639997",
+    "BU03639998"
+  ],
+  "source_codes_without_website_boundary": [],
+  "name_differences": []
+}

@@ -1,52 +1,15 @@
 # Spatial Sensitivity Lab
 
-## September 2026 review update
+Research demonstrator by Polen Biçer, Urban Studies VUB–ULB.
 
-- Adds an explicit research question and explains why Amsterdam and Brussels are analytical cases rather than a city ranking.
-- Clarifies that machine learning validates relationships with observed heat but does not authorize resource allocation.
-- Replaces zero-valued placeholders with proper loading and error states.
-- States that the median consensus remains a normative aggregation and that narrow score differences are not statistical confidence intervals.
-- Separates the Amsterdam and Brussels boundary sources and exposes the core GeoJSON and evidence files for download.
+Amsterdam uses 518 official 2022 neighbourhood polygons, direct O&S IHHINK_MED household income (API period 2024), ESA WorldCover 2021 land cover and the existing Landsat JJA 2019–2023 composite. The model calculates physical indicators directly from source rasters inside each neighbourhood. It does not transfer income to 500 m cells. 418 neighbourhoods have published income; 411 have all three indicators. Missing values remain null. Brussels is preserved and unranked pending comparable neighbourhood income.
 
-Research demonstrator for an Urban Studies thesis on equitable urban cooling and the legitimacy of AI/data-supported spatial decision tools in Amsterdam and Brussels.
+All four scenarios use surface temperature, green deficit and low income, with unchanged weights of 40/30/30, 25/20/55, 60/20/20 and 25/55/20. The scenario median is a statistical summary, not democratic agreement.
 
-## What this release changes
+See [methods](https://spatialsensitivitylab.vercel.app/methods.html), `data/prepared/amsterdam_neighbourhood/README_TR.md` and the published source metadata for definitions and limits.
 
-- Removes Istanbul, Izmir and undocumented demonstrative scores.
-- Replaces the 10-neighbourhood sample with 1,783 official-data-derived 500 m cells.
-- Uses four explicit policy scenarios plus a median consensus result.
-- Separates transparent multi-criteria priority scoring from Random Forest thermal validation.
-- Adds Landsat validation metrics, spatial-scale sensitivity and a legitimacy audit.
-- Makes the Brussels social-evidence gap explicit instead of filling it with an unsupported proxy.
-- Retires the old policy game until it can be rebuilt from validated data.
+## Reproduce
 
-## Run locally
+Install requirements-neighbourhood.txt. Run `python3 scripts/fetch_amsterdam_neighbourhood_sources.py`; also place the supplied project composite at `data/source/amsterdam_neighbourhood/landsat_lst_2019_2023_jja.tif`. Then run `python3 scripts/rebuild_priority_models.py` and `node scripts/validate-data.mjs`. The project composite is supplied in the Drive reproduction package. Original scene-selection/cloud-mask code is not available; only extraction from the supplied raster is reproducible here.
 
-```bash
-pnpm install
-pnpm dev
-```
-
-## Production check
-
-```bash
-pnpm build
-```
-
-## Data provenance
-
-Web-ready layers in `public/data/` were exported from `spatial-sensitivity-lab-thermal-final.gpkg`. The source GeoPackage is intentionally not bundled in the website repository. The reproducible export script is `scripts/export_web_data.py`.
-
-Analytical sources include ESA WorldCover 2021, Copernicus HRL Imperviousness Density 2021, JRC GHSL GHS-POP 2020, Landsat 8/9 Collection 2 Level 2, PDOK/CBS and Brussels regional open-data services. Full links are displayed in the interface.
-
-## Interpretation boundary
-
-Scores are relative within each city. They are not temperatures, causal intervention effects, cross-city performance rankings or automatic allocation decisions.
-
-This repository is independent from the earlier `Who Gets Cooled?` website.
-
-Developed by Polen Biçer, 2026.
-
-## v0.3 social diagnostic (29 September 2026)
-
-The IBSA 2025 and CBS 2025 age and household observations are transferred from neighbourhood polygons to 500 m cells by overlap area in EPSG:3035. The social score is the mean of within-city percentile ranks of age 65+ and one-person-household shares. The vulnerability-informed scenario applies 30% surface, 20% green deficit, 20% population and 30% social diagnostic. Missing social values remain null. Median taxable income (IBSA 2023) is diagnostic metadata, not a scenario input. See `data/source/README.md` and `public/methods.html`.
+Build with `npm run build`. Earlier social-diagnostic and grid-income scripts are historical and do not define the current Amsterdam model.

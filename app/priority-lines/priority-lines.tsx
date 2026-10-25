@@ -134,7 +134,7 @@ export default function PriorityLines() {
       <footer className={styles.footer}>
         <h2>What this experiment shows</h2>
         <p>These lines expose the effect of weighting choices. They do not show changes over time, actual municipal decisions, or a comparison of city performance. All four scenarios use surface temperature, green deficit and low income. The weights change; the three indicators stay the same.</p>
-        <p>Neighbourhood scores are overlap-area-weighted means of eligible 500 m cell scores. Each city is ranked separately; equal scores share a rank. Boundaries and scores are loaded from the same datasets as the full rankings, so this page does not maintain a separate copy.</p>
+        <p>Amsterdam neighbourhood scores combine published O&S median household income with temperature and green cover extracted directly from source rasters within official 2022 boundaries. Each city is ranked separately; equal scores share a rank. Boundaries and scores are loaded from the same datasets as the full rankings, so this page does not maintain a separate copy.</p>
         <div><a href="/rankings">Inspect the full ranking →</a><a href="/methods.html">Methods and sources →</a></div>
       </footer>
     </main>

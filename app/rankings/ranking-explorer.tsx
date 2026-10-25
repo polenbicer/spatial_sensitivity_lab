@@ -26,6 +26,9 @@ type NeighbourhoodRow = {
   score_green_deficit: number;
   score_income_deprivation: number;
   income: number | null;
+  incomeEur?: number | null;
+  income_median_disposable_eur?: number | null;
+  land_cover_coverage_pct?: number;
   
   income_scenario_coverage_pct?: number;
 } & Record<Scenario, number | null>;
@@ -45,6 +48,7 @@ type Summary = {
   green: number;
   lowIncome: number;
   income: number | null;
+  incomeEur: number | null;
   lst: number | null;
 };
 
@@ -57,9 +61,9 @@ function summarise(rows: NeighbourhoodRow[], scenario: Scenario): Summary[] {
     id: r.id,
     code: r.neighbourhood_code,
     name: r.neighbourhood_name,
-    cells: r.intersecting_eligible_cells,
-    area: r.eligible_overlap_area_m2,
-    coverage: r.eligible_coverage_pct,
+    cells: r.intersecting_eligible_cells ?? 0,
+    area: r.official_area_m2,
+    coverage: r.land_cover_coverage_pct ?? r.eligible_coverage_pct,
     thermalCoverage: r.thermal_coverage_pct,
     rankingEligible: r.ranking_eligible && r[scenario] != null,
     quality: r.data_quality,
@@ -68,6 +72,7 @@ function summarise(rows: NeighbourhoodRow[], scenario: Scenario): Summary[] {
     green: r.score_green_deficit,
     lowIncome: r.score_income_deprivation,
     income: r.score_income_deprivation ?? null,
+    incomeEur: r.income_median_disposable_eur ?? null,
     lst: r.summer_lst_median_c,
   }));
 }
@@ -167,7 +172,7 @@ export default function RankingExplorer() {
     [city, setCity] = useState<City>("Amsterdam"),
     [scenario, setScenario] = useState<Scenario>("priority_balanced"),
     [comparison, setComparison] = useState<Scenario>("priority_consensus"),
-    [view, setView] = useState<ViewMode>("cells"),
+    [view, setView] = useState<ViewMode>("neighbourhoods"),
     [showDetails, setShowDetails] = useState(false),
     [query, setQuery] = useState(""),
     [selected, setSelected] = useState("");
@@ -279,15 +284,15 @@ export default function RankingExplorer() {
             "movement_explanation",
             "neighbourhood_code",
             "neighbourhood",
-            "eligible_500m_cells",
-            "eligible_area_coverage_pct",
+            "median_disposable_household_income_eur",
+            "land_cover_coverage_pct",
             "thermal_coverage_pct",
             "evidence_status",
-            "mean_priority",
-            "mean_surface_temperature_score",
-            "mean_green_deficit",
-            true ? "mean_low_income_score" : "mean_low_income_score",
-            "mean_summer_lst_c",
+            "priority",
+            "surface_temperature_score",
+            "green_deficit_score",
+            true ? "low_income_score" : "low_income_score",
+            "summer_lst_median_c",
           ]
         : [
             "rank",
@@ -309,7 +314,7 @@ export default function RankingExplorer() {
             movementReason(r, scenario, comparison),
             r.code,
             r.name,
-            r.cells,
+            r.incomeEur ?? "",
             r.coverage.toFixed(1),
             r.thermalCoverage.toFixed(1),
             r.quality,
@@ -371,7 +376,7 @@ export default function RankingExplorer() {
       <section className="rankings-title">
         <p>
           Decision report ·{" "}
-          {view === "neighbourhoods" ? "neighbourhood summaries" : "500 m audit cells"}
+          {view === "neighbourhoods" ? "neighbourhoods" : "500 m audit cells"}
         </p>
         <h1>
           {city}
@@ -382,7 +387,7 @@ export default function RankingExplorer() {
           <b>{count}</b>
           <span>{view === "neighbourhoods" ? "neighbourhoods" : "eligible cells"} ranked</span>
           {view === "neighbourhoods" && excludedNeighbourhoodCount > 0 && (
-            <small>{excludedNeighbourhoodCount} additional official units shown but excluded for insufficient mapped or income coverage</small>
+            <small>{excludedNeighbourhoodCount} additional official areas shown but unranked; see evidence for missing data or coverage limits</small>
           )}
         </div>
       </section>
@@ -397,6 +402,7 @@ export default function RankingExplorer() {
               onClick={() => {
                 setCity(x);
                   setScenario("priority_balanced");
+                setView("neighbourhoods");
                 setComparison("priority_balanced");
                 setQuery("");
                 setSelected("");
@@ -419,7 +425,7 @@ export default function RankingExplorer() {
           ))}
         </fieldset>
         <label>
-          03 · Find a neighbourhood or cell
+          03 · Find a neighbourhood
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -435,9 +441,9 @@ export default function RankingExplorer() {
             setSelected("");
           }}
         >
-          Neighbourhood summaries <small>one row per official area</small>
+          Neighbourhoods <small>one row per official area</small>
         </button>
-        <button
+        {city !== "Amsterdam" && <button
           className={view === "cells" ? "active" : ""}
           onClick={() => {
             setView("cells");
@@ -445,19 +451,13 @@ export default function RankingExplorer() {
           }}
         >
           500 m cells <small>full audit detail</small>
-        </button>
+        </button>}
         <details className="ranking-explanation">
           <summary>About these spatial units</summary>
           <p>
           {view === "neighbourhoods" ? (
             <>
-              Each official neighbourhood appears once. Values are{" "}
-              <b>weighted by the exact overlap area</b> between eligible 500 m cells and the
-              neighbourhood polygon, so a tiny boundary fragment cannot count like a full cell.
-              Amsterdam uses 519 fine-grained CBS <i>buurten</i> (508 rankable here), while
-              Brussels uses 145 Monitoring des Quartiers units. These local geographies are not
-              equivalent in size or granularity, so neighbourhood ranks must not be compared
-              between cities. The three-indicator model is available for Amsterdam only. Its ranks cannot be compared with Brussels.
+              Amsterdam uses 518 official buurten valid on 24 March 2022. Income is joined directly by official code; surface temperature and green cover are calculated within these boundaries from the source rasters. Scores are normalized at neighbourhood level, then combined with the selected weights. Brussels uses 145 Monitoring des Quartiers units and remains unranked pending comparable income. These geographies differ in size and should not be compared as a city league table.
             </>
           ) : (
             <>
@@ -468,7 +468,7 @@ export default function RankingExplorer() {
           </p>
         </details>
       </section>
-      {city === "Amsterdam" && <p className="income-coverage-note" style={{padding:"16px 2vw", margin:0, borderBottom:"1px solid currentColor", lineHeight:1.5}}>All scenarios use the same three indicators. Amsterdam: 307/949 eligible cells scored. 584 lack complete income coverage; another 58 lack observed surface temperature. The value is an area-weighted proxy of neighbourhood medians, not cell household income. <a href="/methods.html">Sources and method</a>.</p>}
+      {city === "Amsterdam" && <p className="income-coverage-note" style={{padding:"16px 2vw", margin:0, borderBottom:"1px solid currentColor", lineHeight:1.5}}>All scenarios use the same three indicators and the same complete neighbourhoods. Income is the published O&S median household income; no income is transferred to 500 m cells. Missing income remains unavailable. <a href="/methods.html">Sources and method</a>.</p>}
       <section className="report-note">
         <div>
           <span>Selected weights</span>
@@ -538,68 +538,58 @@ export default function RankingExplorer() {
                       <b>Official spatial unit</b>
                       <span>
                         One row per unique official code. Brussels uses Monitoring des Quartiers;
-                        Amsterdam uses CBS neighbourhoods.
+                        Amsterdam uses the municipality’s official buurten.
                       </span>
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label="Cells">
-                      <b>Intersecting analytical units</b>
-                      <span>
-                        Distinct eligible 500 m cells overlapping the neighbourhood; cells crossing
-                        a boundary contribute proportionally to each side.
-                      </span>
-                    </ColumnHelp>
+                    <ColumnHelp label="Median income (€)"><b>Published neighbourhood household income</b><span>Amsterdam O&S IHHINK_MED, API period 2024. Disposable household income, not standardised for household size; not a poverty rate. Missing remains unavailable.</span></ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label="Coverage">
+                    <ColumnHelp label="Land-cover coverage">
                       <b>Eligible mapped area</b>
                       <span>
-                        Share of the official neighbourhood polygon represented by eligible
-                        analytical cells.
+                        Share of polygon pixels with observed WorldCover land-cover data.
                       </span>
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label="Mean priority">
-                      <b>Area-weighted summary</b>
+                    <ColumnHelp label="Priority">
+                      <b>Neighbourhood composite</b>
                       <span>
-                        Cell scores weighted by exact overlap area. It is a derived summary, not a
-                        separately modelled neighbourhood score.
+                        Selected weights applied directly to three neighbourhood percentile scores.
                       </span>
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label="Mean surface">
+                    <ColumnHelp label="Surface temperature score">
                       <b>Area-weighted surface temperature</b>
                       <span>
-                        Overlap-area-weighted mean of cell-level within-city surface-temperature scores.
+                        Within-Amsterdam percentile of the neighbourhood’s observed median summer land-surface temperature.
                       </span>
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label="Mean green deficit">
+                    <ColumnHelp label="Green deficit score">
                       <b>Area-weighted green shortage</b>
                       <span>
-                        Overlap-area-weighted mean of cell-level within-city cooling-green deficit
-                        scores.
+                        Within-Amsterdam percentile of neighbourhood green deficit, calculated from WorldCover tree and grass cover.
                       </span>
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label={true ? "Mean low income" : "Mean low income"}>
-                      <b>{true ? "Area-weighted low-income score" : "Area-weighted low income"}</b>
+                    <ColumnHelp label={true ? "Low income score" : "Low income score"}>
+                      <b>{true ? "Neighbourhood low-income score" : "Area-weighted low income"}</b>
                       <span>
-                        {true ? "Mean of eligible cell income scores. At least 99.9% of eligible overlap area must have a score. This is not neighbourhood median income." : "Overlap-area-weighted mean of cell low-income scores; not household income measured within the cell."}
+                        {true ? "Inverse percentile of the published neighbourhood median household income. Lower median income gives a higher score; no cell income is estimated." : "Overlap-area-weighted mean of cell low-income scores; not household income measured within the cell."}
                       </span>
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label="Mean summer LST">
+                    <ColumnHelp label="Median summer LST">
                       <b>Area-weighted surface temperature</b>
                       <span>
-                        Overlap-area-weighted mean of available Landsat summer LST medians. It is
-                        not air temperature.
+                        Median of observed source-raster pixels inside the neighbourhood land area. This is surface temperature.
                       </span>
                     </ColumnHelp>
                   </th>
@@ -607,8 +597,7 @@ export default function RankingExplorer() {
                     <ColumnHelp label="Evidence">
                       <b>Coverage warning</b>
                       <span>
-                        Areas below 50% analytical coverage are shown but not ranked. Thermal
-                        coverage is reported separately.
+                        Amsterdam requires published income, at least 99% land-cover coverage, at least 50% observed land-temperature coverage. These are analyst coverage choices.
                       </span>
                     </ColumnHelp>
                   </th>
@@ -643,7 +632,7 @@ export default function RankingExplorer() {
                         {r.name}
                         <small className="unit-code">{r.code}</small>
                       </td>
-                      <td>{r.cells}</td>
+                      <td>{r.incomeEur == null ? "—" : `€${r.incomeEur.toLocaleString("en-GB")}`}</td>
                       <td>{r.coverage.toFixed(0)}%</td>
                       <td>
                         <b>{(Number.isFinite(r.priority) ? r.priority.toFixed(1) : "—")}</b>
@@ -815,24 +804,22 @@ export default function RankingExplorer() {
         <div>
           <span>Method</span>
           <p>
-            Neighbourhood values are exact overlap-area-weighted summaries of eligible 500 m cells.
-            Cell scores are within-city measures and should not be compared numerically between
-            Amsterdam and Brussels.
+            Amsterdam indicators are calculated directly for official neighbourhoods. Income is joined by code, and physical indicators come from raster pixels inside each polygon. The four weighted scores use neighbourhood percentiles.
           </p>
         </div>
         <div>
           <span>Evidence boundary</span>
           <p>
-            All scenarios use low income through a neighbourhood-based proxy. The ranking does not fully measure health, housing quality, land feasibility,
+            All scenarios use lower neighbourhood median household income as a relative income indicator. The ranking does not fully measure health, housing quality, land feasibility,
             displacement risk or residents’ preferences. Landsat records land-surface—not
             air—temperature.
           </p>
         </div>
         <div>
-          <span>Sources · income 2023 · boundaries 2025</span>
+          <span>Sources · O&S API period 2024 · Amsterdam boundaries 2022</span>
           <p>
             ESA WorldCover 2021 ·
-            Landsat 8/9 JJA 2019–2023 · CBS income 2023 · CBS boundaries 2025 · PDOK / perspective.brussels.
+            Landsat 8/9 JJA 2019–2023 · Amsterdam O&S IHHINK_MED · official Amsterdam boundaries valid on 24 March 2022 · perspective.brussels.
           </p>
         </div>
       </section>
@@ -852,15 +839,13 @@ export default function RankingExplorer() {
           <article>
             <b>02 · Summary hides variation</b>
             <p>
-              A neighbourhood mean improves legibility but can conceal hot or underserved cells. The
-              500 m audit view preserves that variation.
+              Neighbourhood medians and cover shares can conceal differences between streets and households. They do not describe every resident’s circumstances.
             </p>
           </article>
           <article>
-            <b>03 · The grid shapes the result</b>
+            <b>03 · Boundaries shape the result</b>
             <p>
-              Five-hundred-metre cells simplify continuous urban conditions. Boundaries and rank
-              order may change at another spatial resolution.
+              Official neighbourhoods group continuous urban conditions. Different boundaries or spatial scales can change both indicator values and rank order.
             </p>
           </article>
           <article>

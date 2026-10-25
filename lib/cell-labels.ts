@@ -13,9 +13,10 @@ export function buildCellLabels(features: readonly { properties: Record<string, 
     groups.set(key, group);
   }
   const labels = new Map<string, string>();
+  for (const {properties:p} of features) if (p.spatial_unit === "buurt") labels.set(String(p.grid_id ?? p.id), String(p.neighbourhood_name));
   for (const group of groups.values()) {
     group.sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
-    group.forEach(({ id, name }, i) => labels.set(id, `${name} · Cell ${i + 1}`));
+    group.forEach(({ id, name }, i) => labels.has(id) ? undefined : labels.set(id, `${name} · Cell ${i + 1}`));
   }
   return labels;
 }

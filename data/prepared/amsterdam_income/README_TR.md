@@ -1,3 +1,7 @@
+# ARŞİV — GÜNCEL MODEL DEĞİL
+
+Bu klasör önceki CBS 2023 gelir–500 metre grid çalışmasına aittir. Güncel Amsterdam modeli `data/prepared/amsterdam_neighbourhood/README_TR.md` ve `scripts/build_amsterdam_neighbourhoods.py` içindedir. Aşağıdaki eski açıklama geçmiş işlemi kaydetmek için korunmuştur.
+
 # Güncel model: üç gösterge, dört ağırlık seçeneği
 
 Tek gösterge seti: yüzey sıcaklığı, yeşil alan eksikliği ve düşük gelir. Ayrı bir gelir modeli yok. Nüfus ve geçirimsiz yüzey puanları sıralamadan çıkarıldı.

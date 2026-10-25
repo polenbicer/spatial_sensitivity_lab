@@ -57,7 +57,7 @@ def main():
         score=100*(n-rank)/(n-1) if n>1 else 50
         r['score_income_deprivation']=round(float(score),4)
         p=eligible_geoms[r['grid_id']][1]
-        r['priority_income']=round(.4*p['score_impervious']+.3*p['score_green_deficit']+.3*score,4)
+        r['priority_income']=None  # temporary transfer output; canonical rebuild below calculates all four scenarios
     bygrid={r['grid_id']:r for r in gridrows}
     cellids=list(eligible_geoms);cellpolys=[eligible_geoms[k][0] for k in cellids];celltree=STRtree(cellpolys)
     neighrows=[]
@@ -84,4 +84,7 @@ def main():
     (SRC/'grid_audit.json').write_text(json.dumps(metadata,indent=2))
     print(json.dumps({k:metadata[k] for k in ['grid_counts','eligible_cells','scored_eligible_cells','unscored_eligible_cells','neighbourhoods_with_scenario']},indent=2))
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    main()
+    from rebuild_priority_models import main as rebuild_all_scenarios
+    rebuild_all_scenarios()

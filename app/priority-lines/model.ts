@@ -1,9 +1,9 @@
 export type City = 'Brussels' | 'Amsterdam';
 export const SCENARIOS = [
-  { field: 'priority_surface_led', title: 'Surfaces first', weights: '60 / 20 / 20' },
+  { field: 'priority_heat_led', title: 'Surface temperature first', weights: '60 / 20 / 20' },
   { field: 'priority_balanced', title: 'Balanced', weights: '40 / 30 / 30' },
   { field: 'priority_nature_deficit_led', title: 'Green deficit first', weights: '25 / 55 / 20' },
-  { field: 'priority_population_led', title: 'Population first', weights: '25 / 20 / 55' },
+  { field: 'priority_income_led', title: 'Low income first', weights: '25 / 20 / 55' },
 ] as const;
 export type ScoreField = typeof SCENARIOS[number]['field'];
 export type Row = {

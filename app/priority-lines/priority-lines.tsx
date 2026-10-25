@@ -5,7 +5,7 @@ import { exampleIds, mapPaths, rankCity, SCENARIOS, type City, type GeoData, typ
 import styles from './priority-lines.module.css';
 
 export default function PriorityLines() {
-  const [city, setCity] = useState<City>('Brussels');
+  const [city, setCity] = useState<City>('Amsterdam');
   const [rows, setRows] = useState<Row[]>([]);
   const [geography, setGeography] = useState<GeoData>({ features: [] });
   const [selection, setSelection] = useState('');
@@ -71,7 +71,7 @@ export default function PriorityLines() {
       <header className={styles.header}>
         <p className={styles.eyebrow}>Cartographic experiment / Brussels &amp; Amsterdam</p>
         <h1>Same city.<br />Different priorities.</h1>
-        <p className={styles.intro}>This chart compares the four population-based scenarios. Amsterdam’s income model is available in Full rankings. Choose a neighbourhood and follow its line across these four scenarios. The place stays the same; the importance assigned to each indicator changes.</p>
+        <p className={styles.intro}>Every scenario uses surface temperature, green deficit and low income; only the weights change. Choose a neighbourhood and follow its line across these four scenarios. The place stays the same; the importance assigned to each indicator changes.</p>
       </header>
       <div className={styles.how}>
         <p><b>01 · Find a place.</b> Select a name or click a neighbourhood on the map.</p>
@@ -91,7 +91,7 @@ export default function PriorityLines() {
         <button type="button" disabled={!examples.length} aria-pressed={playing} onClick={() => { if (!playing) setSelection(examples[0]); setPlaying(!playing); }}>{playing ? 'Pause examples' : 'Play six examples'}</button>
         <button type="button" disabled={!count} aria-pressed={showContext} onClick={() => setShowContext(!showContext)}>Other lines: {showContext ? 'on' : 'off'}</button>
       </section>
-      {error ? <p role="alert" className={styles.status}>The map data could not be loaded. <button type="button" onClick={() => setAttempt(attempt + 1)}>Try again</button></p> : !count ? <p role="status" className={styles.status}>Loading neighbourhood boundaries and scenario scores…</p> : <>
+      {error ? <p role="alert" className={styles.status}>The map data could not be loaded. <button type="button" onClick={() => setAttempt(attempt + 1)}>Try again</button></p> : !count ? <p role="status" className={styles.status}>No ranking available: comparable low-income data are missing for this city.</p> : <>
         <section className={styles.visuals} aria-label={`${city} map and scenario ranks`}>
           <div className={styles.mapPanel}>
             <h2>{city} <span>Find a place</span></h2>
@@ -100,7 +100,7 @@ export default function PriorityLines() {
               {paths.map(path => {
                 const eligible = rankedIds.has(path.id);
                 return <path key={path.id} d={path.path} fillRule="evenodd" className={`${styles.area} ${selected?.id === path.id ? styles.chosenArea : ''} ${!eligible ? styles.excluded : ''}`}
-                  role={eligible ? 'button' : undefined} tabIndex={eligible ? 0 : undefined} aria-label={`${path.neighbourhood_name}${eligible ? '' : ' — not ranked: insufficient mapped coverage'}`} aria-pressed={eligible ? selected?.id === path.id : undefined}
+                  role={eligible ? 'button' : undefined} tabIndex={eligible ? 0 : undefined} aria-label={`${path.neighbourhood_name}${eligible ? '' : ' — not ranked: incomplete three-indicator coverage'}`} aria-pressed={eligible ? selected?.id === path.id : undefined}
                   onClick={() => eligible && choose(path.id)} onKeyDown={event => { if (eligible && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); choose(path.id); } }}>
                   <title>{path.neighbourhood_name}{eligible ? '' : ' · not ranked'}</title>
                 </path>;
@@ -110,7 +110,7 @@ export default function PriorityLines() {
           </div>
           <div className={styles.chartPanel}>
             <h2>Follow the line <span>Within-city rank</span></h2>
-            <p className={styles.weightKey}>Weights: sealed surface / green deficit / population (%)</p>
+            <p className={styles.weightKey}>Weights: surface temperature / green deficit / low income (%)</p>
             <div className={styles.chartScroll} tabIndex={0} role="region" aria-label="Scenario rank chart; scroll horizontally on small screens">
               <div className={styles.chartInner}>
                 <div className={styles.scenarioLabels}>{SCENARIOS.map(scenario => <div key={scenario.field}><b>{scenario.title}</b><span>{scenario.weights}</span></div>)}</div>
@@ -133,7 +133,7 @@ export default function PriorityLines() {
       </>}
       <footer className={styles.footer}>
         <h2>What this experiment shows</h2>
-        <p>These lines expose the effect of weighting choices. They do not show changes over time, actual municipal decisions, or a comparison of city performance. The four existing scenarios use sealed surfaces, green deficit and population. Age 65+ and one-person households are not included in this experiment.</p>
+        <p>These lines expose the effect of weighting choices. They do not show changes over time, actual municipal decisions, or a comparison of city performance. All four scenarios use surface temperature, green deficit and low income. The weights change; the three indicators stay the same.</p>
         <p>Neighbourhood scores are overlap-area-weighted means of eligible 500 m cell scores. Each city is ranked separately; equal scores share a rank. Boundaries and scores are loaded from the same datasets as the full rankings, so this page does not maintain a separate copy.</p>
         <div><a href="/rankings">Inspect the full ranking →</a><a href="/methods.html">Methods and sources →</a></div>
       </footer>

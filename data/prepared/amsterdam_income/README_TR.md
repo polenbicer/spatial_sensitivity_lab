@@ -1,34 +1,32 @@
-# Amsterdam gelir modeli — grid ve site dosyaları
+# Güncel model: üç gösterge, dört ağırlık seçeneği
 
-Kaynak: CBS, özel hanelerin medyan standartlaştırılmış kullanılabilir geliri, 2023; mahalle sınırları 2025. Kaynak bin avro, hazırlanan gelir alanları avro. 517 kaynak mahalleden 420’sinde yayımlanmış gelir var, 97’sinde yok. Sitedeki iki ek su alanı kaynakta eşleşmiyor.
+Tek gösterge seti: yüzey sıcaklığı, yeşil alan eksikliği ve düşük gelir. Ayrı bir gelir modeli yok. Nüfus ve geçirimsiz yüzey puanları sıralamadan çıkarıldı.
 
-- Resmî Excel: https://download.cbs.nl/regionale-kaarten/Tijdreeks_wijken_en_buurten_inkomenvermogen2.XLSX
-- Kaynak açıklaması: https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/wijk-en-buurtstatistieken/tijdreeks-wijk-en-buurtcijfers
-- Sınırlar: https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/wijk-en-buurtkaart-2025
-- Resmî sınır servisi: https://service.pdok.nl/cbs/wijken-en-buurten-2025/wfs/v1_0
+| Seçenek | Yüzey sıcaklığı | Yeşil alan eksikliği | Düşük gelir |
+|---|---:|---:|---:|
+| Dengeli | %40 | %30 | %30 |
+| Düşük gelir öncelikli | %25 | %20 | %55 |
+| Yüzey sıcaklığı öncelikli | %60 | %20 | %20 |
+| Yeşil alan eksikliği öncelikli | %25 | %55 | %20 |
 
-## Aktarım
-EPSG:3035’te grid ile mahallelerin tam poligon kesişimleri hesaplandı. Mahalle medyanları kesişim alanlarıyla ağırlıklandırıldı. Bu sonuç **gerçek hücre medyan geliri değil, mahalle gelirine dayalı temsili bir göstergedir**. Hane sayısı veya mahalle içi gelir dağılımı tahmin edilmedi.
+Sıcaklık: Landsat 8/9, Haziran–Ağustos 2019–2023 gözlemlerinin medyan yüzey sıcaklığı. Geçirimsiz yüzey oranı kullanılmaz. Şehir içindeki gözlemi bulunan uygun hücreler arasında 0–100 sıra puanı hesaplanır; yüksek sıcaklık yüksek puan verir.
 
-Hücre alanının en az %99,9’unda yayımlanmış gelir bulunması gerekiyor. Bu araştırmacının tamlık tercihidir, CBS kuralı değildir. %0,1 geometri toleransıdır. Eksik değerler sıfıra çevrilmedi, komşu/üst bölge değerleriyle doldurulmadı. Kısmi kapsamdaki hücrelerin gelir göstergesi ve gelir puanı null bırakıldı. Yayımlanmama nedeni her mahalle için ayrıca bilinmiyor.
+Yeşil alan eksikliği: mevcut ESA WorldCover 2021 kaynaklı şehir içi puan korunur.
 
-Resmî CBS/PDOK 2025 sınırları kontrol edildi: 519 kod eşleşiyor; aynı kodun site geometrisiyle örtüşmesi en az %99,5. Sonuç boundary_audit.json dosyasında.
+Gelir: CBS 2023 medyan standartlaştırılmış kullanılabilir hane geliri, 2025 mahalle sınırları. 420 mahallede gelir var, 97’sinde yayımlanmamış. İki su alanı kaynakta eşleşmiyor. Mahalle medyanları EPSG:3035 kesişim alanıyla grid’e aktarılır. Bu gerçek hücre medyanı değil, temsili göstergedir. Gelir kapsamı en az %99,9 olmalıdır; bu araştırmacının geometri toleransıdır, CBS kuralı değildir. Düşük gelir yüksek puan verir. Gelir yüzdeliğinin referansı 365 uygun hücredir.
 
-## Sonuç ve puanlama
-949 uygun hücrenin 365’i puanlandı; 584’ü yetersiz gelir kapsamı nedeniyle puansız. 1049 toplam hücrenin diğer 100’ü mevcut çevresel analizde zaten kapsam dışı. Kapsam alan yüzdesidir, hane yüzdesi değildir.
+949 uygun Amsterdam hücresinin 307’sinde üç gösterge de var. 584’ünde yeterli gelir kapsamı yok; diğer 58’inde gelir var fakat sıcaklık gözlemi yok. Dört senaryoda da aynı 307 hücre kullanılır. Eksik veri sıfıra çevrilmez. 118 mahalle sıralanabilir; mahalle için uygun kesişim alanının %99,9’unda model puanı ve mahallenin en az %50’sinde analitik kapsam gerekir.
 
-365 tam kapsamlı uygun hücrenin gelir göstergesi ters sıraya dizilir; eşit gelirler eşit puan alır. 0–100 ölçeğinde düşük gelir yüksek puan verir. Model: **%40 yüzey baskısı + %30 yeşil alan eksikliği + %30 düşük gelir**. Ağırlıklar analitik tercihtir. Bu model nüfus, 65+ veya yalnız yaşama göstergesi kullanmaz; yoksulluk oranını veya sağlık riskini ölçmez.
+Brüksel’de karşılaştırılabilir gelir bulunana kadar bütün sıralamalar puansızdır; eski nüfus hesabına geri dönülmez. Priority Lines da aynı üç göstergeli dört senaryoyu kullanır.
 
-Mahalle senaryo özeti, uygun grid hücrelerinin alan ağırlıklı puanıdır. Uygun kesişim alanının en az %99,9’u gelir puanına sahip olmalıdır; 125 mahallede özet hesaplanabildi. Mevcut analitik alan kapsamı kuralı ayrıca geçerlidir. Bu özet özgün CBS mahalle medyanıyla aynı şey değildir. Senaryo sıra değişimleri iki seçenekte de puanı bulunan yerler arasında yeniden hesaplanır.
+GeoJSON dosyaları artık güncel puanları doğrudan içerir; overlay birleştirmek gerekmez. Eski modelin Random Forest ve ölçek duyarlılığı sonuçları yeni hesabın doğrulaması olarak gösterilmez.
 
-Brüksel için karşılaştırılabilir mahalle geliri henüz eklenmedi; Brüksel gelir modeli ve şehirler arası gelir sıralaması yok. Eski nüfuslu senaryolar karşılaştırma için korunuyor. Priority Lines ve dört senaryo medyanı eski nüfuslu senaryoları özetliyor.
+Kaynaklar:
+- https://download.cbs.nl/regionale-kaarten/Tijdreeks_wijken_en_buurten_inkomenvermogen2.XLSX
+- https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/wijk-en-buurtstatistieken/tijdreeks-wijk-en-buurtcijfers
+- https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/wijk-en-buurtkaart-2025
+- https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2
+- https://worldcover2021.esa.int/
 
-## Dosyalar
-- public/data/amsterdam_income.json: kaynak, yöntem, SHA256, kapsam, ağırlıklar; grid_rows ve neighbourhood_rows. Siteye grid_id / id ile eklenir.
-- public/data/amsterdam_income_grid.csv: tüm Amsterdam grid kayıtları. Boş hücreler eksik veridir.
-- grid_audit.json ve boundary_audit.json: güncel kontroller.
-- amsterdam_income_neighbourhoods_2023.csv/json: özgün mahalle gelirleri; 420 mahalle arasındaki hazırlık puanı grid puanının referansı değildir.
-- metadata.json ve audit.json: ilk mahalle hazırlığına ilişkin kaynak tanımı ve eşleştirme.
-
-## Yeniden üretme
-Önce scripts/prepare_amsterdam_income.py, sonra scripts/build_amsterdam_income_grid.py çalıştırılır. İlk script kaynak Excel’i, ikinci script mevcut grid ve mahalle geometrilerini ve boundary_audit.json kontrolünü kullanır. Gereken uzamsal paketler requirements-social.txt içinde. node scripts/validate-data.mjs formülü, eksikleri, puan yönünü ve kayıt sayılarını denetler.
+Yeniden hesaplama: python3 scripts/rebuild_priority_models.py
+Kontrol: node scripts/validate-data.mjs

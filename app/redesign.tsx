@@ -1,16 +1,10 @@
 "use client";
-import { applyIncome, type IncomeOverlay } from "../lib/income-data";
+import {SCENARIOS, type Scenario} from "../lib/priority-model";
 import { buildCellLabels } from "../lib/cell-labels";
 import { useEffect, useMemo, useState } from "react";
 
 type City = "Amsterdam" | "Brussels";
-type Scenario =
-  | "priority_income"
-  | "priority_consensus"
-  | "priority_balanced"
-  | "priority_population_led"
-  | "priority_surface_led"
-  | "priority_nature_deficit_led";
+
 type Feature = {
   type: "Feature";
   geometry: unknown;
@@ -19,34 +13,7 @@ type Feature = {
 type Collection = { type: "FeatureCollection"; features: Feature[] };
 
 const CITIES: City[] = ["Brussels", "Amsterdam"];
-const SCENARIOS: Record<Scenario, { title: string; weights: string; note: string }> = {
-  priority_income: { title: "Income model · Amsterdam", weights: "40% surface · 30% green deficit · 30% low income", note: "Lower neighbourhood income increases priority. The grid value is an area-weighted proxy of neighbourhood medians, not measured cell income. Only cells with at least 99.9% income coverage are scored. These weights are an analytical choice." },
-  priority_consensus: {
-    title: "Scenario median",
-    weights: "Median of four scenarios",
-    note: "A statistical median across four policy logics—not a political or public consensus. An analyst seeking a compromise summary might defend this choice.",
-  },
-  priority_balanced: {
-    title: "Balanced proxy weighting",
-    weights: "40% surface · 30% green deficit · 30% population",
-    note: "Distributes attention across three mapped proxies. Equal treatment of indicators is not, by itself, a complete theory of distributive justice. A planner seeking balance among mapped environmental and exposure proxies might defend it.",
-  },
-  priority_population_led: {
-    title: "Population-led",
-    weights: "25% surface · 20% green deficit · 55% population",
-    note: "Prioritises where more residents are potentially exposed. A decision-maker aiming to reach the largest number of people might defend it.",
-  },
-  priority_surface_led: {
-    title: "Surface-led",
-    weights: "60% surface · 20% green deficit · 20% population",
-    note: "Prioritises sealed and impervious urban surfaces. An infrastructure or heat-mitigation programme focused on physical surfaces might defend it.",
-  },
-  priority_nature_deficit_led: {
-    title: "Nature-deficit-led",
-    weights: "25% surface · 55% green deficit · 20% population",
-    note: "Prioritises the greatest relative shortage of cooling green cover. A green-infrastructure equity programme might defend it.",
-  },
-};
+
 const SOURCES = [
   ["Brussels neighbourhood boundaries", "IBSA / perspective.brussels via Brussels Open Data · CC0 1.0", "https://opendata.brussels.be/explore/dataset/quartiers-du-monitoring-des-quartiers-ibsa-perspective-rbc/"],
   [
@@ -61,18 +28,12 @@ const SOURCES = [
   ],
   ["Land cover", "ESA WorldCover 2021 · 10 m", "https://worldcover2021.esa.int/"],
   [
-    "Imperviousness",
-    "Copernicus HRL 2021 · 10 m",
-    "https://land.copernicus.eu/en/products/high-resolution-layer-imperviousness/imperviousness-density-2021",
-  ],
-  ["Population", "JRC GHSL GHS-POP 2020 · 100 m", "https://data.jrc.ec.europa.eu/collection/ghsl"],
-  [
     "Surface temperature",
     "Landsat 8/9 C2 L2 · JJA 2019–2023",
     "https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2",
   ],
 
-  ["Amsterdam income · income model", "CBS · median standardised disposable household income · 2023", "https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/wijk-en-buurtstatistieken/tijdreeks-wijk-en-buurtcijfers"],
+  ["Amsterdam income · all four scenarios", "CBS · median standardised disposable household income · 2023", "https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/wijk-en-buurtstatistieken/tijdreeks-wijk-en-buurtcijfers"],
   ["Amsterdam income · original workbook", "CBS neighbourhood income and wealth time series · XLSX", "https://download.cbs.nl/regionale-kaarten/Tijdreeks_wijken_en_buurten_inkomenvermogen2.XLSX"],
   ["Brussels income · municipality only, not scored", "Statbel · administrative disposable income · neighbourhood comparison unresolved", "https://statbel.fgov.be/fr/themes/datalab/revenu-disponible-administratif"],
   ["Brussels income · alternative definition, not scored", "IBSA indicator 2498 · income after tax; not equivalent to disposable income", "https://monitoringdesquartiers.brussels/Indicator/IndicatorPage/2498?tab=Sheet&SubTheme=28"],
@@ -103,7 +64,7 @@ function MapFrame({
     setHtml(
       `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>html,body,#map{height:100%;margin:0}.leaflet-container{font:13px Arial,sans-serif;background:#dce3df}.leaflet-popup-content-wrapper,.leaflet-popup-tip{border-radius:0}.legend{background:#fff;border:1px solid #111;padding:9px;line-height:19px}.legend i{display:inline-block;width:14px;height:14px;margin-right:7px;vertical-align:-2px}</style></head><body><div id="map"></div><script>
  const cellLabels=${JSON.stringify(Object.fromEntries(cellLabels))};const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},selected=${JSON.stringify(selected)};const map=L.map('map',{zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);
- Promise.all([fetch('/data/amsterdam_income.json').then(r=>r.json()),fetch('/data/grid_priority.geojson').then(r=>{if(!r.ok)throw Error('grid');return r.json()}),fetch('/data/project_context.geojson').then(r=>{if(!r.ok)throw Error('context');return r.json()})]).then(([income,grid,projects])=>{const byId=new Map(income.grid_rows.map(r=>[r.grid_id,r]));grid.features.forEach(f=>Object.assign(f.properties,byId.get(f.properties.grid_id)||{}));const vals=[['#440154','0–20'],['#3b528b','20–40'],['#21918c','40–60'],['#5ec962','60–80'],['#fde725','80–100']];const layer=L.geoJSON(grid,{filter:f=>f.properties.city===city,style:f=>{const v=f.properties[field],c=v==null?'#777':v<20?'#440154':v<40?'#3b528b':v<60?'#21918c':v<80?'#5ec962':'#fde725';return{fillColor:c,fillOpacity:f.properties.eligible?.76:.35,color:f.properties.grid_id===selected?'#111':'rgba(255,255,255,.72)',weight:f.properties.grid_id===selected?3:.55}},onEachFeature:(f,l)=>{const p=f.properties,v=p[field];l.bindPopup('<b>'+(cellLabels[p.grid_id]||p.neighbourhood_name||'500 m cell')+'</b><br>'+'Priority'+' '+(v==null?'No data':Number(v).toFixed(1)+'/100')+'<br>Surface pressure '+fmt(p.score_impervious)+'<br>Green deficit '+fmt(p.score_green_deficit)+(field==='priority_income'?'<br>Low income '+fmt(p.score_income_deprivation)+'<br>Income proxy '+(p.income_proxy_eur==null?'Not scored':'€'+Number(p.income_proxy_eur).toLocaleString('en-GB'))+'<br>Income coverage '+percent(p.income_coverage_pct):'<br>Population exposure '+fmt(p.score_population))+'<br>Summer surface temperature '+(p.summer_lst_median_c==null?'Not available':Number(p.summer_lst_median_c).toFixed(1)+' °C')+'<br>Top-quintile scenarios '+(p.top20_scenario_count??'—')+'/4');l.on('click',()=>parent.postMessage({type:'grid-select',id:p.grid_id},'*'));l.on('add',()=>{const el=l.getElement();if(el){el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label',(cellLabels[p.grid_id]||p.neighbourhood_name||'Grid cell')+' '+(v==null?'no data':Number(v).toFixed(1)+' out of 100'));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();l.openPopup();parent.postMessage({type:'grid-select',id:p.grid_id},'*')}})}})}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]});L.geoJSON(projects,{filter:f=>f.properties.city===city,style:{color:'#5b22b4',weight:3,fillOpacity:.06,dashArray:'7 4'}}).addTo(map);const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>'+'Relative priority'+'</b><br>'+vals.map(x=>'<i style="background:'+x[0]+'"></i>'+x[1]).join('<br>');return d};legend.addTo(map)}).catch(()=>{document.getElementById('map').textContent='Map data could not be loaded. Refresh the page to retry.'});function fmt(v){return v==null?'No data':Number(v).toFixed(0)+'/100'}function percent(v){return v==null?'No data':Number(v).toFixed(1)+'%'}
+ Promise.all([fetch('/data/grid_priority.geojson').then(r=>{if(!r.ok)throw Error('grid');return r.json()}),fetch('/data/project_context.geojson').then(r=>{if(!r.ok)throw Error('context');return r.json()})]).then(([grid,projects])=>{const vals=[['#440154','0–20'],['#3b528b','20–40'],['#21918c','40–60'],['#5ec962','60–80'],['#fde725','80–100']];const layer=L.geoJSON(grid,{filter:f=>f.properties.city===city,style:f=>{const v=f.properties[field],c=v==null?'#777':v<20?'#440154':v<40?'#3b528b':v<60?'#21918c':v<80?'#5ec962':'#fde725';return{fillColor:c,fillOpacity:f.properties.eligible?.76:.35,color:f.properties.grid_id===selected?'#111':'rgba(255,255,255,.72)',weight:f.properties.grid_id===selected?3:.55}},onEachFeature:(f,l)=>{const p=f.properties,v=p[field];l.bindPopup('<b>'+(cellLabels[p.grid_id]||p.neighbourhood_name||'500 m cell')+'</b><br>'+'Priority'+' '+(v==null?'No data':Number(v).toFixed(1)+'/100')+'<br>Surface temperature '+fmt(p.score_surface_temperature)+'<br>Green deficit '+fmt(p.score_green_deficit)+(true?'<br>Low income '+fmt(p.score_income_deprivation)+'<br>Income proxy '+(p.income_proxy_eur==null?'Not scored':'€'+Number(p.income_proxy_eur).toLocaleString('en-GB'))+'<br>Income coverage '+percent(p.income_coverage_pct):'<br>Low income '+fmt(p.score_income_deprivation))+'<br>Summer surface temperature '+(p.summer_lst_median_c==null?'Not available':Number(p.summer_lst_median_c).toFixed(1)+' °C')+'<br>Top-quintile scenarios '+(p.top20_scenario_count??'—')+'/4');l.on('click',()=>parent.postMessage({type:'grid-select',id:p.grid_id},'*'));l.on('add',()=>{const el=l.getElement();if(el){el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label',(cellLabels[p.grid_id]||p.neighbourhood_name||'Grid cell')+' '+(v==null?'no data':Number(v).toFixed(1)+' out of 100'));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();l.openPopup();parent.postMessage({type:'grid-select',id:p.grid_id},'*')}})}})}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]});L.geoJSON(projects,{filter:f=>f.properties.city===city,style:{color:'#5b22b4',weight:3,fillOpacity:.06,dashArray:'7 4'}}).addTo(map);const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>'+'Relative priority'+'</b><br>'+vals.map(x=>'<i style="background:'+x[0]+'"></i>'+x[1]).join('<br>');return d};legend.addTo(map)}).catch(()=>{document.getElementById('map').textContent='Map data could not be loaded. Refresh the page to retry.'});function fmt(v){return v==null?'No data':Number(v).toFixed(0)+'/100'}function percent(v){return v==null?'No data':Number(v).toFixed(1)+'%'}
  </script></body></html>`
         .replace("Top-quintile scenarios", "Scenarios scoring ≥80")
         .replaceAll("#f07a4b", "#5ec962"),
@@ -121,8 +82,8 @@ function MapFrame({
 
 export default function ResearchInterface() {
   const [city, setCity] = useState<City>("Amsterdam"),
-    [scenario, setScenario] = useState<Scenario>("priority_income"),
-    [comparisonScenario, setComparisonScenario] = useState<Scenario>("priority_population_led"),
+    [scenario, setScenario] = useState<Scenario>("priority_balanced"),
+    [comparisonScenario, setComparisonScenario] = useState<Scenario>("priority_income_led"),
     [data, setData] = useState<Collection | null>(null),
     [evidence, setEvidence] = useState<any>(null),
     [selected, setSelected] = useState(""),
@@ -135,14 +96,12 @@ export default function ResearchInterface() {
         if (!r.ok) throw new Error("grid");
         return r.json() as Promise<Collection>;
       }),
-      fetch("/data/amsterdam_income.json").then(r => { if (!r.ok) throw new Error("income"); return r.json(); }),
       fetch("/data/evidence.json").then((r) => {
         if (!r.ok) throw new Error("evidence");
         return r.json();
       }),
     ])
-      .then(([g, income, e]) => {
-        applyIncome(g, null, income as IncomeOverlay);
+      .then(([g, e]) => {
         setData(g);
         setEvidence(e);
       })
@@ -258,7 +217,7 @@ export default function ResearchInterface() {
                 className={x === city ? "active" : ""}
                 onClick={() => {
                   setCity(x);
-                  setScenario(x === "Amsterdam" ? "priority_income" : "priority_balanced");
+                  setScenario("priority_balanced");
                   setSelected("");
                   setComparisonScenario("priority_balanced");
                 }}
@@ -270,7 +229,7 @@ export default function ResearchInterface() {
           </div>
           <p className="eyebrow">02 · Policy logic</p>
           <div className="scenario-list">
-            {(Object.keys(SCENARIOS) as Scenario[]).filter(k => city === "Amsterdam" || k !== "priority_income").map((k) => (
+            {(Object.keys(SCENARIOS) as Scenario[]).map((k) => (
               <button
                 className={k === scenario ? "active" : ""}
                 onClick={() => setScenario(k)}
@@ -281,7 +240,8 @@ export default function ResearchInterface() {
               </button>
             ))}
           </div>
-          {city === "Amsterdam" && <p>Income: 365 of 949 eligible cells scored. Missing or incomplete income stays unranked. <a href="/methods.html">Method and coverage</a>.</p>}
+          {city === "Amsterdam" && <p>All three indicators: 307 of 949 eligible cells scored. Missing heat or income stays unranked. <a href="/methods.html">Method and coverage</a>.</p>}
+          {city === "Brussels" && <p>No ranking: comparable low-income data are not integrated yet. Missing income is not zero.</p>}
           <div className="policy-note">
             <b>{SCENARIOS[scenario].title}</b>
             <p>{SCENARIOS[scenario].note}</p>
@@ -290,7 +250,7 @@ export default function ResearchInterface() {
         </aside>
         <div className="map-wrap">
           <div className="panel-head">
-            <span>500 m decision surface</span>
+            <span>500 m analytical grid</span>
             <span>
               {data ? `${cells.length} cells · within-city scores` : "Loading spatial evidence…"}
             </span>
@@ -324,9 +284,9 @@ export default function ResearchInterface() {
                   </div>
                 </div>
                 {[
-                  ["Surface pressure", "score_impervious"],
+                  ["Surface temperature", "score_surface_temperature"],
                   ["Green deficit", "score_green_deficit"],
-                  scenario === "priority_income" ? ["Low income", "score_income_deprivation"] : ["Population exposure", "score_population"],
+                  true ? ["Low income", "score_income_deprivation"] : ["Low income", "score_income_deprivation"],
                 ].map(([label, key]) => (
                   <div className="meter" key={key}>
                     <span>
@@ -395,7 +355,7 @@ export default function ResearchInterface() {
           <label>
             Alternative scenario
             <select value={comparisonScenario} onChange={(e) => setComparisonScenario(e.target.value as Scenario)}>
-              {(Object.keys(SCENARIOS) as Scenario[]).filter((key) => key !== scenario && (city === "Amsterdam" || key !== "priority_income")).map((key) => (
+              {(Object.keys(SCENARIOS) as Scenario[]).filter((key) => key !== scenario).map((key) => (
                 <option key={key} value={key}>{SCENARIOS[key].title}</option>
               ))}
             </select>
@@ -421,7 +381,7 @@ export default function ResearchInterface() {
       <section className="blindspot">
         <p className="eyebrow">What the map cannot see</p>
         <h3>Income coverage limits what this map can show.</h3>
-        <div><p>Amsterdam’s income model uses 2023 CBS neighbourhood income transferred to the 500 m grid. It scores 365 of 949 eligible cells; the other 584 lack complete income coverage. Grey means unscored, not low priority.</p><p>The income model combines surface pressure, green deficit and low income. Earlier population-based scenarios remain available for comparison. Brussels has no income model yet. Health, housing and residents’ knowledge need separate evidence.</p></div>
+        <div><p>Amsterdam’s income model uses 2023 CBS neighbourhood income transferred to the 500 m grid. It scores 307 of 949 eligible cells. 584 lack complete income coverage; a further 58 lack surface-temperature observations. Grey means unscored, not low priority.</p><p>Every scenario combines surface temperature, green deficit and low income. Only the weights change. Brussels has no ranking until comparable income is available. Health, housing and residents’ knowledge need separate evidence.</p></div>
       </section>
       <section className="data-legibility" aria-labelledby="legibility-title">
         <header>
@@ -434,11 +394,11 @@ export default function ResearchInterface() {
             <b role="columnheader">Dimension</b><b role="columnheader">Brussels</b><b role="columnheader">Amsterdam</b>
           </div>
           {[
-            ["Sealed surface", "Included", "Included"],
+            
             ["Cooling green", "Included", "Included"],
-            ["Population exposure", "Included", "Included"],
+            ["Low income", "Included", "Included"],
             ["Observed summer surface heat", "Included", "Included"],
-            ["Income", "Comparable neighbourhood data under review; not scored", "2023 income proxy in a separate model; 365/949 cells scored"],
+            ["Income", "Comparable neighbourhood data under review; not scored", "2023 neighbourhood income proxy; 365 cells have income, 307 have all three indicators"],
             ["Health", "Availability and spatial comparability to verify", "Not represented in this release"],
             ["Housing quality", "Availability and spatial comparability to verify", "Not represented in this release"],
             ["Residents’ situated knowledge", "Not yet represented", "Not yet represented"],
@@ -449,61 +409,8 @@ export default function ResearchInterface() {
           ))}
         </div>
       </section>
-      <section className="evidence" id="evidence">
-        <div>
-          <p className="eyebrow">Independent thermal validation</p>
-          <h3>Does the model correspond to observed heat?</h3>
-          <p>
-            Random Forest predicts Landsat summer land-surface temperature from sealed surface,
-            cooling green, trees, grass, water and population density. Validation uses five-fold
-            spatial blocks, not random cell splits.
-          </p>
-          {metric && <p>Spatially blocked validation explains {(metric.r2_spatial_cv * 100).toFixed(1)}% of observed temperature variation (R² {metric.r2_spatial_cv.toFixed(3)}); MAE is {metric.mae_c_spatial_cv.toFixed(2)} °C versus {metric.baseline_mae_c.toFixed(2)} °C for the baseline. These are within-city prediction metrics.</p>}
-          {!metric && (loadError || evidence) && <p role="alert">Thermal validation metrics are unavailable for this city.</p>}
-          <blockquote>
-            This validates thermal association—not distributive justice, policy legitimacy, the
-            selected weights or an investment decision.
-          </blockquote>
-        </div>
-        <div className="metric-grid" aria-label="Model validation metrics">
-          <article tabIndex={0} data-explain="Share of spatial variation in observed summer surface temperature explained by the model during blocked cross-validation. Values closer to 1 indicate a stronger fit.">
-            <span>Spatial CV R²</span>
-            <strong>{metric?.r2_spatial_cv?.toFixed(3) ?? "Unavailable"}</strong>
-            <small>Explained spatial variation · higher is better</small>
-          </article>
-          <article tabIndex={0} data-explain="The model's average prediction error in degrees Celsius on spatial blocks it did not train on. Lower values indicate more accurate temperature estimates.">
-            <span>Mean absolute error</span>
-            <strong>{metric ? `${metric.mae_c_spatial_cv.toFixed(2)} °C` : "Unavailable"}</strong>
-            <small>Average model error · lower is better</small>
-          </article>
-          <article tabIndex={0} data-explain="The average error produced by a simple reference prediction without the Random Forest model. It provides the benchmark the model must improve upon.">
-            <span>Baseline MAE</span>
-            <strong>{metric ? `${metric.baseline_mae_c.toFixed(2)} °C` : "Unavailable"}</strong>
-            <small>Reference error without the model</small>
-          </article>
-          <article tabIndex={0} data-explain="Spearman correlation between priority rankings calculated with 500 metre and 1 kilometre grids. Values closer to 1 mean rankings change less when spatial scale changes.">
-            <span>500 m ↔ 1 km rank correlation</span>
-            <strong>{scale?.spearman_priority_500m_vs_1km?.toFixed(3) ?? "Unavailable"}</strong>
-            <small>Ranking stability across grid scales · higher is steadier</small>
-          </article>
-        </div>
-      </section>
-      <section className="ai-role">
-        <div>
-          <p className="eyebrow">Where is AI?</p>
-          <h3>Validation is not authorization.</h3>
-        </div>
-        <div>
-          <p>
-            Machine learning tests whether environmental indicators correspond to observed summer
-            surface temperature. The priority index itself is a transparent multi-criteria analysis.
-          </p>
-          <p>
-            Neither component determines a legitimate distribution of public resources. Predictive
-            accuracy can support evidence, but it cannot choose policy values, replace participation
-            or settle contested claims of need.
-          </p>
-        </div>
+      <section className="evidence" id="evidence"><div><p className="eyebrow">Three indicators</p><h3>Surface temperature, green deficit and low income.</h3><p>Summer land-surface temperature is observed by Landsat. Green deficit measures a shortage of cooling green cover. Income is a proxy transferred from neighbourhood data. Changing weights changes how these three signals contribute to priority.</p><p>The revised index has no new predictive-validation or 500 m / 1 km sensitivity result. Earlier model metrics do not validate this index.</p></div></section>
+      <section className="ai-role"><div><h3>A ranking still needs public justification.</h3></div><div><p>The index uses explicit weights, not machine learning, to rank places. The thesis examines how such tools should be explained, challenged and governed.</p></div>
       </section>
       </section>
       <section className="lab-chapter" id="politics" aria-labelledby="politics-title">
@@ -524,7 +431,7 @@ export default function ResearchInterface() {
         <article id="ai-governance">
           <p className="eyebrow">AI governance in context</p>
           <h3>What rules should govern a tool that informs a public decision?</h3>
-          <p>This prototype is not a municipal AI system. Its priority rankings come from explicit indicators and weights; machine learning is used only to test their relationship with observed surface temperature.</p>
+          <p>This prototype is not a municipal AI system. Its priority rankings come from explicit indicators and weights; the revised ranking is an explicit three-indicator calculation; it does not use machine learning.</p>
           <p>The research also examines <a href="https://www.amsterdam.nl/innovatie/ai-innovatie/" target="_blank" rel="noreferrer">Amsterdam’s AI vision and algorithm governance tools</a>, <a href="https://admin.be.brussels/sites/default/files/2024-10/Paradigm_livre%20blanc_2024_FR_240910.pdf" target="_blank" rel="noreferrer">Brussels’ regional AI policy documents</a>, and <a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-27" target="_blank" rel="noreferrer">relevant EU rules</a>. These sources do not show that either city uses this prototype, or AI, to allocate urban cooling resources. They show how public institutions define transparency, oversight and responsibility when computational tools enter decision-making.</p>
         </article>
         <article id="political-question">
@@ -613,11 +520,11 @@ export default function ResearchInterface() {
           {[
             ["Source", "Official boundaries and dated public datasets"],
             ["Pre-process", "Reproject, clip and align to a 500 m analytical grid"],
-            ["Measure", "Surface pressure, cooling-green deficit and population exposure"],
+            ["Measure", "Surface temperature, green deficit and low income"],
             ["Normalise", "Convert indicators to within-city relative scores"],
             ["Weight", "Compare four weighting scenarios"],
             ["Aggregate", "Calculate cell scores and overlap-area-weighted neighbourhood summaries"],
-            ["Validate", "Test thermal association and spatial-scale sensitivity"],
+            ["Validate", "Check missing data, score direction and weighted formulas"],
             ["Interpret", "Examine institutional interpretation, feasibility, participation and intervention priorities"],
           ].map(([x, detail], i) => (
             <div key={x}>
@@ -637,7 +544,7 @@ export default function ResearchInterface() {
         </div>
         <p className="method-foot">
           Priority scores are within-city percentiles, not temperatures, uncertainty intervals or
-          cross-city performance rankings. The scenario median aggregates the original four environmental scenarios; it
+          cross-city performance rankings. The scenario median aggregates the four three-indicator scenarios; it
           reduces the influence of a single weighting scheme but does not create democratic
           consensus or a neutral result. AI is used for explainable thermal validation—not to choose policy weights
           or define justice.
@@ -648,7 +555,7 @@ export default function ResearchInterface() {
         <h3>Inspect the mapped cells and validation evidence.</h3>
         <div>
           <a href="/data/grid_priority.geojson" download>
-            ↓ Grid priority GeoJSON <small>Environmental grid · cite Biçer v0.3 and mapped environmental providers; source terms below.</small>
+            ↓ Grid priority GeoJSON <small>Three-indicator grid · cite Biçer v0.3 and mapped data providers; source terms below.</small>
           </a>
           <a href="/data/amsterdam_income.json" download>↓ Amsterdam income JSON <small>Grid and neighbourhood overlay, source definitions, coverage and weights.</small></a>
           <a href="/data/amsterdam_income_grid.csv" download>↓ Amsterdam income grid CSV <small>Missing values remain blank. Area-weighted proxy, not cell median income.</small></a>
@@ -656,7 +563,7 @@ export default function ResearchInterface() {
             ↓ Evidence metrics JSON <small>Derived metrics · cite Biçer v0.3, IBSA/Statbel and CBS; IBSA and CBS CC BY 4.0.</small>
           </a>
         </div>
-        <p>For grid and evidence downloads, cite Biçer (2026), Spatial Sensitivity Lab and the source providers listed in Methods. </p><p>Source attribution and reuse terms: PDOK and UrbIS boundaries; ESA WorldCover 2021, Copernicus HRL 2021, GHSL GHS-POP 2020 and Landsat 8/9 JJA 2019–2023. Check each provider’s current licence before redistribution. The GeoJSON contains derived values; underlying imagery is not included. <a href="/methods.html">Methods, provenance and citation status</a>.</p>
+        <p>For grid and evidence downloads, cite Biçer (2026), Spatial Sensitivity Lab and the source providers listed in Methods. </p><p>Source attribution and reuse terms: PDOK and UrbIS boundaries; ESA WorldCover 2021, Landsat 8/9 JJA 2019–2023. Check each provider’s current licence before redistribution. The GeoJSON contains derived values; underlying imagery is not included. <a href="/methods.html">Methods, provenance and citation status</a>.</p>
         <p>
           The displayed rankings are research outputs, not administrative decisions. A narrow score
           difference is descriptive and must not be presented as a statistical confidence interval

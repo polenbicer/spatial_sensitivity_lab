@@ -159,3 +159,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    from rebuild_priority_models import main as rebuild_all_scenarios
+    rebuild_all_scenarios()

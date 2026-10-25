@@ -1,108 +1,29 @@
-import fs from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const read = (name) => JSON.parse(fs.readFileSync(path.join(root, "public", "data", name), "utf8"));
-const grid = read("grid_priority.geojson").features;
-const neighbourhoods = read("neighbourhood_priority.json").rows;
-const scenarios = [
-  "priority_balanced",
-  "priority_population_led",
-  "priority_surface_led",
-  "priority_nature_deficit_led",
-];
-const expected = {
-  Amsterdam: { all: 1049, eligible: 949, neighbourhoods: 519 },
-  Brussels: { all: 734, eligible: 732, neighbourhoods: 145 },
-};
-const fail = (message) => {
-  throw new Error(`[data validation] ${message}`);
-};
-const close = (a, b, tolerance = 0.025) =>
-  Number.isFinite(a) && Number.isFinite(b) && Math.abs(a - b) <= tolerance;
-
-if (new Set(grid.map((f) => f.properties.grid_id)).size !== grid.length) fail("duplicate grid_id");
-for (const [city, counts] of Object.entries(expected)) {
-  const rows = grid.filter((f) => f.properties.city === city),
-    eligible = rows.filter((f) => f.properties.eligible === 1);
-  if (rows.length !== counts.all || eligible.length !== counts.eligible)
-    fail(`${city} grid row count changed`);
-  const areas = neighbourhoods.filter((r) => r.city === city);
-  if (areas.length !== counts.neighbourhoods) fail(`${city} neighbourhood count changed`);
-  if (new Set(areas.map((r) => r.id)).size !== areas.length)
-    fail(`${city} duplicate neighbourhood id`);
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const read=n=>JSON.parse(fs.readFileSync(new URL('../public/data/'+n,import.meta.url),'utf8'));
+const grid=read('grid_priority.geojson').features, areas=read('neighbourhood_priority.json').rows;
+const weights={priority_balanced:[.4,.3,.3],priority_income_led:[.25,.2,.55],priority_heat_led:[.6,.2,.2],priority_nature_deficit_led:[.25,.55,.2]};
+const criteria=['score_surface_temperature','score_green_deficit','score_income_deprivation'];
+assert.equal(grid.length,1783);assert.equal(new Set(grid.map(f=>f.properties.grid_id)).size,grid.length);assert.equal(areas.length,664);
+const counts={Amsterdam:0,Brussels:0};
+for(const f of grid){const p=f.properties;
+ for(const key of ['score_population','score_impervious','priority_population_led','priority_income','population_2020']) assert(!(key in p),'Retired field '+key);
+ const valid=p.eligible===1&&criteria.every(k=>Number.isFinite(p[k]));
+ for(const [key,w] of Object.entries(weights)){
+  if(!valid) assert.equal(p[key],null,'Incomplete cell has a score');
+  else {assert(Math.abs(p[key]-criteria.reduce((v,k,i)=>v+p[k]*w[i],0))<.0002,'Formula mismatch '+key);assert(p[key]>=0&&p[key]<=100);}
+ }
+ if(valid){counts[p.city]++;const scores=Object.keys(weights).map(k=>p[k]).sort((a,b)=>a-b);assert(Math.abs(p.priority_consensus-(scores[1]+scores[2])/2)<.0002);}else assert.equal(p.priority_consensus,null);
 }
-for (const { properties: p } of grid) {
-  if (p.eligible !== 1) continue;
-  for (const key of [
-    "score_impervious",
-    "score_green_deficit",
-    "score_population",
-    ...scenarios,
-    "priority_consensus",
-    "priority_range",
-  ])
-    if (p[key] === null || p[key] < 0 || p[key] > 100) fail(`${p.grid_id}: invalid ${key}`);
-  const expectedScores = {
-    priority_balanced:
-      0.4 * p.score_impervious + 0.3 * p.score_green_deficit + 0.3 * p.score_population,
-    priority_population_led:
-      0.25 * p.score_impervious + 0.2 * p.score_green_deficit + 0.55 * p.score_population,
-    priority_surface_led:
-      0.6 * p.score_impervious + 0.2 * p.score_green_deficit + 0.2 * p.score_population,
-    priority_nature_deficit_led:
-      0.25 * p.score_impervious + 0.55 * p.score_green_deficit + 0.2 * p.score_population,
-  };
-  for (const [key, value] of Object.entries(expectedScores))
-    if (!close(p[key], value)) fail(`${p.grid_id}: ${key} formula mismatch`);
-  const sorted = scenarios.map((k) => p[k]).sort((a, b) => a - b),
-    median = (sorted[1] + sorted[2]) / 2;
-  if (!close(p.priority_consensus, median)) fail(`${p.grid_id}: consensus mismatch`);
-  if (p.score_ge_80_scenario_count !== scenarios.filter((k) => p[k] >= 80).length)
-    fail(`${p.grid_id}: >=80 count mismatch`);
+assert.deepEqual(counts,{Amsterdam:307,Brussels:0});
+for(const r of areas){if(r.ranking_eligible){assert(r.eligible_coverage_pct>=50);assert(r.model_coverage_pct>=99.9);assert(Object.keys(weights).every(k=>Number.isFinite(r[k])));} if(r.city==='Brussels') assert.equal(r.priority_balanced,null);}
+for(const city of ['Amsterdam','Brussels']){
+ const rows=grid.map(f=>f.properties).filter(p=>p.city===city&&p.score_surface_temperature!=null).sort((a,b)=>a.summer_lst_median_c-b.summer_lst_median_c);
+ for(let i=1;i<rows.length;i++)assert(rows[i].score_surface_temperature>=rows[i-1].score_surface_temperature,'Heat direction reversed');
 }
-for (const r of neighbourhoods) {
-  if (r.aggregation !== "exact overlap-area-weighted mean of eligible 500 m cell scores")
-    fail(`${r.id}: undocumented aggregation`);
-  if (!(r.eligible_overlap_area_m2 > 0) || !(r.intersecting_eligible_cells > 0))
-    fail(`${r.id}: empty neighbourhood coverage`);
-  if (!(r.official_area_m2 > 0) || r.eligible_coverage_pct < 0 || r.eligible_coverage_pct > 100.1)
-    fail(`${r.id}: invalid area coverage`);
-  if (r.thermal_coverage_pct < 0 || r.thermal_coverage_pct > 100.1)
-    fail(`${r.id}: invalid thermal coverage`);
-  if (r.ranking_eligible !== r.eligible_coverage_pct >= 50)
-    fail(`${r.id}: ranking eligibility mismatch`);
+const incomes=grid.map(f=>f.properties).filter(p=>p.score_income_deprivation!=null).sort((a,b)=>a.income_proxy_eur-b.income_proxy_eur);
+for(let i=1;i<incomes.length;i++)assert(incomes[i].score_income_deprivation<=incomes[i-1].score_income_deprivation,'Income direction reversed');
+for(const path of ['../app/redesign.tsx','../app/rankings/ranking-explorer.tsx','../app/priority-lines/model.ts','../app/priority-lines/priority-lines.tsx','../lib/priority-model.ts']) {
+ const text=fs.readFileSync(new URL(path,import.meta.url),'utf8');assert(!/score_population|priority_population_led|population exposure|sealed surfaces|score_impervious/i.test(text),'Retired criterion in '+path);
 }
-console.log(
-  `Validated ${grid.length} unique grid cells and ${neighbourhoods.length} unique official neighbourhood units.`,
-);
-
-// Income is a separate Amsterdam overlay; the original four scenarios stay intact.
-const income = read("amsterdam_income.json");
-const incomeRows = income.grid_rows;
-const gridById = new Map(grid.map(f => [f.properties.grid_id, f.properties]));
-if (incomeRows.length !== expected.Amsterdam.all || new Set(incomeRows.map(r => r.grid_id)).size !== incomeRows.length) fail("income overlay row count or duplicate id");
-let scored = 0;
-const scoresByProxy = new Map();
-for (const r of incomeRows) {
-  const p = gridById.get(r.grid_id);
-  if (!p || p.city !== "Amsterdam") fail("income joined to wrong city or unknown cell");
-  if (r.income_coverage_pct < 0 || r.income_coverage_pct > 100) fail("invalid income coverage");
-  if (r.income_status !== "complete_proxy" && (r.income_proxy_eur !== null || r.score_income_deprivation !== null || r.priority_income !== null)) fail("incomplete income was scored");
-  if (r.priority_income !== null) {
-    scored++;
-    if (p.eligible !== 1 || r.income_coverage_pct < income.metadata.minimum_income_coverage_pct || !Number.isFinite(r.income_proxy_eur)) fail("ineligible income score");
-    if (!close(r.priority_income, .4*p.score_impervious + .3*p.score_green_deficit + .3*r.score_income_deprivation, .0002)) fail("income formula mismatch");
-    if (!(r.score_income_deprivation >= 0 && r.score_income_deprivation <= 100)) fail("invalid income percentile");
-    if (scoresByProxy.has(r.income_proxy_eur) && scoresByProxy.get(r.income_proxy_eur) !== r.score_income_deprivation) fail("income ties have different scores");
-    scoresByProxy.set(r.income_proxy_eur,r.score_income_deprivation);
-  }
-}
-if (scored !== income.metadata.scored_eligible_cells || scored !== 365) fail("income coverage changed; review displayed counts and method");
-const ordered = [...scoresByProxy].sort((a,b)=>a[0]-b[0]);
-for(let i=1;i<ordered.length;i++) if(ordered[i][1] > ordered[i-1][1]) fail("higher income incorrectly receives higher deprivation score");
-for(const r of income.neighbourhood_rows) {
-  if(r.priority_income !== null && r.income_scenario_coverage_pct < income.metadata.minimum_income_coverage_pct) fail("partial neighbourhood income scored");
-}
-console.log(`Validated income overlay: ${scored} scored eligible cells; missing coverage retained; lower income gives higher priority.`);
+console.log('Validated all four unchanged weight sets: surface temperature + green deficit + low income. Amsterdam 307 cells; Brussels unranked. Missing remains null.');

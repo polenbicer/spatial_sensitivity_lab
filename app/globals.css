@@ -3748,3 +3748,24 @@ button.cell-link { border:0; padding:0; background:transparent; text-align:left;
   .intro .hero-nav { left: 18px; width: max-content; max-width: calc(100% - 36px); }
 }
 @media print { .rankings-nav { display: none; } }
+
+/* Readability: retain detailed evidence behind keyboard-accessible disclosures. */
+.reading-detail {border-top:1px solid #b7bdcc;border-bottom:1px solid #b7bdcc;margin:20px 0;color:var(--ink)}
+.reading-detail > summary {cursor:pointer;padding:17px 8px;font:600 13px/1.5 "IBM Plex Mono",monospace;list-style-position:inside}
+.reading-detail > summary:hover {background:rgba(23,34,116,.045)}
+.reading-detail > summary:focus-visible {outline:2px solid var(--ink);outline-offset:3px}
+.reading-detail[open] > summary {border-bottom:1px solid #c5c8d2}
+.reading-body {padding:18px 8px;min-width:0}
+.reading-body > section {padding:16px 0!important;margin:0!important;background:transparent!important;min-height:0!important}
+.reading-body .case-note {display:block!important}
+.reading-detail.compact > summary {font-size:11px;padding:12px 4px}
+.reading-detail.compact .reading-body {font:14px/1.55 Arial,sans-serif}
+.scope-note {font-size:14px;line-height:1.5}
+.controls .income-meaning {font-size:13px;line-height:1.5}
+.example-steps {padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+.example-steps li {border-top:2px solid var(--ink);padding-top:12px;min-width:0}
+.example-steps li p {font:15px/1.6 Arial,sans-serif}
+.example-steps a {font-size:13px;text-decoration:underline}
+.lab-chapter .evidence {grid-template-columns:1fr}
+@media(max-width:760px){.example-steps {grid-template-columns:1fr;gap:18px}}
+@media print {.reading-detail:not([open]) > .reading-body {display:block!important}.reading-detail > summary {list-style:none}}

@@ -1,5 +1,5 @@
 "use client";
-import {SCENARIOS, CITY_INCOME, INCOME_COMPARABILITY, type Scenario} from "../../lib/priority-model";
+import {SCENARIOS, CITY_INCOME, INCOME_COMPARABILITY, INCOME_MEANING, cityLabel, type Scenario} from "../../lib/priority-model";
 import { buildCellLabels } from "../../lib/cell-labels";
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
@@ -125,7 +125,7 @@ function movementReason(row: {surface: number; green: number; income?: number | 
  if(row.income == null || !Number.isFinite(row.surface)) return 'No complete three-indicator score';
  if(current === previous) return 'Reference selection';
  if(!WEIGHTS[current] || !WEIGHTS[previous]) return 'Changed under the four-scenario median';
- const values=[row.surface,row.green,row.income], labels=['surface temperature','green deficit','low income'];
+ const values=[row.surface,row.green,row.income], labels=['surface temperature','green deficit','lower median income'];
  const effects=values.map((v,i)=>v*(WEIGHTS[current]![i]-WEIGHTS[previous]![i]));
  const index=effects.map(Math.abs).indexOf(Math.max(...effects.map(Math.abs)));
  return labels[index]+(effects[index]>=0?' received more influence':' received less influence');
@@ -384,7 +384,7 @@ export default function RankingExplorer() {
           {view === "neighbourhoods" ? "neighbourhoods" : "500 m audit cells"}
         </p>
         <h1>
-          {city}
+          {cityLabel(city)}
           <br />
           <em>{SCENARIOS[scenario].title}</em>
         </h1>
@@ -416,7 +416,7 @@ export default function RankingExplorer() {
                 setSelected("");
               }}
             >
-              {x}
+              {x === "Brussels" ? "Brussels region" : x}
             </button>
           ))}
         </fieldset>
@@ -467,7 +467,7 @@ export default function RankingExplorer() {
           </p>
         </details>
       </section>
-      <p className="income-coverage-note" style={{padding:"16px 2vw", margin:0, borderBottom:"1px solid currentColor", lineHeight:1.5}}>{CITY_INCOME[city].description} {INCOME_COMPARABILITY} <a href="/methods.html">Sources and method</a>.</p>
+      <div style={{padding:"0 2vw"}}><p className="scope-note">{INCOME_MEANING} Grey areas are unranked, not low priority.</p><details className="reading-detail compact"><summary>Income definition, coverage and sources</summary><div className="reading-body"><p>{CITY_INCOME[city].description}</p><p>{INCOME_COMPARABILITY}</p><a href="/methods.html">Sources and method</a></div></details></div>
       <section className="report-note">
         <div>
           <span>Selected weights</span>
@@ -480,7 +480,7 @@ export default function RankingExplorer() {
         </small>
       </section>
       <div className="ranking-toolbar">
-        <p>Ranked within {city} · comparison: {SCENARIOS[comparison].title}</p>
+        <p>Ranked within {cityLabel(city)} · comparison: {SCENARIOS[comparison].title}</p>
         <button type="button" aria-pressed={showDetails} onClick={() => setShowDetails(!showDetails)}>
           {showDetails ? "Hide detailed columns" : "Show detailed columns"}
         </button>
@@ -562,7 +562,7 @@ export default function RankingExplorer() {
                   </th>
                   <th>
                     <ColumnHelp label="Surface temperature score">
-                      <b>Area-weighted surface temperature</b>
+                      <b>Neighbourhood median surface temperature</b>
                       <span>
                         Within-city percentile of the neighbourhood’s observed median summer land-surface temperature.
                       </span>
@@ -570,23 +570,23 @@ export default function RankingExplorer() {
                   </th>
                   <th>
                     <ColumnHelp label="Green deficit score">
-                      <b>Area-weighted green shortage</b>
+                      <b>Neighbourhood green deficit</b>
                       <span>
                         Within-city percentile of neighbourhood green deficit, calculated from WorldCover tree and grass cover.
                       </span>
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label={true ? "Low income score" : "Low income score"}>
-                      <b>{true ? "Neighbourhood low-income score" : "Area-weighted low income"}</b>
+                    <ColumnHelp label={true ? "Lower median income score" : "Lower median income score"}>
+                      <b>{true ? "Neighbourhood median-income score" : "Area-weighted lower median income"}</b>
                       <span>
-                        {true ? "Inverse percentile of the published neighbourhood median household income. Lower median income gives a higher score; no cell income is estimated." : "Overlap-area-weighted mean of cell low-income scores; not household income measured within the cell."}
+                        {true ? "Inverse percentile of the published neighbourhood median income, using the definition documented for the selected city. Lower median income gives a higher score; this is not the share of low-income residents." : "Overlap-area-weighted mean of cell median-income scores; not household income measured within the cell."}
                       </span>
                     </ColumnHelp>
                   </th>
                   <th>
                     <ColumnHelp label="Median summer LST">
-                      <b>Area-weighted surface temperature</b>
+                      <b>Neighbourhood median surface temperature</b>
                       <span>
                         Median of observed source-raster pixels inside the neighbourhood land area. This is surface temperature.
                       </span>
@@ -697,7 +697,7 @@ export default function RankingExplorer() {
                     <ColumnHelp label="Priority">
                       <b>Selected-policy score</b>
                       <span>
-                        A 0–100 within-city composite derived from surface temperature, green deficit and low income.
+                        A 0–100 within-city composite derived from surface temperature, green deficit and lower median income.
                       </span>
                     </ColumnHelp>
                   </th>
@@ -719,8 +719,8 @@ export default function RankingExplorer() {
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label={true ? "Low income" : "Low income"}>
-                      <b>{true ? "Lower income gives a higher score" : "Low income"}</b>
+                    <ColumnHelp label={true ? "Lower median income" : "Lower median income"}>
+                      <b>{true ? "Lower income gives a higher score" : "Lower median income"}</b>
                       <span>
                         {true ? "Inverse income-proxy percentile among complete-coverage Amsterdam cells; higher means lower income. It is not a poverty rate." : "A within-city 0–100 score derived from CBS neighbourhood income for 2023."}
                       </span>
@@ -796,7 +796,7 @@ export default function RankingExplorer() {
           <span>Interpretation</span>
           <p>
             Under <b>{SCENARIOS[scenario].title}</b>, higher scores indicate a stronger relative
-            priority signal within {city}. They do not establish that an area should automatically
+            priority signal within {cityLabel(city)}. They do not establish that an area should automatically
             receive investment.
           </p>
         </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { CITY_INCOME, INCOME_COMPARABILITY } from '../../lib/priority-model';
+import { CITY_INCOME, INCOME_COMPARABILITY, INCOME_MEANING, cityLabel } from '../../lib/priority-model';
 import { useEffect, useMemo, useState } from 'react';
 import { exampleIds, mapPaths, rankCity, SCENARIOS, type City, type GeoData, type Row } from './model';
 import styles from './priority-lines.module.css';
@@ -71,11 +71,12 @@ export default function PriorityLines() {
         <div><a href="/rankings">Full rankings</a><a href="/priority-lines" aria-current="page">Priority Lines</a><a href="/methods.html">Methods</a></div>
       </nav>
       <header className={styles.header}>
-        <p className={styles.eyebrow}>Cartographic experiment / Brussels &amp; Amsterdam</p>
+        <p className={styles.eyebrow}>Cartographic experiment / Brussels-Capital Region &amp; Amsterdam</p>
         <h1>Same city.<br />Different priorities.</h1>
-        <p className={styles.intro}>Every scenario uses surface temperature, green deficit and low income; only the weights change. Choose a neighbourhood and follow its line across these four scenarios. The place stays the same; the importance assigned to each indicator changes.</p>
+        <p className={styles.intro}>Every scenario uses surface temperature, green deficit and lower median income; only the weights change. Choose a neighbourhood and follow its line across these four scenarios. The place stays the same; the importance assigned to each indicator changes.</p>
       </header>
-      <p className={styles.intro}>{CITY_INCOME[city].description} {INCOME_COMPARABILITY}</p>
+      <p className="scope-note"><b>{cityLabel(city)}</b> · {INCOME_MEANING}</p>
+      <details className="reading-detail"><summary>Income definition, coverage and sources</summary><div className="reading-body"><p>{CITY_INCOME[city].description}</p><p>{INCOME_COMPARABILITY}</p><a href="/methods.html">Sources and method</a></div></details>
       <div className={styles.how}>
         <p><b>01 · Find a place.</b> Select a name or click a neighbourhood on the map.</p>
         <p><b>02 · Follow its line.</b> Each point is its rank under a different weighting. Rank 1 is the highest priority.</p>
@@ -83,7 +84,7 @@ export default function PriorityLines() {
       </div>
       <section className={styles.controls} aria-label="Explore priority lines">
         <div className={styles.cities} aria-label="City">
-          {(['Brussels', 'Amsterdam'] as City[]).map(name => <button key={name} type="button" aria-pressed={city === name} onClick={() => changeCity(name)}>{name}</button>)}
+          {(['Brussels', 'Amsterdam'] as City[]).map(name => <button key={name} type="button" aria-pressed={city === name} onClick={() => changeCity(name)}>{name === 'Brussels' ? 'Brussels region' : name}</button>)}
         </div>
         <label className={styles.select}>Neighbourhood
           <select value={selected?.id ?? ''} onChange={event => choose(event.target.value)} disabled={!count}>
@@ -97,7 +98,7 @@ export default function PriorityLines() {
       {error ? <p role="alert" className={styles.status}>The map data could not be loaded. <button type="button" onClick={() => setAttempt(attempt + 1)}>Try again</button></p> : !count ? <p role="status" className={styles.status}>Loading neighbourhood rankings…</p> : <>
         <section className={styles.visuals} aria-label={`${city} map and scenario ranks`}>
           <div className={styles.mapPanel}>
-            <h2>{city} <span>Find a place</span></h2>
+            <h2>{cityLabel(city)} <span>Find a place</span></h2>
             <svg viewBox="0 0 700 650" className={styles.map} role="group" aria-label={`${city} neighbourhood map. Choose a neighbourhood with the selector or on the map.`}>
               <text x="25" y="30" className={styles.mapLabel}>N ↑</text>
               {paths.map(path => {
@@ -113,7 +114,7 @@ export default function PriorityLines() {
           </div>
           <div className={styles.chartPanel}>
             <h2>Follow the line <span>Within-city rank</span></h2>
-            <p className={styles.weightKey}>Weights: surface temperature / green deficit / low income (%)</p>
+            <p className={styles.weightKey}>Weights: surface temperature / green deficit / lower median income (%)</p>
             <div className={styles.chartScroll} tabIndex={0} role="region" aria-label="Scenario rank chart; scroll horizontally on small screens">
               <div className={styles.chartInner}>
                 <div className={styles.scenarioLabels}>{SCENARIOS.map(scenario => <div key={scenario.field}><b>{scenario.title}</b><span>{scenario.weights}</span></div>)}</div>
@@ -136,7 +137,7 @@ export default function PriorityLines() {
       </>}
       <footer className={styles.footer}>
         <h2>What this experiment shows</h2>
-        <p>These lines expose the effect of weighting choices. They do not show changes over time, actual municipal decisions, or a comparison of city performance. All four scenarios use surface temperature, green deficit and low income. The weights change; the three indicators stay the same.</p>
+        <p>These lines expose the effect of weighting choices. They do not show changes over time, actual municipal decisions, or a comparison of city performance. All four scenarios use surface temperature, green deficit and lower median income. The weights change; the three indicators stay the same.</p>
         <p>Neighbourhood scores combine each city’s published income measure with temperature and green cover extracted directly from source rasters. Brussels uses IBSA equivalised after-tax income; Amsterdam uses O&S disposable household income. Each city is ranked separately; equal scores share a rank. Boundaries and scores are loaded from the same datasets as the full rankings, so this page does not maintain a separate copy.</p>
         <div><a href="/rankings">Inspect the full ranking →</a><a href="/methods.html">Methods and sources →</a></div>
       </footer>

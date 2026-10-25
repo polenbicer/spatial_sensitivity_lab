@@ -1,5 +1,5 @@
 "use client";
-import {SCENARIOS, type Scenario} from "../../lib/priority-model";
+import {SCENARIOS, CITY_INCOME, INCOME_COMPARABILITY, type Scenario} from "../../lib/priority-model";
 import { buildCellLabels } from "../../lib/cell-labels";
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
@@ -28,6 +28,7 @@ type NeighbourhoodRow = {
   income: number | null;
   incomeEur?: number | null;
   income_median_disposable_eur?: number | null;
+  income_median_equivalised_after_tax_eur?: number | null;
   land_cover_coverage_pct?: number;
   
   income_scenario_coverage_pct?: number;
@@ -72,7 +73,7 @@ function summarise(rows: NeighbourhoodRow[], scenario: Scenario): Summary[] {
     green: r.score_green_deficit,
     lowIncome: r.score_income_deprivation,
     income: r.score_income_deprivation ?? null,
-    incomeEur: r.income_median_disposable_eur ?? null,
+    incomeEur: r.income_median_disposable_eur ?? r.income_median_equivalised_after_tax_eur ?? null,
     lst: r.summer_lst_median_c,
   }));
 }
@@ -176,6 +177,10 @@ export default function RankingExplorer() {
     [showDetails, setShowDetails] = useState(false),
     [query, setQuery] = useState(""),
     [selected, setSelected] = useState("");
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get('city');
+    if (requested === 'Amsterdam' || requested === 'Brussels') setCity(requested);
+  }, []);
   useEffect(() => {
     Promise.all(["grid_priority.geojson", "neighbourhood_priority.json"].map(name => fetch(`/data/${name}`).then(r => { if (!r.ok) throw new Error(name); return r.json(); })))
       .then(([grid, neighbourhoods]: any[]) => {
@@ -284,7 +289,7 @@ export default function RankingExplorer() {
             "movement_explanation",
             "neighbourhood_code",
             "neighbourhood",
-            "median_disposable_household_income_eur",
+            city === "Brussels" ? "median_equivalised_after_tax_income_eur" : "median_disposable_household_income_eur",
             "land_cover_coverage_pct",
             "thermal_coverage_pct",
             "evidence_status",
@@ -391,7 +396,7 @@ export default function RankingExplorer() {
           )}
         </div>
       </section>
-      {city === "Brussels" && <p style={{padding:"16px 2vw"}}>No ranking: comparable low-income data are not integrated yet. Missing income is not zero.</p>}
+      
       <section className="rankings-controls">
         <fieldset>
           <legend>01 · City</legend>
@@ -401,6 +406,9 @@ export default function RankingExplorer() {
               className={x === city ? "active" : ""}
               onClick={() => {
                 setCity(x);
+                const url = new URL(window.location.href);
+                url.searchParams.set("city", x);
+                window.history.replaceState(null, "", url);
                   setScenario("priority_balanced");
                 setView("neighbourhoods");
                 setComparison("priority_balanced");
@@ -443,21 +451,12 @@ export default function RankingExplorer() {
         >
           Neighbourhoods <small>one row per official area</small>
         </button>
-        {city !== "Amsterdam" && <button
-          className={view === "cells" ? "active" : ""}
-          onClick={() => {
-            setView("cells");
-            setSelected("");
-          }}
-        >
-          500 m cells <small>full audit detail</small>
-        </button>}
         <details className="ranking-explanation">
           <summary>About these spatial units</summary>
           <p>
           {view === "neighbourhoods" ? (
             <>
-              Amsterdam uses 518 official buurten valid on 24 March 2022. Income is joined directly by official code; surface temperature and green cover are calculated within these boundaries from the source rasters. Scores are normalized at neighbourhood level, then combined with the selected weights. Brussels uses 145 Monitoring des Quartiers units and remains unranked pending comparable income. These geographies differ in size and should not be compared as a city league table.
+              Amsterdam uses 518 official buurten valid on 24 March 2022. Income is joined directly by official code; surface temperature and green cover are calculated within these boundaries from the source rasters. Scores are normalized at neighbourhood level, then combined with the selected weights. Brussels uses 145 Monitoring des Quartiers units, with income published for 118. Its income measure differs from Amsterdam; each city is ranked independently. These geographies differ in size and should not be compared as a city league table.
             </>
           ) : (
             <>
@@ -468,7 +467,7 @@ export default function RankingExplorer() {
           </p>
         </details>
       </section>
-      {city === "Amsterdam" && <p className="income-coverage-note" style={{padding:"16px 2vw", margin:0, borderBottom:"1px solid currentColor", lineHeight:1.5}}>All scenarios use the same three indicators and the same complete neighbourhoods. Income is the published O&S median household income; no income is transferred to 500 m cells. Missing income remains unavailable. <a href="/methods.html">Sources and method</a>.</p>}
+      <p className="income-coverage-note" style={{padding:"16px 2vw", margin:0, borderBottom:"1px solid currentColor", lineHeight:1.5}}>{CITY_INCOME[city].description} {INCOME_COMPARABILITY} <a href="/methods.html">Sources and method</a>.</p>
       <section className="report-note">
         <div>
           <span>Selected weights</span>
@@ -543,7 +542,7 @@ export default function RankingExplorer() {
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label="Median income (€)"><b>Published neighbourhood household income</b><span>Amsterdam O&S IHHINK_MED, API period 2024. Disposable household income, not standardised for household size; not a poverty rate. Missing remains unavailable.</span></ColumnHelp>
+                    <ColumnHelp label="Median income (€)"><b>Published neighbourhood median income</b><span>{CITY_INCOME[city].description} Neither city’s indicator is a poverty rate. Missing remains unavailable.</span></ColumnHelp>
                   </th>
                   <th>
                     <ColumnHelp label="Land-cover coverage">
@@ -565,7 +564,7 @@ export default function RankingExplorer() {
                     <ColumnHelp label="Surface temperature score">
                       <b>Area-weighted surface temperature</b>
                       <span>
-                        Within-Amsterdam percentile of the neighbourhood’s observed median summer land-surface temperature.
+                        Within-city percentile of the neighbourhood’s observed median summer land-surface temperature.
                       </span>
                     </ColumnHelp>
                   </th>
@@ -573,7 +572,7 @@ export default function RankingExplorer() {
                     <ColumnHelp label="Green deficit score">
                       <b>Area-weighted green shortage</b>
                       <span>
-                        Within-Amsterdam percentile of neighbourhood green deficit, calculated from WorldCover tree and grass cover.
+                        Within-city percentile of neighbourhood green deficit, calculated from WorldCover tree and grass cover.
                       </span>
                     </ColumnHelp>
                   </th>
@@ -804,22 +803,22 @@ export default function RankingExplorer() {
         <div>
           <span>Method</span>
           <p>
-            Amsterdam indicators are calculated directly for official neighbourhoods. Income is joined by code, and physical indicators come from raster pixels inside each polygon. The four weighted scores use neighbourhood percentiles.
+            Indicators are calculated directly for official neighbourhoods in both cities. Income is joined by code, and physical indicators come from raster pixels inside each polygon. The four weighted scores use neighbourhood percentiles.
           </p>
         </div>
         <div>
           <span>Evidence boundary</span>
           <p>
-            All scenarios use lower neighbourhood median household income as a relative income indicator. The ranking does not fully measure health, housing quality, land feasibility,
+            All scenarios use lower neighbourhood median income as a relative income indicator. The income definition differs by city. The ranking does not fully measure health, housing quality, land feasibility,
             displacement risk or residents’ preferences. Landsat records land-surface—not
             air—temperature.
           </p>
         </div>
         <div>
-          <span>Sources · O&S API period 2024 · Amsterdam boundaries 2022</span>
+          <span>Sources · O&S API period 2024 / IBSA income 2023</span>
           <p>
             ESA WorldCover 2021 ·
-            Landsat 8/9 JJA 2019–2023 · Amsterdam O&S IHHINK_MED · official Amsterdam boundaries valid on 24 March 2022 · perspective.brussels.
+            Landsat 8/9 JJA 2019–2023 · Amsterdam O&S IHHINK_MED · IBSA/Statbel indicator 2498 · official Amsterdam 2022 and Brussels Monitoring boundaries.
           </p>
         </div>
       </section>

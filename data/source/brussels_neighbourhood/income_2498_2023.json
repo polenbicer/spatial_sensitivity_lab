@@ -1,0 +1,878 @@
+{
+  "indicator": 2498,
+  "year": 2023,
+  "unit": "EUR",
+  "definition": "Median equivalised after-tax income of residents",
+  "rows": [
+    {
+      "code": "1",
+      "name": "Grand Place",
+      "value": 19258.84,
+      "source_value": 19258.84
+    },
+    {
+      "code": "2",
+      "name": "Dansaert",
+      "value": 18507.28,
+      "source_value": 18507.28
+    },
+    {
+      "code": "3",
+      "name": "Béguinage - Dixmude",
+      "value": 19015.61,
+      "source_value": 19015.61
+    },
+    {
+      "code": "4",
+      "name": "Martyrs",
+      "value": 19866.74,
+      "source_value": 19866.74
+    },
+    {
+      "code": "5",
+      "name": "Notre-Dame-aux-Neiges",
+      "value": 19254.67,
+      "source_value": 19254.67
+    },
+    {
+      "code": "6",
+      "name": "Quartier Royal",
+      "value": 24209.95,
+      "source_value": 24209.95
+    },
+    {
+      "code": "7",
+      "name": "Sablon",
+      "value": 19358.79,
+      "source_value": 19358.79
+    },
+    {
+      "code": "8",
+      "name": "Marolles",
+      "value": 15205.75,
+      "source_value": 15205.75
+    },
+    {
+      "code": "9",
+      "name": "Stalingrad",
+      "value": 16658.71,
+      "source_value": 16658.71
+    },
+    {
+      "code": "10",
+      "name": "Anneessens",
+      "value": 15698.17,
+      "source_value": 15698.17
+    },
+    {
+      "code": "11",
+      "name": "Cureghem Bara",
+      "value": 14919.3,
+      "source_value": 14919.3
+    },
+    {
+      "code": "12",
+      "name": "Cureghem Vétérinaire",
+      "value": 15375.18,
+      "source_value": 15375.18
+    },
+    {
+      "code": "13",
+      "name": "Cureghem Rosée",
+      "value": 14533.47,
+      "source_value": 14533.47
+    },
+    {
+      "code": "14",
+      "name": "Duchesse",
+      "value": 15106.5,
+      "source_value": 15106.5
+    },
+    {
+      "code": "15",
+      "name": "Gare de l'ouest",
+      "value": 14021.87,
+      "source_value": 14021.87
+    },
+    {
+      "code": "16",
+      "name": "Molenbeek Historique",
+      "value": 14749.32,
+      "source_value": 14749.32
+    },
+    {
+      "code": "17",
+      "name": "Koekelberg",
+      "value": 15750.8,
+      "source_value": 15750.8
+    },
+    {
+      "code": "18",
+      "name": "Quartier Maritime",
+      "value": 16512.42,
+      "source_value": 16512.42
+    },
+    {
+      "code": "19",
+      "name": "Vieux Laeken Ouest",
+      "value": 16571.65,
+      "source_value": 16571.65
+    },
+    {
+      "code": "20",
+      "name": "Vieux Laeken Est",
+      "value": 15846.17,
+      "source_value": 15846.17
+    },
+    {
+      "code": "21",
+      "name": "Quartier Nord",
+      "value": 15812.16,
+      "source_value": 15812.16
+    },
+    {
+      "code": "22",
+      "name": "Quartier Brabant",
+      "value": 15383.75,
+      "source_value": 15383.75
+    },
+    {
+      "code": "23",
+      "name": "Colignon",
+      "value": 17183.81,
+      "source_value": 17183.81
+    },
+    {
+      "code": "24",
+      "name": "Chaussée de Haecht",
+      "value": 16131.06,
+      "source_value": 16131.06
+    },
+    {
+      "code": "25",
+      "name": "Saint-Josse Centre",
+      "value": 16252.21,
+      "source_value": 16252.21
+    },
+    {
+      "code": "26",
+      "name": "Dailly",
+      "value": 19246.92,
+      "source_value": 19246.92
+    },
+    {
+      "code": "27",
+      "name": "Josaphat",
+      "value": 21928.39,
+      "source_value": 21928.39
+    },
+    {
+      "code": "28",
+      "name": "Plasky",
+      "value": 22182.94,
+      "source_value": 22182.94
+    },
+    {
+      "code": "29",
+      "name": "Squares",
+      "value": 19236.66,
+      "source_value": 19236.66
+    },
+    {
+      "code": "30",
+      "name": "Porte Tervueren",
+      "value": 21971.59,
+      "source_value": 21971.59
+    },
+    {
+      "code": "31",
+      "name": "Saint-Michel",
+      "value": 24178.48,
+      "source_value": 24178.48
+    },
+    {
+      "code": "32",
+      "name": "Saint-Pierre",
+      "value": 21409.15,
+      "source_value": 21409.15
+    },
+    {
+      "code": "33",
+      "name": "Chasse",
+      "value": 19314.5,
+      "source_value": 19314.5
+    },
+    {
+      "code": "34",
+      "name": "Jourdan",
+      "value": 19556.43,
+      "source_value": 19556.43
+    },
+    {
+      "code": "35",
+      "name": "Quartier Européen",
+      "value": 21295.86,
+      "source_value": 21295.86
+    },
+    {
+      "code": "36",
+      "name": "Matonge",
+      "value": 19279.86,
+      "source_value": 19279.86
+    },
+    {
+      "code": "37",
+      "name": "Flagey - Malibran",
+      "value": 19193.91,
+      "source_value": 19193.91
+    },
+    {
+      "code": "38",
+      "name": "Hôpital Etterbeek-Ixelles",
+      "value": 21069.94,
+      "source_value": 21069.94
+    },
+    {
+      "code": "39",
+      "name": "Etangs d'Ixelles",
+      "value": 24100.9,
+      "source_value": 24100.9
+    },
+    {
+      "code": "40",
+      "name": "Louise - Longue Haie",
+      "value": 21613.14,
+      "source_value": 21613.14
+    },
+    {
+      "code": "41",
+      "name": "Berckmans - Hôtel des Monnaies",
+      "value": 20746.08,
+      "source_value": 20746.08
+    },
+    {
+      "code": "42",
+      "name": "Châtelain",
+      "value": 23021.8,
+      "source_value": 23021.8
+    },
+    {
+      "code": "43",
+      "name": "Brugmann - Lepoutre",
+      "value": 23439.31,
+      "source_value": 23439.31
+    },
+    {
+      "code": "44",
+      "name": "Churchill",
+      "value": 23310.42,
+      "source_value": 23310.42
+    },
+    {
+      "code": "45",
+      "name": "Molière - Longchamp",
+      "value": 20748.8,
+      "source_value": 20748.8
+    },
+    {
+      "code": "46",
+      "name": "Altitude 100",
+      "value": 22948.3,
+      "source_value": 22948.3
+    },
+    {
+      "code": "47",
+      "name": "Haut Saint-Gilles",
+      "value": 20688.16,
+      "source_value": 20688.16
+    },
+    {
+      "code": "48",
+      "name": "Porte de Hal",
+      "value": 17147.87,
+      "source_value": 17147.87
+    },
+    {
+      "code": "49",
+      "name": "Bosnie",
+      "value": 16602.03,
+      "source_value": 16602.03
+    },
+    {
+      "code": "50",
+      "name": "Bas Forest",
+      "value": 16894.12,
+      "source_value": 16894.12
+    },
+    {
+      "code": "51",
+      "name": "Van Volxem - Van Haelen",
+      "value": 20092.74,
+      "source_value": 20092.74
+    },
+    {
+      "code": "52",
+      "name": "Veeweyde - Aurore",
+      "value": 18218.63,
+      "source_value": 18218.63
+    },
+    {
+      "code": "53",
+      "name": "Bizet - Roue- Ceria",
+      "value": 18398.14,
+      "source_value": 18398.14
+    },
+    {
+      "code": "54",
+      "name": "Vogelenzang - Erasme",
+      "value": 19483.24,
+      "source_value": 19483.24
+    },
+    {
+      "code": "55",
+      "name": "Neerpede",
+      "value": 23292.82,
+      "source_value": 23292.82
+    },
+    {
+      "code": "56",
+      "name": "Bon Air",
+      "value": 16210.02,
+      "source_value": 16210.02
+    },
+    {
+      "code": "57",
+      "name": "Scherdemael",
+      "value": 21147.16,
+      "source_value": 21147.16
+    },
+    {
+      "code": "58",
+      "name": "Anderlecht - Centre - Wayez",
+      "value": 16515.89,
+      "source_value": 16515.89
+    },
+    {
+      "code": "59",
+      "name": "Scheut",
+      "value": 18144.32,
+      "source_value": 18144.32
+    },
+    {
+      "code": "60",
+      "name": "Buffon",
+      "value": 19945.42,
+      "source_value": 19945.42
+    },
+    {
+      "code": "61",
+      "name": "Moortebeek - Peterbos",
+      "value": 17444.16,
+      "source_value": 17444.16
+    },
+    {
+      "code": "62",
+      "name": "Machtens",
+      "value": 19108.91,
+      "source_value": 19108.91
+    },
+    {
+      "code": "63",
+      "name": "Karreveld",
+      "value": 16690.13,
+      "source_value": 16690.13
+    },
+    {
+      "code": "64",
+      "name": "Hôpital Français",
+      "value": 20117.72,
+      "source_value": 20117.72
+    },
+    {
+      "code": "65",
+      "name": "Korenbeek",
+      "value": 19646.99,
+      "source_value": 19646.99
+    },
+    {
+      "code": "66",
+      "name": "Potaarde",
+      "value": 23354.95,
+      "source_value": 23354.95
+    },
+    {
+      "code": "67",
+      "name": "Berchem Sainte-Agathe Centre",
+      "value": 19463.72,
+      "source_value": 19463.72
+    },
+    {
+      "code": "68",
+      "name": "Villas de Ganshoren",
+      "value": 19242.17,
+      "source_value": 19242.17
+    },
+    {
+      "code": "69",
+      "name": "Ganshoren Centre",
+      "value": 20006.01,
+      "source_value": 20006.01
+    },
+    {
+      "code": "70",
+      "name": "Basilique",
+      "value": 19118.65,
+      "source_value": 19118.65
+    },
+    {
+      "code": "71",
+      "name": "Woeste",
+      "value": 18418.92,
+      "source_value": 18418.92
+    },
+    {
+      "code": "72",
+      "name": "Jette Centre",
+      "value": 20862.36,
+      "source_value": 20862.36
+    },
+    {
+      "code": "73",
+      "name": "Heymbosch - AZ-Jette",
+      "value": 22197.04,
+      "source_value": 22197.04
+    },
+    {
+      "code": "74",
+      "name": "Heysel",
+      "value": 18384.66,
+      "source_value": 18384.66
+    },
+    {
+      "code": "75",
+      "name": "Houba",
+      "value": 17655.22,
+      "source_value": 17655.22
+    },
+    {
+      "code": "76",
+      "name": "Mutsaard",
+      "value": 20665.11,
+      "source_value": 20665.11
+    },
+    {
+      "code": "77",
+      "name": "Heembeek",
+      "value": 18887.66,
+      "source_value": 18887.66
+    },
+    {
+      "code": "78",
+      "name": "Haren",
+      "value": 19163.25,
+      "source_value": 19163.25
+    },
+    {
+      "code": "79",
+      "name": "Paix",
+      "value": 19265.48,
+      "source_value": 19265.48
+    },
+    {
+      "code": "80",
+      "name": "Helmet",
+      "value": 17942.8,
+      "source_value": 17942.8
+    },
+    {
+      "code": "81",
+      "name": "Gare de Schaerbeek",
+      "value": 18158.99,
+      "source_value": 18158.99
+    },
+    {
+      "code": "82",
+      "name": "Terdelt",
+      "value": 20228.31,
+      "source_value": 20228.31
+    },
+    {
+      "code": "83",
+      "name": "Conscience",
+      "value": 19035.01,
+      "source_value": 19035.01
+    },
+    {
+      "code": "84",
+      "name": "Avenue Léopold III",
+      "value": 20623.36,
+      "source_value": 20623.36
+    },
+    {
+      "code": "85",
+      "name": "Gare Josaphat",
+      "value": 21398.04,
+      "source_value": 21398.04
+    },
+    {
+      "code": "86",
+      "name": "Paduwa",
+      "value": 19955.16,
+      "source_value": 19955.16
+    },
+    {
+      "code": "87",
+      "name": "Reyers",
+      "value": 19245.99,
+      "source_value": 19245.99
+    },
+    {
+      "code": "88",
+      "name": "Georges Henri",
+      "value": 24011.14,
+      "source_value": 24011.14
+    },
+    {
+      "code": "89",
+      "name": "Gribaumont",
+      "value": 24460.21,
+      "source_value": 24460.21
+    },
+    {
+      "code": "90",
+      "name": "Roodebeek - Constellations",
+      "value": 22593.51,
+      "source_value": 22593.51
+    },
+    {
+      "code": "91",
+      "name": "Val d'Or",
+      "value": 24272.02,
+      "source_value": 24272.02
+    },
+    {
+      "code": "92",
+      "name": "Kapelleveld",
+      "value": 18470.64,
+      "source_value": 18470.64
+    },
+    {
+      "code": "93",
+      "name": "Boulevard de la Woluwe",
+      "value": 22690.63,
+      "source_value": 22690.63
+    },
+    {
+      "code": "94",
+      "name": "Stockel",
+      "value": 26303.0,
+      "source_value": 26303
+    },
+    {
+      "code": "95",
+      "name": "Sainte-Alix - Joli Bois",
+      "value": 27026.82,
+      "source_value": 27026.82
+    },
+    {
+      "code": "96",
+      "name": "Saint-Paul",
+      "value": 25963.32,
+      "source_value": 25963.32
+    },
+    {
+      "code": "97",
+      "name": "Putdael",
+      "value": 28749.79,
+      "source_value": 28749.79
+    },
+    {
+      "code": "98",
+      "name": "Auderghem centre",
+      "value": 25208.67,
+      "source_value": 25208.67
+    },
+    {
+      "code": "99",
+      "name": "Chant d'Oiseau",
+      "value": 25428.95,
+      "source_value": 25428.95
+    },
+    {
+      "code": "100",
+      "name": "Chaussée de Wavre - Saint-Julien",
+      "value": 23909.26,
+      "source_value": 23909.26
+    },
+    {
+      "code": "101",
+      "name": "Trois Tilleuls",
+      "value": 18926.07,
+      "source_value": 18926.07
+    },
+    {
+      "code": "102",
+      "name": "Transvaal",
+      "value": 25271.91,
+      "source_value": 25271.91
+    },
+    {
+      "code": "103",
+      "name": "Boitsfort Centre",
+      "value": 25325.85,
+      "source_value": 25325.85
+    },
+    {
+      "code": "104",
+      "name": "Watermael Centre",
+      "value": 25817.41,
+      "source_value": 25817.41
+    },
+    {
+      "code": "105",
+      "name": "Dries",
+      "value": 22198.56,
+      "source_value": 22198.56
+    },
+    {
+      "code": "106",
+      "name": "Boondael",
+      "value": 22246.18,
+      "source_value": 22246.18
+    },
+    {
+      "code": "107",
+      "name": "Université",
+      "value": 19863.8,
+      "source_value": 19863.8
+    },
+    {
+      "code": "108",
+      "name": "Montjoie - Langeveld",
+      "value": 24913.52,
+      "source_value": 24913.52
+    },
+    {
+      "code": "109",
+      "name": "Observatoire",
+      "value": 26410.99,
+      "source_value": 26410.99
+    },
+    {
+      "code": "110",
+      "name": "Fort Jaco",
+      "value": 25946.56,
+      "source_value": 25946.56
+    },
+    {
+      "code": "111",
+      "name": "Vivier d'Oie",
+      "value": 28318.47,
+      "source_value": 28318.47
+    },
+    {
+      "code": "112",
+      "name": "Kriekenput - Homborch - Verrewinkel",
+      "value": 19719.82,
+      "source_value": 19719.82
+    },
+    {
+      "code": "113",
+      "name": "Saint-Job Kauwberg",
+      "value": 24838.88,
+      "source_value": 24838.88
+    },
+    {
+      "code": "114",
+      "name": "Dieweg",
+      "value": 25418.77,
+      "source_value": 25418.77
+    },
+    {
+      "code": "115",
+      "name": "Kalevoet - Moensberg",
+      "value": 22147.61,
+      "source_value": 22147.61
+    },
+    {
+      "code": "116",
+      "name": "Globe",
+      "value": 22564.05,
+      "source_value": 22564.05
+    },
+    {
+      "code": "117",
+      "name": "Vossegat - Roosendaal",
+      "value": 22926.04,
+      "source_value": 22926.04
+    },
+    {
+      "code": "118",
+      "name": "Saint-Denis - Neerstalle",
+      "value": 18401.88,
+      "source_value": 18401.88
+    },
+    {
+      "code": "700",
+      "name": "Cimetière de Bruxelles",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "701",
+      "name": "Cimetière d'Ixelles",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "702",
+      "name": "Cimetière de Saint-Gilles",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "800",
+      "name": "Industrie Nord",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "801",
+      "name": "Industrie OTAN",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "802",
+      "name": "Delta",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "803",
+      "name": "Industrie Sud",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "804",
+      "name": "Gare du Midi",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "805",
+      "name": "Industrie Birmingham",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "900",
+      "name": "Domaine Royal Laeken",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "901",
+      "name": "Parc Josaphat",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "902",
+      "name": "Botanique",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "903",
+      "name": "Cinquantenaire",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "904",
+      "name": "Parc Léopold",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "905",
+      "name": "Parc de la Woluwe",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "906",
+      "name": "Forêt de Soignes",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "907",
+      "name": "Bois de la Cambre",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "908",
+      "name": "Parc Wolvendael",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "909",
+      "name": "Parc Duden - Parc de Forest",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "910",
+      "name": "Parc des Etangs",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "911",
+      "name": "Parc Astrid",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "912",
+      "name": "Parc Forestier",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "913",
+      "name": "Parc Marie-José",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "914",
+      "name": "Scheutbos",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "915",
+      "name": "Parc Elisabeth",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "916",
+      "name": "Bois du Laarbeek - Poelbos",
+      "value": null,
+      "source_value": "-"
+    },
+    {
+      "code": "917",
+      "name": "Parc Baudouin - Dielegembos",
+      "value": null,
+      "source_value": "-"
+    }
+  ]
+}

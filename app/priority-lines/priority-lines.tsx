@@ -1,5 +1,6 @@
 'use client';
 
+import { CITY_INCOME, INCOME_COMPARABILITY } from '../../lib/priority-model';
 import { useEffect, useMemo, useState } from 'react';
 import { exampleIds, mapPaths, rankCity, SCENARIOS, type City, type GeoData, type Row } from './model';
 import styles from './priority-lines.module.css';
@@ -15,7 +16,8 @@ export default function PriorityLines() {
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).get('city') === 'Amsterdam') setCity('Amsterdam');
+    const requested = new URLSearchParams(window.location.search).get('city');
+    if (requested === 'Amsterdam' || requested === 'Brussels') setCity(requested);
   }, []);
 
   useEffect(() => {
@@ -73,6 +75,7 @@ export default function PriorityLines() {
         <h1>Same city.<br />Different priorities.</h1>
         <p className={styles.intro}>Every scenario uses surface temperature, green deficit and low income; only the weights change. Choose a neighbourhood and follow its line across these four scenarios. The place stays the same; the importance assigned to each indicator changes.</p>
       </header>
+      <p className={styles.intro}>{CITY_INCOME[city].description} {INCOME_COMPARABILITY}</p>
       <div className={styles.how}>
         <p><b>01 · Find a place.</b> Select a name or click a neighbourhood on the map.</p>
         <p><b>02 · Follow its line.</b> Each point is its rank under a different weighting. Rank 1 is the highest priority.</p>
@@ -91,7 +94,7 @@ export default function PriorityLines() {
         <button type="button" disabled={!examples.length} aria-pressed={playing} onClick={() => { if (!playing) setSelection(examples[0]); setPlaying(!playing); }}>{playing ? 'Pause examples' : 'Play six examples'}</button>
         <button type="button" disabled={!count} aria-pressed={showContext} onClick={() => setShowContext(!showContext)}>Other lines: {showContext ? 'on' : 'off'}</button>
       </section>
-      {error ? <p role="alert" className={styles.status}>The map data could not be loaded. <button type="button" onClick={() => setAttempt(attempt + 1)}>Try again</button></p> : !count ? <p role="status" className={styles.status}>No ranking available: comparable low-income data are missing for this city.</p> : <>
+      {error ? <p role="alert" className={styles.status}>The map data could not be loaded. <button type="button" onClick={() => setAttempt(attempt + 1)}>Try again</button></p> : !count ? <p role="status" className={styles.status}>Loading neighbourhood rankings…</p> : <>
         <section className={styles.visuals} aria-label={`${city} map and scenario ranks`}>
           <div className={styles.mapPanel}>
             <h2>{city} <span>Find a place</span></h2>
@@ -134,7 +137,7 @@ export default function PriorityLines() {
       <footer className={styles.footer}>
         <h2>What this experiment shows</h2>
         <p>These lines expose the effect of weighting choices. They do not show changes over time, actual municipal decisions, or a comparison of city performance. All four scenarios use surface temperature, green deficit and low income. The weights change; the three indicators stay the same.</p>
-        <p>Amsterdam neighbourhood scores combine published O&S median household income with temperature and green cover extracted directly from source rasters within official 2022 boundaries. Each city is ranked separately; equal scores share a rank. Boundaries and scores are loaded from the same datasets as the full rankings, so this page does not maintain a separate copy.</p>
+        <p>Neighbourhood scores combine each city’s published income measure with temperature and green cover extracted directly from source rasters. Brussels uses IBSA equivalised after-tax income; Amsterdam uses O&S disposable household income. Each city is ranked separately; equal scores share a rank. Boundaries and scores are loaded from the same datasets as the full rankings, so this page does not maintain a separate copy.</p>
         <div><a href="/rankings">Inspect the full ranking →</a><a href="/methods.html">Methods and sources →</a></div>
       </footer>
     </main>

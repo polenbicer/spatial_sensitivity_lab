@@ -3,7 +3,19 @@ const entry = (title: string, weights: string, explanation: string) => ({title, 
 export const SCENARIOS: Record<Scenario, ReturnType<typeof entry>> = {
  priority_consensus: entry('Scenario median', 'Median of four scenarios', 'Statistical median of the four weightings. It is not public agreement.'),
  priority_balanced: entry('Balanced weighting', '40% surface temperature · 30% green deficit · 30% low income', 'Combines surface heat, green shortage and lower income.'),
- priority_income_led: entry('Low income first', '25% surface temperature · 20% green deficit · 55% low income', 'Gives more weight to lower income, using a neighbourhood-based income proxy.'),
+ priority_income_led: entry('Low income first', '25% surface temperature · 20% green deficit · 55% low income', 'Gives more weight to lower neighbourhood income within the selected city.'),
  priority_heat_led: entry('Surface temperature first', '60% surface temperature · 20% green deficit · 20% low income', 'Gives more weight to observed summer land-surface temperature.'),
  priority_nature_deficit_led: entry('Green deficit first', '25% surface temperature · 55% green deficit · 20% low income', 'Gives more weight to a shortage of cooling green cover.'),
 };
+
+export const CITY_INCOME = {
+ Amsterdam: {
+  label: 'Median disposable household income · API 2024',
+  description: 'Amsterdam: O&S median disposable household income, not adjusted for household size. 418 published income values; 411 complete neighbourhoods ranked. 100 have no income record and 7 more lack observed temperature.',
+ },
+ Brussels: {
+  label: 'Median equivalised after-tax income · 2023',
+  description: 'Brussels: IBSA/Statbel indicator 2498, median equivalised after-tax income of residents in 2023. 118 neighbourhoods ranked; 27 official areas have no published income value. This tax-based measure excludes some non-taxable income.',
+ },
+} as const;
+export const INCOME_COMPARABILITY = 'Income definitions differ between cities. Each city is normalized and ranked independently; income amounts and priority scores are not a cross-city comparison. Missing values remain unavailable.';

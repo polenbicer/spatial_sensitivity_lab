@@ -45,7 +45,7 @@ Kapsama için analitik tercihler: en az %99 arazi örtüsü verisi, su dışınd
 Ağırlıklar değişmedi. Birleşik puan, üç yüzde puanının ağırlıklı toplamıdır. Scenario median dört senaryo puanının medyanıdır; kamusal uzlaşma anlamına gelmez. Bütün senaryolar aynı 411 mahalleyi kullanır. Sıra farkları ortak tam gözlemler üzerinden hesaplanır.
 
 ## Brüksel
-Bu işlem Amsterdam içindir. Brüksel verileri ve sınırları değiştirilmedi; karşılaştırılabilir mahalle geliri doğrulanana kadar birleşik sıralama yoktur. Şehirlerin puanları iyi-kötü sıralaması olarak karşılaştırılmaz.
+Amsterdam hesabı korunmuştur. Brüksel daha sonra IBSA/Statbel 2498 medyan eşdeğer vergi sonrası geliriyle ayrı bir şehir içi model olarak eklenmiştir: 145 alan, 118 sıralanan mahalle, 27 yayımlanmayan gelir. Gelir tanımları farklıdır; şehirler arası gelir veya başarı karşılaştırması yapılmaz. Brüksel yöntem notu ve güncel iki şehir hesap kodu Brussels_Mahalle_Model_ve_Kaynaklar.zip paketindedir.
 
 ## Kaynaklar
 - income: https://api.data.amsterdam.nl/v1/statistieken/v2/cijfers?indicator.id=3196&heeftBetrekkingOp=2024&_pageSize=1000

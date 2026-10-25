@@ -3,3 +3,4 @@ rasterio>=1.4
 scipy>=1.14
 shapely>=2.0
 pyproj>=3.6
+openpyxl>=3.1

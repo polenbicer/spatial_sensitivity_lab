@@ -456,7 +456,7 @@ export default function RankingExplorer() {
           <p>
           {view === "neighbourhoods" ? (
             <>
-              Amsterdam uses 518 official buurten valid on 24 March 2022. Income is joined directly by official code; surface temperature and green cover are calculated within these boundaries from the source rasters. Scores are normalized at neighbourhood level, then combined with the selected weights. Brussels uses 145 Monitoring des Quartiers units, with income published for 118. Its income measure differs from Amsterdam; each city is ranked independently. These geographies differ in size and should not be compared as a city league table.
+              Amsterdam uses 110 official wijken valid on 24 March 2022. Income is joined directly by official code; surface temperature and green cover are calculated within these boundaries from the source rasters. Scores are normalized at neighbourhood level, then combined with the selected weights. Brussels uses 145 Monitoring des Quartiers units, with income published for 118. Its income measure differs from Amsterdam; each city is ranked independently. These geographies differ in size and should not be compared as a city league table.
             </>
           ) : (
             <>
@@ -537,7 +537,7 @@ export default function RankingExplorer() {
                       <b>Official spatial unit</b>
                       <span>
                         One row per unique official code. Brussels uses Monitoring des Quartiers;
-                        Amsterdam uses the municipality’s official buurten.
+                        Amsterdam uses the municipality’s official wijken.
                       </span>
                     </ColumnHelp>
                   </th>

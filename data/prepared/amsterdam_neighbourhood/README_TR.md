@@ -1,3 +1,5 @@
+> Arşiv: bu buurt modeli 26 Ekim 2026 tarihinde wijk modeliyle değiştirildi. Güncel yöntem: public/data/amsterdam_method_TR.md
+
 # Amsterdam: mahalle ölçeğinde üç göstergeli model
 
 25 Ekim 2026 — sürüm: amsterdam-native-buurt-v3

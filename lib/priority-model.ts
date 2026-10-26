@@ -11,7 +11,7 @@ export const SCENARIOS: Record<Scenario, ReturnType<typeof entry>> = {
 export const CITY_INCOME = {
  Amsterdam: {
   label: 'Median disposable household income · API 2024',
-  description: 'Amsterdam: O&S median disposable household income, not adjusted for household size. 418 published income values; 411 complete neighbourhoods ranked. 100 have no income record and 7 more lack observed temperature.',
+  description: 'Amsterdam: official wijk scale (110 areas). O&S median disposable household income, not adjusted for household size. 108 published income values; 108 complete neighbourhoods ranked. 2 wijken have no published income value.',
  },
  Brussels: {
   label: 'Median equivalised after-tax income · 2023',

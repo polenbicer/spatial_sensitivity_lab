@@ -1,0 +1,4 @@
+{
+  "amsterdam_stadsdelen_2022.geojson": "https://api.data.amsterdam.nl/v1/gebieden/stadsdelen?_format=geojson&_pageSize=1000&geldigOp=2022-03-24",
+  "brussels_communes.geojson": "https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/limites-administratives-des-communes-en-region-de-bruxelles-capitale/exports/geojson"
+}

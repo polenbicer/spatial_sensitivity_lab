@@ -88,3 +88,5 @@
 .footer p { display:block; width:auto; max-width:85ch; word-break:normal; overflow-wrap:normal; }
 .footer > div { width:auto; }
 .footer a { display:inline-block; white-space:normal; word-break:normal; }
+
+.mapTooltip { position:fixed; z-index:1000; max-width:260px; padding:8px 11px; background:#fffef8; color:#18251e; border:1px solid #465449; box-shadow:0 2px 8px #0002; font-size:14px; line-height:1.4; pointer-events:none; }

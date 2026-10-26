@@ -3,9 +3,11 @@
 import { coverageReason, CITY_INCOME, INCOME_COMPARABILITY, INCOME_MEANING, cityLabel } from '../../lib/priority-model';
 import { useEffect, useMemo, useState } from 'react';
 import { exampleIds, mapPaths, rankCity, SCENARIOS, type City, type GeoData, type Row } from './model';
+import { neighbourhoodLabel } from '../../lib/district-labels';
 import styles from './priority-lines.module.css';
 
 export default function PriorityLines() {
+  const [hover, setHover] = useState<{text:string;x:number;y:number}|null>(null);
   const [city, setCity] = useState<City>('Amsterdam');
   const [rows, setRows] = useState<Row[]>([]);
   const [geography, setGeography] = useState<GeoData>({ features: [] });
@@ -60,7 +62,7 @@ export default function PriorityLines() {
 
   function choose(id: string) { setPlaying(false); setSelection(id); }
   function changeCity(next: City) {
-    setPlaying(false); setSelection(''); setCity(next);
+    setHover(null); setPlaying(false); setSelection(''); setCity(next);
     const url = new URL(window.location.href);
     url.searchParams.set('city', next);
     window.history.replaceState(null, '', url);
@@ -68,6 +70,7 @@ export default function PriorityLines() {
 
   return (
     <main className={styles.page}>
+      {hover && <div role="tooltip" className={styles.mapTooltip} style={{left:hover.x,top:hover.y}}>{hover.text}</div>}
       <nav className={styles.nav} aria-label="Primary navigation">
         <a href="/">← Spatial Sensitivity Lab</a>
         <div><a href="/rankings">Full rankings</a><a href="/priority-lines" aria-current="page">Priority Lines</a><a href="/methods.html">Methods</a></div>
@@ -91,7 +94,7 @@ export default function PriorityLines() {
         <label className={styles.select}>Neighbourhood
           <select value={selectedRow?.id ?? ''} onChange={event => choose(event.target.value)} disabled={!count}>
             {!count && <option value="">Loading…</option>}
-            {options.map(row => <option key={row.id} value={row.id}>{row.neighbourhood_name}{row.ranking_eligible ? '' : ' · unranked'}</option>)}
+            {options.map(row => <option key={row.id} value={row.id}>{neighbourhoodLabel(row)}{row.ranking_eligible ? '' : ' · unranked'}</option>)}
           </select>
         </label>
         <button type="button" disabled={!examples.length} aria-pressed={playing} onClick={() => { if (!playing) setSelection(examples[0]); setPlaying(!playing); }}>{playing ? 'Pause examples' : 'Play six examples'}</button>
@@ -106,9 +109,9 @@ export default function PriorityLines() {
               {paths.map(path => {
                 const eligible = rankedIds.has(path.id);
                 return <path key={path.id} d={path.path} fillRule="evenodd" className={`${styles.area} ${selectedRow?.id === path.id ? styles.chosenArea : ''} ${!eligible ? styles.excluded : ''}`}
-                  role='button' tabIndex={0} aria-label={`${path.neighbourhood_name}${eligible ? '' : ' — not ranked: incomplete three-indicator coverage'}`} aria-pressed={selectedRow?.id === path.id}
-                  onClick={() => choose(path.id)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); choose(path.id); } }}>
-                  <title>{path.neighbourhood_name}{eligible ? '' : ' · not ranked'}</title>
+                  role='button' tabIndex={0} aria-label={`${neighbourhoodLabel(path)}${eligible ? '' : ' — not ranked: incomplete three-indicator coverage'}`} aria-pressed={selectedRow?.id === path.id}
+                  onPointerMove={event => setHover({text:neighbourhoodLabel(path),x:Math.max(8,Math.min(event.clientX+14,window.innerWidth-280)),y:Math.max(8,Math.min(event.clientY+14,window.innerHeight-80))})} onPointerLeave={() => setHover(null)} onFocus={event => {const box=event.currentTarget.getBoundingClientRect();setHover({text:neighbourhoodLabel(path),x:Math.max(8,Math.min(box.left,window.innerWidth-280)),y:Math.max(8,Math.min(box.bottom,window.innerHeight-80))});}} onBlur={() => setHover(null)} onClick={() => choose(path.id)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); choose(path.id); } }}>
+                  <title>{neighbourhoodLabel(path)}{eligible ? '' : ' · not ranked'}</title>
                 </path>;
               })}
             </svg>
@@ -132,7 +135,7 @@ export default function PriorityLines() {
           </div>
         </section>
         {selectedRow && <section className={styles.detail} aria-label="Selected neighbourhood details" aria-live="polite">
-          <div><p className={styles.eyebrow}>Selected neighbourhood</p><h2>{selectedRow.neighbourhood_name}</h2>
+          <div><p className={styles.eyebrow}>Selected neighbourhood</p><h2>{neighbourhoodLabel(selectedRow)}</h2>
             {selected ? <p>Rank range <b>#{Math.min(...selected.ranks)}–#{Math.max(...selected.ranks)}</b>: {selected.span} places apart across these scenarios.</p> : <p><b>Unranked.</b> {coverageReason(selectedRow)}</p>}
             <dl className={styles.measurements}>
               <div><dt>Surface temperature</dt><dd>{selectedRow.summer_lst_median_c == null ? 'Not available' : `${selectedRow.summer_lst_median_c.toFixed(1)} °C`}</dd></div>
@@ -142,7 +145,7 @@ export default function PriorityLines() {
           </div>
           {selected && <dl className={styles.scores}>{SCENARIOS.map((scenario, index) => <div key={scenario.field}><dt>{scenario.title}</dt><dd>#{selected.ranks[index]}<span>Score {selected[scenario.field].toFixed(1)}</span></dd></div>)}</dl>}
         </section>}
-        <div className={styles.examples}><span>Six examples:</span>{examples.map(id => { const row = ranked.find(row => row.id === id); return row && <button key={id} type="button" aria-pressed={selected?.id === id} onClick={() => choose(id)}>{row.neighbourhood_name}</button>; })}</div>
+        <div className={styles.examples}><span>Six examples:</span>{examples.map(id => { const row = ranked.find(row => row.id === id); return row && <button key={id} type="button" aria-pressed={selected?.id === id} onClick={() => choose(id)}>{neighbourhoodLabel(row)}</button>; })}</div>
         <p className={styles.caption}>{city === 'Brussels' ? 'The Brussels examples reproduce the first experiment and illustrate different directions of movement.' : 'Amsterdam examples: the highest-ranked neighbourhood under balanced weighting, plus five with the largest rank spans across the four scenarios.'} Examples are illustrative, not a representative sample.</p>
       </>}
       <footer className={styles.footer}>

@@ -82,3 +82,9 @@
 .measurements dd { font-size: 20px; line-height: 1.4; margin: 6px 0 0; font-variant-numeric: tabular-nums; }
 .measurements div:last-child { grid-column: 1/-1; }
 .scores dt { line-height: 1.5; min-height: 42px; }
+/* The global footer grid must not squeeze this page's research explanation. */
+.footer { display:block; width:100%; box-sizing:border-box; background:transparent; color:var(--pl-ink); }
+.footer h2 { display:block; width:auto; max-width:none; word-break:normal; overflow-wrap:normal; }
+.footer p { display:block; width:auto; max-width:85ch; word-break:normal; overflow-wrap:normal; }
+.footer > div { width:auto; }
+.footer a { display:inline-block; white-space:normal; word-break:normal; }

@@ -5,7 +5,7 @@
 .nav > div { display: flex; gap: 24px; }
 .header { padding: 40px 0 25px; max-width: 1100px; }
 .eyebrow { font: 11px 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .055em; }
-.header h1 { font-size: clamp(44px, 5.8vw, 84px); letter-spacing: -.055em; line-height: 1.02; margin: 20px 0; font-weight: 700; }
+.header h1 { font-size: clamp(44px, 5.8vw, 84px); letter-spacing: -.025em; line-height: 1.12; margin: 20px 0; font-weight: 700; }
 .intro { font-size: 19px; line-height: 1.5; max-width: 770px; }
 .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; border-top: 1px solid var(--pl-ink); padding: 12px 0; }
 .how p { font-size: 14px; line-height: 1.6; }
@@ -32,10 +32,11 @@
 .caption { font-size: 11px; line-height: 1.5; color: #5e6888; }
 .weightKey { font: 10px 'IBM Plex Mono', monospace; margin: 22px 0 18px; }
 .chartScroll { overflow-x: auto; }
-.chartInner { min-width: 550px; }
+.chartInner { min-width: 660px; }
 .chartInner svg { width: 100%; display: block; overflow: visible; }
-.scenarioLabels { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 4.5% 0 -4.5%; text-align: center; gap: 4px; }
-.scenarioLabels b { font-size: 11px; display: block; }
+.scenarioLabels { position: relative; height: 78px; margin: 0; text-align: center; }
+.scenarioLabels > div { position: absolute; top: 0; width: 140px; transform: translateX(-50%); min-height: 66px; padding: 0 8px; box-sizing: border-box; }
+.scenarioLabels b { font-size: 12px; line-height: 1.4; letter-spacing: .01em; display: block; overflow-wrap: normal; }
 .scenarioLabels span { font: 10px 'IBM Plex Mono', monospace; color: #5e6888; display: block; margin-top: 7px; }
 .guide { stroke: #c8ccd9; stroke-width: 1; }
 .tick { fill: #747b98; font: 11px 'IBM Plex Mono', monospace; }
@@ -59,5 +60,25 @@
 .footer > div { display: flex; flex-wrap: wrap; gap: 25px; font-size: 13px; margin-top: 20px; }
 .status { padding: 60px 0; }
 @media (prefers-reduced-motion: reduce) { .area { transition: none; } }
-@media (max-width: 950px) { .visuals { grid-template-columns: 1fr; gap: 30px; } .mapPanel { max-width: 650px; width: 100%; margin: auto; } .detail { grid-template-columns: 1fr; gap: 0; } .chartInner { min-width: 550px; max-width: 850px; margin: auto; } }
+@media (max-width: 950px) { .visuals { grid-template-columns: 1fr; gap: 30px; } .mapPanel { max-width: 650px; width: 100%; margin: auto; } .detail { grid-template-columns: 1fr; gap: 0; } .chartInner { min-width: 660px; max-width: 850px; margin: auto; } }
 @media (max-width: 600px) { .nav { align-items: flex-start; flex-direction: column; gap: 18px; } .nav > div { gap: 20px; flex-wrap: wrap; } .how { grid-template-columns: 1fr; gap: 0; } .how p { margin: 8px 0; } .header { padding-top: 26px; } .intro { font-size: 16px; } .select { flex-basis: 100%; } .select select { max-width: 100%; } .scores { grid-template-columns: repeat(2, 1fr); } }
+
+.scenarioLabels > div:nth-child(1) { left: 9.09%; }
+.scenarioLabels > div:nth-child(2) { left: 36.36%; }
+.scenarioLabels > div:nth-child(3) { left: 63.64%; }
+.scenarioLabels > div:nth-child(4) { left: 90.91%; }
+.chartScroll { padding: 8px 18px 12px; }
+.mapPanel, .chartPanel { min-width: 0; }
+.page h2, .page h3 { letter-spacing: -.01em; line-height: 1.3; overflow-wrap: anywhere; }
+.page p, .page dt, .page dd, .page button, .page select { letter-spacing: .01em; }
+.visuals h2 { flex-wrap: wrap; }
+.weightKey { font-size: 11px; line-height: 1.6; }
+.area.excluded { cursor: pointer; }
+.area.excluded.chosenArea { fill: var(--pl-red); stroke: var(--pl-red); }
+.unrankedNote { font-size: 13px; line-height: 1.6; border-left: 3px solid var(--pl-red); padding: 8px 12px; }
+.measurements { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin: 20px 0; }
+.measurements div { min-width: 0; }
+.measurements dt { font-size: 12px; line-height: 1.5; }
+.measurements dd { font-size: 20px; line-height: 1.4; margin: 6px 0 0; font-variant-numeric: tabular-nums; }
+.measurements div:last-child { grid-column: 1/-1; }
+.scores dt { line-height: 1.5; min-height: 42px; }

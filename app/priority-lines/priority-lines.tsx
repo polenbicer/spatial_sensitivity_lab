@@ -1,6 +1,6 @@
 'use client';
 
-import { CITY_INCOME, INCOME_COMPARABILITY, INCOME_MEANING, cityLabel } from '../../lib/priority-model';
+import { coverageReason, CITY_INCOME, INCOME_COMPARABILITY, INCOME_MEANING, cityLabel } from '../../lib/priority-model';
 import { useEffect, useMemo, useState } from 'react';
 import { exampleIds, mapPaths, rankCity, SCENARIOS, type City, type GeoData, type Row } from './model';
 import styles from './priority-lines.module.css';
@@ -40,8 +40,10 @@ export default function PriorityLines() {
   const examples = useMemo(() => exampleIds(ranked, city), [ranked, city]);
   const rankedIds = useMemo(() => new Set(ranked.map(row => row.id)), [ranked]);
   const paths = useMemo(() => mapPaths(geography.features.filter(feature => feature.properties.city === city)), [geography, city]);
-  const selected = ranked.find(row => row.id === selection) ?? ranked.find(row => row.id === examples[examples.length - 1]);
-  const options = useMemo(() => [...ranked].sort((a, b) => a.neighbourhood_name.localeCompare(b.neighbourhood_name)), [ranked]);
+  const selected = selection ? ranked.find(row => row.id === selection) : ranked.find(row => row.id === examples[examples.length - 1]);
+  const cityRows = rows.filter(row => row.city === city);
+  const selectedRow = cityRows.find(row => row.id === (selection || selected?.id));
+  const options = useMemo(() => rows.filter(row => row.city === city).sort((a, b) => a.neighbourhood_name.localeCompare(b.neighbourhood_name)), [rows, city]);
   const count = ranked.length;
   const rankY = (rank: number) => 30 + (rank - 1) / Math.max(1, count - 1) * 500;
   const ticks = [...new Set([1, ...[50, 100, 200, 300, 400, 500].filter(value => value < count), count])];
@@ -87,9 +89,9 @@ export default function PriorityLines() {
           {(['Brussels', 'Amsterdam'] as City[]).map(name => <button key={name} type="button" aria-pressed={city === name} onClick={() => changeCity(name)}>{name === 'Brussels' ? 'Brussels region' : name}</button>)}
         </div>
         <label className={styles.select}>Neighbourhood
-          <select value={selected?.id ?? ''} onChange={event => choose(event.target.value)} disabled={!count}>
+          <select value={selectedRow?.id ?? ''} onChange={event => choose(event.target.value)} disabled={!count}>
             {!count && <option value="">Loading…</option>}
-            {options.map(row => <option key={row.id} value={row.id}>{row.neighbourhood_name}</option>)}
+            {options.map(row => <option key={row.id} value={row.id}>{row.neighbourhood_name}{row.ranking_eligible ? '' : ' · unranked'}</option>)}
           </select>
         </label>
         <button type="button" disabled={!examples.length} aria-pressed={playing} onClick={() => { if (!playing) setSelection(examples[0]); setPlaying(!playing); }}>{playing ? 'Pause examples' : 'Play six examples'}</button>
@@ -103,9 +105,9 @@ export default function PriorityLines() {
               <text x="25" y="30" className={styles.mapLabel}>N ↑</text>
               {paths.map(path => {
                 const eligible = rankedIds.has(path.id);
-                return <path key={path.id} d={path.path} fillRule="evenodd" className={`${styles.area} ${selected?.id === path.id ? styles.chosenArea : ''} ${!eligible ? styles.excluded : ''}`}
-                  role={eligible ? 'button' : undefined} tabIndex={eligible ? 0 : undefined} aria-label={`${path.neighbourhood_name}${eligible ? '' : ' — not ranked: incomplete three-indicator coverage'}`} aria-pressed={eligible ? selected?.id === path.id : undefined}
-                  onClick={() => eligible && choose(path.id)} onKeyDown={event => { if (eligible && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); choose(path.id); } }}>
+                return <path key={path.id} d={path.path} fillRule="evenodd" className={`${styles.area} ${selectedRow?.id === path.id ? styles.chosenArea : ''} ${!eligible ? styles.excluded : ''}`}
+                  role='button' tabIndex={0} aria-label={`${path.neighbourhood_name}${eligible ? '' : ' — not ranked: incomplete three-indicator coverage'}`} aria-pressed={selectedRow?.id === path.id}
+                  onClick={() => choose(path.id)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); choose(path.id); } }}>
                   <title>{path.neighbourhood_name}{eligible ? '' : ' · not ranked'}</title>
                 </path>;
               })}
@@ -114,6 +116,7 @@ export default function PriorityLines() {
           </div>
           <div className={styles.chartPanel}>
             <h2>Follow the line <span>Within-city rank</span></h2>
+            {selectedRow && !selected && <p className={styles.unrankedNote}>No combined rank for this area. Its available measurements are shown below.</p>}
             <p className={styles.weightKey}>Weights: surface temperature / green deficit / lower median income (%)</p>
             <div className={styles.chartScroll} tabIndex={0} role="region" aria-label="Scenario rank chart; scroll horizontally on small screens">
               <div className={styles.chartInner}>
@@ -125,12 +128,19 @@ export default function PriorityLines() {
                 </svg>
               </div>
             </div>
-            <p className={styles.caption}>The red line follows the red neighbourhood. Faint lines are the other {city} neighbourhoods.</p>
+            <p className={styles.caption}>{selected ? `The red line follows the red neighbourhood. Faint lines are the other ${city} neighbourhoods.` : `The selected area has no combined rank, so no red rank line is drawn. Faint lines show ranked ${city} neighbourhoods.`}</p>
           </div>
         </section>
-        {selected && <section className={styles.detail} aria-label="Selected neighbourhood details" aria-live="polite">
-          <div><p className={styles.eyebrow}>Selected neighbourhood</p><h2>{selected.neighbourhood_name}</h2><p>Rank range <b>#{Math.min(...selected.ranks)}–#{Math.max(...selected.ranks)}</b>: {selected.span} places apart across these scenarios.</p></div>
-          <dl className={styles.scores}>{SCENARIOS.map((scenario, index) => <div key={scenario.field}><dt>{scenario.title}</dt><dd>#{selected.ranks[index]}<span>Score {selected[scenario.field].toFixed(1)}</span></dd></div>)}</dl>
+        {selectedRow && <section className={styles.detail} aria-label="Selected neighbourhood details" aria-live="polite">
+          <div><p className={styles.eyebrow}>Selected neighbourhood</p><h2>{selectedRow.neighbourhood_name}</h2>
+            {selected ? <p>Rank range <b>#{Math.min(...selected.ranks)}–#{Math.max(...selected.ranks)}</b>: {selected.span} places apart across these scenarios.</p> : <p><b>Unranked.</b> {coverageReason(selectedRow)}</p>}
+            <dl className={styles.measurements}>
+              <div><dt>Surface temperature</dt><dd>{selectedRow.summer_lst_median_c == null ? 'Not available' : `${selectedRow.summer_lst_median_c.toFixed(1)} °C`}</dd></div>
+              <div><dt>Public green area share</dt><dd>{selectedRow.cooling_green_pct == null ? 'Not available' : `${selectedRow.cooling_green_pct.toFixed(2)}%`}</dd></div>
+              <div><dt>{CITY_INCOME[city].label}</dt><dd>{(selectedRow.income_median_disposable_eur ?? selectedRow.income_median_equivalised_after_tax_eur) == null ? 'Not published' : `€${(selectedRow.income_median_disposable_eur ?? selectedRow.income_median_equivalised_after_tax_eur)!.toLocaleString('en-GB')}`}</dd></div>
+            </dl><p className={styles.caption}>Public green: share of land area in Amsterdam; total neighbourhood area in Brussels. Raw measurements remain visible even without a combined rank.</p>
+          </div>
+          {selected && <dl className={styles.scores}>{SCENARIOS.map((scenario, index) => <div key={scenario.field}><dt>{scenario.title}</dt><dd>#{selected.ranks[index]}<span>Score {selected[scenario.field].toFixed(1)}</span></dd></div>)}</dl>}
         </section>}
         <div className={styles.examples}><span>Six examples:</span>{examples.map(id => { const row = ranked.find(row => row.id === id); return row && <button key={id} type="button" aria-pressed={selected?.id === id} onClick={() => choose(id)}>{row.neighbourhood_name}</button>; })}</div>
         <p className={styles.caption}>{city === 'Brussels' ? 'The Brussels examples reproduce the first experiment and illustrate different directions of movement.' : 'Amsterdam examples: the highest-ranked neighbourhood under balanced weighting, plus five with the largest rank spans across the four scenarios.'} Examples are illustrative, not a representative sample.</p>

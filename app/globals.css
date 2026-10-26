@@ -3769,3 +3769,10 @@ button.cell-link { border:0; padding:0; background:transparent; text-align:left;
 .lab-chapter .evidence {grid-template-columns:1fr}
 @media(max-width:760px){.example-steps {grid-template-columns:1fr;gap:18px}}
 @media print {.reading-detail:not([open]) > .reading-body {display:block!important}.reading-detail > summary {list-style:none}}
+
+/* Preserve the existing visual system while giving text room to render. */
+.hero-title { letter-spacing: -.02em; line-height: 1.2; flex-wrap: wrap; }
+.lab-heading h1, .chapter-header h2, .lab-chapter h3 { letter-spacing: -.02em; line-height: 1.18; }
+.rankings-page h1, .rankings-page h2, .ranking-explorer h1, .ranking-explorer h2 { letter-spacing: -.02em; line-height: 1.15; }
+.column-help { line-height: 1.4; letter-spacing: .01em; }
+.full-table td .quality { white-space: normal; line-height: 1.5; max-width: 30ch; display: block; }

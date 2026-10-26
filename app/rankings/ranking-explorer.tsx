@@ -1,5 +1,5 @@
 "use client";
-import {SCENARIOS, CITY_INCOME, INCOME_COMPARABILITY, INCOME_MEANING, cityLabel, type Scenario} from "../../lib/priority-model";
+import {SCENARIOS, coverageReason, CITY_INCOME, INCOME_COMPARABILITY, INCOME_MEANING, cityLabel, type Scenario} from "../../lib/priority-model";
 import { buildCellLabels } from "../../lib/cell-labels";
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
@@ -22,6 +22,10 @@ type NeighbourhoodRow = {
   ranking_eligible: boolean;
   data_quality: string;
   summer_lst_median_c: number | null;
+  cooling_green_pct: number | null;
+  income_status?: string;
+  model_status?: string;
+  green_coverage_status?: string;
   score_surface_temperature: number;
   score_green_deficit: number;
   score_income_deprivation: number;
@@ -51,6 +55,7 @@ type Summary = {
   income: number | null;
   incomeEur: number | null;
   lst: number | null;
+  publicGreen: number | null;
 };
 
 const CITIES: City[] = ["Brussels", "Amsterdam"];
@@ -67,7 +72,7 @@ function summarise(rows: NeighbourhoodRow[], scenario: Scenario): Summary[] {
     coverage: r.land_cover_coverage_pct ?? r.eligible_coverage_pct,
     thermalCoverage: r.thermal_coverage_pct,
     rankingEligible: r.ranking_eligible && r[scenario] != null,
-    quality: r.data_quality,
+    quality: coverageReason(r),
     priority: r[scenario] ?? NaN,
     surface: r.score_surface_temperature,
     green: r.score_green_deficit,
@@ -75,6 +80,7 @@ function summarise(rows: NeighbourhoodRow[], scenario: Scenario): Summary[] {
     income: r.score_income_deprivation ?? null,
     incomeEur: r.income_median_disposable_eur ?? r.income_median_equivalised_after_tax_eur ?? null,
     lst: r.summer_lst_median_c,
+    publicGreen: r.cooling_green_pct,
   }));
 }
 function rankMap<T extends { id: string; priority: number }>(rows: T[]) {
@@ -298,6 +304,7 @@ export default function RankingExplorer() {
             "green_deficit_score",
             true ? "low_income_score" : "low_income_score",
             "summer_lst_median_c",
+            "public_green_area_share_pct",
           ]
         : [
             "rank",
@@ -328,6 +335,7 @@ export default function RankingExplorer() {
             formatScore(r.green),
             true ? (r.income == null ? "" : r.income.toFixed(0)) : formatScore(r.lowIncome),
             r.lst == null ? "" : r.lst.toFixed(1),
+            r.publicGreen == null ? "" : r.publicGreen.toFixed(2),
           ])
         : cellRows.map((f) => {
             const p = f.properties,
@@ -467,7 +475,7 @@ export default function RankingExplorer() {
           </p>
         </details>
       </section>
-      <div style={{padding:"0 2vw"}}><p className="scope-note">{INCOME_MEANING} Grey areas are unranked, not low priority.</p><details className="reading-detail compact"><summary>Income definition, coverage and sources</summary><div className="reading-body"><p>{CITY_INCOME[city].description}</p><p>{INCOME_COMPARABILITY}</p><a href="/methods.html">Sources and method</a></div></details></div>
+      <div style={{padding:"0 2vw"}}><p className="scope-note">{INCOME_MEANING} Grey areas are unranked, not low priority. Their available surface temperature and public-green area share remain visible in the table and on Priority Lines.</p><details className="reading-detail compact"><summary>Income definition, coverage and sources</summary><div className="reading-body"><p>{CITY_INCOME[city].description}</p><p>{INCOME_COMPARABILITY}</p><a href="/methods.html">Sources and method</a></div></details></div>
       <section className="report-note">
         <div>
           <span>Selected weights</span>
@@ -593,6 +601,9 @@ export default function RankingExplorer() {
                     </ColumnHelp>
                   </th>
                   <th>
+                    <ColumnHelp label="Public green area (%)"><b>Observed public-green area share</b><span>Raw area share, shown even when income is unavailable. Amsterdam uses land area; Brussels uses total neighbourhood area. This is not a percentile score or an access measure.</span></ColumnHelp>
+                  </th>
+                  <th>
                     <ColumnHelp label="Evidence">
                       <b>Coverage warning</b>
                       <span>
@@ -640,9 +651,10 @@ export default function RankingExplorer() {
                       <td>{formatScore(r.green)}</td>
                       <td>{true ? (r.income == null ? "—" : r.income.toFixed(0)) : formatScore(r.lowIncome)}</td>
                       <td>{r.lst == null ? "—" : `${r.lst.toFixed(1)} °C`}</td>
+                      <td>{r.publicGreen == null ? "Not available" : `${r.publicGreen.toFixed(2)}%`}</td>
                       <td>
                         <span
-                          className={`quality ${r.quality.startsWith("sufficient") ? "good" : "warning"}`}
+                          className={`quality ${r.rankingEligible ? "good" : "warning"}`}
                         >
                           {r.quality}
                         </span>

@@ -8,6 +8,9 @@ export const SCENARIOS = [
 export type ScoreField = typeof SCENARIOS[number]['field'];
 export type Row = {
   id: string; city: City; neighbourhood_name: string; ranking_eligible: boolean;
+  summer_lst_median_c: number | null; cooling_green_pct: number | null;
+  income_median_disposable_eur?: number | null; income_median_equivalised_after_tax_eur?: number | null;
+  income_status?: string; model_status?: string; green_coverage_status?: string;
 } & Record<ScoreField, number>;
 export type RankedRow = Row & { ranks: number[]; span: number };
 export type Polygon = number[][][];

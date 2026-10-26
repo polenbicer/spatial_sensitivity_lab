@@ -3776,3 +3776,7 @@ button.cell-link { border:0; padding:0; background:transparent; text-align:left;
 .rankings-page h1, .rankings-page h2, .ranking-explorer h1, .ranking-explorer h2 { letter-spacing: -.02em; line-height: 1.15; }
 .column-help { line-height: 1.4; letter-spacing: .01em; }
 .full-table td .quality { white-space: normal; line-height: 1.5; max-width: 30ch; display: block; }
+/* Keep raw measurements visible in the concise table, including unranked rows. */
+.ranking-results.summary-columns.neighbourhoods .full-table :is(th,td):nth-child(11),
+.ranking-results.summary-columns.neighbourhoods .full-table :is(th,td):nth-child(12) { display:table-cell; width:112px; white-space:normal; }
+.ranking-results.summary-columns.neighbourhoods .full-table table { min-width:720px; }

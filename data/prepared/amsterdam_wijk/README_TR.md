@@ -71,3 +71,6 @@ Kod: scripts/build_amsterdam_neighbourhoods.py. Bağımlılıklar: requirements-
 
 ## Wijk düzeyindeki eksikler
 BA — Havens-West ve BB — Coenhaven/Minervahaven: kaynakta gelir kaydı yok; sıfır verilmez.
+
+
+26 Ekim 2026 güncellemesi: Amsterdam yeşil göstergesi O&S 2025 ORPUBGROEN_P kamusal yeşil/kara alanı oranıdır. WorldCover yalnızca sıcaklık su maskesi ve kapsama kontrolünde kalır. Kaynak ve oranlar: data/source/amsterdam_wijk/public_green_2025.json. Brüksel bu güncellemede değiştirilmedi.

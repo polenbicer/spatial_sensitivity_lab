@@ -25,8 +25,8 @@ Projenin mevcut Landsat 8/9 JJA 2019–2023 bileşik rasterinin 30 metre çözü
 
 Mevcut bileşik rasterden mahalle hesabı yeniden üretilebilir. Bileşiği ilk üreten sahne seçimi ve bulut maskeleme kodu mevcut dosyalarda bulunmadığından ilk uydu işlem zincirinin tümü yeniden üretilebilir diye sunulmaz. Geliri yayımlanan 108 wijk sıcaklık kapsamı eşiğini karşılar; sıcaklık uydurulmaz.
 
-## Green deficit
-ESA WorldCover 2021 v200 rasterinden ağaç örtüsü (10) ve çayır/çimen (30) sınıfları toplandı. Payda, mahallede gözlenen su dışındaki alandır. Eksiklik = 100 − yeşil alan yüzdesi. Su sınıfı 80 paydadan çıkarılır; suyun yeşil alan eksikliği olarak değerlendirilmesi önlenir. Tarım, çalı ve diğer sınıflar bu dar göstergeye eklenmedi. Bu analitik seçim bütün soğutma etkilerini ölçmez.
+## Kamusal yeşil alan eksikliği
+Amsterdam O&S 1 Ocak 2025 kamusal yeşil alan verisi kullanılır. ORPUBGROEN_P = kamusal yeşil alan (ha) / toplam kara alanı (ha). Kaynaktaki 0–1 oranı 100 ile çarpılarak yüzdeye çevrilir. Eksiklik = 100 − kamusal yeşil yüzdesi. Resmî wijk koduyla doğrudan eşleştirilir; 110 wijk için veri vardır. Özel bahçeler ve yeşil çatılar eklenmez. Erişim mesafesini veya soğutma etkisini ölçmez. Kaynak: https://onderzoek.amsterdam.nl/dataset/groen-in-amsterdam
 
 Rasterlerde piksel merkezi mahalle sınırının içindeyse piksel dahil edilir (all_touched=False). WorldCover coğrafi rasterinde alan oranları satır enleminin kosinüsüyle ağırlıklandırılır; sınır pikselleri kesirli kesişimle bölünmez. Küçük veya dar mahallelerde piksel merkezine bağlı sınır etkisi kalabilir. Sıcaklık için su maskesi en yakın komşuyla 30 metreye aktarılır; sıcaklık değerleri türetilmez veya doldurulmaz.
 

@@ -1,0 +1,670 @@
+{
+  "source": "https://onderzoek.amsterdam.nl/dataset/groen-in-amsterdam",
+  "snapshot": "2025-01-01",
+  "boundary_date": "2022-03-24",
+  "source_file": "data_groen_landinrichting_groen_74839e3a48.xlsx",
+  "sha256": "c0bf31108f3d2de315b82181653f655c2c299a47f1dd6e583421a4459327bc03",
+  "unit": "ORPUBGROEN_P is a fraction; multiply by 100 for percent",
+  "rows": {
+    "AA": {
+      "name": "Haarlemmerbuurt",
+      "ORLAND": 53.09084001398871,
+      "ORPUBGROEN": 1.821,
+      "ORPUBGROEN_P": 0.03429970216180778
+    },
+    "AB": {
+      "name": "Jordaan",
+      "ORLAND": 83.16643336319649,
+      "ORPUBGROEN": 0.8492,
+      "ORPUBGROEN_P": 0.01021085028729626
+    },
+    "AC": {
+      "name": "Grachtengordel-West",
+      "ORLAND": 45.04507589209035,
+      "ORPUBGROEN": 0.0004,
+      "ORPUBGROEN_P": 8.87999391894104e-06
+    },
+    "AD": {
+      "name": "Burgwallen-Nieuwe Zijde",
+      "ORLAND": 56.57566101238638,
+      "ORPUBGROEN": 0.2549,
+      "ORPUBGROEN_P": 0.004505471000050597
+    },
+    "AE": {
+      "name": "Burgwallen-Oude Zijde",
+      "ORLAND": 34.84237969648224,
+      "ORPUBGROEN": 0.0488,
+      "ORPUBGROEN_P": 0.001400593197855741
+    },
+    "AF": {
+      "name": "Nieuwmarkt/Lastage",
+      "ORLAND": 69.94143237450473,
+      "ORPUBGROEN": 0.8924,
+      "ORPUBGROEN_P": 0.01275924683986455
+    },
+    "AG": {
+      "name": "Grachtengordel-Zuid",
+      "ORLAND": 52.40715676281938,
+      "ORPUBGROEN": 0.1385,
+      "ORPUBGROEN_P": 0.002642768823098218
+    },
+    "AH": {
+      "name": "De Weteringschans",
+      "ORLAND": 55.54754208667054,
+      "ORPUBGROEN": 3.4957,
+      "ORPUBGROEN_P": 0.06293167741869977
+    },
+    "AJ": {
+      "name": "Weesperbuurt/Plantage",
+      "ORLAND": 76.71919430923485,
+      "ORPUBGROEN": 5.7909,
+      "ORPUBGROEN_P": 0.07548176244732717
+    },
+    "AK": {
+      "name": "Oostelijke Eilanden/Kadijken",
+      "ORLAND": 98.21413361786632,
+      "ORPUBGROEN": 14.1625,
+      "ORPUBGROEN_P": 0.1442002233110742
+    },
+    "BA": {
+      "name": "Havens-West",
+      "ORLAND": 1792.902355862057,
+      "ORPUBGROEN": 369.1235,
+      "ORPUBGROEN_P": 0.2058804255530801
+    },
+    "BB": {
+      "name": "Coenhaven/Minervahaven",
+      "ORLAND": 183.7144116218369,
+      "ORPUBGROEN": 33.1198,
+      "ORPUBGROEN_P": 0.1802787255916251
+    },
+    "EA": {
+      "name": "Sloterdijk-West",
+      "ORLAND": 116.404632707959,
+      "ORPUBGROEN": 26.4425,
+      "ORPUBGROEN_P": 0.2271602030336721
+    },
+    "EB": {
+      "name": "Spaarndammerbuurt/Zeeheldenbuurt",
+      "ORLAND": 130.2602366403215,
+      "ORPUBGROEN": 47.7107,
+      "ORPUBGROEN_P": 0.3662721735393452
+    },
+    "EC": {
+      "name": "Houthavens",
+      "ORLAND": 33.33370456112193,
+      "ORPUBGROEN": 5.987,
+      "ORPUBGROEN_P": 0.1796079997355833
+    },
+    "ED": {
+      "name": "De Kolenkit",
+      "ORLAND": 69.60312420237645,
+      "ORPUBGROEN": 12.1602,
+      "ORPUBGROEN_P": 0.1747076749693488
+    },
+    "EE": {
+      "name": "Landlust",
+      "ORLAND": 102.4700155210002,
+      "ORPUBGROEN": 10.5117,
+      "ORPUBGROEN_P": 0.1025831795433439
+    },
+    "EF": {
+      "name": "Erasmuspark",
+      "ORLAND": 36.11448342550761,
+      "ORPUBGROEN": 10.3222,
+      "ORPUBGROEN_P": 0.2858188466489167
+    },
+    "EG": {
+      "name": "Centrale Markt",
+      "ORLAND": 51.31472591351126,
+      "ORPUBGROEN": 5.2356,
+      "ORPUBGROEN_P": 0.1020291915584695
+    },
+    "EH": {
+      "name": "Staatsliedenbuurt",
+      "ORLAND": 47.08337006831189,
+      "ORPUBGROEN": 1.8582,
+      "ORPUBGROEN_P": 0.03946616389829343
+    },
+    "EJ": {
+      "name": "Frederik Hendrikbuurt",
+      "ORLAND": 35.82623771202486,
+      "ORPUBGROEN": 2.9965,
+      "ORPUBGROEN_P": 0.08363981794812472
+    },
+    "EK": {
+      "name": "Van Galenbuurt",
+      "ORLAND": 28.78212793250642,
+      "ORPUBGROEN": 3.5898,
+      "ORPUBGROEN_P": 0.1247232313197279
+    },
+    "EL": {
+      "name": "Geuzenbuurt",
+      "ORLAND": 27.54015483770865,
+      "ORPUBGROEN": 2.1272,
+      "ORPUBGROEN_P": 0.0772399433676163
+    },
+    "EM": {
+      "name": "Hoofdweg e.o.",
+      "ORLAND": 39.99526719061072,
+      "ORPUBGROEN": 1.212,
+      "ORPUBGROEN_P": 0.03030358552735282
+    },
+    "EN": {
+      "name": "Chassébuurt",
+      "ORLAND": 25.41186877163474,
+      "ORPUBGROEN": 0.7616,
+      "ORPUBGROEN_P": 0.02997024763680953
+    },
+    "EP": {
+      "name": "Bellamybuurt",
+      "ORLAND": 25.06927543584168,
+      "ORPUBGROEN": 0.7489,
+      "ORPUBGROEN_P": 0.02987322078440662
+    },
+    "EQ": {
+      "name": "Da Costabuurt",
+      "ORLAND": 21.58211300598535,
+      "ORPUBGROEN": 0.7262,
+      "ORPUBGROEN_P": 0.03364823452636929
+    },
+    "ER": {
+      "name": "Westindische Buurt",
+      "ORLAND": 31.50438849811206,
+      "ORPUBGROEN": 2.0217,
+      "ORPUBGROEN_P": 0.06417201210304886
+    },
+    "ES": {
+      "name": "Van Lennepbuurt",
+      "ORLAND": 25.07821432799724,
+      "ORPUBGROEN": 0.3525,
+      "ORPUBGROEN_P": 0.01405602469895435
+    },
+    "ET": {
+      "name": "Overtoomse Sluis",
+      "ORLAND": 29.43688761549802,
+      "ORPUBGROEN": 0.3361,
+      "ORPUBGROEN_P": 0.0114176472862929
+    },
+    "EU": {
+      "name": "Helmersbuurt",
+      "ORLAND": 33.27088324509316,
+      "ORPUBGROEN": 1.6716,
+      "ORPUBGROEN_P": 0.0502421287612354
+    },
+    "EV": {
+      "name": "Vondelparkbuurt",
+      "ORLAND": 21.63395334664651,
+      "ORPUBGROEN": 0.7228,
+      "ORPUBGROEN_P": 0.03341044461076467
+    },
+    "FA": {
+      "name": "Sloterdijk Nieuw-West",
+      "ORLAND": 690.3527605385312,
+      "ORPUBGROEN": 351.6411,
+      "ORPUBGROEN_P": 0.5093643715217295
+    },
+    "FB": {
+      "name": "Geuzenveld",
+      "ORLAND": 335.4232204251277,
+      "ORPUBGROEN": 147.2482,
+      "ORPUBGROEN_P": 0.4389922671822548
+    },
+    "FC": {
+      "name": "Slotermeer-West",
+      "ORLAND": 87.55045367892968,
+      "ORPUBGROEN": 24.453,
+      "ORPUBGROEN_P": 0.2793018079572211
+    },
+    "FD": {
+      "name": "Slotermeer-Noordoost",
+      "ORLAND": 95.12652031519521,
+      "ORPUBGROEN": 27.7054,
+      "ORPUBGROEN_P": 0.2912479076097818
+    },
+    "FE": {
+      "name": "Slotermeer-Zuidoost",
+      "ORLAND": 137.7790363789182,
+      "ORPUBGROEN": 73.6994,
+      "ORPUBGROEN_P": 0.5349101135916848
+    },
+    "FF": {
+      "name": "Lutkemeer/Ookmeer",
+      "ORLAND": 495.3381703703105,
+      "ORPUBGROEN": 188.7628,
+      "ORPUBGROEN_P": 0.3810786474599415
+    },
+    "FG": {
+      "name": "De Aker",
+      "ORLAND": 142.9427107787407,
+      "ORPUBGROEN": 31.0384,
+      "ORPUBGROEN_P": 0.2171387392257025
+    },
+    "FH": {
+      "name": "De Punt",
+      "ORLAND": 57.0967563412549,
+      "ORPUBGROEN": 15.4655,
+      "ORPUBGROEN_P": 0.2708647739560908
+    },
+    "FJ": {
+      "name": "Osdorp-Midden",
+      "ORLAND": 103.9590445955447,
+      "ORPUBGROEN": 31.5019,
+      "ORPUBGROEN_P": 0.3030222153595095
+    },
+    "FK": {
+      "name": "Osdorp-Oost",
+      "ORLAND": 156.9230380517225,
+      "ORPUBGROEN": 43.7928,
+      "ORPUBGROEN_P": 0.2790718338346579
+    },
+    "FL": {
+      "name": "Slotervaart-Noord",
+      "ORLAND": 111.2860889200441,
+      "ORPUBGROEN": 47.0028,
+      "ORPUBGROEN_P": 0.4223600672476701
+    },
+    "FM": {
+      "name": "Overtoomse Veld",
+      "ORLAND": 144.6826699629691,
+      "ORPUBGROEN": 55.4221,
+      "ORPUBGROEN_P": 0.3830596989548579
+    },
+    "FN": {
+      "name": "Slotervaart-Zuid",
+      "ORLAND": 124.0809262444595,
+      "ORPUBGROEN": 29.7954,
+      "ORPUBGROEN_P": 0.2401287683918336
+    },
+    "FP": {
+      "name": "Westlandgracht",
+      "ORLAND": 138.3903322301572,
+      "ORPUBGROEN": 49.9266,
+      "ORPUBGROEN_P": 0.3607665304030558
+    },
+    "FQ": {
+      "name": "Sloten/Nieuw-Sloten",
+      "ORLAND": 450.0788985515064,
+      "ORPUBGROEN": 174.4547,
+      "ORPUBGROEN_P": 0.3876091515542038
+    },
+    "KA": {
+      "name": "Hoofddorppleinbuurt",
+      "ORLAND": 84.52618107384771,
+      "ORPUBGROEN": 11.1174,
+      "ORPUBGROEN_P": 0.1315261124868175
+    },
+    "KB": {
+      "name": "Schinkelbuurt",
+      "ORLAND": 29.1093314930047,
+      "ORPUBGROEN": 1.8131,
+      "ORPUBGROEN_P": 0.06228586872342665
+    },
+    "KC": {
+      "name": "Willemspark",
+      "ORLAND": 63.3790707032642,
+      "ORPUBGROEN": 16.281,
+      "ORPUBGROEN_P": 0.2568829081799945
+    },
+    "KD": {
+      "name": "Museumkwartier",
+      "ORLAND": 130.7208438557486,
+      "ORPUBGROEN": 17.8417,
+      "ORPUBGROEN_P": 0.1364870320121896
+    },
+    "KE": {
+      "name": "Oude Pijp",
+      "ORLAND": 62.70946891123479,
+      "ORPUBGROEN": 3.4948,
+      "ORPUBGROEN_P": 0.05573002069188127
+    },
+    "KF": {
+      "name": "Nieuwe Pijp",
+      "ORLAND": 51.37383685435604,
+      "ORPUBGROEN": 0.5104,
+      "ORPUBGROEN_P": 0.009935018119183417
+    },
+    "KG": {
+      "name": "Zuid Pijp",
+      "ORLAND": 35.28236389292202,
+      "ORPUBGROEN": 0.7357,
+      "ORPUBGROEN_P": 0.02085177745552328
+    },
+    "KH": {
+      "name": "Stadionbuurt",
+      "ORLAND": 94.24273711555155,
+      "ORPUBGROEN": 10.0448,
+      "ORPUBGROEN_P": 0.1065843406870072
+    },
+    "KJ": {
+      "name": "Apollobuurt",
+      "ORLAND": 88.15165127975112,
+      "ORPUBGROEN": 6.0559,
+      "ORPUBGROEN_P": 0.06869865637322521
+    },
+    "KK": {
+      "name": "Scheldebuurt",
+      "ORLAND": 98.75718832723125,
+      "ORPUBGROEN": 11.5085,
+      "ORPUBGROEN_P": 0.1165332893223597
+    },
+    "KL": {
+      "name": "IJselbuurt",
+      "ORLAND": 25.54582366888433,
+      "ORPUBGROEN": 1.5317,
+      "ORPUBGROEN_P": 0.05995892009016182
+    },
+    "KM": {
+      "name": "Rijnbuurt",
+      "ORLAND": 95.49560153789,
+      "ORPUBGROEN": 30.5032,
+      "ORPUBGROEN_P": 0.319419947188847
+    },
+    "KN": {
+      "name": "Prinses Irenebuurt e.o.",
+      "ORLAND": 38.02944889139695,
+      "ORPUBGROEN": 15.254,
+      "ORPUBGROEN_P": 0.4011102039254314
+    },
+    "KP": {
+      "name": "Zuidas",
+      "ORLAND": 204.87908740003,
+      "ORPUBGROEN": 36.5313,
+      "ORPUBGROEN_P": 0.1783066317972805
+    },
+    "KQ": {
+      "name": "Buitenveldert-West",
+      "ORLAND": 279.4618025227005,
+      "ORPUBGROEN": 117.3488,
+      "ORPUBGROEN_P": 0.4199099803289497
+    },
+    "KR": {
+      "name": "Buitenveldert-Oost",
+      "ORLAND": 149.3894118596925,
+      "ORPUBGROEN": 66.8491,
+      "ORPUBGROEN_P": 0.4474821820892174
+    },
+    "MA": {
+      "name": "Oostelijk Havengebied",
+      "ORLAND": 149.1520479886486,
+      "ORPUBGROEN": 17.9544,
+      "ORPUBGROEN_P": 0.1203764899115998
+    },
+    "MB": {
+      "name": "Weesperzijde",
+      "ORLAND": 36.38314937903322,
+      "ORPUBGROEN": 4.4277,
+      "ORPUBGROEN_P": 0.1216964467224375
+    },
+    "MC": {
+      "name": "Oosterparkbuurt",
+      "ORLAND": 72.15902234354498,
+      "ORPUBGROEN": 13.6839,
+      "ORPUBGROEN_P": 0.1896353297977311
+    },
+    "MD": {
+      "name": "Transvaalbuurt",
+      "ORLAND": 36.87523040395973,
+      "ORPUBGROEN": 2.426,
+      "ORPUBGROEN_P": 0.06578941944019669
+    },
+    "ME": {
+      "name": "Dapperbuurt",
+      "ORLAND": 59.21227951571033,
+      "ORPUBGROEN": 5.3723,
+      "ORPUBGROEN_P": 0.09072949131395304
+    },
+    "MF": {
+      "name": "Indische Buurt-West",
+      "ORLAND": 46.75792926398039,
+      "ORPUBGROEN": 1.313,
+      "ORPUBGROEN_P": 0.02808079871517021
+    },
+    "MG": {
+      "name": "Indische Buurt-Oost",
+      "ORLAND": 89.07626682734008,
+      "ORPUBGROEN": 38.5746,
+      "ORPUBGROEN_P": 0.4330513769146906
+    },
+    "MH": {
+      "name": "Zeeburgereiland/Bovendiep",
+      "ORLAND": 238.1908678074132,
+      "ORPUBGROEN": 129.6514,
+      "ORPUBGROEN_P": 0.5443172578086761
+    },
+    "MJ": {
+      "name": "IJburg-West",
+      "ORLAND": 110.274389391707,
+      "ORPUBGROEN": 17.4774,
+      "ORPUBGROEN_P": 0.158490109048968
+    },
+    "MK": {
+      "name": "IJburg-Oost",
+      "ORLAND": 223.447899187532,
+      "ORPUBGROEN": 2.8668,
+      "ORPUBGROEN_P": 0.01282983644251672
+    },
+    "ML": {
+      "name": "IJburg-Zuid",
+      "ORLAND": 64.2829913065593,
+      "ORPUBGROEN": 13.1204,
+      "ORPUBGROEN_P": 0.2041037564264876
+    },
+    "MM": {
+      "name": "Frankendael",
+      "ORLAND": 155.5566205260666,
+      "ORPUBGROEN": 44.0996,
+      "ORPUBGROEN_P": 0.2834954876935645
+    },
+    "MN": {
+      "name": "Middenmeer",
+      "ORLAND": 271.654076486675,
+      "ORPUBGROEN": 89.0394,
+      "ORPUBGROEN_P": 0.327767582771273
+    },
+    "MP": {
+      "name": "Betondorp",
+      "ORLAND": 106.7416635367143,
+      "ORPUBGROEN": 49.5493,
+      "ORPUBGROEN_P": 0.4641983116832096
+    },
+    "MQ": {
+      "name": "Omval/Overamstel",
+      "ORLAND": 269.9355199586096,
+      "ORPUBGROEN": 85.0061,
+      "ORPUBGROEN_P": 0.3149126132530997
+    },
+    "NA": {
+      "name": "Oostzanerwerf",
+      "ORLAND": 238.9286711679985,
+      "ORPUBGROEN": 121.9589,
+      "ORPUBGROEN_P": 0.5104406239896038
+    },
+    "NB": {
+      "name": "Noordelijke IJ-oevers-West",
+      "ORLAND": 253.464774504023,
+      "ORPUBGROEN": 42.1065,
+      "ORPUBGROEN_P": 0.1661236756957393
+    },
+    "NC": {
+      "name": "Tuindorp Oostzaan",
+      "ORLAND": 156.260653588314,
+      "ORPUBGROEN": 38.6787,
+      "ORPUBGROEN_P": 0.2475268028886102
+    },
+    "ND": {
+      "name": "Kadoelen",
+      "ORLAND": 125.4831146828262,
+      "ORPUBGROEN": 32.8938,
+      "ORPUBGROEN_P": 0.2621372611218893
+    },
+    "NE": {
+      "name": "Banne Buiksloot",
+      "ORLAND": 162.5661288074935,
+      "ORPUBGROEN": 67.6619,
+      "ORPUBGROEN_P": 0.4162115472413287
+    },
+    "NF": {
+      "name": "Nieuwendammerdijk/Buiksloterdijk",
+      "ORLAND": 34.13362251965841,
+      "ORPUBGROEN": 14.9203,
+      "ORPUBGROEN_P": 0.4371144607170547
+    },
+    "NG": {
+      "name": "Elzenhagen",
+      "ORLAND": 77.36162981457396,
+      "ORPUBGROEN": 22.8499,
+      "ORPUBGROEN_P": 0.2953647700386913
+    },
+    "NH": {
+      "name": "Buikslotermeer",
+      "ORLAND": 144.4427042921907,
+      "ORPUBGROEN": 54.8358,
+      "ORPUBGROEN_P": 0.3796370351047541
+    },
+    "NJ": {
+      "name": "Waterlandpleinbuurt",
+      "ORLAND": 139.3189097661106,
+      "ORPUBGROEN": 57.3516,
+      "ORPUBGROEN_P": 0.4116569681479864
+    },
+    "NK": {
+      "name": "Volewijck",
+      "ORLAND": 117.8497258665687,
+      "ORPUBGROEN": 29.191,
+      "ORPUBGROEN_P": 0.2476968001864553
+    },
+    "NL": {
+      "name": "IJplein/Vogelbuurt",
+      "ORLAND": 115.7954389626154,
+      "ORPUBGROEN": 47.0946,
+      "ORPUBGROEN_P": 0.4067051381462831
+    },
+    "NM": {
+      "name": "Tuindorp Buiksloot",
+      "ORLAND": 16.83910518243437,
+      "ORPUBGROEN": 1.6466,
+      "ORPUBGROEN_P": 0.09778429329591949
+    },
+    "NN": {
+      "name": "Tuindorp Nieuwendam",
+      "ORLAND": 42.45322991929419,
+      "ORPUBGROEN": 9.2158,
+      "ORPUBGROEN_P": 0.2170812448786515
+    },
+    "NP": {
+      "name": "Noordelijke IJ-oevers-Oost",
+      "ORLAND": 67.99663465787042,
+      "ORPUBGROEN": 12.1289,
+      "ORPUBGROEN_P": 0.1783750043076009
+    },
+    "NQ": {
+      "name": "Waterland",
+      "ORLAND": 2303.791424301745,
+      "ORPUBGROEN": 750.0077999999999,
+      "ORPUBGROEN_P": 0.3255536903594992
+    },
+    "SA": {
+      "name": "Driemond",
+      "ORLAND": 165.2428911066057,
+      "ORPUBGROEN": 97.8838,
+      "ORPUBGROEN_P": 0.5923631530802175
+    },
+    "SB": {
+      "name": "Bloemendalerpolder",
+      "ORLAND": 338.1455947005979,
+      "ORPUBGROEN": 51.22320000000002,
+      "ORPUBGROEN_P": 0.1514826772927628
+    },
+    "SC": {
+      "name": "Weesp-Noordwest",
+      "ORLAND": 171.1678501256041,
+      "ORPUBGROEN": 39.533,
+      "ORPUBGROEN_P": 0.2309604284390464
+    },
+    "SD": {
+      "name": "Weesp Binnenstad/Zuid",
+      "ORLAND": 120.6322304080313,
+      "ORPUBGROEN": 29.2329,
+      "ORPUBGROEN_P": 0.2423307593760097
+    },
+    "SE": {
+      "name": "Aetsveld/Oostelijke Vechtoever",
+      "ORLAND": 1502.054132725929,
+      "ORPUBGROEN": 293.5730999999998,
+      "ORPUBGROEN_P": 0.1954477495875752
+    },
+    "TA": {
+      "name": "Amstel III/Bullewijk",
+      "ORLAND": 476.3548476246438,
+      "ORPUBGROEN": 207.9344,
+      "ORPUBGROEN_P": 0.4365115649328867
+    },
+    "TB": {
+      "name": "Venserpolder",
+      "ORLAND": 76.38337823702388,
+      "ORPUBGROEN": 26.2028,
+      "ORPUBGROEN_P": 0.3430432196739265
+    },
+    "TC": {
+      "name": "Amsterdamse Poort e.o.",
+      "ORLAND": 141.8238206881414,
+      "ORPUBGROEN": 57.6997,
+      "ORPUBGROEN_P": 0.4068406824751729
+    },
+    "TD": {
+      "name": "H-buurt",
+      "ORLAND": 77.05318733363086,
+      "ORPUBGROEN": 34.3929,
+      "ORPUBGROEN_P": 0.4463527232310709
+    },
+    "TE": {
+      "name": "Ganzenhoef e.o.",
+      "ORLAND": 77.91696798234872,
+      "ORPUBGROEN": 24.301,
+      "ORPUBGROEN_P": 0.3118832858781817
+    },
+    "TF": {
+      "name": "Geerdinkhof/Kantershof",
+      "ORLAND": 146.8017266372368,
+      "ORPUBGROEN": 77.43969999999999,
+      "ORPUBGROEN_P": 0.5275121878597656
+    },
+    "TG": {
+      "name": "Bijlmermuseum",
+      "ORLAND": 54.1804055922618,
+      "ORPUBGROEN": 27.8794,
+      "ORPUBGROEN_P": 0.5145660999625632
+    },
+    "TH": {
+      "name": "K-buurt",
+      "ORLAND": 88.73065443311697,
+      "ORPUBGROEN": 33.1956,
+      "ORPUBGROEN_P": 0.3741164788209924
+    },
+    "TJ": {
+      "name": "Holendrecht",
+      "ORLAND": 132.2911944173865,
+      "ORPUBGROEN": 56.2119,
+      "ORPUBGROEN_P": 0.4249103672210271
+    },
+    "TK": {
+      "name": "Nellestein",
+      "ORLAND": 213.2382948531618,
+      "ORPUBGROEN": 130.8847,
+      "ORPUBGROEN_P": 0.6137954727603155
+    },
+    "TL": {
+      "name": "Reigersbos",
+      "ORLAND": 124.4856429770672,
+      "ORPUBGROEN": 50.1223,
+      "ORPUBGROEN_P": 0.4026351858843156
+    },
+    "TM": {
+      "name": "Gein",
+      "ORLAND": 180.774372712754,
+      "ORPUBGROEN": 86.9751,
+      "ORPUBGROEN_P": 0.4811251655576274
+    }
+  }
+}

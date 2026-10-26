@@ -456,7 +456,7 @@ export default function RankingExplorer() {
           <p>
           {view === "neighbourhoods" ? (
             <>
-              Amsterdam uses 110 official wijken valid on 24 March 2022. Income is joined directly by official code; surface temperature and green cover are calculated within these boundaries from the source rasters. Scores are normalized at neighbourhood level, then combined with the selected weights. Brussels uses 145 Monitoring des Quartiers units, with income published for 118. Its income measure differs from Amsterdam; each city is ranked independently. These geographies differ in size and should not be compared as a city league table.
+              Amsterdam uses 110 official wijken valid on 24 March 2022. Income and O&S 2025 public-green share are joined directly by official wijk code; surface temperature is calculated from the source raster. Brussels green cover still includes private vegetation (WorldCover); its public-green update is pending. Scores are normalized at neighbourhood level, then combined with the selected weights. Brussels uses 145 Monitoring des Quartiers units, with income published for 118. Its income measure differs from Amsterdam; each city is ranked independently. These geographies differ in size and should not be compared as a city league table.
             </>
           ) : (
             <>
@@ -572,7 +572,7 @@ export default function RankingExplorer() {
                     <ColumnHelp label="Green deficit score">
                       <b>Neighbourhood green deficit</b>
                       <span>
-                        Within-city percentile of neighbourhood green deficit, calculated from WorldCover tree and grass cover.
+                        Within-city percentile of green deficit. Amsterdam: 100 minus O&S public-green percentage of land (2025). Brussels: WorldCover tree and grass cover, including private vegetation.
                       </span>
                     </ColumnHelp>
                   </th>
@@ -713,8 +713,7 @@ export default function RankingExplorer() {
                     <ColumnHelp label="Green deficit">
                       <b>Relative cooling-green shortage</b>
                       <span>
-                        A within-city 0–100 deficit score derived from ESA WorldCover 2021
-                        cooling-green classes.
+                        Amsterdam: O&S public-green share of land, 2025. Brussels: WorldCover tree and grass cover, including private vegetation. Lower green share gives a higher within-city score.
                       </span>
                     </ColumnHelp>
                   </th>
@@ -817,7 +816,7 @@ export default function RankingExplorer() {
         <div>
           <span>Sources · O&S API period 2024 / IBSA income 2023</span>
           <p>
-            ESA WorldCover 2021 ·
+            Amsterdam O&S public green 2025 · Brussels ESA WorldCover 2021 ·
             Landsat 8/9 JJA 2019–2023 · Amsterdam O&S IHHINK_MED · IBSA/Statbel indicator 2498 · official Amsterdam 2022 and Brussels Monitoring boundaries.
           </p>
         </div>

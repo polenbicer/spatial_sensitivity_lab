@@ -42,3 +42,14 @@ console.log('Validated native neighbourhood models: Amsterdam 108/110; Brussels 
 const osSource=JSON.parse(fs.readFileSync(new URL('../data/source/amsterdam_wijk/income_2024.json',import.meta.url),'utf8'))._embedded.cijfers.filter(r=>r.gebiedType==='Wijk');
 assert.equal(osSource.length,108);
 for(const row of amsterdam){const source=osSource.find(r=>r.gebiedCode===row.neighbourhood_code);assert.equal(row.income_median_disposable_eur,source?.waarde??null,'Use the published wijk median, never average buurt medians');}
+
+const publicGreen=JSON.parse(fs.readFileSync(new URL('../data/source/amsterdam_wijk/public_green_2025.json',import.meta.url),'utf8')).rows;
+assert.equal(Object.keys(publicGreen).length,110);
+for(const row of amsterdam){
+ const source=publicGreen[row.neighbourhood_code];assert(source);
+ assert.equal(row.green_indicator,'ORPUBGROEN_P');
+ assert(Math.abs(row.cooling_green_pct-100*source.ORPUBGROEN_P)<0.000001);
+ assert(Math.abs(row.green_deficit_pct-(100-100*source.ORPUBGROEN_P))<0.000001);
+ assert(Math.abs(source.ORPUBGROEN/source.ORLAND-source.ORPUBGROEN_P)<1e-10);
+}
+console.log('Verified Amsterdam public-green source joins, fraction-to-percent conversion, denominator and deficit direction for all 110 wijken.');

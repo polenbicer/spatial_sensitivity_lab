@@ -5,7 +5,7 @@ export const SCENARIOS: Record<Scenario, ReturnType<typeof entry>> = {
  priority_balanced: entry('Balanced weighting', '40% surface temperature · 30% green deficit · 30% lower median income', 'Combines surface heat, green shortage and lower income.'),
  priority_income_led: entry('Lower median income first', '25% surface temperature · 20% green deficit · 55% lower median income', 'Gives more weight to lower neighbourhood income within the selected city.'),
  priority_heat_led: entry('Surface temperature first', '60% surface temperature · 20% green deficit · 20% lower median income', 'Gives more weight to observed summer land-surface temperature.'),
- priority_nature_deficit_led: entry('Green deficit first', '25% surface temperature · 55% green deficit · 20% lower median income', 'Gives more weight to a shortage of cooling green cover.'),
+ priority_nature_deficit_led: entry('Green deficit first', '25% surface temperature · 55% green deficit · 20% lower median income', 'Gives more weight to green deficit as defined in each city’s source data.'),
 };
 
 export const CITY_INCOME = {

@@ -26,6 +26,7 @@ URLS={
  'definition':'https://api.data.amsterdam.nl/v1/statistieken/v2/indicatoren?naam=IHHINK_MED',
  'boundaries':'https://api.data.amsterdam.nl/v1/gebieden/wijken?_format=geojson&_pageSize=1000&geldigOp=2022-03-24',
  'worldcover':'https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N51E003_Map.tif',
+ 'public_green':'https://onderzoek.amsterdam.nl/dataset/groen-in-amsterdam',
  'landsat':'https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2',
 }
 
@@ -45,6 +46,8 @@ def main():
     assert len({f['properties']['code'] for f in boundaries})==len(boundaries)
     assert set(income)<=set(f['properties']['code'] for f in boundaries)
     project=Transformer.from_crs(4326,3035,always_xy=True).transform
+    public_green=json.loads((SRC/'public_green_2025.json').read_text())['rows']
+    assert set(public_green)==set(f['properties']['code'] for f in boundaries)
     features=[]
     with rasterio.open(SRC/'worldcover_2021.tif') as wc,rasterio.open(SRC/'landsat_lst_2019_2023_jja.tif') as lst:
         assert lst.descriptions[0]=='summer_lst_median_c' and lst.crs.to_epsg()==3035
@@ -59,7 +62,8 @@ def main():
             water=float(weights[observed&(a==80)].sum())
             green=float(weights[observed&np.isin(a,[10,30])].sum())
             landweight=valid-water
-            green_pct=100*green/landweight if landweight>0 else None
+            green_record=public_green[code]
+            green_pct=100*green_record['ORPUBGROEN_P']
             water_pct=100*water/valid if valid else None
             thermal=window_data(lst,gp);temperature=None;tcov=0.;nvalid=0;nland=0
             if thermal:
@@ -76,7 +80,8 @@ def main():
             coverage=100*valid/total if total else 0
             issues=[]
             if value is None:issues.append('income_not_published')
-            if coverage<99 or green_pct is None:issues.append('insufficient_land_cover')
+            if green_pct is None:issues.append('public_green_not_published')
+            if coverage<99:issues.append('insufficient_thermal_land_mask')
             if temperature is None or tcov<50:issues.append('insufficient_observed_temperature')
             p={
                 'id':'Amsterdam:'+code,'city':'Amsterdam','neighbourhood_code':code,'neighbourhood_name':b['naam'],
@@ -85,6 +90,10 @@ def main():
                 'income_record_id':inc['id'] if inc else None,'income_status':'published' if value is not None else 'not_published_in_source',
                 'income_coverage_pct':100 if value is not None else 0,
                 'cooling_green_pct':round(green_pct,6) if green_pct is not None else None,
+                'public_green_area_ha':green_record['ORPUBGROEN'],
+                'public_green_land_area_ha':green_record['ORLAND'],
+                'green_indicator':'ORPUBGROEN_P', 'green_period':'2025-01-01',
+                'green_source':'Amsterdam O&S public green / total land',
                 'green_deficit_pct':round(100-green_pct,6) if green_pct is not None else None,
                 'water_pct':round(water_pct,6) if water_pct is not None else None,
                 'summer_lst_median_c':round(temperature,6) if temperature is not None else None,
@@ -93,7 +102,7 @@ def main():
                 'ranking_eligible':not issues,'eligible':int(not issues),
                 'model_status':'complete' if not issues else ';'.join(issues),
                 'data_quality':'sufficient raster and income coverage' if not issues else '; '.join(issues).replace('_',' '),
-                'aggregation':'native neighbourhood income; direct raster zonal statistics',
+                'aggregation':'native wijk income and public-green share; direct temperature raster zonal statistics',
             }
             features.append({'type':'Feature','geometry':f['geometry'],'properties':p})
     complete=[f['properties'] for f in features if f['properties']['ranking_eligible']]
@@ -109,7 +118,7 @@ def main():
         p['priority_range']=round(vals[-1]-vals[0],6) if ok else None
         p['score_ge_80_scenario_count']=int(sum(x>=80 for x in vals)) if ok else None
     metadata={
-        'version':'amsterdam-native-wijk-v3','retrieved':'2026-10-26','spatial_unit':'wijk','boundary_date':'2022-03-24',
+        'version':'amsterdam-native-wijk-public-green-v4','retrieved':'2026-10-26','spatial_unit':'wijk','boundary_date':'2022-03-24',
         'official_neighbourhoods':len(features),'published_income_neighbourhoods':len(income),'ranked_neighbourhoods':len(complete),
         'missing_income_neighbourhoods':len(features)-len(income),'scenario_weights':WEIGHTS,'criteria':FIELDS,
         'normalization':'average-rank percentiles 0–100 among the same complete eligible Amsterdam neighbourhoods; income reversed; ties equal',
@@ -117,7 +126,7 @@ def main():
         'income_period_note':'API heeftBetrekkingOp=2024; tijdType=Peildatum; begindatum=2024-01-01. Do not infer a verified tax-income reference year.',
         'income_rounding_note':'Metadata describes rounding to hundreds; API values are not all multiples of 100. Published values retained unchanged.',
         'income_missing_note':'No 2024 Wijk record in the complete indicator response. Indicator metadata suppresses areas with fewer than 100 households; absence does not prove the reason for each neighbourhood.',
-        'green_method':'ESA WorldCover 2021 v200; classes 10 tree cover + 30 grassland / observed non-water polygon pixels; green deficit=100-green%; geographic row-area weights cos(latitude)',
+        'green_method':'Amsterdam O&S 2025 ORPUBGROEN_P: public green area / total land area, joined by official Wijk code using geography 20220324. Source fraction multiplied by 100; deficit=100-share%. Private gardens and green roofs are not added. Does not measure access, distance or cooling performance',
         'heat_method':'Median of finite band-1 summer LST composite pixels with band-2 valid_count>0, within each polygon and non-water WorldCover land mask; native 30 m raster',
         'raster_membership':'pixel-centre inclusion, all_touched=False; WorldCover nearest-neighbour resampled only for thermal land mask',
         'analyst_coverage_rules':{'land_cover_min_pct':99,'thermal_land_min_pct':50},
@@ -127,7 +136,7 @@ def main():
         'landsat_limit':'Existing project composite, JJA 2019–2023. Original scene selection/cloud-mask script is not supplied; zonal extraction is reproducible from the supplied composite.',
         'brussels':'145 Monitoring areas; 118 ranked independently using equivalised after-tax income; income definitions differ',
         'counts':{'Amsterdam':{'ranked_neighbourhoods':len(complete)},'Brussels':{'ranked_neighbourhoods':118}},
-        'sha256':{n:hashlib.sha256((SRC/n).read_bytes()).hexdigest() for n in ['boundaries_2022.geojson','income_2024.json','income_indicator.json','landsat_lst_2019_2023_jja.tif','worldcover_2021.tif']},
+        'sha256':{n:hashlib.sha256((SRC/n).read_bytes()).hexdigest() for n in ['boundaries_2022.geojson','income_2024.json','income_indicator.json','public_green_2025.json','landsat_lst_2019_2023_jja.tif','worldcover_2021.tif']},
     }
     # Brussels observations are preserved without enabling its income ranking.
     existing=json.loads((OUT/'neighbourhood_priority.geojson').read_text())

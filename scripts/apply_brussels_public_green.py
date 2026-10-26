@@ -47,6 +47,8 @@ write(OUT/'neighbourhood_priority.geojson',combined);write(OUT/'neighbourhood_pr
 e=json.loads((OUT/'evidence.json').read_text());e['city_models']['Brussels']=m;write(OUT/'evidence.json',e)
 write(ROOT/'data/prepared/brussels_neighbourhood/audit.json',m)
 a=json.loads((OUT/'amsterdam_income.json').read_text());a['metadata']['counts']['Brussels']['ranked_neighbourhoods']=len(complete);write(OUT/'amsterdam_income.json',a)
+e['city_models']['Amsterdam']=a['metadata'];write(OUT/'evidence.json',e)
+write(ROOT/'data/prepared/amsterdam_wijk/audit.json',a['metadata'])
 with (OUT/'brussels_neighbourhoods.csv').open('w',newline='',encoding='utf-8-sig') as h:
- w=csv.DictWriter(h,fieldnames=list(features[0]['properties']));w.writeheader();w.writerows(f['properties'] for f in features)
+ w=csv.DictWriter(h,fieldnames=list(features[0]['properties']),lineterminator='\n');w.writeheader();w.writerows(f['properties'] for f in features)
 print(json.dumps({'selected_polygons':len(selected),'ranked':len(complete),'unknown_green':m['green_missing_neighbourhoods']},ensure_ascii=False))

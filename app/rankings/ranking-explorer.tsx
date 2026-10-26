@@ -456,7 +456,7 @@ export default function RankingExplorer() {
           <p>
           {view === "neighbourhoods" ? (
             <>
-              Amsterdam uses 110 official wijken valid on 24 March 2022. Income and O&S 2025 public-green share are joined directly by official wijk code; surface temperature is calculated from the source raster. Brussels green cover still includes private vegetation (WorldCover); its public-green update is pending. Scores are normalized at neighbourhood level, then combined with the selected weights. Brussels uses 145 Monitoring des Quartiers units, with income published for 118. Its income measure differs from Amsterdam; each city is ranked independently. These geographies differ in size and should not be compared as a city league table.
+              Amsterdam uses 110 official wijken valid on 24 March 2022. Income and O&S 2025 public-green share are joined directly by official wijk code; surface temperature is calculated from the source raster. Brussels uses publicly owned green-space inventory polygons, clipped to each neighbourhood. Two neighbourhoods have unresolved inventory features and remain unranked. Scores are normalized at neighbourhood level, then combined with the selected weights. Brussels uses 145 Monitoring des Quartiers units, with income published for 118. Its income measure differs from Amsterdam; each city is ranked independently. These geographies differ in size and should not be compared as a city league table.
             </>
           ) : (
             <>
@@ -572,7 +572,7 @@ export default function RankingExplorer() {
                     <ColumnHelp label="Green deficit score">
                       <b>Neighbourhood green deficit</b>
                       <span>
-                        Within-city percentile of green deficit. Amsterdam: 100 minus O&S public-green percentage of land (2025). Brussels: WorldCover tree and grass cover, including private vegetation.
+                        Within-city percentile of green deficit. Amsterdam: 100 minus O&S public-green percentage of land (2025). Brussels: public green-space inventory area / total neighbourhood area. Private and mixed ownership are excluded.
                       </span>
                     </ColumnHelp>
                   </th>
@@ -713,7 +713,7 @@ export default function RankingExplorer() {
                     <ColumnHelp label="Green deficit">
                       <b>Relative cooling-green shortage</b>
                       <span>
-                        Amsterdam: O&S public-green share of land, 2025. Brussels: WorldCover tree and grass cover, including private vegetation. Lower green share gives a higher within-city score.
+                        Amsterdam: O&S public-green share of land, 2025. Brussels: public green-space inventory area / total neighbourhood area. Private and mixed ownership are excluded. Lower green share gives a higher within-city score.
                       </span>
                     </ColumnHelp>
                   </th>
@@ -802,7 +802,7 @@ export default function RankingExplorer() {
         <div>
           <span>Method</span>
           <p>
-            Indicators are calculated directly for official neighbourhoods in both cities. Income is joined by code, and physical indicators come from raster pixels inside each polygon. The four weighted scores use neighbourhood percentiles.
+            Indicators are calculated directly for official neighbourhoods in both cities. Income and Amsterdam public green are joined by code; Brussels public green is intersected with each polygon; temperature comes from raster pixels. The four weighted scores use neighbourhood percentiles.
           </p>
         </div>
         <div>
@@ -816,7 +816,7 @@ export default function RankingExplorer() {
         <div>
           <span>Sources · O&S API period 2024 / IBSA income 2023</span>
           <p>
-            Amsterdam O&S public green 2025 · Brussels ESA WorldCover 2021 ·
+            Amsterdam O&S public green 2025 · Brussels Environment public-green WFS (retrieved 2026-10-26) ·
             Landsat 8/9 JJA 2019–2023 · Amsterdam O&S IHHINK_MED · IBSA/Statbel indicator 2498 · official Amsterdam 2022 and Brussels Monitoring boundaries.
           </p>
         </div>

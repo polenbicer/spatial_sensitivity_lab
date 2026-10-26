@@ -27,7 +27,8 @@ const SOURCES = [
     "https://datastore.brussels/web/urbis-download",
   ],
   ["Amsterdam public green", "O&S 2025 · share of land", "https://onderzoek.amsterdam.nl/dataset/groen-in-amsterdam"],
-  ["Land cover", "ESA WorldCover 2021 · 10 m", "https://worldcover2021.esa.int/"],
+  ["Brussels public green", "Bruxelles Environnement · WFS", "https://ows.environnement.brussels/green?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetCapabilities"],
+  ["Land cover (temperature mask)", "ESA WorldCover 2021 · 10 m", "https://worldcover2021.esa.int/"],
   [
     "Surface temperature",
     "Landsat 8/9 C2 L2 · JJA 2019–2023",
@@ -417,7 +418,7 @@ export default function ResearchInterface() {
       <section className="blindspot">
         <p className="eyebrow">What the map cannot see</p>
         <h3>Income coverage limits what this map can show.</h3>
-        <div><p>Amsterdam uses published O&S median household income directly for each neighbourhood. Temperature is calculated from the original raster. Amsterdam green deficit uses the published O&S 2025 public-green share of wijk land area; Brussels still uses WorldCover tree and grass cover. Grey means unranked, not low priority; the map retains areas with missing income.</p><p>Every scenario combines surface temperature, green deficit and lower median income. Only the weights change. Brussels uses its published neighbourhood after-tax income; Amsterdam uses disposable household income. Each city is ranked independently. Health, housing and residents’ knowledge need separate evidence.</p></div>
+        <div><p>Amsterdam uses published O&S median household income directly for each neighbourhood. Temperature is calculated from the original raster. Amsterdam green deficit uses the published O&S 2025 public-green share of wijk land area; Brussels uses publicly owned green-space inventory polygons, clipped to each neighbourhood. Grey means unranked, not low priority; the map retains areas with missing income.</p><p>Every scenario combines surface temperature, green deficit and lower median income. Only the weights change. Brussels uses its published neighbourhood after-tax income; Amsterdam uses disposable household income. Each city is ranked independently. Health, housing and residents’ knowledge need separate evidence.</p></div>
       </section>
       </div></details>
       <details className="reading-detail"><summary>Data availability by city</summary><div className="reading-body">
@@ -433,8 +434,8 @@ export default function ResearchInterface() {
           </div>
           {[
             
-            ["Cooling green", "Included", "Included"],
-            ["Lower median income", "IBSA 2498: equivalised after-tax median · 2023 · 118 ranked", "O&S: disposable household median · API 2024 · 108 ranked"],
+            ["Public green", "Public inventory polygons / total area", "O&S public green / land area"],
+            ["Lower median income", "IBSA 2498: equivalised after-tax median · 2023 · 118 income observations · 116 ranked", "O&S: disposable household median · API 2024 · 108 ranked"],
             ["Observed summer surface heat", "Included", "Included"],
             
             ["Health", "Availability and spatial comparability to verify", "Not represented in this release"],
@@ -448,7 +449,7 @@ export default function ResearchInterface() {
         </div>
       </section>
       </div></details>
-      <section className="evidence" id="evidence"><div><p className="eyebrow">Three indicators</p><h3>Surface temperature, green deficit and lower median income.</h3><p>Summer land-surface temperature is observed by Landsat. Amsterdam green deficit is 100 minus the percentage of land classified as public green by O&S (2025). Brussels currently uses WorldCover tree and grass cover, which includes private vegetation. These green definitions differ; the Brussels public-green update is pending. Income is the published neighbourhood median, used directly without transfer to a grid. Brussels uses equivalised after-tax income; Amsterdam uses disposable household income. Both rankings are within-city only. Changing weights changes how these three signals contribute to priority.</p><details className="reading-detail compact"><summary>Validation and spatial-scale limits</summary><div className="reading-body"><p>The revised index has no new predictive-validation or 500 m / 1 km sensitivity result. Earlier model metrics do not validate this index.</p></div></details></div></section>
+      <section className="evidence" id="evidence"><div><p className="eyebrow">Three indicators</p><h3>Surface temperature, green deficit and lower median income.</h3><p>Summer land-surface temperature is observed by Landsat. Amsterdam green deficit is 100 minus the percentage of land classified as public green by O&S (2025). Brussels uses the area of officially inventoried public green-space polygons. Private and mixed ownership are excluded. Brussels uses total neighbourhood area as denominator; Amsterdam uses land area excluding water. Source definitions differ. Income is the published neighbourhood median, used directly without transfer to a grid. Brussels uses equivalised after-tax income; Amsterdam uses disposable household income. Both rankings are within-city only. Changing weights changes how these three signals contribute to priority.</p><details className="reading-detail compact"><summary>Validation and spatial-scale limits</summary><div className="reading-body"><p>The revised index has no new predictive-validation or 500 m / 1 km sensitivity result. Earlier model metrics do not validate this index.</p></div></details></div></section>
       <section className="ai-role"><div><h3>A ranking still needs public justification.</h3></div><div><p>The index uses explicit weights, not machine learning, to rank places. The thesis examines how such tools should be explained, challenged and governed.</p></div>
       </section>
       </section>
@@ -561,7 +562,7 @@ export default function ResearchInterface() {
           {[
             ["Source", "Official boundaries and dated public datasets"],
             ["Pre-process", "Use official neighbourhood polygons and align the source rasters"],
-            ["Measure", "Extract temperature; join Amsterdam public-green share and median income by official code; Brussels green cover remains raster-based"],
+            ["Measure", "Extract temperature; join Amsterdam public-green share and median income by official code; intersect Brussels public-green inventory polygons with neighbourhoods"],
             ["Check coverage", "Keep missing values unavailable and select neighbourhoods with all three indicators"],
             ["Normalise", "Convert the three indicators to within-city percentile scores; reverse income"],
             ["Weight & combine", "Calculate the four weighted sums, then their scenario median"],

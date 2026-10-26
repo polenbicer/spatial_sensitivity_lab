@@ -3,7 +3,7 @@
 25 Ekim 2026 — brussels-native-neighbourhood-v1
 
 ## Veriler ve kapsam
-Brüksel için IBSA/Statbel gösterge 2498 kullanılır: 2023 yılı sakinlerin medyan eşdeğer vergi sonrası geliri (euro). Monitoring des Quartiers'in 145 alanından 118'inde sayısal gelir vardır. Bu 118 mahallenin tümünde fiziksel göstergeler de kapsama şartını karşılar. Kaynakta “-” olan 27 alanın geliri ve birleşik puanı boş kalır; bu alanlar haritada gösterilir. Eksik değer sıfır değildir. Mahalle sınırları resmî Brüksel açık veri portalından indirildi. Gelir ve sınır eşleştirmesi adlarla değil resmî sayısal mahalle koduyla yapılır.
+Brüksel için IBSA/Statbel gösterge 2498 kullanılır: 2023 yılı sakinlerin medyan eşdeğer vergi sonrası geliri (euro). Monitoring des Quartiers'in 145 alanından 118'inde sayısal gelir vardır. Kamusal yeşil envanterindeki iki belirsiz alan nedeniyle iki mahalle daha sıralanmaz; toplam 116 mahalle sıralanır. Kaynakta “-” olan 27 alanın geliri ve birleşik puanı boş kalır; bu alanlar haritada gösterilir. Eksik değer sıfır değildir. Mahalle sınırları resmî Brüksel açık veri portalından indirildi. Gelir ve sınır eşleştirmesi adlarla değil resmî sayısal mahalle koduyla yapılır.
 
 ## Gelir tanımı ve iki şehir arasındaki fark
 Brüksel göstergesi hane büyüklüğü/bileşimine göre düzeltilmiş, vergi kayıtlarına dayalı bir gelir göstergesidir. Çocuk yardımı ve sosyal entegrasyon geliri gibi vergiden muaf bazı gelirleri içermez; uluslararası kurum çalışanlarının gelirleri ile sermaye/gayrimenkul gelirleri eksik veya düşük temsil edilebilir. İdari kullanılabilir gelir (ADI) veya yoksulluk oranı değildir.
@@ -11,14 +11,15 @@ Brüksel göstergesi hane büyüklüğü/bileşimine göre düzeltilmiş, vergi 
 Amsterdam'da kullanılan O&S IHHINK_MED ise hane büyüklüğüne göre düzeltilmemiş medyan kullanılabilir hane geliridir. İki şehir aynı gelir tanımına sahip değildir. Her şehir kendi içinde ayrı normalleştirilir ve sıralanır. Euro düzeyleri ve puanlar şehirler arası gelir, kırılganlık veya yönetim başarısı karşılaştırması için kullanılmaz. Yüzdelik puanlara dönüştürmek tanım farkını gidermez. İki ayrı şehir içi ağırlık duyarlılığı deneyi yürütülür.
 
 ## Fiziksel göstergeler
-Eski 500 metre grid puanları kullanılmadı. Her mahallede Landsat 8/9 JJA 2019–2023 mevcut bileşik rasterinden (30 m) sıcaklık ve ESA WorldCover 2021 v200 rasterinden (yaklaşık 10 m) yeşil örtü yeniden hesaplandı. Piksel merkezi poligonun içindeyse dahil edilir; sınır pikselleri kesirli bölünmez. Sıcaklık, pozitif gözlem sayılı ve sonlu sıcaklık değerli su dışındaki piksellerin medyanıdır. WorldCover su maskesi en yakın komşuyla sıcaklık rasterine aktarılır. Hava sıcaklığı değildir.
+Eski 500 metre grid puanları kullanılmadı. Her mahallede Landsat 8/9 JJA 2019–2023 mevcut bileşik rasterinden (30 m) sıcaklık hesaplanmıştır. Yeşil gösterge aşağıdaki kamusal envanter hesabıyla değiştirilmiştir. Piksel merkezi poligonun içindeyse dahil edilir; sınır pikselleri kesirli bölünmez. Sıcaklık, pozitif gözlem sayılı ve sonlu sıcaklık değerli su dışındaki piksellerin medyanıdır. WorldCover su maskesi en yakın komşuyla sıcaklık rasterine aktarılır. Hava sıcaklığı değildir.
 
-Yeşil alan = ağaç (10) + çayır/çimen (30) sınıflarının gözlenen su dışındaki alana oranıdır. Green deficit = 100 − bu oran. Coğrafi rasterde alan payları cos(enlem) ile ağırlıklandırılır. Tarım, çalı ve su bu dar yeşil tanımına dahil değildir; tam bir soğutma etkisi modeli sayılmaz.
+Kamusal yeşil: Bruxelles Environnement public_green_spaces WFS katmanı, indirme 26 Ekim 2026. Envanterin referans yılı doğrulanmadı. 1.305 kayıttan mülkiyeti Public ve türü Espace vert/Espace public végétalisé olan 1.204 poligon kullanılır. Özel ve karma mülkiyet dışarıda bırakılır. Geometriler onarılır, örtüşmeler birleşimle kaldırılır, EPSG:31370 düzleminde mahallelerle kesiştirilir. Payda mahallenin toplam poligon alanıdır (su dahil). Amsterdam paydası su dışındaki kara alanı olduğundan oranlar şehirler arasında doğrudan karşılaştırılamaz. Park içi yollar dahil tüm alan ölçülür; saf bitki örtüsü veya soğutma kapasitesi değildir. İki sınıflandırılmamış poligon Kriekenput - Homborch - Verrewinkel ve Saint-Job Kauwberg mahallelerini etkiler; yeşil göstergeleri ve sıralamaları null kalır.
+Kaynak: https://ows.environnement.brussels/green?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=public_green_spaces&OUTPUTFORMAT=application%2Fvnd.geo%2Bjson&SRSNAME=EPSG%3A31370
 
 Kapsama tercihleri: en az %99 gözlenen arazi örtüsü, su dışındaki piksellerde en az %50 geçerli sıcaklık, yayımlanmış gelir. Bunlar araştırmacı tercihleridir, sağlayıcı şartları değildir. Mevcut Landsat bileşiğinden mahalle hesabı yeniden üretilebilir; ilk bileşiği oluşturan sahne/bulut maskeleme kodu mevcut olmadığı için bütün uydu işlem zincirinin yeniden üretilebildiği iddia edilmez.
 
 ## Puanlar ve ağırlıklar
-Üç gösterge aynı 118 tam mahalle üzerinden ayrı ayrı 0–100 ortalama sıra yüzdeliğine dönüştürülür: 100 × (sıra − 1)/(N − 1). Gelirin yönü ters çevrilir. Düşük gelir, yüksek sıcaklık ve yüksek green deficit yüksek puandır. Eşit değerler eşit puan alır.
+Üç gösterge aynı 116 tam mahalle üzerinden ayrı ayrı 0–100 ortalama sıra yüzdeliğine dönüştürülür: 100 × (sıra − 1)/(N − 1). Gelirin yönü ters çevrilir. Düşük gelir, yüksek sıcaklık ve yüksek green deficit yüksek puandır. Eşit değerler eşit puan alır.
 
 | Senaryo | Sıcaklık | Green deficit | Düşük gelir |
 |---|---:|---:|---:|

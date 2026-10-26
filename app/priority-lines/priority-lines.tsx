@@ -138,7 +138,7 @@ export default function PriorityLines() {
       <footer className={styles.footer}>
         <h2>What this experiment shows</h2>
         <p>These lines expose the effect of weighting choices. They do not show changes over time, actual municipal decisions, or a comparison of city performance. All four scenarios use surface temperature, green deficit and lower median income. The weights change; the three indicators stay the same.</p>
-        <p>Neighbourhood scores combine published income with raster temperature. Amsterdam green deficit uses O&S public-green share of land (2025); Brussels still uses WorldCover tree and grass cover, including private vegetation. Its public-green update is pending. Brussels uses IBSA equivalised after-tax income; Amsterdam uses O&S disposable household income. Each city is ranked separately; equal scores share a rank. Boundaries and scores are loaded from the same datasets as the full rankings, so this page does not maintain a separate copy.</p>
+        <p>Neighbourhood scores combine published income with raster temperature. Amsterdam green deficit uses O&S public-green share of land (2025); Brussels uses the area of inventory polygons explicitly classified as public, clipped to each neighbourhood. Brussels uses IBSA equivalised after-tax income; Amsterdam uses O&S disposable household income. Each city is ranked separately; equal scores share a rank. Boundaries and scores are loaded from the same datasets as the full rankings, so this page does not maintain a separate copy.</p>
         <div><a href="/rankings">Inspect the full ranking →</a><a href="/methods.html">Methods and sources →</a></div>
       </footer>
     </main>

@@ -35,7 +35,7 @@ const SOURCES = [
     "https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2",
   ],
 
-  ["Amsterdam income · all four scenarios", "Amsterdam O&S · median disposable household income · API period 2024", "https://api.data.amsterdam.nl/v1/statistieken/v2/indicatoren?naam=IHHINK_MED"],
+  ["Amsterdam income · all four scenarios", "Amsterdam O&S · median disposable household income · 2024 (preliminary)", "https://api.data.amsterdam.nl/v1/statistieken/v2/indicatoren?naam=IHHINK_MED"],
   ["Amsterdam income · original records", "O&S · IHHINK_MED · native neighbourhood records", "https://api.data.amsterdam.nl/v1/statistieken/v2/cijfers?indicator.id=3196&heeftBetrekkingOp=2024&_pageSize=1000"],
   ["Brussels income · all four scenarios", "IBSA/Statbel 2498 · median equivalised after-tax income · 2023", "https://monitoringdesquartiers.brussels/Indicator/IndicatorPage/2498?tab=Sheet&SubTheme=28"],
   ["Brussels income · original table", "145 official areas · 118 published income observations", "https://geodata.perspective.brussels/api/geodata/mdq/table/65707/fr"],
@@ -326,7 +326,7 @@ export default function ResearchInterface() {
                   </div>
                 ))}
                 <dl>
-                  <><div><dt>{CITY_INCOME[city].label}</dt><dd>{p?.income_proxy_eur == null ? "Not scored" : `€${Number(p.income_proxy_eur).toLocaleString("en-GB")}`}</dd></div><div><dt>Income publication status</dt><dd>{p?.income_status === "published" ? "Published" : city === "Brussels" ? "Not published: classified as non-residential. Such areas are generally large with relatively few residents, which can make mapped income misleading (IBSA, 26 October 2026)." : "Not published in source"}</dd></div></>
+                  <><div><dt>{CITY_INCOME[city].label}</dt><dd>{p?.income_proxy_eur == null ? "Not scored" : `€${Number(p.income_proxy_eur).toLocaleString("en-GB")}`}</dd></div><div><dt>Income publication status</dt><dd>{p?.income_status === "published" ? "Published" : city === "Brussels" ? "Not published: classified as non-residential. Such areas are generally large with relatively few residents, which can make mapped income misleading (IBSA, 26 October 2026)." : "Not published. O&S requires at least 100 households after excluding student households, institutional residents and households without income information; individual counts were not supplied."}</dd></div></>
                   <div><dt>Summer LST</dt>
                     <dd>
                       {p?.summer_lst_median_c == null
@@ -436,7 +436,7 @@ export default function ResearchInterface() {
           {[
             
             ["Public green", "Public inventory polygons / total area", "O&S public green / land area"],
-            ["Lower median income", "IBSA 2498: equivalised after-tax median · 2023 · 118 income observations · 116 ranked", "O&S: disposable household median · API 2024 · 108 ranked"],
+            ["Lower median income", "IBSA 2498: equivalised after-tax median · 2023 · 118 income observations · 116 ranked", "O&S: disposable household median · 2024 (preliminary) · 108 ranked"],
             ["Observed summer surface heat", "Included", "Included"],
             
             ["Health", "Availability and spatial comparability to verify", "Not represented in this release"],

@@ -827,7 +827,7 @@ export default function RankingExplorer() {
           </p>
         </div>
         <div>
-          <span>Sources · O&S API period 2024 / IBSA income 2023</span>
+          <span>Sources · O&S income 2024 (preliminary) / IBSA income 2023</span>
           <p>
             Amsterdam O&S public green 2025 · Brussels Environment public-green WFS (retrieved 2026-10-26) ·
             Landsat 8/9 JJA 2019–2023 · Amsterdam O&S IHHINK_MED · IBSA/Statbel indicator 2498 · official Amsterdam 2022 and Brussels Monitoring boundaries.

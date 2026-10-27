@@ -1,6 +1,6 @@
 # Amsterdam: mahalle ölçeğinde üç göstergeli model
 
-26 Ekim 2026 — sürüm: amsterdam-native-wijk-v4
+27 Ekim 2026 yöntem açıklaması güncellemesi — hesap sürümü: amsterdam-native-wijk-v4
 
 ## Ne değişti?
 Amsterdam 110 resmî wijk düzeyine geçirildi. 518 küçük buurt kullanılmıyor. Wijk gelirleri doğrudan yayımlanan kayıtlardır; buurt medyanlarının ortalaması alınmadı. Brüksel Monitoring alanlarıyla aynı idari birim veya tam eşdeğer büyüklük oldukları iddia edilmez. Amsterdam için 500 metre grid kullanılmıyor. Harita, sıralama, ana sayfa ve Priority Lines aynı resmî mahalle sınırlarını ve hesapları kullanır. Eski grid puanlarının ortalaması alınmadı: sıcaklık ve yeşil alan, kaynak rasterlerden her mahalle için yeniden hesaplandı. Gelir doğrudan resmî mahalle koduyla bağlandı.
@@ -14,9 +14,11 @@ Amsterdam 110 resmî wijk düzeyine geçirildi. 518 küçük buurt kullanılmıy
 - Eksik değer sıfır değildir. Bu mahalleler haritada ve tabloda kalır; birleşik puanları boş bırakılır.
 
 ## Gelir
-Amsterdam O&S IHHINK_MED — Besteedbaar huishoudinkomen (mediaan): medyan kullanılabilir hane geliri, euro. Öğrenci haneleri ve kurumlarda yaşayanlar tanımın dışındadır. Bu gösterge hane büyüklüğüne göre standartlaştırılmış değildir; önceki CBS 2023 standartlaştırılmış gelir serisinden farklıdır. Mahalleler arası hane yapısı farklılıkları sonucu etkileyebilir. Düşük gelir puanı göreli bir göstergedir, yoksulluk oranı değildir.
+Amsterdam O&S IHHINK_MED — Besteedbaar huishoudinkomen (mediaan): medyan kullanılabilir hane geliri, euro. Öğrenci haneleri, kurumlarda yaşayanlar ve gelir bilgisi bulunmayan haneler hesaplamanın dışındadır. Bu gösterge hane büyüklüğüne göre standartlaştırılmış değildir; önceki CBS 2023 standartlaştırılmış gelir serisinden farklıdır. Mahalleler arası hane yapısı farklılıkları sonucu etkileyebilir. Düşük gelir puanı göreli bir göstergedir, yoksulluk oranı değildir.
 
-API dönem etiketi 2024, zaman türü Peildatum, tarih 1 Ocak 2024'tür. Bunun gerçek vergi gelir referans yılı olduğu ayrıca doğrulanmadığı için kesin gelir yılı olarak sunulmaz. Kaynak tanımı en az 100 hanesi olan alanları yayımladığını söyler. Her eksik mahallenin nedeninin bu olduğu varsayılmadı. Tam yanıt içinde 2024 dönemine ait 108 Wijk kaydı vardır; diğer 2 resmî kod için kayıt yoktur.
+Amsterdam O&S, 27 Ekim 2026 tarihli kişisel yazışmada göstergenin 1 Ocak 2024 nüfusunu ve 2024 yılı boyunca elde edilen hane gelirini kullandığını doğruladı. 2024 verileri geçicidir; kesin verilerin 2027 içinde yayımlanması beklenmektedir. Yukarıdaki gruplar çıkarıldıktan sonra geriye kalan hane sayısı 100'den azsa alan için kayıt yayımlanmamaktadır. Bu eşik toplam nüfusa veya alan büyüklüğüne ilişkin değildir. Tam kaynak yanıtında 108 Wijk kaydı vardır; BA ve BB için kayıt yoktur. Bu iki alana ait dahil edilen hane sayıları ayrıca iletilmemiştir.
+
+Yanıtta doğrulanan eski eşleştirme, 518 buurt poligonuna karşılık 418 gelir kaydı ve 100 eksik buurt içindir. Güncel sitede 110 wijk kullanılmaktadır; eski eksik sayısı güncel haritaya taşınmaz. Yanıt veren kişi başka resmî tablo veya dönemde bu eksikleri karşılayan veri bilmediğini belirtmiştir; bu, hiçbir alternatif bulunmadığının kesin kanıtı değildir. Yazışmanın aslı tez kayıtlarında saklanmaktadır.
 
 Kaynak metadata tutarların yüzlüklere yuvarlandığını söyler; dönen API değerlerinin hepsi yüzün katı değildir. Bu tutarsızlık kaydedildi, API değerleri değiştirilmedi.
 
@@ -45,7 +47,7 @@ Kapsama için analitik tercihler: en az %99 arazi örtüsü verisi, su dışınd
 Ağırlıklar değişmedi. Birleşik puan, üç yüzde puanının ağırlıklı toplamıdır. Scenario median dört senaryo puanının medyanıdır; kamusal uzlaşma anlamına gelmez. Bütün senaryolar aynı 108 mahalleyi kullanır. Sıra farkları ortak tam gözlemler üzerinden hesaplanır.
 
 ## Brüksel
-Amsterdam hesabı korunmuştur. Brüksel daha sonra IBSA/Statbel 2498 medyan eşdeğer vergi sonrası geliriyle ayrı bir şehir içi model olarak eklenmiştir: 145 alan, 118 sıralanan mahalle, 27 yayımlanmayan gelir. Gelir tanımları farklıdır; şehirler arası gelir veya başarı karşılaştırması yapılmaz. Brüksel yöntem notu ve güncel iki şehir hesap kodu Brussels_Mahalle_Model_ve_Kaynaklar.zip paketindedir.
+Amsterdam hesabı korunmuştur. Brüksel daha sonra IBSA/Statbel 2498 medyan eşdeğer vergi sonrası geliriyle ayrı bir şehir içi model olarak eklenmiştir: 145 alan, 118 yayımlanmış gelir, 116 sıralanan mahalle, 27 yayımlanmayan gelir. Gelir tanımları farklıdır; şehirler arası gelir veya başarı karşılaştırması yapılmaz. Brüksel yöntem notu ve güncel iki şehir hesap kodu Brussels_Mahalle_Model_ve_Kaynaklar.zip paketindedir.
 
 ## Kaynaklar
 - income: https://api.data.amsterdam.nl/v1/statistieken/v2/cijfers?indicator.id=3196&heeftBetrekkingOp=2024&_pageSize=1000

@@ -10,8 +10,8 @@ export const SCENARIOS: Record<Scenario, ReturnType<typeof entry>> = {
 
 export const CITY_INCOME = {
  Amsterdam: {
-  label: 'Median disposable household income · API 2024',
-  description: 'Amsterdam: official wijk scale (110 areas). O&S median disposable household income, not adjusted for household size. 108 published income values; 108 complete neighbourhoods ranked. 2 wijken have no published income value.',
+  label: 'Median disposable household income · 2024 (preliminary)',
+  description: 'Amsterdam: official wijk scale (110 areas). O&S median disposable household income, not adjusted for household size. 108 published income values; 108 complete neighbourhoods ranked. 2 wijken have no published income value. Income covers 2024 and is preliminary. Student households, institutional residents and households without income information are excluded; publication requires at least 100 remaining households (O&S, 27 October 2026).',
  },
  Brussels: {
   label: 'Median equivalised after-tax income · 2023',
@@ -26,7 +26,7 @@ export const INCOME_MEANING = 'Lower median income means a higher income score. 
 export function coverageReason(row: {city?: string; income_status?: string; model_status?: string; green_coverage_status?: string}) {
  if (row.income_status !== 'published') return row.city === 'Brussels'
   ? 'Income not published: IBSA classifies this as a non-residential area. Such areas are generally large with relatively few residents, which can make mapped income misleading. Available temperature and public-green values are still shown.'
-  : 'Income not published in the source. Available temperature and public-green values are still shown.';
+  : 'Income not published in the source. O&S publishes this indicator only for areas with at least 100 households after its exclusions; no area-specific household counts were supplied. Available temperature and public-green values are still shown.';
  if (row.green_coverage_status === 'unresolved_inventory_features' || row.model_status?.includes('unresolved_green_inventory')) return 'Public-green inventory has unresolved features here; green share and combined rank are unavailable. Temperature and published income remain visible.';
  return 'All three indicators available.';
 }

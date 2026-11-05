@@ -123,7 +123,7 @@ export default function ResearchInterface() {
   }, []);
   const workedExample = useMemo(() => {
     const rows = data?.features.filter(f => f.properties.city === 'Brussels' && f.properties.eligible) ?? [];
-    const selected = rows.find(f => f.properties.neighbourhood_name === 'Kapelleveld');
+    const selected = rows.find(f => f.properties.neighbourhood_name === 'Marolles');
     if (!selected) return null;
     const rank = (field: Scenario) => 1 + rows.filter(f => Number(f.properties[field]) - Number(selected.properties[field]) > 0.000001).length;
     return {balanced: rank('priority_balanced'), income: rank('priority_income_led'), total: rows.length};
@@ -405,13 +405,13 @@ export default function ResearchInterface() {
       </section>
       </section>
       <section className="lab-chapter worked-example" aria-labelledby="worked-example-title">
-        <header className="chapter-header"><p className="eyebrow">From the prototype to the thesis</p><h2 id="worked-example-title">One neighbourhood, three research steps.</h2><p>Kapelleveld · Brussels-Capital Region. An illustrative case, not a representative sample.</p></header>
+        <header className="chapter-header"><p className="eyebrow">From the prototype to the thesis</p><h2 id="worked-example-title">Marolles: what does the ranking miss?</h2><p>One neighbourhood in the Brussels-Capital Region.</p></header>
         <ol className="example-steps">
-          <li><h3>01 · Result</h3><p>{workedExample ? <>Kapelleveld moves from rank <b>{workedExample.balanced}</b> under balanced weighting to <b>{workedExample.income}</b> when lower median income receives more weight, among {workedExample.total} ranked neighbourhoods.</> : 'Loading the neighbourhood example…'} The data and boundaries stay fixed; the weights change from 40/30/30 to 25/20/55 (temperature / green deficit / lower median income).</p><a href="/priority-lines?city=Brussels">Inspect the four scenario ranks →</a></li>
-          <li><h3>02 · Interview question</h3><p>First ask how officials define cooling need and set priorities. If the prototype is then introduced: who could justify giving income more weight, whose knowledge would inform that choice, and who could request a revision?</p></li>
-          <li><h3>03 · Use in the thesis</h3><p>Use the rank change to make a weighting choice concrete. Compare interview answers with institutional documents to examine justification, participation, contestation and responsibility. The rank change alone does not establish democratic legitimacy or actual municipal practice.</p></li>
+          <li><h3>01 · What changes</h3><p>{workedExample ? <>Marolles moves from <b>#{workedExample.balanced}</b> to <b>#{workedExample.income}</b> out of {workedExample.total} ranked neighbourhoods when lower median income gets more weight. The underlying data stay the same.</> : 'Compare how the two weightings affect the same neighbourhood.'}</p><a href="/priority-lines?city=Brussels">Inspect the four scenario ranks →</a></li>
+          <li><h3>02 · What the score misses</h3><p>Street Workout Park Lavoir is listed as public green space, yet some respondents in a local study found it uncomfortable in hot weather. The amount of public green space does not tell us where people can find relief from heat.</p><a href="https://sohab.be/wp-content/uploads/Diagnostic-CRU7-VilHa_UE-SoHab.pdf">Local heat study (SoHab &amp; Centre d’Écologie Urbaine, 2026) →</a></li>
+          <li><h3>03 · A hypothetical objection</h3><p>“If this space is uncomfortable on hot days, why count its green area as evidence of cooling?” The ranking makes the weighting visible. A decision to intervene at a specific site still needs local evidence and a public explanation.</p></li>
         </ol>
-        <details className="reading-detail"><summary>Evidence and interview-use limits</summary><div className="reading-body"><p>The ranks are calculated from the same neighbourhood dataset as the map. Introduce the example only after open questions about existing practice, to reduce the risk of steering the interview. This is a proposed use in future interviews, not a reported interview finding.</p><a href="/data/brussels_neighbourhoods.csv">Brussels indicators and scores (CSV)</a> · <a href="/methods.html">Definitions, calculation and sources</a></div></details>
+        <details className="reading-detail"><summary>Evidence and limits</summary><div className="reading-body"><p>The ranks use the same data as the map. The study reports local experiences; the objection is hypothetical. Neither establishes how the municipality chose where to invest.</p><a href="/data/brussels_neighbourhoods.csv">Brussels indicators and scores (CSV)</a> · <a href="/methods.html">Definitions, calculation and sources</a></div></details>
       </section>
       <section className="lab-chapter" id="data-evidence" aria-labelledby="data-evidence-title">
         <header className="chapter-header"><p className="eyebrow">03 · Data &amp; evidence</p><h2 id="data-evidence-title">Data &amp; evidence</h2><p>What the three indicators measure and where evidence is missing.</p></header>

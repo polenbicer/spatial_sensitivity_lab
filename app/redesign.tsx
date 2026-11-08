@@ -257,16 +257,17 @@ export default function ResearchInterface() {
               </button>
             ))}
           </div>
-          <details className="reading-detail compact"><summary>Additional summary: scenario median</summary><div className="reading-body"><p>The median summarises the four scenario scores for each neighbourhood. It is not a fifth weighting, equal weighting or public agreement.</p><button type="button" onClick={() => setScenario("priority_consensus")}>Show scenario median</button></div></details>
           <p className="weights-order">Weights: temperature / green deficit / income</p>
           <p className="scope-note"><b>{cityLabel(city)}</b> · {city === "Amsterdam" ? "official wijken" : "Monitoring neighbourhoods"}</p>
 
-          <details className="reading-detail compact"><summary>Income definition, coverage and sources</summary><div className="reading-body"><p>{INCOME_MEANING}</p><p>{CITY_INCOME[city].description}</p><p>{INCOME_COMPARABILITY}</p><a href="/methods.html">Method and coverage</a></div></details>
-          <details className="reading-detail compact"><summary>About this scenario</summary><div className="policy-note">
+          <details className="reading-detail compact"><summary>Definitions &amp; method</summary><div className="policy-note">
             <b>{SCENARIOS[scenario].title}</b>
             <p>{SCENARIOS[scenario].note}</p>
             <small>Weights change the political definition of priority—not its objectivity.</small>
-          </div></details>
+          </div>
+          <details className="reading-detail compact"><summary>Income definition, coverage and sources</summary><div className="reading-body"><p>{INCOME_MEANING}</p><p>{CITY_INCOME[city].description}</p><p>{INCOME_COMPARABILITY}</p><a href="/methods.html">Method and coverage</a></div></details>
+          <details className="reading-detail compact"><summary>Additional summary: scenario median</summary><div className="reading-body"><p>The median summarises the four scenario scores for each neighbourhood. It is not a fifth weighting, equal weighting or public agreement.</p><button type="button" onClick={() => setScenario("priority_consensus")}>Show scenario median</button></div></details>
+          </details>
         </aside>
         <div className="map-wrap">
           <div className="panel-head">

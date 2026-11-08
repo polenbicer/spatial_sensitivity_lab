@@ -3876,3 +3876,8 @@ button.cell-link { border:0; padding:0; background:transparent; text-align:left;
 .workspace > .map-wrap iframe { filter: none; }
 .indicator-score-key { font-size: 12px; margin: 8px 0; }
 @media (max-width: 1180px) { .ranking-results { grid-template-columns: minmax(0, 1fr); } }
+
+.workspace .controls .reading-detail { margin: 10px 0; }
+.workspace .controls .reading-detail > summary { padding: 10px 2px; font-size: 12px; }
+.workspace .meter > span { background: transparent; color: var(--ink); }
+.workspace .meter > span b { color: var(--ink); }

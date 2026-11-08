@@ -1,4 +1,5 @@
 "use client";
+import { PRIORITY_BANDS, PRIORITY_LEGEND, SCENARIO_RATIOS } from "../lib/priority-visuals";
 import {PRIMARY_SCENARIOS, SCENARIOS, CITY_INCOME, INCOME_COMPARABILITY, INCOME_MEANING, cityLabel, type Scenario} from "../lib/priority-model";
 import { buildCellLabels } from "../lib/cell-labels";
 import { useEffect, useMemo, useState } from "react";
@@ -42,11 +43,6 @@ const SOURCES = [
   ["Brussels neighbourhood boundaries", "IBSA / perspective.brussels · official polygons", "https://opendata.brussels.be/explore/dataset/quartiers-du-monitoring-des-quartiers-ibsa-perspective-rbc/"],
 
 ];
-function colour(v: number | null) {
-  return v == null
-    ? "#777"
-    : v < 20 ? "#440154" : v < 40 ? "#3b528b" : v < 60 ? "#21918c" : v < 80 ? "#5ec962" : "#8a7300";
-}
 
 function MapFrame({
   city,
@@ -65,8 +61,8 @@ function MapFrame({
   useEffect(() => {
     setHtml(
       `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>html,body,#map{height:100%;margin:0}.leaflet-container{font:13px Arial,sans-serif;background:#dce3df}.leaflet-popup-content-wrapper,.leaflet-popup-tip{border-radius:0}.legend{background:#fff;border:1px solid #111;padding:9px;line-height:19px}.legend i{display:inline-block;width:14px;height:14px;margin-right:7px;vertical-align:-2px}</style></head><body><div id="map"></div><script>
- const cellLabels=${JSON.stringify(Object.fromEntries(cellLabels))};const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},selected=${JSON.stringify(selected)};const map=L.map('map',{zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);
- Promise.all([fetch('/data/neighbourhood_priority.geojson').then(r=>{if(!r.ok)throw Error('grid');return r.json()}),fetch('/data/project_context.geojson').then(r=>{if(!r.ok)throw Error('context');return r.json()})]).then(([grid,projects])=>{grid.features.forEach(f=>{f.properties.grid_id=f.properties.id;f.properties.income_proxy_eur=f.properties.income_median_disposable_eur??f.properties.income_median_equivalised_after_tax_eur;cellLabels[f.properties.id]??=f.properties.neighbourhood_name});const vals=[['#440154','0–20'],['#3b528b','20–40'],['#21918c','40–60'],['#5ec962','60–80'],['#fde725','80–100']];const layer=L.geoJSON(grid,{filter:f=>f.properties.city===city,style:f=>{const v=f.properties[field],c=v==null?'#777':v<20?'#440154':v<40?'#3b528b':v<60?'#21918c':v<80?'#5ec962':'#fde725';return{fillColor:c,fillOpacity:f.properties.eligible?.76:.35,color:f.properties.grid_id===selected?'#111':'rgba(255,255,255,.72)',weight:f.properties.grid_id===selected?3:.55}},onEachFeature:(f,l)=>{const p=f.properties,v=p[field];l.bindTooltip(cellLabels[p.grid_id]||p.neighbourhood_name||'Neighbourhood',{sticky:true,direction:'top'});l.bindPopup('<b>'+(cellLabels[p.grid_id]||p.neighbourhood_name||'Neighbourhood')+'</b><br>'+'Priority'+' '+(v==null?'No data':Number(v).toFixed(1)+'/100')+'<br>Surface temperature '+fmt(p.score_surface_temperature)+'<br>Green deficit '+fmt(p.score_green_deficit)+(true?'<br>Lower median income '+fmt(p.score_income_deprivation)+'<br>'+(city==='Brussels'?'Median equivalised after-tax income':'Median disposable household income')+' '+(p.income_proxy_eur==null?'Not scored':'€'+Number(p.income_proxy_eur).toLocaleString('en-GB'))+'<br>Income status '+(p.income_status||'Not available'):'<br>Lower median income '+fmt(p.score_income_deprivation))+'<br>Summer surface temperature '+(p.summer_lst_median_c==null?'Not available':Number(p.summer_lst_median_c).toFixed(1)+' °C')+'<br>Public green area share '+percent(p.cooling_green_pct)+(p.income_status!=='published'?(city==='Brussels'?'<br>Income not published: non-residential area; these areas are generally large with relatively few residents.':'<br>Income not published in source.'):'')+'<br>Top-quintile scenarios '+(p.score_ge_80_scenario_count??'—')+'/4');l.on('click',()=>parent.postMessage({type:'grid-select',id:p.grid_id},'*'));l.on('add',()=>{const el=l.getElement();if(el){el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label',(cellLabels[p.grid_id]||p.neighbourhood_name||'Neighbourhood')+' '+(v==null?'no data':Number(v).toFixed(1)+' out of 100'));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();l.openPopup();parent.postMessage({type:'grid-select',id:p.grid_id},'*')}})}})}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]});L.control.scale({imperial:false}).addTo(map);L.geoJSON(projects,{filter:f=>f.properties.city===city,style:{color:'#5b22b4',weight:3,fillOpacity:.06,dashArray:'7 4'}}).addTo(map);const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML='<b>'+'Relative priority'+'</b><br>'+vals.map(x=>'<i style="background:'+x[0]+'"></i>'+x[1]).join('<br>');return d};legend.addTo(map)}).catch(()=>{document.getElementById('map').textContent='Map data could not be loaded. Refresh the page to retry.'});function fmt(v){return v==null?'No data':Number(v).toFixed(0)+'/100'}function percent(v){return v==null?'No data':Number(v).toFixed(1)+'%'}
+ const bands=${JSON.stringify(PRIORITY_BANDS)};const cellLabels=${JSON.stringify(Object.fromEntries(cellLabels))};const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},selected=${JSON.stringify(selected)};const map=L.map('map',{zoomControl:true});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19,opacity:.55}).addTo(map);
+ Promise.all([fetch('/data/neighbourhood_priority.geojson').then(r=>{if(!r.ok)throw Error('grid');return r.json()}),fetch('/data/project_context.geojson').then(r=>{if(!r.ok)throw Error('context');return r.json()})]).then(([grid,projects])=>{grid.features.forEach(f=>{f.properties.grid_id=f.properties.id;f.properties.income_proxy_eur=f.properties.income_median_disposable_eur??f.properties.income_median_equivalised_after_tax_eur;cellLabels[f.properties.id]??=f.properties.neighbourhood_name});const vals=[['#440154','0–20'],['#3b528b','20–40'],['#21918c','40–60'],['#5ec962','60–80'],['#fde725','80–100']];const layer=L.geoJSON(grid,{filter:f=>f.properties.city===city,style:f=>{const v=f.properties[field],c=v==null?'#777777':(bands.find(b=>v<b.max)||bands[bands.length-1]).colour;return{fillColor:c,fillOpacity:f.properties.eligible?.8:.4,color:f.properties.grid_id===selected?'#111':'rgba(255,255,255,.72)',weight:f.properties.grid_id===selected?3:.55}},onEachFeature:(f,l)=>{const p=f.properties,v=p[field];l.bindTooltip(cellLabels[p.grid_id]||p.neighbourhood_name||'Neighbourhood',{sticky:true,direction:'top'});l.bindPopup('<b>'+(cellLabels[p.grid_id]||p.neighbourhood_name||'Neighbourhood')+'</b><br>'+'Priority score'+' '+(v==null?'No data':Number(v).toFixed(1)+'/100')+'<br>Surface temperature '+fmt(p.score_surface_temperature)+'<br>Green deficit '+fmt(p.score_green_deficit)+(true?'<br>Lower median income '+fmt(p.score_income_deprivation)+'<br>'+(city==='Brussels'?'Median equivalised after-tax income':'Median disposable household income')+' '+(p.income_proxy_eur==null?'Not scored':'€'+Number(p.income_proxy_eur).toLocaleString('en-GB'))+'<br>Income status '+(p.income_status||'Not available'):'<br>Lower median income '+fmt(p.score_income_deprivation))+'<br>Summer surface temperature '+(p.summer_lst_median_c==null?'Not available':Number(p.summer_lst_median_c).toFixed(1)+' °C')+'<br>Public green area share '+percent(p.cooling_green_pct)+(p.income_status!=='published'?(city==='Brussels'?'<br>Income not published: non-residential area; these areas are generally large with relatively few residents.':'<br>Income not published in source.'):'')+'<br>Top-quintile scenarios '+(p.score_ge_80_scenario_count??'—')+'/4');l.on('click',()=>parent.postMessage({type:'grid-select',id:p.grid_id},'*'));l.on('add',()=>{const el=l.getElement();if(el){el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label',(cellLabels[p.grid_id]||p.neighbourhood_name||'Neighbourhood')+' '+(v==null?'no data':Number(v).toFixed(1)+' out of 100'));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();l.openPopup();parent.postMessage({type:'grid-select',id:p.grid_id},'*')}})}})}}).addTo(map);map.fitBounds(layer.getBounds(),{padding:[12,12]});L.control.scale({imperial:false}).addTo(map);L.geoJSON(projects,{filter:f=>f.properties.city===city,style:{color:'#5b22b4',weight:3,fillOpacity:.06,dashArray:'7 4'}}).addTo(map);const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div','legend');d.innerHTML=${JSON.stringify(PRIORITY_LEGEND)};return d};legend.addTo(map)}).catch(()=>{document.getElementById('map').textContent='Map data could not be loaded. Refresh the page to retry.'});function fmt(v){return v==null?'No data':Number(v).toFixed(0)+'/100'}function percent(v){return v==null?'No data':Number(v).toFixed(1)+'%'}
  </script></body></html>`
         .replace("Top-quintile scenarios", "Scenarios scoring ≥80")
         .replaceAll("#f07a4b", "#5ec962"),
@@ -151,7 +147,7 @@ export default function ResearchInterface() {
       new Map(
         [...usable]
           .sort((a, b) => Number(b.properties[field]) - Number(a.properties[field]))
-          .map((f, i) => [String(f.properties.grid_id), i + 1]),
+          .map((f) => [String(f.properties.grid_id), 1 + usable.filter(other => Number(other.properties[field]) - Number(f.properties[field]) > 0.000001).length]),
       );
     const left = rank(scenario), right = rank(comparisonScenario);
     return usable
@@ -182,13 +178,8 @@ export default function ResearchInterface() {
           <a href="#explore">[01] EXPLORE</a>
           <a href="/rankings">[02] RANKINGS</a>
           <a href="/priority-lines">[03] PRIORITY LINES</a>
-          <a href="#evidence">[04] EVIDENCE</a>
-          <a href="#method">[05] METHOD</a>
-          <a href="#participation">[06] DEMOCRACY</a>
-          <a href="#legitimacy">[07] LEGITIMACY</a>
-          <a href="#opendata">[08] DATA</a>
-          <a href="#procurement">[09] FURTHER STAGES</a>
-          <a href="/methods.html">[10] METHODS &amp; REPRODUCIBILITY</a>
+          <a href="#politics">[04] RESEARCH</a>
+          <a href="#method">[05] SOURCES &amp; METHOD</a>
         </nav>
 
         <div className="diagram-field" aria-hidden="true">
@@ -262,19 +253,20 @@ export default function ResearchInterface() {
                 key={k}
               >
                 <b>{SCENARIOS[k].title}</b>
-                <span>{SCENARIOS[k].weights}</span>
+                <span>{SCENARIO_RATIOS[k]}</span>
               </button>
             ))}
           </div>
           <details className="reading-detail compact"><summary>Additional summary: scenario median</summary><div className="reading-body"><p>The median summarises the four scenario scores for each neighbourhood. It is not a fifth weighting, equal weighting or public agreement.</p><button type="button" onClick={() => setScenario("priority_consensus")}>Show scenario median</button></div></details>
+          <p className="weights-order">Weights: temperature / green deficit / income</p>
           <p className="scope-note"><b>{cityLabel(city)}</b> · {city === "Amsterdam" ? "official wijken" : "Monitoring neighbourhoods"}</p>
-          <p className="income-meaning">{INCOME_MEANING}</p>
-          <details className="reading-detail compact"><summary>Income definition, coverage and sources</summary><div className="reading-body"><p>{CITY_INCOME[city].description}</p><p>{INCOME_COMPARABILITY}</p><a href="/methods.html">Method and coverage</a></div></details>
-          <div className="policy-note">
+
+          <details className="reading-detail compact"><summary>Income definition, coverage and sources</summary><div className="reading-body"><p>{INCOME_MEANING}</p><p>{CITY_INCOME[city].description}</p><p>{INCOME_COMPARABILITY}</p><a href="/methods.html">Method and coverage</a></div></details>
+          <details className="reading-detail compact"><summary>About this scenario</summary><div className="policy-note">
             <b>{SCENARIOS[scenario].title}</b>
             <p>{SCENARIOS[scenario].note}</p>
             <small>Weights change the political definition of priority—not its objectivity.</small>
-          </div>
+          </div></details>
         </aside>
         <div className="map-wrap">
           <div className="panel-head">
@@ -303,14 +295,16 @@ export default function ResearchInterface() {
           ) : (
             <>
               <section className="inspect">
-                <p className="eyebrow">Selected area</p>
+                <p className="eyebrow">Selected neighbourhood · priority score /100</p>
                 <div className="inspect-title">
                   <h3>{cellLabels.get(String(p?.grid_id)) || "Highest-ranked neighbourhood"}</h3>
-                  <div className="score" style={{ color: colour(p?.[scenario] == null ? null : Number(p[scenario])) }}>
+                  <div className="score" >
                     {p?.[scenario] == null ? "N/A" : Number(p[scenario]).toFixed(1)}
                     <small>/100</small>
                   </div>
                 </div>
+                <p className="selected-priority-rank">Priority rank <b>{p?.[scenario] == null ? "Unranked" : `#${1 + eligible.filter(f => Number(f.properties[scenario]) - Number(p[scenario]) > 0.000001).length}`}</b>{p?.[scenario] != null && <> of {eligible.length}</>}</p>
+                <p className="indicator-score-key">Indicator scores · 0–100</p>
                 {[
                   ["Surface temperature", "score_surface_temperature"],
                   ["Green deficit", "score_green_deficit"],
@@ -326,7 +320,7 @@ export default function ResearchInterface() {
                     </i>
                   </div>
                 ))}
-                <dl>
+                <details className="reading-detail compact"><summary>Measurements &amp; data notes</summary><dl>
                   <><div><dt>{CITY_INCOME[city].label}</dt><dd>{p?.income_proxy_eur == null ? "Not scored" : `€${Number(p.income_proxy_eur).toLocaleString("en-GB")}`}</dd></div><div><dt>Income publication status</dt><dd>{p?.income_status === "published" ? "Published" : city === "Brussels" ? "Not published: classified as non-residential. Such areas are generally large with relatively few residents, which can make mapped income misleading (IBSA, 26 October 2026)." : "Not published. O&S requires at least 100 households after excluding student households, institutional residents and households without income information; individual counts were not supplied."}</dd></div></>
                   <div><dt>Summer LST</dt>
                     <dd>
@@ -344,9 +338,9 @@ export default function ResearchInterface() {
                     <dt>Weight sensitivity</dt>
                     <dd>{p?.priority_range == null ? "—" : Number(p.priority_range).toFixed(1)}</dd>
                   </div>
-                </dl>
+                </dl></details>
               </section>
-              <section className="rank-rail">
+              <details className="top-priorities"><summary>Top six neighbourhoods</summary><section className="rank-rail">
                 <header>
                   <p className="eyebrow">Highest mapped need</p>
                   <span>Relative scores, not investment decisions</span>
@@ -360,14 +354,14 @@ export default function ResearchInterface() {
                         }
                         onClick={() => setSelected(String(f.properties.grid_id))}
                       >
-                        <span>{String(i + 1).padStart(2, "0")}</span>
+                        <span>{String(1 + eligible.filter(other => Number(other.properties[scenario]) - Number(f.properties[scenario]) > 0.000001).length).padStart(2, "0")}</span>
                         <b>{cellLabels.get(String(f.properties.grid_id)) || "Boundary cell"}</b>
                         <strong>{Number(f.properties[scenario]).toFixed(1)}</strong>
                       </button>
                     </li>
                   ))}
                 </ol>
-              </section>
+              </section></details>
             </>
           )}
         </aside>
@@ -456,7 +450,7 @@ export default function ResearchInterface() {
       </section>
       </section>
       <section className="lab-chapter" id="politics" aria-labelledby="politics-title">
-        <header className="chapter-header"><p className="eyebrow">04 · Politics &amp; legitimacy</p><h2 id="politics-title">Politics &amp; legitimacy</h2><p>From value choices in a model to justification, participation and public responsibility.</p></header>
+        <header className="chapter-header"><p className="eyebrow">04 · Politics &amp; legitimacy</p><h2 id="politics-title">Politics &amp; legitimacy</h2><p>From value choices in a model to justification, participation and public responsibility.</p></header><nav className="research-links" aria-label="Research sections"><a href="#participation">Participation</a><a href="#legitimacy">Decision process</a><a href="#procurement">Further research</a><a href="#data-evidence">Data evidence</a></nav>
       <section className="research-frame">
         <p className="eyebrow">Research question</p>
         <h3>

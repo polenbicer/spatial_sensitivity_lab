@@ -1,4 +1,5 @@
 "use client";
+import { PRIORITY_BANDS, PRIORITY_LEGEND } from "../../lib/priority-visuals";
 import {PRIMARY_SCENARIOS, SCENARIO_WEIGHTS, SCENARIOS, coverageReason, CITY_INCOME, INCOME_COMPARABILITY, INCOME_MEANING, cityLabel, type Scenario} from "../../lib/priority-model";
 import { neighbourhoodLabel } from "../../lib/district-labels";
 import { buildCellLabels } from "../../lib/cell-labels";
@@ -158,7 +159,7 @@ function RankingMap({
         ? "/data/neighbourhood_priority.geojson"
         : "/data/grid_priority.geojson";
     setHtml(
-      `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>html,body,#map{height:100%;margin:0}.leaflet-container{background:#dbe3df;font:13px Arial}.leaflet-popup-content-wrapper,.leaflet-popup-tip{border-radius:0}</style></head><body><div id="map"></div><script>const cellLabels=${JSON.stringify(Object.fromEntries(cellLabels))};const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},selected=${JSON.stringify(selected)},view=${JSON.stringify(view)};const map=L.map('map',{zoomSnap:.25});L.control.scale({imperial:false}).addTo(map);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19,opacity:.58}).addTo(map);fetch('${source}').then(r=>r.json()).then(data=>{const layer=L.geoJSON(data,{filter:f=>f.properties.city===city,style:f=>{const p=f.properties,v=p[field],id=view==='neighbourhoods'?p.id:p.grid_id,c=v==null?'#777':v<20?'#0878ad':v<40?'#55a8c8':v<60?'#ecebe5':v<80?'#e89b32':'#c80032';return{fillColor:c,fillOpacity:p.eligible===0||v==null?.18:.72,color:id===selected?'#111':'rgba(30,30,30,.55)',weight:id===selected?4:view==='neighbourhoods'?1.1:.45,dashArray:p.ranking_eligible===false?'5 4':null}},onEachFeature:(f,l)=>{const p=f.properties,id=view==='neighbourhoods'?p.id:p.grid_id,name=cellLabels[id]||p.neighbourhood_name||'Boundary cell';l.bindTooltip(name,{permanent:id===selected,direction:'top',sticky:id!==selected});l.on('click',()=>parent.postMessage({type:'ranking-select',id},'*'))}}).addTo(map);if(layer.getBounds().isValid()){const fit=()=>{map.invalidateSize({pan:false});map.fitBounds(layer.getBounds(),{padding:[20,20],animate:false})};requestAnimationFrame(fit);new ResizeObserver(fit).observe(document.getElementById('map'))}});</script></body></html>`,
+      `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><style>html,body,#map{height:100%;margin:0}.leaflet-container{background:#dbe3df;font:13px Arial}.leaflet-popup-content-wrapper,.leaflet-popup-tip{border-radius:0}</style></head><body><div id="map"></div><script>const bands=${JSON.stringify(PRIORITY_BANDS)};const cellLabels=${JSON.stringify(Object.fromEntries(cellLabels))};const city=${JSON.stringify(city)},field=${JSON.stringify(scenario)},selected=${JSON.stringify(selected)},view=${JSON.stringify(view)};const map=L.map('map',{zoomSnap:.25});const legend=L.control({position:'bottomright'});legend.onAdd=()=>{const d=L.DomUtil.create('div');d.innerHTML=${JSON.stringify(PRIORITY_LEGEND)};return d};legend.addTo(map);L.control.scale({imperial:false}).addTo(map);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19,opacity:.55}).addTo(map);fetch('${source}').then(r=>r.json()).then(data=>{const layer=L.geoJSON(data,{filter:f=>f.properties.city===city,style:f=>{const p=f.properties,v=p[field],id=view==='neighbourhoods'?p.id:p.grid_id,c=v==null?'#777777':(bands.find(b=>v<b.max)||bands[bands.length-1]).colour;return{fillColor:c,fillOpacity:v==null?.4:.8,color:id===selected?'#111':'rgba(30,30,30,.55)',weight:id===selected?4:view==='neighbourhoods'?1.1:.45,dashArray:p.ranking_eligible===false?'5 4':null}},onEachFeature:(f,l)=>{const p=f.properties,id=view==='neighbourhoods'?p.id:p.grid_id,name=cellLabels[id]||p.neighbourhood_name||'Boundary cell';l.bindTooltip(name,{permanent:id===selected,direction:'top',sticky:id!==selected});l.on('click',()=>parent.postMessage({type:'ranking-select',id},'*'))}}).addTo(map);if(layer.getBounds().isValid()){const fit=()=>{map.invalidateSize({pan:false});map.fitBounds(layer.getBounds(),{padding:[20,20],animate:false})};requestAnimationFrame(fit);new ResizeObserver(fit).observe(document.getElementById('map'))}});</script></body></html>`,
     );
   }, [city, scenario, view, selected, cellLabels]);
   useEffect(() => {
@@ -479,11 +480,10 @@ export default function RankingExplorer() {
               <thead>
                 <tr>
                   <th>
-                    <ColumnHelp label="Rank">
+                    <ColumnHelp label="Priority rank">
                       <b>Within-city neighbourhood order</b>
                       <span>
-                        Official neighbourhoods sorted by their overlap-area-weighted
-                        selected-policy score.
+                        Official neighbourhoods sorted by their selected-scenario score. Number 1 is the highest model priority.
                       </span>
                     </ColumnHelp>
                   </th>
@@ -526,7 +526,7 @@ export default function RankingExplorer() {
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label="Priority">
+                    <ColumnHelp label="Priority score (0–100)">
                       <b>Neighbourhood composite</b>
                       <span>
                         Selected weights applied directly to three neighbourhood percentile scores.
@@ -639,7 +639,7 @@ export default function RankingExplorer() {
               <thead>
                 <tr>
                   <th>
-                    <ColumnHelp label="Rank">
+                    <ColumnHelp label="Priority rank">
                       <b>Within-city cell order</b>
                       <span>
                         Eligible 500 m cells sorted from highest to lowest selected-policy score.
@@ -671,7 +671,7 @@ export default function RankingExplorer() {
                     </ColumnHelp>
                   </th>
                   <th>
-                    <ColumnHelp label="Priority">
+                    <ColumnHelp label="Priority score (0–100)">
                       <b>Selected-policy score</b>
                       <span>
                         A 0–100 within-city composite derived from surface temperature, green deficit and lower median income.

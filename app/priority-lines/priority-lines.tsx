@@ -78,15 +78,10 @@ export default function PriorityLines() {
       <header className={styles.header}>
         <p className={styles.eyebrow}>Cartographic experiment / Brussels-Capital Region &amp; Amsterdam</p>
         <h1>Same city.<br />Different priorities.</h1>
-        <p className={styles.intro}>Every scenario uses surface temperature, green deficit and lower median income; only the weights change. Choose a neighbourhood and follow its line across these four scenarios. The place stays the same; the importance assigned to each indicator changes.</p>
+        <p className={styles.intro}>Choose a neighbourhood to see how its cooling investment priority changes under four weightings.</p>
       </header>
-      <p className="scope-note"><b>{cityLabel(city)}</b> · {INCOME_MEANING}</p>
-      <details className="reading-detail"><summary>Income definition, coverage and sources</summary><div className="reading-body"><p>{CITY_INCOME[city].description}</p><p>{INCOME_COMPARABILITY}</p><a href="/methods.html">Sources and method</a></div></details>
-      <div className={styles.how}>
-        <p><b>01 · Find a place.</b> Select a name or click a neighbourhood on the map.</p>
-        <p><b>02 · Follow its line.</b> Each point is its rank under a different weighting. Rank 1 is the highest priority.</p>
-        <p><b>03 · Read the shift.</b> A line rising means higher priority; a line falling means lower priority. Left to right is a scenario comparison, not time.</p>
-      </div>
+
+      <details className="reading-detail"><summary>Income definition, coverage and sources</summary><div className="reading-body"><p>{INCOME_MEANING}</p><p>{CITY_INCOME[city].description}</p><p>{INCOME_COMPARABILITY}</p><a href="/methods.html">Sources and method</a></div></details>
       <section className={styles.controls} aria-label="Explore priority lines">
         <div className={styles.cities} aria-label="City">
           {(['Brussels', 'Amsterdam'] as City[]).map(name => <button key={name} type="button" aria-pressed={city === name} onClick={() => changeCity(name)}>{name === 'Brussels' ? 'Brussels region' : name}</button>)}
@@ -135,7 +130,7 @@ export default function PriorityLines() {
                 </svg>
               </div>
             </div>
-            <p className={styles.caption}>{selected ? `The red line follows the red neighbourhood. Faint lines are the other ${city} neighbourhoods.` : `The selected area has no combined rank, so no red rank line is drawn. Faint lines show ranked ${city} neighbourhoods.`}</p>
+            <p className={styles.caption}>{selected ? `Red identifies the selected neighbourhood and its ranks, not a priority colour. Faint lines are other ${city} neighbourhoods. Left to right compares scenarios, not time.` : `The selected area has no combined rank, so no red rank line is drawn. Faint lines show ranked ${city} neighbourhoods.`}</p>
           </div>
         </section>
         {selectedRow && <section className={styles.detail} aria-label="Selected neighbourhood details" aria-live="polite">

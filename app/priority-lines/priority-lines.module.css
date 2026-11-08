@@ -90,3 +90,16 @@
 .footer a { display:inline-block; white-space:normal; word-break:normal; }
 
 .mapTooltip { position:fixed; z-index:1000; max-width:260px; padding:8px 11px; background:#fffef8; color:#18251e; border:1px solid #465449; box-shadow:0 2px 8px #0002; font-size:14px; line-height:1.4; pointer-events:none; }
+
+/* Give the chart more space than its introduction. */
+.header { padding: 24px 0 12px; }
+.header h1 { font-size: clamp(36px, 4.5vw, 64px); margin: 12px 0; }
+.intro { font-size: 17px; margin-bottom: 8px; }
+.controls { padding: 16px 0 20px; }
+.scenarioLabels { height: 94px; }
+.scenarioLabels b { font-size: 14px; }
+.scenarioLabels span { font-size: 12px; }
+.tick { font-size: 13px; }
+.rankLabel { font-size: 15px; }
+.caption { font-size: 13px; }
+.weightKey { font-size: 12px; margin-top: 16px; }

@@ -3821,3 +3821,15 @@ button.cell-link { border:0; padding:0; background:transparent; text-align:left;
   .rankings-page .rankings-controls { grid-template-columns: minmax(0, 1fr); gap: 14px; }
   .rankings-page .rankings-controls > label { max-width: none; }
 }
+
+/* Keep the city prominent and the selected scenario subordinate. */
+.rankings-page .rankings-title h1 {
+  font-size: clamp(30px, 3.8vw, 60px);
+  line-height: 1.12;
+}
+.rankings-page .rankings-title h1 em {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: .66em;
+  line-height: 1.15;
+}

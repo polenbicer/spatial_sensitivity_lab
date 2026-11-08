@@ -387,7 +387,7 @@ export default function RankingExplorer() {
       </header>
       <section className="rankings-title">
         <p>
-          Decision report ·{" "}
+          Cooling investment priorities ·{" "}
           {view === "neighbourhoods" ? "neighbourhoods" : "500 m audit cells"}
         </p>
         <h1>
@@ -399,7 +399,7 @@ export default function RankingExplorer() {
           <b>{count}</b>
           <span>{view === "neighbourhoods" ? "neighbourhoods" : "eligible cells"} ranked</span>
           {view === "neighbourhoods" && excludedNeighbourhoodCount > 0 && (
-            <small>{excludedNeighbourhoodCount} additional official areas shown but unranked; see evidence for missing data or coverage limits</small>
+            <small>{excludedNeighbourhoodCount} areas unranked because of missing data</small>
           )}
         </div>
       </section>
@@ -439,7 +439,6 @@ export default function RankingExplorer() {
             </button>
           ))}
         </fieldset>
-        <details><summary>Additional summary: scenario median</summary><p>The median summarises four scenario scores. It is not a fifth weighting, equal weighting or public agreement.</p><button type="button" onClick={() => chooseScenario("priority_consensus")}>Show scenario median</button></details>
         <label>
           03 · Find a neighbourhood
           <input
@@ -449,46 +448,12 @@ export default function RankingExplorer() {
           />
         </label>
       </section>
-      <section className="ranking-view-switch" aria-label="Ranking unit">
-        <button
-          className={view === "neighbourhoods" ? "active" : ""}
-          onClick={() => {
-            setView("neighbourhoods");
-            setSelected("");
-          }}
-        >
-          Neighbourhoods <small>one row per official area</small>
-        </button>
-        <details className="ranking-explanation">
-          <summary>About these spatial units</summary>
-          <p>
-          {view === "neighbourhoods" ? (
-            <>
-              Amsterdam uses 110 official wijken valid on 24 March 2022. Income and O&S 2025 public-green share are joined directly by official wijk code; surface temperature is calculated from the source raster. Brussels uses publicly owned green-space inventory polygons, clipped to each neighbourhood. Two neighbourhoods have unresolved inventory features and remain unranked. Scores are normalized at neighbourhood level, then combined with the selected weights. Brussels uses 145 Monitoring des Quartiers units, with income published for 118. Its income measure differs from Amsterdam; each city is ranked independently. These geographies differ in size and should not be compared as a city league table.
-            </>
-          ) : (
-            <>
-              Each row is a distinct 500 m analytical cell. Repeated neighbourhood names are
-              location labels—not duplicate observations or neighbourhood-level scores. Cell numbers stay fixed across scenarios and searches; they are not ranks. Select a cell label to highlight its location on the map.
-            </>
-          )}
-          </p>
-        </details>
-      </section>
-      <div style={{padding:"0 2vw"}}><p className="scope-note">{INCOME_MEANING} Grey areas are unranked, not low priority. Their available surface temperature and public-green area share remain visible in the table and on Priority Lines.</p><details className="reading-detail compact"><summary>Income definition, coverage and sources</summary><div className="reading-body"><p>{CITY_INCOME[city].description}</p><p>{INCOME_COMPARABILITY}</p><a href="/methods.html">Sources and method</a></div></details></div>
-      <section className="report-note">
-        <div>
-          <span>Selected weights</span>
-          <strong>{SCENARIOS[scenario].weights}</strong>
-        </div>
-        <p>{SCENARIOS[scenario].interpretation}</p>
-        <small>
-          Rank movement is recalculated among locations with scores in both scenarios. The comparison is:{" "}
-          {SCENARIOS[comparison].title}. Choose another model to compare ranks.
-        </small>
-      </section>
+      <div className="ranking-weight-summary">
+        <span>Temperature / green deficit / lower median income</span>
+        <strong>{scenario === "priority_balanced" ? "⅓ / ⅓ / ⅓" : SCENARIO_WEIGHTS[scenario as keyof typeof SCENARIO_WEIGHTS]?.map(weight => `${Math.round(weight * 100)}%`).join(" / ")}</strong>
+      </div>
       <div className="ranking-toolbar">
-        <p>Ranked within {cityLabel(city)} · comparison: {SCENARIOS[comparison].title}</p>
+        <p>#1 = highest model priority · rank change vs {SCENARIOS[comparison].title}</p>
         <button type="button" aria-pressed={showDetails} onClick={() => setShowDetails(!showDetails)}>
           {showDetails ? "Hide detailed columns" : "Show detailed columns"}
         </button>
@@ -802,6 +767,25 @@ export default function RankingExplorer() {
           </div>
         )}
       </section>
+      <details className="ranking-notes">
+        <summary>Method, sources &amp; limitations</summary>
+        <div className="ranking-notes-body">
+        <details className="ranking-unit-detail">
+          <summary>About these spatial units</summary>
+          <p>
+          {view === "neighbourhoods" ? (
+            <>
+              Amsterdam uses 110 official wijken valid on 24 March 2022. Income and O&S 2025 public-green share are joined directly by official wijk code; surface temperature is calculated from the source raster. Brussels uses publicly owned green-space inventory polygons, clipped to each neighbourhood. Two neighbourhoods have unresolved inventory features and remain unranked. Scores are normalized at neighbourhood level, then combined with the selected weights. Brussels uses 145 Monitoring des Quartiers units, with income published for 118. Its income measure differs from Amsterdam; each city is ranked independently. These geographies differ in size and should not be compared as a city league table.
+            </>
+          ) : (
+            <>
+              Each row is a distinct 500 m analytical cell. Repeated neighbourhood names are
+              location labels—not duplicate observations or neighbourhood-level scores. Cell numbers stay fixed across scenarios and searches; they are not ranks. Select a cell label to highlight its location on the map.
+            </>
+          )}
+          </p>
+        </details>
+<div><p className="scope-note">{INCOME_MEANING} Grey areas are unranked, not low priority. Their available surface temperature and public-green area share remain visible in the table and on Priority Lines.</p><details className="reading-detail compact"><summary>Income definition, coverage and sources</summary><div className="reading-body"><p>{CITY_INCOME[city].description}</p><p>{INCOME_COMPARABILITY}</p><a href="/methods.html">Sources and method</a></div></details></div>
       <section className="report-method">
         <div>
           <span>Interpretation</span>
@@ -867,6 +851,8 @@ export default function RankingExplorer() {
           </article>
         </div>
       </section>
+        </div>
+      </details>
       <footer className="rankings-footer">
         <span>Spatial Sensitivity Lab · Polen Biçer · 2026</span>
         <span>

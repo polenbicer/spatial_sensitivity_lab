@@ -3780,3 +3780,44 @@ button.cell-link { border:0; padding:0; background:transparent; text-align:left;
 .ranking-results.summary-columns.neighbourhoods .full-table :is(th,td):nth-child(11),
 .ranking-results.summary-columns.neighbourhoods .full-table :is(th,td):nth-child(12) { display:table-cell; width:112px; white-space:normal; }
 .ranking-results.summary-columns.neighbourhoods .full-table table { min-width:720px; }
+
+/* Compact ranking controls: fixed roles, natural height, no extra grid cells. */
+.rankings-page .rankings-controls {
+  grid-template-columns: 180px minmax(0, 1fr) 250px;
+  align-items: start;
+  gap: 20px;
+  padding: 16px 2vw;
+}
+.rankings-page .rankings-controls fieldset,
+.rankings-page .rankings-controls label {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+.rankings-page .rankings-controls legend { padding: 0; margin-bottom: 6px; }
+.rankings-page .rankings-controls button { min-height: 38px; margin-top: 4px; }
+.ranking-weight-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 16px;
+  padding: 10px 2vw;
+  border-bottom: 1px solid var(--ink);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.ranking-weight-summary strong { font-variant-numeric: tabular-nums; }
+.ranking-notes { border-top: 1px solid var(--ink); }
+.ranking-notes > summary { padding: 16px 2vw; cursor: pointer; font-size: 14px; }
+.ranking-notes-body > div,
+.ranking-unit-detail { padding: 12px 2vw; font-size: 14px; line-height: 1.6; }
+.ranking-unit-detail > summary { cursor: pointer; }
+.rankings-page .rankings-title { padding-block: 22px; }
+@media (max-width: 1100px) {
+  .rankings-page .rankings-controls { grid-template-columns: 160px minmax(0, 1fr); }
+  .rankings-page .rankings-controls > label { grid-column: 1 / -1; max-width: 420px; }
+}
+@media (max-width: 600px) {
+  .rankings-page .rankings-controls { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .rankings-page .rankings-controls > label { max-width: none; }
+}

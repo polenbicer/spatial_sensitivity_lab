@@ -118,13 +118,15 @@ export default function PriorityLines() {
             <p className={styles.caption}>Real neighbourhood boundaries · {count} ranked{excluded ? ` · ${excluded} unranked in grey` : ''}. Maps are fitted separately; they do not share a scale.</p>
           </div>
           <div className={styles.chartPanel}>
-            <h2>Follow the line <span>Within-city rank</span></h2>
+            <h2>Follow the line <span>Cooling investment priority</span></h2>
+            <p id="rank-meaning"><b>Each number is the neighbourhood’s position in this scenario’s cooling investment priority ranking.</b> #1 = highest priority. Smaller numbers mean higher priority.</p>
+            <p className={styles.caption}>Prototype ranking within {cityLabel(city)}, not an adopted municipal investment order.</p>
             {selectedRow && !selected && <p className={styles.unrankedNote}>No combined rank for this area. Its available measurements are shown below.</p>}
             <p className={styles.weightKey}>Weights: surface temperature / green deficit / lower median income (%)</p>
             <div className={styles.chartScroll} tabIndex={0} role="region" aria-label="Scenario rank chart; scroll horizontally on small screens">
               <div className={styles.chartInner}>
                 <div className={styles.scenarioLabels}>{SCENARIOS.map(scenario => <div key={scenario.field}><b>{scenario.title}</b><span>{scenario.weights}</span></div>)}</div>
-                <svg viewBox="0 0 660 570" role="img" aria-label={selected ? `${selected.neighbourhood_name}: ${selected.ranks.map((rank, index) => `${SCENARIOS[index].title}, rank ${rank}`).join('; ')}` : 'Scenario rankings'}>
+                <svg viewBox="0 0 660 570" role="img" aria-describedby="rank-meaning" aria-label={selected ? `${selected.neighbourhood_name}: ${selected.ranks.map((rank, index) => `${SCENARIOS[index].title}, rank ${rank}`).join('; ')}` : 'Scenario rankings'}>
                   {ticks.map(rank => <g key={rank}><line x1="45" x2="620" y1={rankY(rank)} y2={rankY(rank)} className={styles.guide} /><text x="30" y={rankY(rank) + 4} textAnchor="end" className={styles.tick}>{rank}</text></g>)}
                   {showContext && ranked.filter(row => row.id !== selected?.id).map(row => <path key={row.id} d={row.ranks.map((rank, index) => `${index ? 'L' : 'M'}${rankXs[index]},${rankY(rank)}`).join('')} className={styles.backgroundLine} />)}
                   {selected && <g>{<path d={selected.ranks.map((rank, index) => `${index ? 'L' : 'M'}${rankXs[index]},${rankY(rank)}`).join('')} className={styles.selectedLine} />}{selected.ranks.map((rank, index) => <g key={index}><circle cx={rankXs[index]} cy={rankY(rank)} r="5" className={styles.point} /><text x={rankXs[index]} y={rankY(rank) - 12} textAnchor="middle" className={styles.rankLabel}>#{rank}</text></g>)}</g>}

@@ -126,7 +126,9 @@ export default function PriorityLines() {
             <div className={styles.chartScroll} tabIndex={0} role="region" aria-label="Scenario rank chart; scroll horizontally on small screens">
               <div className={styles.chartInner}>
                 <div className={styles.scenarioLabels}>{SCENARIOS.map(scenario => <div key={scenario.field}><b>{scenario.title}</b><span>{scenario.weights}</span></div>)}</div>
-                <svg viewBox="0 0 660 570" role="img" aria-describedby="rank-meaning" aria-label={selected ? `${selected.neighbourhood_name}: ${selected.ranks.map((rank, index) => `${SCENARIOS[index].title}, rank ${rank}`).join('; ')}` : 'Scenario rankings'}>
+                <svg viewBox="0 -22 660 592" role="img" aria-describedby="rank-meaning" aria-label={selected ? `${selected.neighbourhood_name}: ${selected.ranks.map((rank, index) => `${SCENARIOS[index].title}, rank ${rank}`).join('; ')}` : 'Scenario rankings'}>
+                  <text transform="translate(12 280) rotate(-90)" textAnchor="middle" fill="currentColor" fontSize="13" fontFamily="Arial, sans-serif">Cooling investment priority</text>
+                  <text x="45" y="-6" fill="currentColor" fontSize="12" fontFamily="Arial, sans-serif">1 = highest priority</text>
                   {ticks.map(rank => <g key={rank}><line x1="45" x2="620" y1={rankY(rank)} y2={rankY(rank)} className={styles.guide} /><text x="30" y={rankY(rank) + 4} textAnchor="end" className={styles.tick}>{rank}</text></g>)}
                   {showContext && ranked.filter(row => row.id !== selected?.id).map(row => <path key={row.id} d={row.ranks.map((rank, index) => `${index ? 'L' : 'M'}${rankXs[index]},${rankY(rank)}`).join('')} className={styles.backgroundLine} />)}
                   {selected && <g>{<path d={selected.ranks.map((rank, index) => `${index ? 'L' : 'M'}${rankXs[index]},${rankY(rank)}`).join('')} className={styles.selectedLine} />}{selected.ranks.map((rank, index) => <g key={index}><circle cx={rankXs[index]} cy={rankY(rank)} r="5" className={styles.point} /><text x={rankXs[index]} y={rankY(rank) - 12} textAnchor="middle" className={styles.rankLabel}>#{rank}</text></g>)}</g>}

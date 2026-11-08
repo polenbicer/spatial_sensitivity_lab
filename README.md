@@ -4,7 +4,7 @@ Research demonstrator by Polen Biçer, Urban Studies VUB–ULB.
 
 Amsterdam uses 110 official 2022 wijk polygons, direct O&S IHHINK_MED household income (2024 income, preliminary; population at 1 January 2024), ESA WorldCover 2021 land cover and the existing Landsat JJA 2019–2023 composite. The model calculates physical indicators directly from source rasters inside each neighbourhood. It does not transfer income to 500 m cells. 108 wijken have published income; all 108 have all three indicators. Missing values remain null. Brussels uses IBSA/Statbel indicator 2498 (median equivalised after-tax income of residents, 2023) at Monitoring neighbourhood scale: 118 published income values and 116 ranked neighbourhoods out of 145. Its physical indicators are also calculated directly from source rasters. Income definitions differ; each city is normalized and ranked independently, without cross-city comparison.
 
-All four scenarios use surface temperature, green deficit and low income, with unchanged weights of 40/30/30, 25/20/55, 60/20/20 and 25/55/20. The scenario median is a statistical summary, not democratic agreement.
+All four scenarios use surface temperature, green deficit and low income, with weights revised on 8 November 2026: exactly one third each, heat-first 60/20/20, green-first 20/60/20 and income-first 20/20/60. The scenario median is a supplementary statistical summary, not a fifth weighting or democratic agreement. Recalculate the published scores without changing the observations using `python3 scripts/reweight_scenarios.py`.
 
 See [methods](https://spatialsensitivitylab.vercel.app/methods.html), `data/prepared/amsterdam_neighbourhood/README_TR.md` and the published source metadata for definitions and limits.
 

@@ -39,12 +39,12 @@ Kapsama için analitik tercihler: en az %99 arazi örtüsü verisi, su dışınd
 
 | Senaryo | Yüzey sıcaklığı | Green deficit | Düşük gelir |
 |---|---:|---:|---:|
-| Balanced | %40 | %30 | %30 |
-| Low income first | %25 | %20 | %55 |
+| Equal weighting | ⅓ | ⅓ | ⅓ |
+| Low income first | %20 | %20 | %60 |
 | Surface temperature first | %60 | %20 | %20 |
-| Green deficit first | %25 | %55 | %20 |
+| Green deficit first | %20 | %60 | %20 |
 
-Ağırlıklar değişmedi. Birleşik puan, üç yüzde puanının ağırlıklı toplamıdır. Scenario median dört senaryo puanının medyanıdır; kamusal uzlaşma anlamına gelmez. Bütün senaryolar aynı 411 mahalleyi kullanır. Sıra farkları ortak tam gözlemler üzerinden hesaplanır.
+Ağırlıklar 8 Kasım 2026 tarihinde eşit başlangıç ve simetrik %60/%20/%20 senaryoları olarak güncellendi. Birleşik puan, üç yüzde puanının ağırlıklı toplamıdır. Scenario median dört senaryo puanının medyanıdır; kamusal uzlaşma anlamına gelmez. Bütün senaryolar aynı 411 mahalleyi kullanır. Sıra farkları ortak tam gözlemler üzerinden hesaplanır.
 
 ## Brüksel
 Amsterdam hesabı korunmuştur. Brüksel daha sonra IBSA/Statbel 2498 medyan eşdeğer vergi sonrası geliriyle ayrı bir şehir içi model olarak eklenmiştir: 145 alan, 118 sıralanan mahalle, 27 yayımlanmayan gelir. Gelir tanımları farklıdır; şehirler arası gelir veya başarı karşılaştırması yapılmaz. Brüksel yöntem notu ve güncel iki şehir hesap kodu Brussels_Mahalle_Model_ve_Kaynaklar.zip paketindedir.

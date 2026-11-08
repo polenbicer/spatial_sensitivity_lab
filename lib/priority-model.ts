@@ -1,11 +1,14 @@
+import weights from './scenario-weights.json';
+export const SCENARIO_WEIGHTS = weights;
 export type Scenario = 'priority_consensus' | 'priority_balanced' | 'priority_income_led' | 'priority_heat_led' | 'priority_nature_deficit_led';
+export const PRIMARY_SCENARIOS: Exclude<Scenario, 'priority_consensus'>[] = ['priority_balanced', 'priority_heat_led', 'priority_nature_deficit_led', 'priority_income_led'];
 const entry = (title: string, weights: string, explanation: string) => ({title, weights, note: explanation, interpretation: explanation});
 export const SCENARIOS: Record<Scenario, ReturnType<typeof entry>> = {
  priority_consensus: entry('Scenario median', 'Median of four scenarios', 'Statistical median of the four weightings. It is not public agreement.'),
- priority_balanced: entry('Balanced weighting', '40% surface temperature · 30% green deficit · 30% lower median income', 'Combines surface heat, green shortage and lower income.'),
- priority_income_led: entry('Lower median income first', '25% surface temperature · 20% green deficit · 55% lower median income', 'Gives more weight to lower neighbourhood income within the selected city.'),
+ priority_balanced: entry('Equal weighting', '⅓ surface temperature · ⅓ green deficit · ⅓ lower median income', 'Gives each of the three indicator scores exactly one third of the total weight. This is a comparison baseline, not a neutral or validated policy choice.'),
+ priority_income_led: entry('Lower median income first', '20% surface temperature · 20% green deficit · 60% lower median income', 'Gives more weight to lower neighbourhood income within the selected city.'),
  priority_heat_led: entry('Surface temperature first', '60% surface temperature · 20% green deficit · 20% lower median income', 'Gives more weight to observed summer land-surface temperature.'),
- priority_nature_deficit_led: entry('Green deficit first', '25% surface temperature · 55% green deficit · 20% lower median income', 'Gives more weight to green deficit as defined in each city’s source data.'),
+ priority_nature_deficit_led: entry('Green deficit first', '20% surface temperature · 60% green deficit · 20% lower median income', 'Gives more weight to green deficit as defined in each city’s source data.'),
 };
 
 export const CITY_INCOME = {

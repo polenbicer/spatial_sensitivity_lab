@@ -1,5 +1,5 @@
 "use client";
-import {SCENARIOS, CITY_INCOME, INCOME_COMPARABILITY, INCOME_MEANING, cityLabel, type Scenario} from "../lib/priority-model";
+import {PRIMARY_SCENARIOS, SCENARIOS, CITY_INCOME, INCOME_COMPARABILITY, INCOME_MEANING, cityLabel, type Scenario} from "../lib/priority-model";
 import { buildCellLabels } from "../lib/cell-labels";
 import { useEffect, useMemo, useState } from "react";
 
@@ -245,7 +245,7 @@ export default function ResearchInterface() {
                   setCity(x);
                   setScenario("priority_balanced");
                   setSelected("");
-                  setComparisonScenario("priority_balanced");
+                  setComparisonScenario("priority_income_led");
                 }}
                 key={x}
               >
@@ -255,10 +255,10 @@ export default function ResearchInterface() {
           </div>
           <p className="eyebrow">02 · Policy logic</p>
           <div className="scenario-list">
-            {(Object.keys(SCENARIOS) as Scenario[]).map((k) => (
+            {PRIMARY_SCENARIOS.map((k) => (
               <button
                 className={k === scenario ? "active" : ""}
-                onClick={() => setScenario(k)}
+                onClick={() => { if (k === comparisonScenario) setComparisonScenario(k === "priority_balanced" ? "priority_income_led" : "priority_balanced"); setScenario(k); }}
                 key={k}
               >
                 <b>{SCENARIOS[k].title}</b>
@@ -266,6 +266,7 @@ export default function ResearchInterface() {
               </button>
             ))}
           </div>
+          <details className="reading-detail compact"><summary>Additional summary: scenario median</summary><div className="reading-body"><p>The median summarises the four scenario scores for each neighbourhood. It is not a fifth weighting, equal weighting or public agreement.</p><button type="button" onClick={() => setScenario("priority_consensus")}>Show scenario median</button></div></details>
           <p className="scope-note"><b>{cityLabel(city)}</b> · {city === "Amsterdam" ? "official wijken" : "Monitoring neighbourhoods"}</p>
           <p className="income-meaning">{INCOME_MEANING}</p>
           <details className="reading-detail compact"><summary>Income definition, coverage and sources</summary><div className="reading-body"><p>{CITY_INCOME[city].description}</p><p>{INCOME_COMPARABILITY}</p><a href="/methods.html">Method and coverage</a></div></details>
@@ -383,7 +384,7 @@ export default function ResearchInterface() {
           <label>
             Alternative scenario
             <select value={comparisonScenario} onChange={(e) => setComparisonScenario(e.target.value as Scenario)}>
-              {(Object.keys(SCENARIOS) as Scenario[]).filter((key) => key !== scenario).map((key) => (
+              {PRIMARY_SCENARIOS.filter((key) => key !== scenario).map((key) => (
                 <option key={key} value={key}>{SCENARIOS[key].title}</option>
               ))}
             </select>
@@ -450,7 +451,7 @@ export default function ResearchInterface() {
         </div>
       </section>
       </div></details>
-      <section className="evidence" id="evidence"><div><p className="eyebrow">Three indicators</p><h3>Surface temperature, green deficit and lower median income.</h3><p>Summer land-surface temperature is observed by Landsat. Amsterdam green deficit is 100 minus the percentage of land classified as public green by O&S (2025). Brussels uses the area of officially inventoried public green-space polygons. Private and mixed ownership are excluded. Brussels uses total neighbourhood area as denominator; Amsterdam uses land area excluding water. Source definitions differ. Income is the published neighbourhood median, used directly without transfer to a grid. Brussels uses equivalised after-tax income; Amsterdam uses disposable household income. Both rankings are within-city only. Changing weights changes how these three signals contribute to priority.</p><details className="reading-detail compact"><summary>Validation and spatial-scale limits</summary><div className="reading-body"><p>The revised index has no new predictive-validation or 500 m / 1 km sensitivity result. Earlier model metrics do not validate this index.</p></div></details></div></section>
+      <section className="evidence" id="evidence"><div><p className="eyebrow">Three indicators</p><h3>Surface temperature, green deficit and lower median income.</h3><p>Summer land-surface temperature is observed by Landsat. Amsterdam green deficit is 100 minus the percentage of land classified as public green by O&S (2025). Brussels uses the footprint of officially inventoried public green-space polygons. This measures inventory area, not tree canopy or the vegetation covering every part of each site. Private and mixed ownership are excluded. Brussels uses total neighbourhood area as denominator; Amsterdam uses land area excluding water. Source definitions differ. Income is the published neighbourhood median, used directly without transfer to a grid. Brussels uses equivalised after-tax income; Amsterdam uses disposable household income. Both rankings are within-city only. Changing weights changes how these three signals contribute to priority.</p><details className="reading-detail compact"><summary>Validation and spatial-scale limits</summary><div className="reading-body"><p>The revised index has no new predictive-validation or 500 m / 1 km sensitivity result. Earlier model metrics do not validate this index.</p></div></details></div></section>
       <section className="ai-role"><div><h3>A ranking still needs public justification.</h3></div><div><p>The index uses explicit weights, not machine learning, to rank places. The thesis examines how such tools should be explained, challenged and governed.</p></div>
       </section>
       </section>
@@ -602,7 +603,7 @@ export default function ResearchInterface() {
           <a href="/data/neighbourhood_priority.geojson" download>
             ↓ Neighbourhood priority GeoJSON <small>Both city neighbourhood models · cite Biçer v0.3 and mapped data providers; source terms below.</small>
           </a>
-          <a href="/data/amsterdam_income.json" download>↓ Amsterdam income JSON <small>Neighbourhood indicators, source definitions, coverage and unchanged weights.</small></a>
+          <a href="/data/amsterdam_income.json" download>↓ Amsterdam income JSON <small>Neighbourhood indicators, source definitions, coverage and the current scenario weights.</small></a>
           <a href="/data/amsterdam_neighbourhoods.csv" download>↓ Amsterdam neighbourhood CSV <small>Disposable household median and direct raster statistics. Missing values remain blank.</small></a>
           <a href="/data/brussels_neighbourhoods.csv" download>↓ Brussels neighbourhood CSV <small>Equivalised after-tax median and direct raster statistics. Missing values remain blank.</small></a>
           <a href="/data/brussels_income.json" download>↓ Brussels model and sources <small>Income definition, source links, coverage, weights and file hashes.</small></a>

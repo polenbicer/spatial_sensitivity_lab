@@ -19,7 +19,7 @@ ROOT=Path(__file__).resolve().parents[1]
 SRC=ROOT/'data/source/amsterdam_neighbourhood'
 OUT=ROOT/'public/data'
 PREP=ROOT/'data/prepared/amsterdam_neighbourhood'
-WEIGHTS={'priority_balanced':[.4,.3,.3],'priority_income_led':[.25,.2,.55],'priority_heat_led':[.6,.2,.2],'priority_nature_deficit_led':[.25,.55,.2]}
+WEIGHTS=json.loads((ROOT/'lib/scenario-weights.json').read_text())
 FIELDS=['score_surface_temperature','score_green_deficit','score_income_deprivation']
 URLS={
  'income':'https://api.data.amsterdam.nl/v1/statistieken/v2/cijfers?indicator.id=3196&heeftBetrekkingOp=2024&_pageSize=1000',

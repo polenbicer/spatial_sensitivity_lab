@@ -23,12 +23,12 @@ Kapsama tercihleri: en az %99 gözlenen arazi örtüsü, su dışındaki piksell
 
 | Senaryo | Sıcaklık | Green deficit | Düşük gelir |
 |---|---:|---:|---:|
-| Balanced | %40 | %30 | %30 |
-| Low income first | %25 | %20 | %55 |
+| Equal weighting | ⅓ | ⅓ | ⅓ |
+| Low income first | %20 | %20 | %60 |
 | Surface temperature first | %60 | %20 | %20 |
-| Green deficit first | %25 | %55 | %20 |
+| Green deficit first | %20 | %60 | %20 |
 
-Ağırlıklar değiştirilmedi. Scenario median dört ağırlıklı toplamın medyanıdır; demokratik uzlaşma anlamına gelmez. Ana sayfa, Rankings ve Priority Lines aynı puanları ve sınırları okur. Yeni tahmin doğrulaması veya ölçek duyarlılığı başarısı iddia edilmez.
+Ağırlıklar 8 Kasım 2026 tarihinde eşit başlangıç ve simetrik %60/%20/%20 senaryoları olarak güncellendi. Scenario median dört ağırlıklı toplamın medyanıdır; demokratik uzlaşma anlamına gelmez. Ana sayfa, Rankings ve Priority Lines aynı puanları ve sınırları okur. Yeni tahmin doğrulaması veya ölçek duyarlılığı başarısı iddia edilmez.
 
 ## Kaynaklar
 - income: https://geodata.perspective.brussels/api/geodata/mdq/table/65707/fr

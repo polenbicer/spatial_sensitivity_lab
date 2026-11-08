@@ -1,5 +1,5 @@
 "use client";
-import {SCENARIOS, coverageReason, CITY_INCOME, INCOME_COMPARABILITY, INCOME_MEANING, cityLabel, type Scenario} from "../../lib/priority-model";
+import {PRIMARY_SCENARIOS, SCENARIO_WEIGHTS, SCENARIOS, coverageReason, CITY_INCOME, INCOME_COMPARABILITY, INCOME_MEANING, cityLabel, type Scenario} from "../../lib/priority-model";
 import { neighbourhoodLabel } from "../../lib/district-labels";
 import { buildCellLabels } from "../../lib/cell-labels";
 
@@ -125,9 +125,7 @@ function ColumnHelp({ label, children }: { label: string; children: ReactNode })
   );
 }
 
-const WEIGHTS: Partial<Record<Scenario, [number, number, number]>> = {
- priority_balanced:[.4,.3,.3], priority_income_led:[.25,.2,.55], priority_heat_led:[.6,.2,.2], priority_nature_deficit_led:[.25,.55,.2]
-};
+const WEIGHTS: Partial<Record<Scenario, number[]>> = SCENARIO_WEIGHTS;
 function movementReason(row: {surface: number; green: number; income?: number | null; lowIncome?: number}, current: Scenario, previous: Scenario) {
  if(row.income == null || !Number.isFinite(row.surface)) return 'No complete three-indicator score';
  if(current === previous) return 'Reference selection';
@@ -179,7 +177,7 @@ export default function RankingExplorer() {
     [error, setError] = useState(""),
     [city, setCity] = useState<City>("Amsterdam"),
     [scenario, setScenario] = useState<Scenario>("priority_balanced"),
-    [comparison, setComparison] = useState<Scenario>("priority_consensus"),
+    [comparison, setComparison] = useState<Scenario>("priority_income_led"),
     [view, setView] = useState<ViewMode>("neighbourhoods"),
     [showDetails, setShowDetails] = useState(false),
     [query, setQuery] = useState(""),
@@ -420,7 +418,7 @@ export default function RankingExplorer() {
                 window.history.replaceState(null, "", url);
                   setScenario("priority_balanced");
                 setView("neighbourhoods");
-                setComparison("priority_balanced");
+                setComparison("priority_income_led");
                 setQuery("");
                 setSelected("");
               }}
@@ -431,7 +429,7 @@ export default function RankingExplorer() {
         </fieldset>
         <fieldset>
           <legend>02 · Policy logic</legend>
-          {(Object.keys(SCENARIOS) as Scenario[]).map((x) => (
+          {PRIMARY_SCENARIOS.map((x) => (
             <button
               key={x}
               className={x === scenario ? "active" : ""}
@@ -441,6 +439,7 @@ export default function RankingExplorer() {
             </button>
           ))}
         </fieldset>
+        <details><summary>Additional summary: scenario median</summary><p>The median summarises four scenario scores. It is not a fifth weighting, equal weighting or public agreement.</p><button type="button" onClick={() => chooseScenario("priority_consensus")}>Show scenario median</button></details>
         <label>
           03 · Find a neighbourhood
           <input
@@ -581,7 +580,7 @@ export default function RankingExplorer() {
                     <ColumnHelp label="Green deficit score">
                       <b>Neighbourhood green deficit</b>
                       <span>
-                        Within-city percentile of green deficit. Amsterdam: 100 minus O&S public-green percentage of land (2025). Brussels: public green-space inventory area / total neighbourhood area. Private and mixed ownership are excluded.
+                        Within-city percentile of green deficit. Amsterdam: 100 minus O&S public-green percentage of land (2025). Brussels: public green-space inventory area / total neighbourhood area, not tree canopy or measured vegetation cover. Private and mixed ownership are excluded.
                       </span>
                     </ColumnHelp>
                   </th>
@@ -726,7 +725,7 @@ export default function RankingExplorer() {
                     <ColumnHelp label="Green deficit">
                       <b>Relative cooling-green shortage</b>
                       <span>
-                        Amsterdam: O&S public-green share of land, 2025. Brussels: public green-space inventory area / total neighbourhood area. Private and mixed ownership are excluded. Lower green share gives a higher within-city score.
+                        Amsterdam: O&S public-green share of land, 2025. Brussels: public green-space inventory area / total neighbourhood area, not tree canopy or measured vegetation cover. Private and mixed ownership are excluded. Lower green share gives a higher within-city score.
                       </span>
                     </ColumnHelp>
                   </th>

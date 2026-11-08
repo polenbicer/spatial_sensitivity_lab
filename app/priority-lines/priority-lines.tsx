@@ -143,12 +143,12 @@ export default function PriorityLines() {
               <div><dt>Surface temperature</dt><dd>{selectedRow.summer_lst_median_c == null ? 'Not available' : `${selectedRow.summer_lst_median_c.toFixed(1)} °C`}</dd></div>
               <div><dt>Public green area share</dt><dd>{selectedRow.cooling_green_pct == null ? 'Not available' : `${selectedRow.cooling_green_pct.toFixed(2)}%`}</dd></div>
               <div><dt>{CITY_INCOME[city].label}</dt><dd>{(selectedRow.income_median_disposable_eur ?? selectedRow.income_median_equivalised_after_tax_eur) == null ? 'Not published' : `€${(selectedRow.income_median_disposable_eur ?? selectedRow.income_median_equivalised_after_tax_eur)!.toLocaleString('en-GB')}`}</dd></div>
-            </dl><p className={styles.caption}>Public green: share of land area in Amsterdam; total neighbourhood area in Brussels. Raw measurements remain visible even without a combined rank.</p>
+            </dl><p className={styles.caption}>Public green: share of land area in Amsterdam; inventory footprint / total neighbourhood area in Brussels. The Brussels measure is not tree-canopy or vegetation cover. Raw measurements remain visible even without a combined rank.</p>
           </div>
           {selected && <dl className={styles.scores}>{SCENARIOS.map((scenario, index) => <div key={scenario.field}><dt>{scenario.title}</dt><dd>#{selected.ranks[index]}<span>Score {selected[scenario.field].toFixed(1)}</span></dd></div>)}</dl>}
         </section>}
         <div className={styles.examples}><span>Six examples:</span>{examples.map(id => { const row = ranked.find(row => row.id === id); return row && <button key={id} type="button" aria-pressed={selected?.id === id} onClick={() => choose(id)}>{neighbourhoodLabel(row)}</button>; })}</div>
-        <p className={styles.caption}>{city === 'Brussels' ? 'The Brussels examples reproduce the first experiment and illustrate different directions of movement.' : 'Amsterdam examples: the highest-ranked neighbourhood under balanced weighting, plus five with the largest rank spans across the four scenarios.'} Examples are illustrative, not a representative sample.</p>
+        <p className={styles.caption}>{city === 'Brussels' ? 'The Brussels examples reproduce the first experiment and illustrate different directions of movement.' : 'Amsterdam examples: the highest-ranked neighbourhood under equal weighting, plus five with the largest rank spans across the four scenarios.'} Examples are illustrative, not a representative sample.</p>
       </>}
       <footer className={styles.footer}>
         <h2>What this experiment shows</h2>

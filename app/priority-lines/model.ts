@@ -1,9 +1,9 @@
 export type City = 'Brussels' | 'Amsterdam';
 export const SCENARIOS = [
+  { field: 'priority_balanced', title: 'Equal weighting', weights: '⅓ / ⅓ / ⅓' },
   { field: 'priority_heat_led', title: 'Surface temperature first', weights: '60 / 20 / 20' },
-  { field: 'priority_balanced', title: 'Balanced', weights: '40 / 30 / 30' },
-  { field: 'priority_nature_deficit_led', title: 'Green deficit first', weights: '25 / 55 / 20' },
-  { field: 'priority_income_led', title: 'Lower median income first', weights: '25 / 20 / 55' },
+  { field: 'priority_nature_deficit_led', title: 'Green deficit first', weights: '20 / 60 / 20' },
+  { field: 'priority_income_led', title: 'Lower median income first', weights: '20 / 20 / 60' },
 ] as const;
 export type ScoreField = typeof SCENARIOS[number]['field'];
 export type Row = {
@@ -46,7 +46,7 @@ export function exampleIds(rows: RankedRow[], city: City): string[] {
   const original = ['1.0', '47.0', '26.0', '18.0', '803.0', '800.0'].map(id => `Brussels:${id}`);
   if (city === 'Brussels' && original.every(id => rows.some(row => row.id === id))) return original;
   // Amsterdam: one high-priority reference and five largest spans, all from its own ranking universe.
-  const highest = [...rows].sort((a, b) => a.ranks[1] - b.ranks[1] || a.id.localeCompare(b.id))[0];
+  const highest = [...rows].sort((a, b) => a.ranks[0] - b.ranks[0] || a.id.localeCompare(b.id))[0];
   const movers = [...rows].filter(row => row.id !== highest?.id)
     .sort((a, b) => b.span - a.span || a.id.localeCompare(b.id)).slice(0, 5);
   return highest ? [highest.id, ...movers.map(row => row.id)] : [];

@@ -20,7 +20,7 @@ ROOT=Path(__file__).resolve().parents[1]
 SRC=ROOT/'data/source/brussels_neighbourhood'
 OUT=ROOT/'public/data'
 PREP=ROOT/'data/prepared/brussels_neighbourhood'
-WEIGHTS={'priority_balanced':[.4,.3,.3],'priority_income_led':[.25,.2,.55],'priority_heat_led':[.6,.2,.2],'priority_nature_deficit_led':[.25,.55,.2]}
+WEIGHTS=json.loads((ROOT/'lib/scenario-weights.json').read_text())
 FIELDS=['score_surface_temperature','score_green_deficit','score_income_deprivation']
 URLS={
  'income':'https://geodata.perspective.brussels/api/geodata/mdq/table/65707/fr',

@@ -6,3 +6,5 @@ if __name__ == '__main__':
     brussels()
     import runpy
     runpy.run_path(str(__import__("pathlib").Path(__file__).with_name("apply_brussels_public_green.py")))
+    from reweight_scenarios import main as reweight
+    reweight()

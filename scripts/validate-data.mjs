@@ -3,8 +3,13 @@ import assert from 'node:assert/strict';
 const read=n=>JSON.parse(fs.readFileSync(new URL('../public/data/'+n,import.meta.url),'utf8'));
 const grid=read('grid_priority.geojson').features,areas=read('neighbourhood_priority.json').rows,geo=read('neighbourhood_priority.geojson').features;
 const amsterdam=areas.filter(r=>r.city==='Amsterdam'),ranked=amsterdam.filter(r=>r.ranking_eligible),brussels=areas.filter(r=>r.city==='Brussels');
-const weights={priority_balanced:[.4,.3,.3],priority_income_led:[.25,.2,.55],priority_heat_led:[.6,.2,.2],priority_nature_deficit_led:[.25,.55,.2]};
+const weights=JSON.parse(fs.readFileSync(new URL('../lib/scenario-weights.json',import.meta.url),'utf8'));
 const fields=['score_surface_temperature','score_green_deficit','score_income_deprivation'];
+assert.deepEqual(weights.priority_balanced,[1/3,1/3,1/3]);
+assert.deepEqual(weights.priority_heat_led,[.6,.2,.2]);
+assert.deepEqual(weights.priority_nature_deficit_led,[.2,.6,.2]);
+assert.deepEqual(weights.priority_income_led,[.2,.2,.6]);
+for (const w of Object.values(weights)) assert(Math.abs(w.reduce((a,b)=>a+b,0)-1)<1e-12);
 assert.equal(amsterdam.length,110);assert.equal(new Set(amsterdam.map(r=>r.id)).size,110);
 assert.equal(amsterdam.filter(r=>r.income_status==='published').length,108);assert.equal(ranked.length,108);
 assert.equal(grid.length,0,'No 500 m cell rankings remain published');
@@ -24,6 +29,12 @@ for(const r of [...areas,...grid.map(f=>f.properties)]){
  if(r.income_status!=='published')assert.equal(r[rawIncome],null,'Missing income must stay null');
 }
 for(const city of ['Amsterdam','Brussels']){
+ const rows=areas.filter(r=>r.city===city);
+ assert.deepEqual(read(city.toLowerCase()+'_neighbourhoods.geojson').features.map(f=>f.properties),rows,'City map must match combined map');
+ const incomeFile=read(city.toLowerCase()+'_income.json');
+ assert.deepEqual(incomeFile.neighbourhood_rows,rows,'Income download must match ranked observations');
+ assert.deepEqual(incomeFile.metadata.scenario_weights,weights,'Download weights must match model');
+ assert.deepEqual(read('evidence.json').city_models[city].scenario_weights,weights,'Evidence weights must match model');
  const complete=areas.filter(r=>r.city===city&&r.ranking_eligible);
  const income=city==='Brussels'?'income_median_equivalised_after_tax_eur':'income_median_disposable_eur';
  for(const [raw,score,sign] of [[income,'score_income_deprivation',-1],['summer_lst_median_c','score_surface_temperature',1],['green_deficit_pct','score_green_deficit',1]]){
@@ -37,7 +48,7 @@ assert.equal(ibsa.length,145);
 for(const r of brussels){const source=ibsa.find(x=>x.code===r.neighbourhood_code);assert(source);assert.equal(r.income_median_equivalised_after_tax_eur,source.value,'Income join failed');}
 const current=read('amsterdam_income.json');assert(!('grid_rows' in current));assert.equal(current.metadata.grid_used,false);
 assert(!fs.existsSync(new URL('../public/data/amsterdam_income_grid.csv',import.meta.url)));
-console.log('Validated native neighbourhood models: Amsterdam 108/110; Brussels 116/145; independent city percentiles, exact source income joins, unchanged weights, null missing data, no grid scores.');
+console.log('Validated native neighbourhood models: Amsterdam 108/110; Brussels 116/145; independent city percentiles, exact source income joins, equal baseline and symmetric 60/20/20 weights, null missing data, no grid scores.');
 
 const osSource=JSON.parse(fs.readFileSync(new URL('../data/source/amsterdam_wijk/income_2024.json',import.meta.url),'utf8'))._embedded.cijfers.filter(r=>r.gebiedType==='Wijk');
 assert.equal(osSource.length,108);

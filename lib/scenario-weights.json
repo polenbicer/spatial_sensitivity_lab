@@ -1,0 +1,6 @@
+{
+  "priority_balanced": [0.3333333333333333, 0.3333333333333333, 0.3333333333333333],
+  "priority_heat_led": [0.6, 0.2, 0.2],
+  "priority_nature_deficit_led": [0.2, 0.6, 0.2],
+  "priority_income_led": [0.2, 0.2, 0.6]
+}

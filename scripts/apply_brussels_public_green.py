@@ -18,7 +18,7 @@ known=unary_union([make_valid(shape(f['geometry'])) for f in selected])
 unknown=unary_union([make_valid(shape(f['geometry'])) for f in source['features'] if f['properties']['status_foncier'] is None])
 project=Transformer.from_crs(4326,31370,always_xy=True).transform
 combined=json.loads((OUT/'neighbourhood_priority.geojson').read_text());features=[f for f in combined['features'] if f['properties']['city']=='Brussels']
-weights={'priority_balanced':[.4,.3,.3],'priority_income_led':[.25,.2,.55],'priority_heat_led':[.6,.2,.2],'priority_nature_deficit_led':[.25,.55,.2]};fields=['score_surface_temperature','score_green_deficit','score_income_deprivation']
+weights=json.loads((ROOT/'lib/scenario-weights.json').read_text());fields=['score_surface_temperature','score_green_deficit','score_income_deprivation']
 for f in features:
  p=f['properties'];g=make_valid(transform(project,shape(f['geometry'])));area=g.intersection(known).area;uncertain=g.intersection(unknown).area
  p.update(public_green_area_m2=round(area,6),public_green_unknown_area_m2=round(uncertain,6),green_denominator_area_m2=round(g.area,6),green_indicator='public_inventory_area_share',green_period='downloaded 2026-10-26; inventory reference year not verified',green_source='Bruxelles Environnement WFS public_green_spaces; status_foncier=Public',green_coverage_status='unresolved_inventory_features' if uncertain>.01 else 'classified_public_inventory')

@@ -3881,3 +3881,35 @@ button.cell-link { border:0; padding:0; background:transparent; text-align:left;
 .workspace .controls .reading-detail > summary { padding: 10px 2px; font-size: 12px; }
 .workspace .meter > span { background: transparent; color: var(--ink); }
 .workspace .meter > span b { color: var(--ink); }
+
+/* Reserve a separate row for header help buttons, including narrow columns. */
+.rankings-page .full-table th { vertical-align: top; }
+.rankings-page .full-table th .column-help {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 1fr 18px;
+  align-items: start;
+  justify-items: start;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+  min-height: 78px;
+  text-align: left;
+}
+.rankings-page .full-table th .column-help > span:first-child {
+  min-width: 0;
+  white-space: normal;
+}
+.rankings-page .full-table th .column-help > button {
+  width: 18px;
+  min-width: 18px;
+  height: 18px;
+  min-height: 18px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.rankings-page .ranking-results.summary-columns .full-table :is(th, td):nth-child(1) { width: 96px; }
+@media (min-width: 701px) {
+  .rankings-page .full-table th .column-tip { top: calc(100% + 6px); }
+}

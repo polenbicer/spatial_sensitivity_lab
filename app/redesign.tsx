@@ -165,6 +165,7 @@ export default function ResearchInterface() {
       <section className="intro" id="top">
         <header className="site-header">
           <a className="hero-brand" href="#top">SPATIAL SENSITIVITY LAB</a>
+          <a className="hero-policy-link" href="/policy-simulation">POLICY SIMULATION ↗</a>
           <a className="hero-credit" href="https://polenbicer.dev">POLENBICER.DEV</a>
         </header>
 

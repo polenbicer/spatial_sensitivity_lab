@@ -8,6 +8,13 @@ All four scenarios use surface temperature, green deficit and low income, with w
 
 See [methods](https://spatialsensitivitylab.vercel.app/methods.html), `data/prepared/amsterdam_neighbourhood/README_TR.md` and the published source metadata for definitions and limits.
 
+
+## Status: frozen at v0.5.1 (15 November 2026)
+
+The lab is frozen for the thesis. Scores, weights, indicators and pages stay as they are; only bug fixes and corrections to documentation are made. New features (for example an exposure–sensitivity–adaptive-capacity model) are out of scope until the thesis is submitted.
+
+v0.5.1 replaces the name-based match of Amsterdam heat-risk buurten to wijken with a spatial join (`scripts/spatial_join_amsterdam.py`, run by `.github/workflows/spatial-join.yml`): each buurt's population is allocated to wijken by area share. All 498 buurten are joined (479 lie in a single wijk); 108 eligible wijken are compared. Rank correlations barely change (equal weighting 0.19, income-led 0.42, surface temperature alone 0.06).
+
 ## Reproduce
 
 Install requirements-neighbourhood.txt. Run `python3 scripts/fetch_amsterdam_neighbourhood_sources.py`; also place the supplied project composite at `data/source/amsterdam_neighbourhood/landsat_lst_2019_2023_jja.tif`. Run `python3 scripts/fetch_brussels_neighbourhood_sources.py` for the Brussels sources. Then run `python3 scripts/rebuild_priority_models.py` and `node scripts/validate-data.mjs`. The project composite is supplied in the Drive reproduction package. Original scene-selection/cloud-mask code is not available; only extraction from the supplied raster is reproducible here.

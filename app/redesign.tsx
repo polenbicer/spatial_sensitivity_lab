@@ -641,7 +641,7 @@ export default function ResearchInterface() {
       </section>
       <footer>
         <b>Spatial Sensitivity Lab</b>
-        <span>Research demonstrator · developed by Polen Biçer · v0.5 · 15 November 2026</span>
+        <span>Research demonstrator · developed by Polen Biçer · v0.5.1 · 15 November 2026 · frozen for the thesis (bug fixes only)</span>
         <span>Not an operational allocation system</span>
       </footer>
     </main>

@@ -1,5 +1,5 @@
 {
- "version": "0.5",
+ "version": "0.5.1",
  "built": "2026-11-15",
  "brussels": {
   "declared_criteria": [
@@ -618,16 +618,46 @@
    "HI_AV_LATK_S": 0.125,
    "HI_AV_TOEGANG_TOT_TUIN_S": 0.125
   },
-  "wijken_compared": 103,
-  "buurt_name_match": "428/498",
+  "wijken_compared": 108,
+  "join": "spatial: buurt population allocated to wijken by area share",
+  "buurten_joined": 498,
+  "buurten_in_single_wijk": 479,
   "spearman_with_prototype": {
-   "priority_balanced": 0.2,
-   "priority_heat_led": 0.12,
-   "priority_nature_deficit_led": 0.05,
-   "priority_income_led": 0.4,
-   "score_surface_temperature": 0.07,
-   "score_green_deficit": -0.11,
-   "score_income_deprivation": 0.45
+   "priority_balanced": 0.19,
+   "priority_heat_led": 0.11,
+   "priority_nature_deficit_led": 0.03,
+   "priority_income_led": 0.42,
+   "score_surface_temperature": 0.06,
+   "score_green_deficit": -0.14,
+   "score_income_deprivation": 0.51
+  },
+  "robustness": {
+   "majority": {
+    "wijken": 110,
+    "buurten_used": 498,
+    "spearman_with_prototype": {
+     "priority_balanced": 0.19,
+     "priority_heat_led": 0.11,
+     "priority_nature_deficit_led": 0.03,
+     "priority_income_led": 0.42,
+     "score_surface_temperature": 0.06,
+     "score_green_deficit": -0.14,
+     "score_income_deprivation": 0.51
+    }
+   },
+   "name": {
+    "wijken": 104,
+    "buurten_used": 428,
+    "spearman_with_prototype": {
+     "priority_balanced": 0.2,
+     "priority_heat_led": 0.12,
+     "priority_nature_deficit_led": 0.05,
+     "priority_income_led": 0.4,
+     "score_surface_temperature": 0.07,
+     "score_green_deficit": -0.11,
+     "score_income_deprivation": 0.45
+    }
+   }
   }
  }
 }

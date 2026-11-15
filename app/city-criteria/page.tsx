@@ -61,11 +61,12 @@ export default function CityCriteria() {
           </tbody>
         </table>
         <p className={styles.note}>Perceived temperature alone carries 25%; each of the six sensitivity indicators (including 65+, long-term illness and income below the social minimum) carries about 4%.</p>
-        <h3>How close is the lab to the municipal map? <small>{a.wijken_compared} wijken · buurt names matched {a.buurt_name_match}</small></h3>
+        <h3>How close is the lab to the municipal map? <small>{a.wijken_compared} wijken · all {a.buurten_joined} buurten joined spatially</small></h3>
         <table>
           <thead><tr><th>Lab ranking</th><th>Rank correlation with municipal heat risk</th></tr></thead>
           <tbody>{Object.entries(a.spearman_with_prototype).map(([f, r]) => <tr key={f}><td>{FIELD[f]}</td><td>{r.toFixed(2)}</td></tr>)}</tbody>
         </table>
+        <p className={styles.note}>Each buurt’s residents are allocated to the lab’s wijken in proportion to the share of the buurt’s area in each wijk ({a.buurten_in_single_wijk} of {a.buurten_joined} buurten lie in a single wijk). Assigning each buurt wholly to its largest wijk gives the same correlations; the earlier match by buurt name ({a.robustness.name.buurten_used} buurten) gave equal weighting {a.robustness.name.spearman_with_prototype.priority_balanced.toFixed(2)}.</p>
         <aside className={styles.reading}><b>Reading.</b> The lab’s equal weighting agrees only weakly with the municipal map. Surface temperature from satellites barely tracks the municipality’s perceived-temperature indicator, while lower income comes closest. Choosing indicators changes which places appear first, before any weight is set.</aside>
       </section>
       <footer className={styles.footer}>Research demonstrator · not an allocation system · <a href="/data/city_criteria.json">Download the results (JSON)</a></footer>

@@ -92,25 +92,40 @@ implicit = {f: round(1 / 4 / len(fs), 4) for fs in CAT.values() for f in fs}
 norm = lambda s: re.sub(r'[^a-z0-9]', '', unicodedata.normalize('NFKD', s or '').encode('ascii', 'ignore').decode().lower())
 cij = json.loads((RAW / 'ams_cijfers_BEVDICHT.json').read_text())['_embedded']['cijfers']
 code = {norm(x['gebiedNaam']): x['gebiedCode'] for x in cij if x['gebiedType'] == 'Buurt'}
-agg = {}
-for r in risk:
-    k = code.get(norm(r['NAME']))
-    if not k: continue
-    pop = r['HI_BS_AANTAL_INWONERS_V'] or 0
-    a = agg.setdefault(k[:2], [0.0, 0.0]); a[0] += pop * r['HI_TOTAAL_S']; a[1] += pop
-wijk = {w: a[0] / a[1] for w, a in agg.items() if a[1] > 0}
+# v0.5.1: spatial join (scripts/spatial_join_amsterdam.py). Each buurt's population is allocated to wijken in
+# proportion to the share of its area in each wijk (assumes uniform density within a buurt).
+OVL = json.loads((ROOT / 'data/source/extra/ams_buurt_wijk_overlap.json').read_text())
+def wijk_scores(mode):
+    agg = {}
+    for r in risk:
+        pop = r['HI_BS_AANTAL_INWONERS_V'] or 0
+        if mode == 'name':
+            k = code.get(norm(r['NAME'])); parts = {k[:2]: 1.0} if k else {}
+        else:
+            parts = OVL[str(r['OBJECTID'])]['parts']
+            if mode == 'majority' and parts: parts = {max(parts, key=parts.get): 1.0}
+        for w, sh in parts.items():
+            a = agg.setdefault(w, [0.0, 0.0]); a[0] += pop * sh * r['HI_TOTAAL_S']; a[1] += pop * sh
+    return {w: a[0] / a[1] for w, a in agg.items() if a[1] > 0}
+wijk = wijk_scores('area')
 ams = [r for r in prio if r['city'] == 'Amsterdam' and r['eligible'] and r.get('neighbourhood_code') in wijk]
 FIELDS = ['priority_balanced', 'priority_heat_led', 'priority_nature_deficit_led', 'priority_income_led',
           'score_surface_temperature', 'score_green_deficit', 'score_income_deprivation']
 out = {
- 'version': '0.5', 'built': '2026-11-15',
+ 'version': '0.5.1', 'built': '2026-11-15',
  'brussels': {'declared_criteria': ['surface temperature (Landsat, prototype)', 'population density (MDQ 2259)', 'share aged 65+ (MDQ 2333)',
                                     'median equivalised after-tax income (MDQ 2498)', 'access to public green (MDQ 2338) or green deficit (prototype)'],
               'sources': {k: {'indicator_id': v['indicator_id'], 'title': v['title'], 'year': v['year']} for k, v in B.items()},
               'vulnerable_quartiers_mapping': VULN, 'variants': variants},
  'amsterdam': {'buurten': len(risk), 'reconstruction_max_error': round(recon, 4), 'categories': CAT, 'implicit_indicator_weights': implicit,
-               'wijken_compared': len(ams), 'buurt_name_match': f"{sum(1 for r in risk if code.get(norm(r['NAME'])))}/{len(risk)}",
-               'spearman_with_prototype': {f: round(spearman([r[f] for r in ams], [wijk[r['neighbourhood_code']] for r in ams]), 2) for f in FIELDS}},
+               'wijken_compared': len(ams),
+               'join': 'spatial: buurt population allocated to wijken by area share',
+               'buurten_joined': len(OVL), 'buurten_in_single_wijk': sum(1 for v in OVL.values() if len(v['parts']) == 1),
+               'spearman_with_prototype': {f: round(spearman([r[f] for r in ams], [wijk[r['neighbourhood_code']] for r in ams]), 2) for f in FIELDS},
+               'robustness': {m: {'wijken': len(ws := wijk_scores(m)), 'buurten_used': (sum(1 for r in risk if code.get(norm(r['NAME']))) if m == 'name' else len(OVL)),
+                                  'spearman_with_prototype': {f: round(spearman([r[f] for r in prio if r['city'] == 'Amsterdam' and r['eligible'] and r.get('neighbourhood_code') in ws],
+                                                                                [ws[r['neighbourhood_code']] for r in prio if r['city'] == 'Amsterdam' and r['eligible'] and r.get('neighbourhood_code') in ws]), 2) for f in FIELDS}}
+                              for m in ('majority', 'name')}},
 }
 (ROOT / 'public/data/city_criteria.json').write_text(json.dumps(out, ensure_ascii=False, indent=1))
 print(json.dumps(out['amsterdam']['spearman_with_prototype']), out['amsterdam']['reconstruction_max_error'])

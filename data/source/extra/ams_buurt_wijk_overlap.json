@@ -1,0 +1,3508 @@
+{
+"1": {
+"name": "Zaagpoortbuurt",
+"parts": {
+"AB": 0.9988,
+"EJ": 0.0012
+},
+"covered": 1.0
+},
+"2": {
+"name": "Diepenbrockbuurt",
+"parts": {
+"KJ": 0.9998
+},
+"covered": 0.9998
+},
+"3": {
+"name": "Terrasdorp",
+"parts": {
+"NC": 0.9999
+},
+"covered": 0.9999
+},
+"4": {
+"name": "Planciusbuurt Zuid",
+"parts": {
+"AA": 0.9985,
+"EH": 0.001
+},
+"covered": 0.9995
+},
+"5": {
+"name": "Emanuel van Meterenbuurt",
+"parts": {
+"FL": 0.9999
+},
+"covered": 0.9999
+},
+"6": {
+"name": "Da Costabuurt Noord",
+"parts": {
+"EQ": 0.9996
+},
+"covered": 0.9996
+},
+"7": {
+"name": "Bedrijvencentrum Osdorp",
+"parts": {
+"FH": 0.9991
+},
+"covered": 0.9991
+},
+"8": {
+"name": "Schinkelbuurt Zuid",
+"parts": {
+"KB": 0.9991
+},
+"covered": 0.9991
+},
+"9": {
+"name": "Marathonbuurt West",
+"parts": {
+"KH": 1.0
+},
+"covered": 1.0
+},
+"10": {
+"name": "Kromme Mijdrechtbuurt",
+"parts": {
+"KM": 0.9997
+},
+"covered": 0.9997
+},
+"11": {
+"name": "Osdorp Zuidoost",
+"parts": {
+"FK": 1.0
+},
+"covered": 1.0
+},
+"12": {
+"name": "Marcanti",
+"parts": {
+"EG": 0.9998
+},
+"covered": 0.9998
+},
+"13": {
+"name": "Oostpoort",
+"parts": {
+"ME": 0.9997
+},
+"covered": 0.9997
+},
+"14": {
+"name": "Haveneiland Noordwest",
+"parts": {
+"MJ": 0.9687,
+"MK": 0.0313
+},
+"covered": 1.0
+},
+"15": {
+"name": "Lastage",
+"parts": {
+"AE": 0.0011,
+"AF": 0.9989
+},
+"covered": 1.0
+},
+"16": {
+"name": "Bijlmermuseum Zuid",
+"parts": {
+"TG": 0.9999
+},
+"covered": 0.9999
+},
+"17": {
+"name": "Marnixbuurt Noord",
+"parts": {
+"AB": 0.9993
+},
+"covered": 0.9993
+},
+"18": {
+"name": "Middeneiland Zuidoost",
+"parts": {
+"MK": 1.0
+},
+"covered": 1.0
+},
+"19": {
+"name": "Reigersbos Noord",
+"parts": {
+"TJ": 0.9998
+},
+"covered": 0.9998
+},
+"20": {
+"name": "Kelbergen",
+"parts": {
+"TH": 1.0
+},
+"covered": 1.0
+},
+"21": {
+"name": "Oosterpark",
+"parts": {
+"MC": 0.9997
+},
+"covered": 0.9997
+},
+"22": {
+"name": "Groenmarktkadebuurt",
+"parts": {
+"AB": 0.999,
+"EQ": 0.001
+},
+"covered": 1.0
+},
+"23": {
+"name": "Burgwallen Oost",
+"parts": {
+"AE": 1.0
+},
+"covered": 1.0
+},
+"24": {
+"name": "Nes e.o.",
+"parts": {
+"AE": 0.9994
+},
+"covered": 0.9994
+},
+"25": {
+"name": "Bedrijventerrein Nijverheidslaan",
+"parts": {
+"SB": 1.0
+},
+"covered": 1.0
+},
+"26": {
+"name": "De Eenhoorn",
+"parts": {
+"MM": 0.9995
+},
+"covered": 0.9995
+},
+"27": {
+"name": "Bosleeuw",
+"parts": {
+"EE": 0.9998
+},
+"covered": 0.9998
+},
+"28": {
+"name": "Wildeman",
+"parts": {
+"FK": 0.9997
+},
+"covered": 0.9997
+},
+"29": {
+"name": "Westhaven Zuid",
+"parts": {
+"BA": 0.9999
+},
+"covered": 0.9999
+},
+"30": {
+"name": "Leidsebuurt Noordwest",
+"parts": {
+"AH": 0.9999
+},
+"covered": 0.9999
+},
+"31": {
+"name": "Ecowijk",
+"parts": {
+"EG": 0.9999
+},
+"covered": 0.9999
+},
+"32": {
+"name": "Geuzenhofbuurt",
+"parts": {
+"EL": 0.9993
+},
+"covered": 0.9993
+},
+"33": {
+"name": "De Klenckebuurt",
+"parts": {
+"KR": 0.9998
+},
+"covered": 0.9998
+},
+"34": {
+"name": "Hoofdcentrum Zuidoost",
+"parts": {
+"TA": 0.9997
+},
+"covered": 0.9997
+},
+"35": {
+"name": "Hemelrijk",
+"parts": {
+"AD": 0.9996
+},
+"covered": 0.9996
+},
+"36": {
+"name": "Valeriusbuurt West",
+"parts": {
+"KC": 0.9997
+},
+"covered": 0.9997
+},
+"37": {
+"name": "Haveneiland Noord",
+"parts": {
+"ML": 0.9996
+},
+"covered": 0.9996
+},
+"38": {
+"name": "Molenwijk",
+"parts": {
+"NA": 1.0
+},
+"covered": 1.0
+},
+"39": {
+"name": "Het Funen",
+"parts": {
+"AK": 0.9998
+},
+"covered": 0.9998
+},
+"40": {
+"name": "Nelson Mandelapark",
+"parts": {
+"TC": 0.9997
+},
+"covered": 0.9997
+},
+"41": {
+"name": "Vondelparkbuurt Midden",
+"parts": {
+"EV": 0.9992
+},
+"covered": 0.9992
+},
+"42": {
+"name": "De Wittenbuurt Zuid",
+"parts": {
+"EH": 1.0
+},
+"covered": 1.0
+},
+"43": {
+"name": "Osdorp Midden Noord",
+"parts": {
+"FJ": 0.9996
+},
+"covered": 0.9996
+},
+"44": {
+"name": "De Wittenbuurt Noord",
+"parts": {
+"EH": 0.9998
+},
+"covered": 0.9998
+},
+"45": {
+"name": "Betondorp",
+"parts": {
+"MP": 1.0
+},
+"covered": 1.0
+},
+"46": {
+"name": "Bedrijventerrein Schinkel",
+"parts": {
+"KA": 0.9995
+},
+"covered": 0.9995
+},
+"47": {
+"name": "Minervabuurt Midden",
+"parts": {
+"KJ": 0.9999
+},
+"covered": 0.9999
+},
+"48": {
+"name": "Transvaalbuurt Oost",
+"parts": {
+"MD": 0.9998
+},
+"covered": 0.9998
+},
+"49": {
+"name": "Burgemeester Tellegenbuurt West",
+"parts": {
+"KG": 0.9996
+},
+"covered": 0.9996
+},
+"50": {
+"name": "Twiske West",
+"parts": {
+"NA": 0.9999
+},
+"covered": 0.9999
+},
+"51": {
+"name": "Markengouw Zuid",
+"parts": {
+"NJ": 0.9999
+},
+"covered": 0.9999
+},
+"52": {
+"name": "Haveneiland Zuidwest/Rieteiland West",
+"parts": {
+"MJ": 1.0
+},
+"covered": 1.0
+},
+"53": {
+"name": "Aetsveld Zuid",
+"parts": {
+"SE": 1.0
+},
+"covered": 1.0
+},
+"54": {
+"name": "John Franklinbuurt",
+"parts": {
+"EK": 0.9999
+},
+"covered": 0.9999
+},
+"55": {
+"name": "Dichtersbuurt",
+"parts": {
+"SC": 1.0
+},
+"covered": 1.0
+},
+"56": {
+"name": "Papaverweg e.o.",
+"parts": {
+"NB": 0.9999
+},
+"covered": 0.9999
+},
+"57": {
+"name": "Huntum",
+"parts": {
+"TD": 1.0
+},
+"covered": 1.0
+},
+"58": {
+"name": "Bedrijvencentrum Westerkwartier",
+"parts": {
+"EG": 0.9997
+},
+"covered": 0.9997
+},
+"59": {
+"name": "Czaar Peterbuurt",
+"parts": {
+"AK": 1.0
+},
+"covered": 1.0
+},
+"60": {
+"name": "Petroleumhaven",
+"parts": {
+"BA": 1.0
+},
+"covered": 1.0
+},
+"61": {
+"name": "Confuciusbuurt",
+"parts": {
+"FC": 0.9999
+},
+"covered": 0.9999
+},
+"62": {
+"name": "Bloemenbuurt Zuid",
+"parts": {
+"NK": 0.9996
+},
+"covered": 0.9996
+},
+"63": {
+"name": "Sarphatiparkbuurt",
+"parts": {
+"KE": 0.9999
+},
+"covered": 0.9999
+},
+"64": {
+"name": "G-buurt West",
+"parts": {
+"TE": 0.9998
+},
+"covered": 0.9998
+},
+"65": {
+"name": "Tuindorp Nieuwendam West",
+"parts": {
+"NN": 0.9992
+},
+"covered": 0.9992
+},
+"66": {
+"name": "Alexanderplein e.o.",
+"parts": {
+"AJ": 0.9991
+},
+"covered": 0.9991
+},
+"67": {
+"name": "Jacob Geelbuurt",
+"parts": {
+"FL": 0.9999
+},
+"covered": 0.9999
+},
+"68": {
+"name": "Prinses Irenebuurt",
+"parts": {
+"KN": 0.9997
+},
+"covered": 0.9997
+},
+"69": {
+"name": "Hoptille",
+"parts": {
+"TD": 0.9997
+},
+"covered": 0.9997
+},
+"70": {
+"name": "Beatrixpark",
+"parts": {
+"KN": 0.9997
+},
+"covered": 0.9997
+},
+"71": {
+"name": "Buiksloterdijk West",
+"parts": {
+"NF": 0.9972,
+"NK": 0.0019
+},
+"covered": 0.9991
+},
+"72": {
+"name": "Gooise Kant",
+"parts": {
+"TH": 0.9997
+},
+"covered": 0.9997
+},
+"73": {
+"name": "Vivaldi",
+"parts": {
+"KP": 0.9997
+},
+"covered": 0.9997
+},
+"74": {
+"name": "Kazernebuurt",
+"parts": {
+"AK": 0.9997
+},
+"covered": 0.9997
+},
+"75": {
+"name": "Hemonybuurt",
+"parts": {
+"KE": 0.9998
+},
+"covered": 0.9998
+},
+"76": {
+"name": "Willibrordusbuurt",
+"parts": {
+"KF": 0.9998
+},
+"covered": 0.9998
+},
+"77": {
+"name": "Gein Zuidwest",
+"parts": {
+"TM": 0.9996
+},
+"covered": 0.9996
+},
+"78": {
+"name": "Elzenhagen Noord",
+"parts": {
+"NG": 0.9998
+},
+"covered": 0.9998
+},
+"79": {
+"name": "K-buurt Zuidwest",
+"parts": {
+"TH": 0.9997
+},
+"covered": 0.9997
+},
+"80": {
+"name": "Zwarte Gouw",
+"parts": {
+"NQ": 1.0
+},
+"covered": 1.0
+},
+"81": {
+"name": "Amsterdamse Bos",
+"parts": {
+"KQ": 0.9998
+},
+"covered": 0.9998
+},
+"82": {
+"name": "Van der Kunbuurt",
+"parts": {
+"MM": 0.9995
+},
+"covered": 0.9995
+},
+"83": {
+"name": "Vogelbuurt Zuid",
+"parts": {
+"NL": 0.9998
+},
+"covered": 0.9998
+},
+"84": {
+"name": "Middenmeer Zuid",
+"parts": {
+"MN": 0.9999
+},
+"covered": 0.9999
+},
+"85": {
+"name": "Buiksloterdijk Oost",
+"parts": {
+"NF": 0.9977,
+"NL": 0.0023
+},
+"covered": 1.0
+},
+"86": {
+"name": "Delflandpleinbuurt Oost",
+"parts": {
+"FP": 0.9998
+},
+"covered": 0.9998
+},
+"87": {
+"name": "Buikslotermeer Noord",
+"parts": {
+"NH": 0.9996
+},
+"covered": 0.9996
+},
+"88": {
+"name": "Oostenburg",
+"parts": {
+"AK": 1.0
+},
+"covered": 1.0
+},
+"89": {
+"name": "Gaasperplas",
+"parts": {
+"SA": 0.1119,
+"TK": 0.8881
+},
+"covered": 1.0
+},
+"90": {
+"name": "Riekerhaven",
+"parts": {
+"FP": 0.9995
+},
+"covered": 0.9995
+},
+"91": {
+"name": "Oosterparkbuurt Zuidwest",
+"parts": {
+"MC": 0.9997
+},
+"covered": 0.9997
+},
+"92": {
+"name": "Weespertrekvaart",
+"parts": {
+"MQ": 1.0
+},
+"covered": 1.0
+},
+"93": {
+"name": "Sarphatistrook",
+"parts": {
+"AJ": 0.9996
+},
+"covered": 0.9996
+},
+"94": {
+"name": "Bedrijvengebied Zeeburgerkade",
+"parts": {
+"MA": 0.9991
+},
+"covered": 0.9991
+},
+"95": {
+"name": "Spuistraat Noord",
+"parts": {
+"AC": 0.0013,
+"AD": 0.9987
+},
+"covered": 1.0
+},
+"96": {
+"name": "De Punt",
+"parts": {
+"FH": 0.9998
+},
+"covered": 0.9998
+},
+"97": {
+"name": "Zunderdorp",
+"parts": {
+"NQ": 1.0
+},
+"covered": 1.0
+},
+"98": {
+"name": "Laan van Spartaan",
+"parts": {
+"ED": 0.9996
+},
+"covered": 0.9996
+},
+"99": {
+"name": "Meer en Oever",
+"parts": {
+"FK": 0.9998
+},
+"covered": 0.9998
+},
+"100": {
+"name": "Zuidwestkwadrant Osdorp Zuid",
+"parts": {
+"FJ": 0.9998
+},
+"covered": 0.9998
+},
+"101": {
+"name": "Banne Zuidoost",
+"parts": {
+"NE": 1.0
+},
+"covered": 1.0
+},
+"102": {
+"name": "NDSM terrein",
+"parts": {
+"NB": 0.9999
+},
+"covered": 0.9999
+},
+"103": {
+"name": "Buyskade e.o.",
+"parts": {
+"EH": 0.9996
+},
+"covered": 0.9996
+},
+"104": {
+"name": "Diamantbuurt",
+"parts": {
+"KG": 0.9999
+},
+"covered": 0.9999
+},
+"105": {
+"name": "Aalsmeerwegbuurt West",
+"parts": {
+"KA": 0.9996
+},
+"covered": 0.9996
+},
+"106": {
+"name": "Haarlemmerbuurt Oost",
+"parts": {
+"AA": 1.0
+},
+"covered": 1.0
+},
+"107": {
+"name": "Markthallen",
+"parts": {
+"EG": 0.9998
+},
+"covered": 0.9998
+},
+"108": {
+"name": "Gaasperpark",
+"parts": {
+"SA": 0.0664,
+"TK": 0.9336
+},
+"covered": 1.0
+},
+"109": {
+"name": "Zuidas Zuid",
+"parts": {
+"KP": 1.0
+},
+"covered": 1.0
+},
+"110": {
+"name": "Lizzy Ansinghbuurt",
+"parts": {
+"KF": 1.0
+},
+"covered": 1.0
+},
+"111": {
+"name": "D-buurt",
+"parts": {
+"TC": 0.9995
+},
+"covered": 0.9995
+},
+"112": {
+"name": "Minervabuurt Noord",
+"parts": {
+"KJ": 0.9999
+},
+"covered": 0.9999
+},
+"113": {
+"name": "Buurt 6",
+"parts": {
+"FB": 1.0
+},
+"covered": 1.0
+},
+"114": {
+"name": "Scheldebuurt West",
+"parts": {
+"KK": 0.9998
+},
+"covered": 0.9998
+},
+"115": {
+"name": "Leidsebuurt Zuidoost",
+"parts": {
+"AH": 0.9995
+},
+"covered": 0.9995
+},
+"116": {
+"name": "Parooldriehoek",
+"parts": {
+"MB": 1.0
+},
+"covered": 1.0
+},
+"117": {
+"name": "Leidsebuurt Noordoost",
+"parts": {
+"AH": 1.0
+},
+"covered": 1.0
+},
+"118": {
+"name": "K-buurt Midden",
+"parts": {
+"TG": 0.9997
+},
+"covered": 0.9997
+},
+"119": {
+"name": "Buitenveldert Zuidoost",
+"parts": {
+"KR": 0.9999
+},
+"covered": 0.9999
+},
+"120": {
+"name": "Beethovenbuurt",
+"parts": {
+"KJ": 1.0
+},
+"covered": 1.0
+},
+"121": {
+"name": "Sportpark Middenmeer Zuid",
+"parts": {
+"MN": 0.9998
+},
+"covered": 0.9998
+},
+"122": {
+"name": "Spaarndammerbuurt Noordwest",
+"parts": {
+"EB": 0.9992
+},
+"covered": 0.9992
+},
+"123": {
+"name": "Marathonbuurt Oost",
+"parts": {
+"KH": 0.9999
+},
+"covered": 0.9999
+},
+"124": {
+"name": "Venserpolder West",
+"parts": {
+"TB": 0.9997
+},
+"covered": 0.9997
+},
+"125": {
+"name": "De Heining",
+"parts": {
+"FA": 0.9998
+},
+"covered": 0.9998
+},
+"126": {
+"name": "Bellamybuurt Noord",
+"parts": {
+"EP": 0.9993
+},
+"covered": 0.9993
+},
+"127": {
+"name": "Nieuwendammerdijk Zuid",
+"parts": {
+"NF": 0.9997
+},
+"covered": 0.9997
+},
+"128": {
+"name": "Bedrijventerrein Van Houten",
+"parts": {
+"SD": 0.9997
+},
+"covered": 0.9997
+},
+"129": {
+"name": "Kolenkitbuurt Noord",
+"parts": {
+"ED": 0.9993
+},
+"covered": 0.9993
+},
+"130": {
+"name": "Noordwestkwadrant Indische buurt Zuid",
+"parts": {
+"MF": 0.9998
+},
+"covered": 0.9998
+},
+"131": {
+"name": "Den Texbuurt",
+"parts": {
+"AH": 0.9989,
+"KE": 0.001
+},
+"covered": 0.9999
+},
+"132": {
+"name": "Kolenkitbuurt Zuid",
+"parts": {
+"ED": 0.9998
+},
+"covered": 0.9998
+},
+"133": {
+"name": "Venserpolder Oost",
+"parts": {
+"TB": 0.9999
+},
+"covered": 0.9999
+},
+"134": {
+"name": "De Aker Oost",
+"parts": {
+"FG": 1.0
+},
+"covered": 1.0
+},
+"135": {
+"name": "Veluwebuurt",
+"parts": {
+"KK": 1.0
+},
+"covered": 1.0
+},
+"136": {
+"name": "Frankendael",
+"parts": {
+"MM": 1.0
+},
+"covered": 1.0
+},
+"137": {
+"name": "Middeneiland Zuidwest",
+"parts": {
+"MK": 1.0
+},
+"covered": 1.0
+},
+"138": {
+"name": "Kattenburg",
+"parts": {
+"AK": 0.9997
+},
+"covered": 0.9997
+},
+"139": {
+"name": "Hakfort/Huigenbos",
+"parts": {
+"TD": 0.9999
+},
+"covered": 0.9999
+},
+"140": {
+"name": "Mercatorpark",
+"parts": {
+"EK": 0.9994
+},
+"covered": 0.9994
+},
+"141": {
+"name": "Driehoekbuurt",
+"parts": {
+"AB": 0.9994
+},
+"covered": 0.9994
+},
+"142": {
+"name": "Leidsebuurt Zuidwest",
+"parts": {
+"AH": 0.9988
+},
+"covered": 0.9988
+},
+"143": {
+"name": "Elzenhagen Zuid",
+"parts": {
+"NG": 0.9997
+},
+"covered": 0.9997
+},
+"144": {
+"name": "Amsterdamse Poort",
+"parts": {
+"TC": 0.9997
+},
+"covered": 0.9997
+},
+"145": {
+"name": "Transvaalbuurt West",
+"parts": {
+"MD": 0.9993
+},
+"covered": 0.9993
+},
+"146": {
+"name": "Uilenburg",
+"parts": {
+"AF": 1.0
+},
+"covered": 1.0
+},
+"147": {
+"name": "De Aker West",
+"parts": {
+"FG": 0.9999
+},
+"covered": 0.9999
+},
+"148": {
+"name": "Sportpark Middenmeer Noord",
+"parts": {
+"MN": 1.0
+},
+"covered": 1.0
+},
+"149": {
+"name": "Rode Kruisbuurt",
+"parts": {
+"NH": 0.9992
+},
+"covered": 0.9992
+},
+"150": {
+"name": "Tuindorp Nieuwendam Oost",
+"parts": {
+"NN": 0.9997
+},
+"covered": 0.9997
+},
+"151": {
+"name": "Zuidwestkwadrant Indische buurt",
+"parts": {
+"MF": 0.9995
+},
+"covered": 0.9995
+},
+"152": {
+"name": "Bedrijvengebied Cruquiusweg",
+"parts": {
+"MA": 0.9999
+},
+"covered": 0.9999
+},
+"153": {
+"name": "Schinkelbuurt Noord",
+"parts": {
+"KB": 0.9996
+},
+"covered": 0.9996
+},
+"154": {
+"name": "Postjeskade e.o.",
+"parts": {
+"ER": 0.9994
+},
+"covered": 0.9994
+},
+"155": {
+"name": "Burgemeester Tellegenbuurt Oost",
+"parts": {
+"KG": 0.9999
+},
+"covered": 0.9999
+},
+"156": {
+"name": "Holendrecht West",
+"parts": {
+"TJ": 0.9997
+},
+"covered": 0.9997
+},
+"157": {
+"name": "Lucas/Andreasziekenhuis e.o.",
+"parts": {
+"FM": 0.9996
+},
+"covered": 0.9996
+},
+"158": {
+"name": "Dobbebuurt",
+"parts": {
+"FD": 0.9999
+},
+"covered": 0.9999
+},
+"159": {
+"name": "Buitenveldert Zuidwest",
+"parts": {
+"KQ": 0.9999
+},
+"covered": 0.9999
+},
+"160": {
+"name": "Sloterdijk III West",
+"parts": {
+"FA": 0.9999
+},
+"covered": 0.9999
+},
+"161": {
+"name": "Van Loonbuurt",
+"parts": {
+"AG": 0.9998
+},
+"covered": 0.9998
+},
+"162": {
+"name": "Hogewey Zuid",
+"parts": {
+"SC": 1.0
+},
+"covered": 1.0
+},
+"163": {
+"name": "Columbusplein e.o.",
+"parts": {
+"EM": 1.0
+},
+"covered": 1.0
+},
+"164": {
+"name": "Spaarndammerbuurt Midden",
+"parts": {
+"EB": 1.0
+},
+"covered": 1.0
+},
+"165": {
+"name": "Sloterdijk II",
+"parts": {
+"FA": 0.9994
+},
+"covered": 0.9994
+},
+"166": {
+"name": "Wielingenbuurt",
+"parts": {
+"KK": 0.9998
+},
+"covered": 0.9998
+},
+"167": {
+"name": "Vondelparkbuurt Oost",
+"parts": {
+"EV": 0.9996
+},
+"covered": 0.9996
+},
+"168": {
+"name": "Sloterpark",
+"parts": {
+"FE": 0.9998
+},
+"covered": 0.9998
+},
+"169": {
+"name": "Bedrijventerrein Landlust",
+"parts": {
+"EE": 0.9996
+},
+"covered": 0.9996
+},
+"170": {
+"name": "Johan Jongkindbuurt",
+"parts": {
+"FM": 1.0
+},
+"covered": 1.0
+},
+"171": {
+"name": "Leidsegracht Zuid",
+"parts": {
+"AG": 0.9991
+},
+"covered": 0.9991
+},
+"172": {
+"name": "Zuidas Noord",
+"parts": {
+"KP": 0.9998
+},
+"covered": 0.9998
+},
+"173": {
+"name": "Noordoever Sloterplas",
+"parts": {
+"FE": 0.9998
+},
+"covered": 0.9998
+},
+"174": {
+"name": "Helmersbuurt Oost",
+"parts": {
+"EU": 0.9996
+},
+"covered": 0.9996
+},
+"175": {
+"name": "Julianapark",
+"parts": {
+"MM": 1.0
+},
+"covered": 1.0
+},
+"176": {
+"name": "De Wetbuurt",
+"parts": {
+"MM": 0.9999
+},
+"covered": 0.9999
+},
+"177": {
+"name": "Banne Zuidwest",
+"parts": {
+"NE": 0.9998
+},
+"covered": 0.9998
+},
+"178": {
+"name": "Nieuw Sloten Noordwest",
+"parts": {
+"FQ": 0.9998
+},
+"covered": 0.9998
+},
+"179": {
+"name": "Architectenbuurt",
+"parts": {
+"MA": 1.0
+},
+"covered": 1.0
+},
+"180": {
+"name": "Frans Halsbuurt",
+"parts": {
+"KE": 0.9995
+},
+"covered": 0.9995
+},
+"181": {
+"name": "Spuistraat Zuid",
+"parts": {
+"AC": 0.0012,
+"AD": 0.9988
+},
+"covered": 1.0
+},
+"182": {
+"name": "Steigereiland Zuid",
+"parts": {
+"MJ": 1.0
+},
+"covered": 1.0
+},
+"183": {
+"name": "Bijlmermuseum Noord",
+"parts": {
+"TG": 0.9994
+},
+"covered": 0.9994
+},
+"184": {
+"name": "Noordoostkwadrant Indische buurt",
+"parts": {
+"MG": 0.9997
+},
+"covered": 0.9997
+},
+"185": {
+"name": "Zeeburgereiland Zuidoost",
+"parts": {
+"MH": 1.0
+},
+"covered": 1.0
+},
+"186": {
+"name": "Van Tijenbuurt",
+"parts": {
+"FB": 1.0
+},
+"covered": 1.0
+},
+"187": {
+"name": "Hogewey Noord",
+"parts": {
+"SC": 1.0
+},
+"covered": 1.0
+},
+"188": {
+"name": "Begijnhofbuurt",
+"parts": {
+"AD": 0.9997
+},
+"covered": 0.9997
+},
+"189": {
+"name": "Buiksloterham",
+"parts": {
+"NB": 0.9999
+},
+"covered": 0.9999
+},
+"190": {
+"name": "Robert Scottbuurt West",
+"parts": {
+"ED": 0.9997
+},
+"covered": 0.9997
+},
+"191": {
+"name": "Nieuwe Kerk e.o.",
+"parts": {
+"AD": 1.0
+},
+"covered": 1.0
+},
+"192": {
+"name": "Middenmeer Noord",
+"parts": {
+"MN": 1.0
+},
+"covered": 1.0
+},
+"193": {
+"name": "Amstel III deel C/D Noord",
+"parts": {
+"TA": 0.9998
+},
+"covered": 0.9998
+},
+"194": {
+"name": "Schildersbuurt",
+"parts": {
+"SC": 1.0
+},
+"covered": 1.0
+},
+"195": {
+"name": "Gaasperdam Noord",
+"parts": {
+"TL": 0.9996
+},
+"covered": 0.9996
+},
+"196": {
+"name": "Rechte H-buurt",
+"parts": {
+"TD": 0.9994
+},
+"covered": 0.9994
+},
+"197": {
+"name": "Coenhaven/Mercuriushaven",
+"parts": {
+"BB": 0.9999
+},
+"covered": 0.9999
+},
+"198": {
+"name": "Zuidoostkwadrant Indische buurt",
+"parts": {
+"MG": 0.9997
+},
+"covered": 0.9997
+},
+"199": {
+"name": "IJselbuurt West",
+"parts": {
+"KL": 0.9997
+},
+"covered": 0.9997
+},
+"200": {
+"name": "Overbraker Binnenpolder",
+"parts": {
+"EB": 0.9997
+},
+"covered": 0.9997
+},
+"201": {
+"name": "Dorp Driemond",
+"parts": {
+"SA": 0.999,
+"TK": 0.001
+},
+"covered": 1.0
+},
+"202": {
+"name": "Medisch Centrum Slotervaart",
+"parts": {
+"FN": 0.9998
+},
+"covered": 0.9998
+},
+"203": {
+"name": "Nieuwendammerdijk West",
+"parts": {
+"NF": 0.9986
+},
+"covered": 0.9986
+},
+"204": {
+"name": "Planciusbuurt Noord",
+"parts": {
+"AA": 0.9976,
+"EB": 0.0024
+},
+"covered": 1.0
+},
+"205": {
+"name": "Oostzanerdijk",
+"parts": {
+"NA": 0.9997
+},
+"covered": 0.9997
+},
+"206": {
+"name": "AMC",
+"parts": {
+"TA": 1.0
+},
+"covered": 1.0
+},
+"207": {
+"name": "Schellingwoude Oost",
+"parts": {
+"NQ": 0.9999
+},
+"covered": 0.9999
+},
+"208": {
+"name": "Van Tuyllbuurt",
+"parts": {
+"KH": 0.9999
+},
+"covered": 0.9999
+},
+"209": {
+"name": "Kop Zuidas",
+"parts": {
+"KK": 0.9998
+},
+"covered": 0.9998
+},
+"210": {
+"name": "Holysloot",
+"parts": {
+"NQ": 1.0
+},
+"covered": 1.0
+},
+"211": {
+"name": "Nintemanterrein",
+"parts": {
+"NG": 0.9991
+},
+"covered": 0.9991
+},
+"212": {
+"name": "Bloemenbuurt Noord",
+"parts": {
+"NK": 0.9998
+},
+"covered": 0.9998
+},
+"213": {
+"name": "Rietlanden",
+"parts": {
+"MA": 0.9999
+},
+"covered": 0.9999
+},
+"214": {
+"name": "Spaarndammerbuurt Noordoost",
+"parts": {
+"EB": 0.9992
+},
+"covered": 0.9992
+},
+"215": {
+"name": "Scheepvaarthuisbuurt",
+"parts": {
+"AF": 1.0
+},
+"covered": 1.0
+},
+"216": {
+"name": "Fannius Scholtenbuurt",
+"parts": {
+"EH": 0.9999
+},
+"covered": 0.9999
+},
+"217": {
+"name": "Scheldebuurt Midden",
+"parts": {
+"KK": 1.0
+},
+"covered": 1.0
+},
+"218": {
+"name": "Museumplein",
+"parts": {
+"KD": 1.0
+},
+"covered": 1.0
+},
+"219": {
+"name": "Werengouw Zuid",
+"parts": {
+"NJ": 0.9997
+},
+"covered": 0.9997
+},
+"220": {
+"name": "Weteringbuurt",
+"parts": {
+"AH": 0.9999
+},
+"covered": 0.9999
+},
+"221": {
+"name": "Gibraltarbuurt",
+"parts": {
+"EE": 0.9996
+},
+"covered": 0.9996
+},
+"222": {
+"name": "Erasmusparkbuurt West",
+"parts": {
+"EF": 0.9997
+},
+"covered": 0.9997
+},
+"223": {
+"name": "BG-terrein e.o.",
+"parts": {
+"AE": 0.9997
+},
+"covered": 0.9997
+},
+"224": {
+"name": "Markengouw Midden",
+"parts": {
+"NJ": 0.9998
+},
+"covered": 0.9998
+},
+"225": {
+"name": "Java-eiland",
+"parts": {
+"MA": 0.9999
+},
+"covered": 0.9999
+},
+"226": {
+"name": "Zeeburgereiland Zuidwest",
+"parts": {
+"MH": 0.9996
+},
+"covered": 0.9996
+},
+"227": {
+"name": "Leliegracht e.o.",
+"parts": {
+"AC": 0.9997
+},
+"covered": 0.9997
+},
+"228": {
+"name": "Kortenaerkwartier",
+"parts": {
+"EN": 0.9997
+},
+"covered": 0.9997
+},
+"229": {
+"name": "Leidsegracht Noord",
+"parts": {
+"AC": 0.9999
+},
+"covered": 0.9999
+},
+"230": {
+"name": "Noorderstrook West",
+"parts": {
+"NQ": 0.9998
+},
+"covered": 0.9998
+},
+"231": {
+"name": "Bedrijventerrein Noord",
+"parts": {
+"SC": 0.9997
+},
+"covered": 0.9997
+},
+"232": {
+"name": "Westerstaatsman",
+"parts": {
+"EH": 0.9994
+},
+"covered": 0.9994
+},
+"233": {
+"name": "Van der Helstpleinbuurt",
+"parts": {
+"KF": 0.9998
+},
+"covered": 0.9998
+},
+"234": {
+"name": "Westelijke eilanden",
+"parts": {
+"AA": 0.9999
+},
+"covered": 0.9999
+},
+"235": {
+"name": "Aetsveld Noord",
+"parts": {
+"SE": 0.9999
+},
+"covered": 0.9999
+},
+"236": {
+"name": "Twiske Oost",
+"parts": {
+"ND": 0.9996
+},
+"covered": 0.9996
+},
+"237": {
+"name": "Balboaplein e.o.",
+"parts": {
+"EM": 0.9996
+},
+"covered": 0.9996
+},
+"238": {
+"name": "Tuindorp Frankendael",
+"parts": {
+"MM": 1.0
+},
+"covered": 1.0
+},
+"239": {
+"name": "Rijnbuurt Oost",
+"parts": {
+"KM": 1.0
+},
+"covered": 1.0
+},
+"240": {
+"name": "Filips van Almondekwartier",
+"parts": {
+"EN": 0.9989
+},
+"covered": 0.9989
+},
+"241": {
+"name": "Legmeerpleinbuurt",
+"parts": {
+"KA": 1.0
+},
+"covered": 1.0
+},
+"242": {
+"name": "Bretten West",
+"parts": {
+"FA": 0.9999
+},
+"covered": 0.9999
+},
+"243": {
+"name": "Rieteiland Oost",
+"parts": {
+"ML": 1.0
+},
+"covered": 1.0
+},
+"244": {
+"name": "Marine-Etablissement",
+"parts": {
+"AK": 0.9998
+},
+"covered": 0.9998
+},
+"245": {
+"name": "Buitenveldert Midden Zuid",
+"parts": {
+"KQ": 1.0
+},
+"covered": 1.0
+},
+"246": {
+"name": "Nieuwe Diep/Diemerpark",
+"parts": {
+"MH": 0.9998
+},
+"covered": 0.9998
+},
+"247": {
+"name": "Gelderlandpleinbuurt",
+"parts": {
+"KQ": 0.9999
+},
+"covered": 0.9999
+},
+"248": {
+"name": "Amstelpark",
+"parts": {
+"KR": 0.9999
+},
+"covered": 0.9999
+},
+"249": {
+"name": "Buurt 3",
+"parts": {
+"FD": 0.9998
+},
+"covered": 0.9998
+},
+"250": {
+"name": "Belgiëplein e.o.",
+"parts": {
+"FQ": 1.0
+},
+"covered": 1.0
+},
+"251": {
+"name": "Durgerdam",
+"parts": {
+"MH": 0.0023,
+"NQ": 0.9977
+},
+"covered": 1.0
+},
+"252": {
+"name": "Minervabuurt Zuid",
+"parts": {
+"KJ": 0.9998
+},
+"covered": 0.9998
+},
+"253": {
+"name": "Kadijken",
+"parts": {
+"AK": 0.9997
+},
+"covered": 0.9997
+},
+"254": {
+"name": "Grunder/Koningshoef",
+"parts": {
+"TF": 0.9995
+},
+"covered": 0.9995
+},
+"255": {
+"name": "Oosterparkbuurt Zuidoost",
+"parts": {
+"MC": 0.9993
+},
+"covered": 0.9993
+},
+"256": {
+"name": "Borneo",
+"parts": {
+"MA": 1.0
+},
+"covered": 1.0
+},
+"257": {
+"name": "Dapperbuurt Noord",
+"parts": {
+"ME": 0.9997
+},
+"covered": 0.9997
+},
+"258": {
+"name": "Amerikahaven",
+"parts": {
+"BA": 1.0
+},
+"covered": 1.0
+},
+"259": {
+"name": "Reigersbos Zuid",
+"parts": {
+"TL": 0.9999
+},
+"covered": 0.9999
+},
+"260": {
+"name": "Gouden Bocht",
+"parts": {
+"AG": 1.0
+},
+"covered": 1.0
+},
+"261": {
+"name": "Westlandgrachtbuurt",
+"parts": {
+"KA": 0.9996
+},
+"covered": 0.9996
+},
+"262": {
+"name": "Don Bosco",
+"parts": {
+"MM": 0.9999
+},
+"covered": 0.9999
+},
+"263": {
+"name": "Bedrijvengebied Veelaan",
+"parts": {
+"MA": 1.0
+},
+"covered": 1.0
+},
+"264": {
+"name": "Cornelis Troostbuurt",
+"parts": {
+"KF": 0.9994
+},
+"covered": 0.9994
+},
+"265": {
+"name": "Aetsveldsepolder",
+"parts": {
+"SE": 0.9999
+},
+"covered": 0.9999
+},
+"266": {
+"name": "Osdorp Midden Zuid",
+"parts": {
+"FJ": 0.9999
+},
+"covered": 0.9999
+},
+"267": {
+"name": "De Klomp",
+"parts": {
+"SD": 0.9999
+},
+"covered": 0.9999
+},
+"268": {
+"name": "Van der Pekbuurt",
+"parts": {
+"NK": 0.9996
+},
+"covered": 0.9996
+},
+"269": {
+"name": "Waterloopleinbuurt",
+"parts": {
+"AF": 0.9999
+},
+"covered": 0.9999
+},
+"270": {
+"name": "Houthavens West",
+"parts": {
+"EC": 0.9997
+},
+"covered": 0.9997
+},
+"271": {
+"name": "P.C. Hooftbuurt",
+"parts": {
+"KD": 0.9998
+},
+"covered": 0.9998
+},
+"272": {
+"name": "Calandlaan/Lelylaan",
+"parts": {
+"FK": 0.9998
+},
+"covered": 0.9998
+},
+"273": {
+"name": "Zuid II",
+"parts": {
+"SD": 1.0
+},
+"covered": 1.0
+},
+"274": {
+"name": "Osdorper Binnenpolder",
+"parts": {
+"FB": 0.9999
+},
+"covered": 0.9999
+},
+"275": {
+"name": "Overtoomse Veld Noord",
+"parts": {
+"FM": 0.9995
+},
+"covered": 0.9995
+},
+"276": {
+"name": "Herensingelkwartier",
+"parts": {
+"SD": 0.9994
+},
+"covered": 0.9994
+},
+"277": {
+"name": "RAI",
+"parts": {
+"KP": 0.9999
+},
+"covered": 0.9999
+},
+"278": {
+"name": "Landelijk gebied Driemond",
+"parts": {
+"SA": 0.9998
+},
+"covered": 0.9998
+},
+"279": {
+"name": "Weesperzijde Midden/Zuid",
+"parts": {
+"MB": 0.9994
+},
+"covered": 0.9994
+},
+"280": {
+"name": "Zuiderkerkbuurt",
+"parts": {
+"AF": 0.9994
+},
+"covered": 0.9994
+},
+"281": {
+"name": "Concertgebouwbuurt",
+"parts": {
+"KD": 1.0
+},
+"covered": 1.0
+},
+"282": {
+"name": "Hondecoeterbuurt",
+"parts": {
+"KD": 1.0
+},
+"covered": 1.0
+},
+"283": {
+"name": "RI Oost terrein",
+"parts": {
+"MH": 1.0
+},
+"covered": 1.0
+},
+"284": {
+"name": "Landlust Zuid",
+"parts": {
+"EE": 0.9999
+},
+"covered": 0.9999
+},
+"285": {
+"name": "Blauwe Zand",
+"parts": {
+"NM": 0.9995
+},
+"covered": 0.9995
+},
+"286": {
+"name": "Langestraat e.o.",
+"parts": {
+"AC": 0.9993
+},
+"covered": 0.9993
+},
+"287": {
+"name": "Werengouw Midden",
+"parts": {
+"NJ": 0.9998
+},
+"covered": 0.9998
+},
+"288": {
+"name": "Marjoleinterrein",
+"parts": {
+"NE": 0.9996
+},
+"covered": 0.9996
+},
+"289": {
+"name": "Amstelveldbuurt",
+"parts": {
+"AG": 0.9996
+},
+"covered": 0.9996
+},
+"290": {
+"name": "Zuid I",
+"parts": {
+"SD": 1.0
+},
+"covered": 1.0
+},
+"291": {
+"name": "Oostelijke Handelskade",
+"parts": {
+"MA": 0.9998
+},
+"covered": 0.9998
+},
+"292": {
+"name": "Felix Meritisbuurt",
+"parts": {
+"AC": 0.9997
+},
+"covered": 0.9997
+},
+"293": {
+"name": "Zorgvlied",
+"parts": {
+"KM": 0.9997
+},
+"covered": 0.9997
+},
+"294": {
+"name": "Hercules Seghersbuurt",
+"parts": {
+"KE": 0.9993
+},
+"covered": 0.9993
+},
+"295": {
+"name": "Holendrecht Oost",
+"parts": {
+"TJ": 0.9999
+},
+"covered": 0.9999
+},
+"296": {
+"name": "Linnaeusparkbuurt",
+"parts": {
+"MN": 0.9987
+},
+"covered": 0.9987
+},
+"297": {
+"name": "De Wester Quartier",
+"parts": {
+"EN": 1.0
+},
+"covered": 1.0
+},
+"298": {
+"name": "Bloemgrachtbuurt",
+"parts": {
+"AB": 1.0
+},
+"covered": 1.0
+},
+"299": {
+"name": "Bedrijventerrein Sloterdijk I",
+"parts": {
+"EA": 0.9997
+},
+"covered": 0.9997
+},
+"300": {
+"name": "Nieuw Sloten Noordoost",
+"parts": {
+"FQ": 0.9998
+},
+"covered": 0.9998
+},
+"301": {
+"name": "Woon- en Groengebied Sloterdijk",
+"parts": {
+"EA": 0.9963,
+"EB": 0.0037
+},
+"covered": 1.0
+},
+"302": {
+"name": "Aalsmeerwegbuurt Oost",
+"parts": {
+"KA": 1.0
+},
+"covered": 1.0
+},
+"303": {
+"name": "Schipluidenbuurt",
+"parts": {
+"FP": 0.9997
+},
+"covered": 0.9997
+},
+"304": {
+"name": "Bretten Oost",
+"parts": {
+"FA": 1.0
+},
+"covered": 1.0
+},
+"305": {
+"name": "Kantershof",
+"parts": {
+"TF": 0.9999
+},
+"covered": 0.9999
+},
+"306": {
+"name": "Walvisbuurt",
+"parts": {
+"NA": 0.9999
+},
+"covered": 0.9999
+},
+"307": {
+"name": "Elandsgrachtbuurt",
+"parts": {
+"AB": 1.0
+},
+"covered": 1.0
+},
+"308": {
+"name": "Staatsliedenbuurt Noordoost",
+"parts": {
+"EH": 0.9996
+},
+"covered": 0.9996
+},
+"309": {
+"name": "Westergasfabriek",
+"parts": {
+"EB": 1.0
+},
+"covered": 1.0
+},
+"310": {
+"name": "Cornelis Douwesterrein",
+"parts": {
+"NB": 0.9999
+},
+"covered": 0.9999
+},
+"311": {
+"name": "Leeuwenveld",
+"parts": {
+"SB": 0.9998
+},
+"covered": 0.9998
+},
+"312": {
+"name": "Hogewey Midden",
+"parts": {
+"SC": 1.0
+},
+"covered": 1.0
+},
+"313": {
+"name": "Sporenburg",
+"parts": {
+"MA": 1.0
+},
+"covered": 1.0
+},
+"314": {
+"name": "Orteliusbuurt Midden",
+"parts": {
+"EM": 0.999
+},
+"covered": 0.999
+},
+"315": {
+"name": "Bellamybuurt Zuid",
+"parts": {
+"EP": 0.9995
+},
+"covered": 0.9995
+},
+"316": {
+"name": "Johannnes Vermeerbuurt",
+"parts": {
+"KD": 1.0
+},
+"covered": 1.0
+},
+"317": {
+"name": "Buitenveldert West Midden",
+"parts": {
+"KQ": 0.9999
+},
+"covered": 0.9999
+},
+"318": {
+"name": "Zeeheldenbuurt",
+"parts": {
+"EB": 0.9999
+},
+"covered": 0.9999
+},
+"319": {
+"name": "Middelveldsche Akerpolder",
+"parts": {
+"FG": 0.9998
+},
+"covered": 0.9998
+},
+"320": {
+"name": "Buiteneiland",
+"parts": {
+"MK": 1.0
+},
+"covered": 1.0
+},
+"321": {
+"name": "Anjeliersbuurt Noord",
+"parts": {
+"AB": 1.0
+},
+"covered": 1.0
+},
+"322": {
+"name": "Zeeburgereiland Noordoost",
+"parts": {
+"MH": 1.0
+},
+"covered": 1.0
+},
+"323": {
+"name": "Zuiderhof",
+"parts": {
+"KQ": 0.9998
+},
+"covered": 0.9998
+},
+"324": {
+"name": "Vogelbuurt Noord",
+"parts": {
+"NL": 0.9995
+},
+"covered": 0.9995
+},
+"325": {
+"name": "Landlust Noord",
+"parts": {
+"EE": 1.0
+},
+"covered": 1.0
+},
+"326": {
+"name": "Gein Noordwest",
+"parts": {
+"TM": 0.9996
+},
+"covered": 0.9996
+},
+"327": {
+"name": "Nieuwe Meer",
+"parts": {
+"FQ": 1.0
+},
+"covered": 1.0
+},
+"328": {
+"name": "Schellingwoude Noord",
+"parts": {
+"NQ": 1.0
+},
+"covered": 1.0
+},
+"329": {
+"name": "Cornelis Schuytbuurt",
+"parts": {
+"KD": 0.9999
+},
+"covered": 0.9999
+},
+"330": {
+"name": "Westhaven Noord",
+"parts": {
+"BA": 1.0
+},
+"covered": 1.0
+},
+"331": {
+"name": "Noorderstrook Oost",
+"parts": {
+"NQ": 0.9998
+},
+"covered": 0.9998
+},
+"332": {
+"name": "Amstelkwartier West",
+"parts": {
+"MQ": 0.9997
+},
+"covered": 0.9997
+},
+"333": {
+"name": "Amstelkwartier Zuid",
+"parts": {
+"MQ": 1.0
+},
+"covered": 1.0
+},
+"334": {
+"name": "Amstelkwartier Noord",
+"parts": {
+"MQ": 0.9999
+},
+"covered": 0.9999
+},
+"335": {
+"name": "Van Brakelkwartier",
+"parts": {
+"EN": 0.9991
+},
+"covered": 0.9991
+},
+"336": {
+"name": "Trompbuurt",
+"parts": {
+"EL": 0.9998
+},
+"covered": 0.9998
+},
+"337": {
+"name": "Afrikahaven",
+"parts": {
+"BA": 0.9999
+},
+"covered": 0.9999
+},
+"338": {
+"name": "Tuindorp Amstelstation",
+"parts": {
+"MM": 0.9999
+},
+"covered": 0.9999
+},
+"339": {
+"name": "Riekerpolder",
+"parts": {
+"FQ": 0.9999
+},
+"covered": 0.9999
+},
+"340": {
+"name": "Steigereiland Noord",
+"parts": {
+"MJ": 1.0
+},
+"covered": 1.0
+},
+"341": {
+"name": "E-buurt",
+"parts": {
+"TE": 0.9996
+},
+"covered": 0.9996
+},
+"342": {
+"name": "Noorder IJplas",
+"parts": {
+"NA": 0.9999
+},
+"covered": 0.9999
+},
+"343": {
+"name": "Rijnbuurt West",
+"parts": {
+"KM": 0.9997
+},
+"covered": 0.9997
+},
+"344": {
+"name": "Amstel III deel C/D Zuid",
+"parts": {
+"TA": 0.9999
+},
+"covered": 0.9999
+},
+"345": {
+"name": "Centrumeiland",
+"parts": {
+"MK": 0.9997
+},
+"covered": 0.9997
+},
+"346": {
+"name": "Kadoelen",
+"parts": {
+"ND": 0.9999
+},
+"covered": 0.9999
+},
+"347": {
+"name": "Frederikspleinbuurt",
+"parts": {
+"AH": 1.0
+},
+"covered": 1.0
+},
+"348": {
+"name": "\tRuys de Beerenbrouckbuurt ",
+"parts": {
+"FB": 1.0
+},
+"covered": 1.0
+},
+"349": {
+"name": "Nieuwendammerdijk Oost",
+"parts": {
+"NF": 0.9992
+},
+"covered": 0.9992
+},
+"350": {
+"name": "de Plantage",
+"parts": {
+"AJ": 0.9998
+},
+"covered": 0.9998
+},
+"351": {
+"name": "Circus/Kermisbuurt",
+"parts": {
+"NA": 1.0
+},
+"covered": 1.0
+},
+"352": {
+"name": "L-buurt",
+"parts": {
+"TK": 0.9997
+},
+"covered": 0.9997
+},
+"353": {
+"name": "Valeriusbuurt Oost",
+"parts": {
+"KC": 1.0
+},
+"covered": 1.0
+},
+"354": {
+"name": "Buikslotermeerplein",
+"parts": {
+"NH": 1.0
+},
+"covered": 1.0
+},
+"355": {
+"name": "Frederik Hendrikbuurt Zuidoost",
+"parts": {
+"EJ": 1.0
+},
+"covered": 1.0
+},
+"356": {
+"name": "Houthavens Oost",
+"parts": {
+"EC": 0.9999
+},
+"covered": 0.9999
+},
+"357": {
+"name": "Gein Noordoost",
+"parts": {
+"TM": 0.9999
+},
+"covered": 0.9999
+},
+"358": {
+"name": "Vervoerscentrum",
+"parts": {
+"BA": 1.0
+},
+"covered": 1.0
+},
+"359": {
+"name": "Bedrijventerrein Hamerstraat",
+"parts": {
+"NP": 0.9998
+},
+"covered": 0.9998
+},
+"360": {
+"name": "Stationsplein e.o.",
+"parts": {
+"AD": 0.9998
+},
+"covered": 0.9998
+},
+"361": {
+"name": "Delflandpleinbuurt West",
+"parts": {
+"FP": 0.9999
+},
+"covered": 0.9999
+},
+"362": {
+"name": "Overamstel",
+"parts": {
+"MQ": 0.9999
+},
+"covered": 0.9999
+},
+"363": {
+"name": "Nieuwe Oosterbegraafplaats",
+"parts": {
+"MP": 0.9998
+},
+"covered": 0.9998
+},
+"364": {
+"name": "Teleport",
+"parts": {
+"FA": 0.9999
+},
+"covered": 0.9999
+},
+"365": {
+"name": "Vliegenbos",
+"parts": {
+"NL": 0.9998
+},
+"covered": 0.9998
+},
+"366": {
+"name": "Zamenhofstraat e.o.",
+"parts": {
+"NP": 0.9999
+},
+"covered": 0.9999
+},
+"367": {
+"name": "Amstelglorie",
+"parts": {
+"MQ": 0.9998
+},
+"covered": 0.9998
+},
+"368": {
+"name": "Orteliusbuurt Noord",
+"parts": {
+"EK": 0.9991
+},
+"covered": 0.9991
+},
+"369": {
+"name": "De Omval",
+"parts": {
+"MQ": 0.9994
+},
+"covered": 0.9994
+},
+"370": {
+"name": "Spaarndammerbuurt Zuidoost",
+"parts": {
+"EB": 1.0
+},
+"covered": 1.0
+},
+"371": {
+"name": "Park Haagseweg",
+"parts": {
+"FQ": 0.9997
+},
+"covered": 0.9997
+},
+"372": {
+"name": "Buitenveldert Oost Midden",
+"parts": {
+"KR": 1.0
+},
+"covered": 1.0
+},
+"373": {
+"name": "Sportpark Voorland",
+"parts": {
+"MN": 1.0
+},
+"covered": 1.0
+},
+"374": {
+"name": "Hoge Dijk",
+"parts": {
+"TA": 0.9999
+},
+"covered": 0.9999
+},
+"375": {
+"name": "Ookmeer",
+"parts": {
+"FF": 1.0
+},
+"covered": 1.0
+},
+"376": {
+"name": "Plan van Gool",
+"parts": {
+"NH": 1.0
+},
+"covered": 1.0
+},
+"377": {
+"name": "Sloterweg e.o.",
+"parts": {
+"FQ": 1.0
+},
+"covered": 1.0
+},
+"378": {
+"name": "F-buurt",
+"parts": {
+"TC": 1.0
+},
+"covered": 1.0
+},
+"379": {
+"name": "Kop Zeedijk",
+"parts": {
+"AE": 0.9996
+},
+"covered": 0.9996
+},
+"380": {
+"name": "Spiegelbuurt",
+"parts": {
+"AG": 0.9997
+},
+"covered": 0.9997
+},
+"381": {
+"name": "WG-terrein",
+"parts": {
+"EU": 0.9998
+},
+"covered": 0.9998
+},
+"382": {
+"name": "Strandeiland",
+"parts": {
+"MK": 1.0
+},
+"covered": 1.0
+},
+"383": {
+"name": "Cremerbuurt Oost",
+"parts": {
+"EU": 0.9994
+},
+"covered": 0.9994
+},
+"384": {
+"name": "Reigersbos Midden",
+"parts": {
+"TL": 0.9994
+},
+"covered": 0.9994
+},
+"385": {
+"name": "Zeeburgerdijk Oost",
+"parts": {
+"MG": 0.9997
+},
+"covered": 0.9997
+},
+"386": {
+"name": "Loenermark",
+"parts": {
+"NH": 0.9992
+},
+"covered": 0.9992
+},
+"387": {
+"name": "Frederik Hendrikbuurt Noord",
+"parts": {
+"EJ": 0.9997
+},
+"covered": 0.9997
+},
+"388": {
+"name": "Andreasterrein",
+"parts": {
+"FP": 0.9999
+},
+"covered": 0.9999
+},
+"389": {
+"name": "Staalmanbuurt",
+"parts": {
+"FN": 0.9999
+},
+"covered": 0.9999
+},
+"390": {
+"name": "Jan Maijenbuurt",
+"parts": {
+"EK": 0.9997
+},
+"covered": 0.9997
+},
+"391": {
+"name": "Alfa-driehoek",
+"parts": {
+"BB": 0.9996
+},
+"covered": 0.9996
+},
+"392": {
+"name": "Haarlemmerbuurt West",
+"parts": {
+"AA": 0.9998
+},
+"covered": 0.9998
+},
+"393": {
+"name": "Rembrandtpark Zuid",
+"parts": {
+"FM": 1.0
+},
+"covered": 1.0
+},
+"394": {
+"name": "Harmoniehofbuurt",
+"parts": {
+"KD": 0.9999
+},
+"covered": 0.9999
+},
+"395": {
+"name": "Vondelpark Oost",
+"parts": {
+"KD": 0.9995
+},
+"covered": 0.9995
+},
+"396": {
+"name": "Sloterdijk III Oost",
+"parts": {
+"FA": 1.0
+},
+"covered": 1.0
+},
+"397": {
+"name": "Hiltonbuurt",
+"parts": {
+"KJ": 0.9997
+},
+"covered": 0.9997
+},
+"398": {
+"name": "Olympisch Stadion e.o.",
+"parts": {
+"KH": 0.9997
+},
+"covered": 0.9997
+},
+"399": {
+"name": "Ransdorp",
+"parts": {
+"NQ": 1.0
+},
+"covered": 1.0
+},
+"400": {
+"name": "Borgerbuurt",
+"parts": {
+"ES": 0.9996
+},
+"covered": 0.9996
+},
+"401": {
+"name": "Jacques Veltmanbuurt",
+"parts": {
+"FN": 0.9999
+},
+"covered": 0.9999
+},
+"402": {
+"name": "Erasmusparkbuurt Oost",
+"parts": {
+"EE": 0.9995
+},
+"covered": 0.9995
+},
+"403": {
+"name": "Zeeburgereiland Noordwest",
+"parts": {
+"MH": 0.9999
+},
+"covered": 0.9999
+},
+"404": {
+"name": "Kalverdriehoek",
+"parts": {
+"AD": 0.9998
+},
+"covered": 0.9998
+},
+"405": {
+"name": "Vondelpark West",
+"parts": {
+"KC": 0.9996
+},
+"covered": 0.9996
+},
+"406": {
+"name": "Marnixbuurt Midden",
+"parts": {
+"AB": 0.9975,
+"EJ": 0.0013,
+"EQ": 0.0012
+},
+"covered": 1.0
+},
+"407": {
+"name": "Swammerdambuurt",
+"parts": {
+"MB": 0.9995
+},
+"covered": 0.9995
+},
+"408": {
+"name": "Dapperbuurt Zuid",
+"parts": {
+"ME": 0.9998
+},
+"covered": 0.9998
+},
+"409": {
+"name": "Amstel III deel A/B Zuid",
+"parts": {
+"TA": 1.0
+},
+"covered": 1.0
+},
+"410": {
+"name": "Surinamepleinbuurt",
+"parts": {
+"KA": 0.9999
+},
+"covered": 0.9999
+},
+"411": {
+"name": "Banpleinbuurt",
+"parts": {
+"KD": 0.9999
+},
+"covered": 0.9999
+},
+"412": {
+"name": "Spaarndammerbuurt Zuidwest",
+"parts": {
+"EB": 1.0
+},
+"covered": 1.0
+},
+"413": {
+"name": "Koningin Wilhelminaplein",
+"parts": {
+"FP": 0.9997
+},
+"covered": 0.9997
+},
+"414": {
+"name": "Duivelseiland",
+"parts": {
+"KD": 1.0
+},
+"covered": 1.0
+},
+"415": {
+"name": "Westerdokseiland",
+"parts": {
+"AA": 0.9999
+},
+"covered": 0.9999
+},
+"416": {
+"name": "Osdorper Bovenpolder",
+"parts": {
+"FF": 0.9999
+},
+"covered": 0.9999
+},
+"417": {
+"name": "Valkenburg",
+"parts": {
+"AF": 0.9999
+},
+"covered": 0.9999
+},
+"418": {
+"name": "Bedrijventerrein Nieuwendammerdijk",
+"parts": {
+"NP": 0.9998
+},
+"covered": 0.9998
+},
+"419": {
+"name": "Willemsparkbuurt Noord",
+"parts": {
+"KC": 0.9998
+},
+"covered": 0.9998
+},
+"420": {
+"name": "Haveneiland Oost",
+"parts": {
+"ML": 1.0
+},
+"covered": 1.0
+},
+"421": {
+"name": "G-buurt Oost",
+"parts": {
+"TF": 0.9999
+},
+"covered": 0.9999
+},
+"422": {
+"name": "Science Park Zuid",
+"parts": {
+"MN": 1.0
+},
+"covered": 1.0
+},
+"423": {
+"name": "Gaasperdam Zuid",
+"parts": {
+"TL": 1.0
+},
+"covered": 1.0
+},
+"424": {
+"name": "Tuindorp Oostzaan Oost",
+"parts": {
+"NC": 0.9996
+},
+"covered": 0.9996
+},
+"425": {
+"name": "Anjeliersbuurt Zuid",
+"parts": {
+"AB": 1.0
+},
+"covered": 1.0
+},
+"426": {
+"name": "Eendrachtspark",
+"parts": {
+"FB": 0.9999
+},
+"covered": 0.9999
+},
+"427": {
+"name": "Osdorpplein e.o.",
+"parts": {
+"FK": 1.0
+},
+"covered": 1.0
+},
+"428": {
+"name": "Nieuwendijk Noord",
+"parts": {
+"AD": 1.0
+},
+"covered": 1.0
+},
+"429": {
+"name": "Overhoeks",
+"parts": {
+"NB": 0.9998
+},
+"covered": 0.9998
+},
+"430": {
+"name": "Jan de Louterbuurt",
+"parts": {
+"FC": 0.9998
+},
+"covered": 0.9998
+},
+"431": {
+"name": "Reguliersbuurt",
+"parts": {
+"AG": 0.9998
+},
+"covered": 0.9998
+},
+"432": {
+"name": "Oostelijke Vechtoever",
+"parts": {
+"SE": 1.0
+},
+"covered": 1.0
+},
+"433": {
+"name": "Buurt 8",
+"parts": {
+"FB": 1.0
+},
+"covered": 1.0
+},
+"434": {
+"name": "Buiksloterbreek",
+"parts": {
+"NB": 0.001,
+"NE": 0.9985
+},
+"covered": 0.9995
+},
+"435": {
+"name": "Weesperbuurt",
+"parts": {
+"AJ": 0.9998
+},
+"covered": 0.9998
+},
+"436": {
+"name": "Cremerbuurt West",
+"parts": {
+"ET": 0.9996
+},
+"covered": 0.9996
+},
+"437": {
+"name": "Lootsbuurt",
+"parts": {
+"ES": 0.9982
+},
+"covered": 0.9982
+},
+"438": {
+"name": "Bertelmanpleinbuurt",
+"parts": {
+"KH": 0.9992
+},
+"covered": 0.9992
+},
+"439": {
+"name": "Vondelparkbuurt West",
+"parts": {
+"ET": 0.9998
+},
+"covered": 0.9998
+},
+"440": {
+"name": "Oostoever Sloterplas",
+"parts": {
+"FL": 0.9998
+},
+"covered": 0.9998
+},
+"441": {
+"name": "Bedrijvenpark Lutkemeer",
+"parts": {
+"FF": 0.9999
+},
+"covered": 0.9999
+},
+"442": {
+"name": "Rembrandtpark Noord",
+"parts": {
+"FM": 0.9999
+},
+"covered": 0.9999
+},
+"443": {
+"name": "Passeerdersgrachtbuurt",
+"parts": {
+"AB": 0.9992
+},
+"covered": 0.9992
+},
+"444": {
+"name": "Drieburg",
+"parts": {
+"MP": 0.9996
+},
+"covered": 0.9996
+},
+"445": {
+"name": "Centrum",
+"parts": {
+"SD": 1.0
+},
+"covered": 1.0
+},
+"446": {
+"name": "Park de Meer",
+"parts": {
+"MN": 0.9998
+},
+"covered": 0.9998
+},
+"447": {
+"name": "Haveneiland Noordoost",
+"parts": {
+"MJ": 0.9998
+},
+"covered": 0.9998
+},
+"448": {
+"name": "Science Park Noord",
+"parts": {
+"MN": 0.9997
+},
+"covered": 0.9997
+},
+"449": {
+"name": "Scheldebuurt Oost",
+"parts": {
+"KK": 0.9999
+},
+"covered": 0.9999
+},
+"450": {
+"name": "Schellingwoude West",
+"parts": {
+"NQ": 0.9997
+},
+"covered": 0.9997
+},
+"451": {
+"name": "Paramariboplein e.o.",
+"parts": {
+"ER": 0.9999
+},
+"covered": 0.9999
+},
+"452": {
+"name": "Flevopark",
+"parts": {
+"MG": 1.0
+},
+"covered": 1.0
+},
+"453": {
+"name": "Overtoomse Veld Zuid",
+"parts": {
+"FM": 0.9999
+},
+"covered": 0.9999
+},
+"454": {
+"name": "Utrechtsebuurt Zuid",
+"parts": {
+"AH": 0.9995
+},
+"covered": 0.9995
+},
+"455": {
+"name": "Weespersluis",
+"parts": {
+"SB": 0.9999
+},
+"covered": 0.9999
+},
+"456": {
+"name": "Kortvoort",
+"parts": {
+"TH": 0.9996
+},
+"covered": 0.9996
+},
+"457": {
+"name": "De Kleine Wereld",
+"parts": {
+"NH": 1.0
+},
+"covered": 1.0
+},
+"458": {
+"name": "Zuidwestkwadrant Osdorp Noord",
+"parts": {
+"FJ": 0.9998
+},
+"covered": 0.9998
+},
+"459": {
+"name": "IJplein e.o.",
+"parts": {
+"NL": 0.9999
+},
+"covered": 0.9999
+},
+"460": {
+"name": "Banne Noordwest",
+"parts": {
+"NE": 0.9997
+},
+"covered": 0.9997
+},
+"461": {
+"name": "Da Costabuurt Zuid",
+"parts": {
+"ES": 0.9996
+},
+"covered": 0.9996
+},
+"462": {
+"name": "Gerard Doubuurt",
+"parts": {
+"KE": 1.0
+},
+"covered": 1.0
+},
+"463": {
+"name": "Baanakkerspark Noord",
+"parts": {
+"NJ": 0.9993
+},
+"covered": 0.9993
+},
+"464": {
+"name": "Rembrandtpleinbuurt",
+"parts": {
+"AG": 0.9999
+},
+"covered": 0.9999
+},
+"465": {
+"name": "Louis Chrispijnbuurt",
+"parts": {
+"FN": 0.9998
+},
+"covered": 0.9998
+},
+"466": {
+"name": "Amstel III deel A/B Noord",
+"parts": {
+"TA": 1.0
+},
+"covered": 1.0
+},
+"467": {
+"name": "Noordwestkwadrant Indische buurt Noord",
+"parts": {
+"MF": 0.9992
+},
+"covered": 0.9992
+},
+"468": {
+"name": "Rijnbuurt Midden",
+"parts": {
+"KM": 0.9999
+},
+"covered": 0.9999
+},
+"469": {
+"name": "Oude Kerk e.o.",
+"parts": {
+"AE": 0.9994
+},
+"covered": 0.9994
+},
+"470": {
+"name": "De Bongerd",
+"parts": {
+"NC": 0.9999
+},
+"covered": 0.9999
+},
+"471": {
+"name": "Marnixbuurt Zuid",
+"parts": {
+"AB": 0.9992
+},
+"covered": 0.9992
+},
+"472": {
+"name": "VU-kwartier",
+"parts": {
+"KP": 0.9999
+},
+"covered": 0.9999
+},
+"473": {
+"name": "Lodewijk van Deysselbuurt",
+"parts": {
+"FC": 0.9999
+},
+"covered": 0.9999
+},
+"474": {
+"name": "Wittenburg",
+"parts": {
+"AK": 1.0
+},
+"covered": 1.0
+},
+"475": {
+"name": "Rapenburg",
+"parts": {
+"AF": 0.9996
+},
+"covered": 0.9996
+},
+"476": {
+"name": "IJsbaanpad e.o.",
+"parts": {
+"KH": 0.9997
+},
+"covered": 0.9997
+},
+"477": {
+"name": "Slotermeer Zuid",
+"parts": {
+"FE": 0.9998
+},
+"covered": 0.9998
+},
+"478": {
+"name": "Banne Noordoost",
+"parts": {
+"NE": 1.0
+},
+"covered": 1.0
+},
+"479": {
+"name": "Nieuw Sloten Zuidwest",
+"parts": {
+"FQ": 1.0
+},
+"covered": 1.0
+},
+"480": {
+"name": "Orteliusbuurt Zuid",
+"parts": {
+"EM": 0.9996
+},
+"covered": 0.9996
+},
+"481": {
+"name": "Nieuwmarkt",
+"parts": {
+"AF": 0.9997
+},
+"covered": 0.9997
+},
+"482": {
+"name": "Oosterdokseiland",
+"parts": {
+"AF": 0.9998
+},
+"covered": 0.9998
+},
+"483": {
+"name": "K-buurt Zuidoost",
+"parts": {
+"TH": 0.9996
+},
+"covered": 0.9996
+},
+"484": {
+"name": "Robert Scottbuurt Oost",
+"parts": {
+"EF": 0.9996
+},
+"covered": 0.9996
+},
+"485": {
+"name": "Tuindorp Oostzaan West",
+"parts": {
+"NC": 0.9995
+},
+"covered": 0.9995
+},
+"486": {
+"name": "De Eendracht ",
+"parts": {
+"FB": 0.9999
+},
+"covered": 0.9999
+},
+"487": {
+"name": "Dorp Sloten",
+"parts": {
+"FQ": 0.9997
+},
+"covered": 0.9997
+},
+"488": {
+"name": "G-buurt Noord",
+"parts": {
+"TE": 1.0
+},
+"covered": 1.0
+},
+"489": {
+"name": "KNSM-eiland",
+"parts": {
+"MA": 0.8264,
+"MH": 0.1735
+},
+"covered": 0.9999
+},
+"490": {
+"name": "Baanakkerspark Zuid",
+"parts": {
+"NJ": 0.9995
+},
+"covered": 0.9995
+},
+"491": {
+"name": "IJselbuurt Oost",
+"parts": {
+"KL": 0.9997
+},
+"covered": 0.9997
+},
+"492": {
+"name": "Gein Zuidoost",
+"parts": {
+"TM": 0.9999
+},
+"covered": 0.9999
+},
+"493": {
+"name": "Frederik Hendrikbuurt Zuidwest",
+"parts": {
+"EJ": 0.999
+},
+"covered": 0.999
+},
+"494": {
+"name": "Nieuw Sloten Zuidoost",
+"parts": {
+"FQ": 1.0
+},
+"covered": 1.0
+},
+"495": {
+"name": "Entrepot-Noordwest",
+"parts": {
+"MA": 0.9997
+},
+"covered": 0.9997
+},
+"496": {
+"name": "Oosterparkbuurt Noordwest",
+"parts": {
+"MC": 0.9992
+},
+"covered": 0.9992
+},
+"497": {
+"name": "Pieter van der Doesbuurt",
+"parts": {
+"EL": 0.9996
+},
+"covered": 0.9996
+},
+"498": {
+"name": "Vogeltjeswei",
+"parts": {
+"TC": 1.0
+},
+"covered": 1.0
+}
+}

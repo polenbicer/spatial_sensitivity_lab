@@ -1,0 +1,1189 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carte interactive -  Monitoring des Quartiers</title>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/assets/favicon/site.webmanifest">
+	<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+    
+    <link rel="stylesheet" href="/lib/chosen_v1.8.7/chosen.min.css" />
+    <link rel="stylesheet" href="/lib/jstree/themes/default/style.min.css" />
+    <link href="/lib/jtable/themes/basic/jtable_basic.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/lib/slick-1.8.1/slick.css" />
+    <link rel="stylesheet" type="text/css" href="/lib/slick-1.8.1/slick-theme.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/are-you-sure-discard-changes/jquery.are-you-sure.js"></script>
+    <script src="/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/js/notify.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/js/chosen.jquery.js"></script>
+    <script src="/lib/jtable/jquery.jtable.min.js"></script>
+    <script src="/lib/jstree/jstree.min.js"></script>
+    <script src="/lib/jstree/grid/jstreegrid.js"></script>
+    <script src="/lib/chosen_v1.8.7/chosen.jquery.min.js"></script>
+    <script src="/js/ckeditor_4.15.1_standard/ckeditor/ckeditor.js"></script>
+    <script src="/lib/scrollAccordion-2.0.0/scrollAccordion.js" defer></script>
+    <script src="/lib/masonry-4.2.2/masonry.pkgd.min.js" defer></script>
+    <script src="/lib/jquery-multi-select-combo/jquery.selectlistactions.js"></script>
+    <script type="text/javascript" src="/lib/slick-1.8.1/slick.min.js"></script>
+    <script src="/js/site.js?v=gxB6ev8Rme29-id_V269SqGmpCYXi7eHQ98_nMOxfM0"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js'></script>
+
+    <script>
+        $.get('/Shared/MessagesList', function (result) {
+            var jsonMsg = $.parseJSON(result);
+            $.each(jsonMsg, function (index, jsonObject) {
+                $.each(jsonObject, function (index, jsonObject) {
+                    $.notify(jsonObject.Body, jsonObject.CssClass);
+                });
+            });
+        });
+
+        $(document).ajaxComplete(function (e, j, o) {
+            if (o.url.includes('MessagesList'))
+                return
+            $.get('/Shared/MessagesList', function (result) {
+                var jsonMsg = $.parseJSON(result);
+                $.each(jsonMsg, function (index, jsonObject) {
+                    $.each(jsonObject, function (index, jsonObject) {
+                        $.notify(jsonObject.Body, jsonObject.CssClass);
+                    });
+                });
+            });
+        });
+    </script>
+
+    
+
+    <script>
+        function getCookie(name) {
+           
+            var dc = document.cookie;
+            var prefix = name + "=";
+            var begin = dc.indexOf("; " + prefix);
+            if (begin == -1) {
+                begin = dc.indexOf(prefix);
+                if (begin != 0) return null;
+            }
+            else {
+                begin += 2;
+                var end = document.cookie.indexOf(";", begin);
+                if (end == -1) {
+                    end = dc.length;
+                }
+            }
+            // because unescape has been deprecated, replaced with decodeURI
+            //return unescape(dc.substring(begin + prefix.length, end));
+            return decodeURI(dc.substring(begin + prefix.length, end));
+        }
+
+    </script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src=https://www.googletagmanager.com/gtag/js?id=UA-17146775-31></script>
+    <script>
+            var name = "_ga_";
+            var googleNumberFr = 'UA-17146775-31'
+            var result = name.concat(googleNumberFr.slice(2));
+            var franceCookieYes = getCookie(result);
+            var aspConsetCookie = getCookie(".AspNet.Consent");
+           
+            if (franceCookieYes != null && aspConsetCookie == "yes")
+            {
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag() { window.dataLayer.push(arguments); }
+                        gtag('js', new Date());
+
+                        gtag('config', 'UA-17146775-31');
+            }
+            
+    </script>
+
+
+
+
+        <script defer data-domain="monitoringdesquartiers.brussels" src="https://plausible.io/js/script.file-downloads.outbound-links.pageview-props.tagged-events.js"></script>
+
+    <script>
+        window.plausible = window.plausible || function () {
+            (window.plausible.q = window.plausible.q || []).push(arguments)
+        }
+    </script>
+
+
+</head>
+<body>
+    <header>
+        <div class="header-branding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-12 header-branding-type">
+                        <a href="/">
+                            <span>Monitoring des Quartiers</span>
+                        </a>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 header-branding-mark">
+                        <a href="https://ibsa.brussels/"><img src="/assets/logo-fr.svg"></a>
+                        <button class="menu-toggle" type="button">
+                            <div class="menu-toggle-inner"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header-nav">
+                <nav class="header-nav-secondary menu">
+                    <div class="menu-header">
+                        <a href="/"><h4>Monitoring des Quartiers</h4></a>
+                        <button class="menu-open-toggle" type="button">
+                            <div class="menu-open-toggle-inner"></div>
+                        </button>
+                    </div>
+                    <ul class="menu-secondary">
+                        <li>
+                            <a class="btn-link-menu" href="/">Accueil</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/cartes">Cartes</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/tableaux">Tableaux</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/indicateurs">Indicateurs</a>
+                        </li>
+                    </ul>
+                    <ul class="menu-primary">
+                        <li><a href="/actualites">Actualit&#xE9;s</a></li>
+                        <li><a href="/a-propos">A propos</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                    <ul class="menu-user">
+
+                            <li>
+                                <a class="nav-item-add" href="/se-connecter">Se connecter</a>
+                            </li>
+                            <li>
+                                <a class="nav-item-add" href="/s-enregistrer"><i class="icon-user mb-n-xxs"></i>S&#x27;enregistrer</a>
+                            </li>
+                    </ul>
+                    <div class="menu-contact">
+                        <h4>ibsa.brussels</h4>
+                        <ul class="menu-contact-list">
+                            <li>rue de Namur 59</li>
+                            <li>B-1000 Bruxelles</li>
+                            <li><a class="btn-link-invert" href="tel:003224354230">+32 2 435 42 30</a></li>
+                            <li><a class="btn-link-invert" href="mail:ibsa@perspective.brussels">ibsa@perspective.brussels</a></li>
+                            <li><a class="btn-link-invert" href="mail:monitoringdesquartiers@perspective.brussels">monitoringdesquartiers@perspective.brussels</a></li>
+                        </ul>
+                    </div>
+                    <div class="menu-footer">
+                        <ul class="menu-footer-social inline-list">
+                            <li><a href="#"><i class="icon-vendor-tw"></i></a></li>
+                            <li><a href="#"><i class="icon-vendor-li"></i></a></li>
+                            <li><a href="#"><i class="icon-vendor-fb"></i></a></li>
+                        </ul>
+                        <p class="text-sm">Mentions légales - Crédits</p>
+                    </div>
+                </nav>
+                <nav class="header-nav-primary">
+                    <ul class="header-nav-primary-links">
+                        <li>
+                            <a class="btn-link-menu" href="/">Accueil</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/cartes">Cartes</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/tableaux">Tableaux</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/indicateurs">Indicateurs</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+
+<div class="menu-language-wrapper">
+    <div class="container">
+        <ul class="menu-language">
+                    <li class="" onclick="location.href='/Home/ChangeLanguage?returnUrl=%2FIndicator%2FIndicatorPage%2F2498%3Ftab%3DSheet%26SubTheme%3D28&amp;culture=nl-BE';" data-returnUrl="/Indicator/IndicatorPage/2498?tab=Sheet&amp;SubTheme=28" id="nl-BE">NL</li>
+                    <li class="selected" onclick="location.href='/Home/ChangeLanguage?returnUrl=%2FIndicator%2FIndicatorPage%2F2498%3Ftab%3DSheet%26SubTheme%3D28&amp;culture=fr-BE';" data-returnUrl="/Indicator/IndicatorPage/2498?tab=Sheet&amp;SubTheme=28" id="fr-BE">FR</li>
+        </ul>
+    </div>
+</div>
+    </header>
+    <div class="banner">
+        <div class="container">
+            <h1 id="bannerTitle" class="banner-title"></h1>
+        </div>
+    </div>
+
+    <section class="floating-quick-nav">
+        <ul>
+            <li class="floating-quick-nav-button glossary-open " id="glossaryListButton" style="display:none">
+                <i class="icon-book"></i>
+                <span>Glossaire</span>
+            </li>
+            <li class="floating-quick-nav-button">
+                <a href="/contact">
+                    <i class="icon-email"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li class="floating-quick-nav-button back-to-top">
+                <i class="icon-chevron-up-white"></i>
+                <span>Top</span>
+            </li>
+        </ul>
+    </section>
+
+    <aside id="glossary" class="glossary">
+        <button class="glossary-close" type="button">
+            <div class="glossary-close-inner"></div>
+        </button>
+
+        <h2 class="h2-lg glossary-title">Glossaire</h2>
+
+        <div class="glossary-search field">
+            <label for="search">Rechercher un terme</label>
+            <div class="input-search ">
+                <input type="text" name="search" id="searchGlossaryFilter" placeholder="Ex: Monitoring des Quartiers, deuxi&#xE8;me couronne, ...">
+                <button type="submit" class="btn-search" id="search-button-glossary-filter">
+                    <i class="icon-search-primary"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="glossaryResultsList"></div>
+    </aside>
+
+    
+
+
+
+
+
+
+
+    <div id="cookieConsent" class="cookie-consent pv-md">
+        <div class="container-fluid">
+            <p class="cookie-consent-text">Le pr&#xE9;sent site internet place des cookies. Les cookies essentiels sont n&#xE9;cessaires au bon fonctionnement du site Internet et ne peuvent pas &#xEA;tre refus&#xE9;s. D&#x2019;autres cookies sont utilis&#xE9;s &#xE0; des fins statistiques (cookies d&#x2019;analyse) et ne seront plac&#xE9;s que si vous en acceptez le placement. Param&#xE9;trer les cookies pour en savoir plus.</p>
+                
+            <div class="cookie-consent-control">
+                <div class="row">
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <button class="btn btn-secondary btn-block btn-sm" type="button" data-dismiss="alert" id="cookieOptions">
+                            <span aria-hidden="true">Param&#xE9;trer les cookies</span>
+                        </button>
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <button class="btn btn-secondary btn-block btn-sm" type="button" data-dismiss="alert" data-cookie-string=".AspNet.Consent=yes; expires=Mon, 15 Nov 2027 15:31:46 GMT; path=/">
+                            <span aria-hidden="true">Accepter tous les cookies</span>
+                        </button>
+                    </div>
+					<div class="col-12 col-sm-3 col-md-2">
+						<button class="btn btn-secondary btn-block btn-sm" type="button" data-dismiss="alert" id="ignore">
+                            <span aria-hidden="true">Refuser les cookies optionnels</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <input id="toggleYes" type="hidden" value="Activ&#xE9;" />
+    <input id="toggleNo" type="hidden" value="D&#xE9;sactiv&#xE9;" />
+    <div class="modal fade cookie-consent-modal" id="cookieOptionsModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <input id="mediaType" hidden />
+            <div class="modal-content">
+                <div class="modal-header">
+					<div class="modal-title">
+						<h3>Notre site utilise des cookies</h3>
+						<h5><p>Qu’est-ce qu’un cookie ? Quels cookies utilisons-nous et pourquoi ?  Lisez <a class="btn-link-menu" target="_blank"  href="/Home/Clauses">notre politique en matière de cookies </a> pour en savoir plus. </p></h5>
+					</div>
+
+					<button type="button" class="close" data-dismiss="modal"><i class="icon-decline icon-xs"></i></button>
+                </div>
+                <div class="modal-body">
+
+					<div class="row">
+						<div class="col-12 col-sm-4">
+							<button type="button" class="btn btn-secondary btn-sm btn-block mt-sm" id="acceptAll" disabled>Accepter tous les cookies</button>
+						</div>
+						<div class="col-12 col-sm-4">
+							<button type="button" class="btn btn-secondary btn-sm btn-block mt-sm" id="refuse">Refuser les cookies optionnels </button>
+						</div>
+					</div>
+
+					<div class="input-checkbox cookie-consent-check">
+                        <input type="checkbox" id="essential" class="checkbox" disabled checked>
+						<label for="essential"><span class="cookie-consent-check-info"><h5>
+Essentiel <span class="cookie-consent-secondary-text">(toujours requis)</span></h5>
+
+<p>Ces cookies sont nécessaires pour des raisons purement techniques pour une visite normale du site Internet. Vu la nécessité technique, seule une obligation d'information s'applique, et ces cookies sont placés dès que vous accédez au site Internet.</p>
+
+<span class="cookie-consent-secondary-text">Utilisation: service de base</span>
+</span></label>
+                        <span class="cookie-consent-check-status">Activ&#xE9;</span>
+
+                    </div>
+
+					<div class="input-checkbox cookie-consent-check">
+                        <input type="checkbox" id="analyticsCookies" class="checkbox" checked>
+						<label for="analyticsCookies"><span class="cookie-consent-check-info"><h5>
+	Analyse d'audience
+</h5>
+
+<p>
+	Il s'agit de cookies qui nous permettent de savoir combien de fois une page déterminée a été consultée. Nous utilisons ces informations uniquement pour améliorer le contenu de notre site Internet. Ces cookies ne sont placés que si vous en acceptez le placement.
+</p>
+
+<span class="cookie-consent-secondary-text">Utilisation: statistiques</span></span></label>
+                        <span class="cookie-consent-check-status" id="toogleStatus">Activ&#xE9;</span>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="modal-footer-wrapper">
+                        <button class="btn btn-secondary btn-sm" id="confirm-cookies">Confirmer mon choix</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var buttonAll = document.querySelector("#cookieConsent button[data-cookie-string]");
+            buttonAll.addEventListener("click", function (event) {
+              
+                document.cookie = buttonAll.dataset.cookieString;
+
+                        var gaScript = $('<script async src="' + 'https://www.googletagmanager.com/gtag/js?id=UA-17146775-31' + '"></s' + 'cript>');
+                       $('body').append($(gaScript));
+                       window.dataLayer = window.dataLayer || [];
+                       function gtag() { window.dataLayer.push(arguments); }
+                       gtag('js', new Date());
+                       gtag('config', 'UA-17146775-31');
+
+
+                $("#cookieConsent").hide();
+            }, false);
+
+            var ignoreButton = document.querySelector("#ignore");
+            ignoreButton.addEventListener("click", function (event) {
+                document.cookie = buttonAll.dataset.cookieString;
+
+                window['ga-disable-MEASUREMENT_ID'] = true;
+
+                var gaPropertyFr = 'UA-17146775-31';
+                var gaPropertyNl = 'UA-17146775-32';
+
+
+                // Disable tracking if the opt-out cookie exists.
+                var disableStrFR = 'ga-disable-' + gaPropertyFr;
+                var disableStrNL = 'ga-disable-' + gaPropertyNl;
+
+                gaOptout(disableStrFR, disableStrNL);
+
+
+
+                $("#cookieConsent").hide();
+            }, false);
+
+            var cookieOptionsPopup = document.querySelector("#cookieOptions");
+            cookieOptionsPopup.addEventListener("click", function (event) {
+
+                $('#cookieOptionsModal').modal('show');
+            }, false);
+
+
+            var buttonAcceptAll = document.querySelector("#acceptAll");
+            buttonAcceptAll.addEventListener("click", function (event) {
+                var yes = $('#toggleYes').val();
+
+                $("#analyticsCookies").prop("checked", true);
+                $('#refuse').prop('disabled', false);
+                $('#acceptAll').prop('disabled', true);
+
+                $('#toogleStatus').text(yes);
+
+            }, false);
+
+
+            var buttonRefuse = document.querySelector("#refuse");
+            buttonRefuse.addEventListener("click", function (event) {
+             
+                var no = $('#toggleNo').val();
+
+                $("#analyticsCookies").prop("checked", false);
+                $('#refuse').prop('disabled', true);
+                $('#acceptAll').prop('disabled', false);
+
+                $('#toogleStatus').text(no);
+
+            }, false);
+
+
+            var analyticsCookies = document.querySelector("#analyticsCookies");
+            analyticsCookies.addEventListener("click", function (event) {
+           
+                var yes = $('#toggleYes').val();
+                var no = $('#toggleNo').val();
+
+                var isAnalyticsChecked = $('#analyticsCookies').is(":checked");
+                if (isAnalyticsChecked) {
+                    $('#refuse').prop('disabled', false);
+                    $('#acceptAll').prop('disabled', true);
+                    $('#toogleStatus').text(yes);
+
+                }
+                else {
+                    $('#refuse').prop('disabled', true);
+                    $('#acceptAll').prop('disabled', false);
+                    $('#toogleStatus').text(no);
+                }
+
+
+            }, false);
+
+
+            var confirmCookies = document.querySelector("#confirm-cookies");
+            confirmCookies.addEventListener("click", function (event) {
+           
+                $("#cookieConsent").hide();
+                $('#cookieOptionsModal').modal('hide');
+
+                var isAnalyticsChecked = $('#analyticsCookies').is(":checked");
+                if (isAnalyticsChecked) {
+
+                    buttonAll.click();
+                }
+                else {
+
+                    ignoreButton.click();
+                }
+
+            }, false);
+
+
+        });
+
+
+
+                // Opt-out function
+      function gaOptout(disableStrFR, disableStrNL) {
+
+                       document.cookie = disableStrFR + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+                        window[disableStrFR] = true;
+
+
+        }
+
+
+
+
+
+
+    </script>
+
+    <main role="main">
+      
+        <div id="errors-main"></div>
+          <input name="isVariable" id="isVariable" type="hidden" />
+
+<div class="container">
+    <ul class="breadcrumbs">
+        <li class="breadcrumbs-item">
+            <a type="button" id="backToMainPage" class="btn-link-arrow" href="/cartes"><span>Retour</span></a>
+        </li>
+    </ul>
+    <input type="hidden" value="Sheet" id="starting-tab" />
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="map-link" data-toggle="tab" href="#map" role="tab" aria-controls="map" aria-selected="true">Carte</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="sheet-link" data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet" aria-selected="false">Fiche indicateur</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="analysis-link" data-toggle="tab" href="#analysis" role="tab" aria-controls="analysis" aria-selected="false">Fiche analyse</a>
+        </li>
+    </ul>
+
+    <select class="nav nav-tabs-mobile" id="myTab-mobile" role="tablist">
+        <option value="map-link" class="nav-item" data-toggle="tab" href="#map" role="tab" aria-controls="map" aria-selected="true">Carte</option>
+        <option value="sheet-link" class="nav-item" data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet" aria-selected="false">Fiche indicateur</option>
+        <option value="analysis-link" class="nav-item" data-toggle="tab" href="#analysis" role="tab" aria-controls="analysis" aria-selected="false">Fiche analyse</option>
+    </select>
+
+    <div class="tab-content row" id="myTabContent">
+        <div class="col-12">
+            <!-- Map -->
+            <div class="tab-pane fade show active" id="map" role="tabpanel" aria-labelledby="map-link">
+                <div class="filters-wrapper mt-n-xl">
+                    <form onsubmit="goToIndicator(event)">
+                        <div class="filters filters-flex filters-with-bg">
+                            <input hidden name="subThemeId" value="28">
+                            <div class="filters-item">
+                                <select id="IndicatorSelect" name="IndicatorId" class="chosen-select" data-val="true" data-val-required="The IndicatorId field is required."><option value="2157">Revenu imposable moyen par habitant (classes de revenus)</option>
+<option value="2335">Revenu imposable moyen par d&#xE9;claration (classes de revenus)</option>
+<option value="2336">Revenu imposable m&#xE9;dian des d&#xE9;clarations</option>
+<option selected="selected" value="2498">Revenu &#xE9;quivalent m&#xE9;dian des habitant&#xB7;es apr&#xE8;s imp&#xF4;t </option>
+<option value="2500">Revenu &#xE9;quivalent moyen par habitant apr&#xE8;s imp&#xF4;t </option>
+</select>
+                            </div>
+                            <div class="filters-item">
+                                <select id="YearSelect" class="chosen-select" name="Year"><option selected="selected" value="2023">2023</option>
+<option value="2022">2022</option>
+<option value="2021">2021</option>
+<option value="2020">2020</option>
+<option value="2019">2019</option>
+<option value="2018">2018</option>
+<option value="2017">2017</option>
+<option value="2016">2016</option>
+<option value="2015">2015</option>
+<option value="2014">2014</option>
+<option value="2013">2013</option>
+<option value="2012">2012</option>
+<option value="2011">2011</option>
+<option value="2010">2010</option>
+<option value="2009">2009</option>
+<option value="2008">2008</option>
+<option value="2007">2007</option>
+<option value="2006">2006</option>
+<option value="2005">2005</option>
+</select>
+                            </div>
+                            <div class="filters-item">
+                                <select id="GeoEntitySelect" class="chosen-select" name="GeoEntity" data-val="true" data-val-required="The GeoEntity field is required."><option value="2">Quartiers</option>
+<option value="1">Communes</option>
+</select>
+                            </div>
+                            <button type="submit" class="filters-item btn btn-primary" id="executeActionSources">Afficher la carte</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="interactive-map-wrapper">
+                   <input id="map_url" type="hidden" value="https://geodata.perspective.brussels/client/mdq/fr/65707" />
+                    <div class="interactive-map-container">
+
+                    </div>
+                </div>
+            </div>
+            <!-- Indicator Sheet -->
+            <div class="tab-pane show fade stat-sheet" id="sheet" role="tabpanel" aria-labelledby="sheet-link">
+                <div class="stat-sheet-title">
+                    <h3 class="h3-lg">Revenu &#xE9;quivalent m&#xE9;dian des habitant&#xB7;es apr&#xE8;s imp&#xF4;t </h3>
+                </div>
+                <div class="row stat-sheet-wrapper">
+                    <div class="col-lg-8 col-md-12 stat-sheet-wrap">
+                        <div class="stat-sheet-wrap-textblock">
+                            <h5 class="h5-sm stat-sheet-wrap-textblock-title">Th&#xE8;me(s)</h5>
+                            <ul class="stat-sheet-wrap-textblock-body">
+                                    <li>
+                                        Revenus, pr&#xE9;carit&#xE9; et aide sociale
+                                    </li>
+                            </ul>
+                        </div>
+                        <div class="stat-sheet-wrap-textblock">
+                            <h5 class="h5-sm stat-sheet-wrap-textblock-title">Sous-th&#xE8;me(s)</h5>
+                            <ul class="stat-sheet-wrap-textblock-body">
+                                    <li>
+                                        Revenus fiscaux
+                                    </li>
+                            </ul>
+                        </div>
+                            <div class="stat-sheet-wrap-textblock">
+                                <h5 class="h5-sm stat-sheet-wrap-textblock-title">Unit&#xE9;</h5>
+                                <div class="stat-sheet-wrap-textblock-body">
+                                    &#x20AC;
+                                </div>
+                            </div>
+                            <div class="stat-sheet-wrap-textblock">
+                                <h5 class="h5-sm stat-sheet-wrap-textblock-title">Echelle</h5>
+                                <div class="stat-sheet-wrap-textblock-body">
+                                    Communes / Quartiers / Secteurs
+                                </div>
+                            </div>
+                            <div class="stat-sheet-wrap-textblock">
+                                <h5 class="h5-sm stat-sheet-wrap-textblock-title">Sources</h5>
+                                <div class="stat-sheet-wrap-textblock-body">
+                                        <a class="" href="/Source/SourceDetails/51"> Revenu &#xE9;quivalent m&#xE9;dian des habitant&#xB7;es apr&#xE8;s imp&#xF4;t (IBSA &amp; Statbel (Direction g&#xE9;n&#xE9;rale Statistique &#x2013; Statistics Belgium)  (Statistique fiscale des revenus)) </a>
+                                </div>
+                            </div>
+
+                            <div class="stat-sheet-wrap-textblock">
+                                <h5 class="h5-sm stat-sheet-wrap-textblock-title">D&#xE9;finition</h5>
+                                <div class="stat-sheet-wrap-textblock-body">
+                                    <p>Le revenu m&eacute;dian des habitant&middot;es d&rsquo;un territoire est le revenu de l&rsquo;habitant&middot;e situ&eacute; au centre de la s&eacute;rie, lorsque les habitant&middot;es de ce territoire sont class&eacute;s par ordre croissant de revenu.</p>
+
+<p>&nbsp;</p>
+
+<p>Le revenu utilis&eacute; pour cet indicateur est le revenu &eacute;quivalent apr&egrave;s imp&ocirc;t&nbsp;:</p>
+
+<p>&nbsp;</p>
+
+<p>- Revenu &eacute;quivalent&nbsp;: Pour pouvoir comparer le niveau de vie des habitant&middot;es de mani&egrave;re plus juste, les diff&eacute;rences de taille et de composition entre les m&eacute;nages sont neutralis&eacute;es. Avec cette m&eacute;thode, tous les membres d&rsquo;un m&ecirc;me m&eacute;nage sont suppos&eacute;s avoir un niveau de vie identique et se voient donc attribuer un m&ecirc;me revenu, le revenu &eacute;quivalent. Celui-ci est calcul&eacute; en prenant en compte le revenu total des membres du m&eacute;nage, le nombre de ses membres et leur &acirc;ge.</p>
+
+<p>&nbsp;</p>
+
+<p>- Revenu apr&egrave;s imp&ocirc;t&nbsp;: il s&rsquo;agit du revenu restant apr&egrave;s avoir d&eacute;duit les imp&ocirc;ts. Il est calcul&eacute; en soustrayant le montant de l&rsquo;imp&ocirc;t total du revenu total net imposable.</p>
+
+<p>&nbsp;</p>
+
+<p>Pour &eacute;tablir cette statistique, on &eacute;carte d&#39;abord toutes les personnes faisant partie d&rsquo;un m&eacute;nage collectif (maison de repos et de soins, h&ocirc;pitaux, prisons, etc.) et tous les m&eacute;nages dont le revenu total net imposable est &eacute;gal &agrave; z&eacute;ro.</p>
+
+                                </div>
+                            </div>
+                            <div class="stat-sheet-wrap-textblock">
+                                <h5 class="h5-sm stat-sheet-wrap-textblock-title">Inter&#xEA;t</h5>
+                                <div class="stat-sheet-wrap-textblock-body">
+                                    <p>Le revenu des m&eacute;nages est un indicateur de leur niveau de vie puisqu&rsquo;il correspond &agrave; une estimation de leur pouvoir d&#39;achat, et donc de leur capacit&eacute; d&#39;acc&egrave;s &agrave; diff&eacute;rents biens et services (alimentation, culture, logement...).</p>
+
+<p>&nbsp;</p>
+
+<p>Par rapport aux autres indicateurs de revenu, le revenu &eacute;quivalent m&eacute;dian apr&egrave;s imp&ocirc;t pr&eacute;sente plusieurs avantages&nbsp;:</p>
+
+<p>&nbsp;</p>
+
+<p>- L&rsquo;usage du revenu &eacute;quivalent permet de mieux comparer le niveau de vie des personnes en prenant en compte les caract&eacute;ristiques et le revenu total du m&eacute;nage dont elles font partie.</p>
+
+<p>&nbsp;</p>
+
+<p>- L&rsquo;usage du revenu m&eacute;dian plut&ocirc;t que du revenu moyen permet de limiter l&rsquo;influence de valeurs extr&ecirc;mes, un nombre restreint de personnes avec un revenu tr&egrave;s &eacute;lev&eacute; ayant par exemple moins d&rsquo;influence sur le revenu m&eacute;dian du territoire o&ugrave; elles habitent que sur le revenu moyen.</p>
+
+<p>&nbsp;</p>
+
+<p>- L&rsquo;usage du revenu apr&egrave;s imp&ocirc;t plut&ocirc;t que du revenu imposable permet d&rsquo;&ecirc;tre plus proche du revenu disponible et de mieux approcher la notion de niveau de vie.</p>
+
+                                </div>
+                            </div>
+                            <div class="stat-sheet-wrap-textblock">
+                                <h5 class="h5-sm stat-sheet-wrap-textblock-title">Remarques</h5>
+                                <div class="stat-sheet-wrap-textblock-body">
+                                    <p>Les caract&eacute;ristiques de la source de donn&eacute;es utilis&eacute;e pour cet indicateur impliquent un certain nombre de pr&eacute;cautions lors d&rsquo;analyses en mati&egrave;re de niveau de vie ou de pouvoir d&rsquo;achat des m&eacute;nages. On notera par exemple les &eacute;l&eacute;ments suivants&nbsp;:</p>
+
+<p>&nbsp;</p>
+
+<p>- La source de base pour le calcul du revenu apr&egrave;s imp&ocirc;t est le revenu total net imposable de chaque d&eacute;claration fiscale.<br />
+Celui-ci a le d&eacute;faut de ne pas inclure certains revenus tels que le revenu d&#39;int&eacute;gration sociale octroy&eacute; par les CPAS et les allocations familiales.<br />
+Il sous-estime aussi g&eacute;n&eacute;ralement les revenus mobiliers et immobiliers en raison des r&egrave;gles d&rsquo;imposition sp&eacute;cifiques &agrave; ces cat&eacute;gories de revenus.<br />
+Enfin, certains revenus ne sont pas impos&eacute;s du fait de syst&egrave;mes de taxations particuliers, comme dans le cas de la plupart des personnes travaillant pour&nbsp;des organisations internationales (telles que les institutions europ&eacute;ennes, l&rsquo;OTAN&hellip;).<br />
+Le revenu apr&egrave;s imp&ocirc;t des m&eacute;nages peut donc &ecirc;tre plus ou moins &eacute;loign&eacute; de leur revenu disponible, qui est l&rsquo;indicateur id&eacute;al pour analyser le niveau de vie d&rsquo;un point de vue &eacute;conomique.</p>
+
+<p>&nbsp;</p>
+
+<p>- La couverture de la population n&rsquo;est pas exhaustive pour le revenu &eacute;quivalent. Les personnes qui ne sont pas reprises dans la population officielle ne le sont pas non plus ici, tandis que les personnes r&eacute;sidant dans des m&eacute;nages collectifs sont &eacute;cart&eacute;es. Par ailleurs, les personnes faisant partie d&rsquo;un m&eacute;nage avec un revenu imposable &eacute;gal &agrave; 0 sont &eacute;cart&eacute;es avant d&rsquo;&eacute;tablir les statistiques.</p>
+
+<p>&nbsp;</p>
+
+<p>- Les statistiques bas&eacute;es sur les revenus fiscaux ne peuvent &ecirc;tre compar&eacute;es d&#39;une ann&eacute;e &agrave; l&#39;autre qu&#39;avec pr&eacute;caution. En effet, les changements dans la r&eacute;glementation fiscale ou les &eacute;volutions dans le traitement administratif et l&#39;enr&ocirc;lement des d&eacute;clarations peuvent avoir des impacts significatifs sur ces statistiques.</p>
+
+<p>&nbsp;</p>
+
+<p>- La m&eacute;thode utilis&eacute;e pour &eacute;tablir un revenu &eacute;quivalent par personne suppose que toutes les personnes faisant partie d&rsquo;un m&ecirc;me m&eacute;nage ont un revenu &eacute;quivalent identique et par cons&eacute;quent le m&ecirc;me niveau de vie. Il s&rsquo;agit d&rsquo;une hypoth&egrave;se discutable.</p>
+
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <button type="button" id="printPageIndicatorSheet" class="btn-icon-block"><span class="btn-icon-block-left"><i class="icon-map-print-white"></i></span>Imprimer</button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <h5 class="h5-sm stat-sheet-wrap-textblock-title">Disponibilit&#xE9;s</h5>
+                    <table class="table table-striped table-borderless">
+                            <thead>
+                                <tr>
+                                    <th>Date de la carte</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                        <td>2023</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2022</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2021</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2020</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2019</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2018</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2017</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2016</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2015</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2014</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2013</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2012</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2011</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2010</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2009</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2008</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2007</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2006</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2005</td>
+                                    </tr>
+                            </tbody>
+                    </table>
+                </div>
+
+            <div>
+            </div>
+            </div>
+            <div class="tab-pane show fade stat-sheet" id="analysis" role="tabpanel" aria-labelledby="analysis-link">
+                <div class="stat-sheet-title">
+                    <h3 class="h3-lg">Revenu &#xE9;quivalent m&#xE9;dian des habitant&#xB7;es apr&#xE8;s imp&#xF4;t </h3>
+                </div>
+                <div class="row stat-sheet-wrapper">
+                    <div class="col-lg-8 col-md-12 stat-sheet-wrap">
+                        <div class="stat-sheet-wrap-textblock">
+                            <h5 class="h5-sm stat-sheet-wrap-textblock-title">Th&#xE8;me(s)</h5>
+                            <ul class="stat-sheet-wrap-textblock-body">
+                                    <li>
+                                        Revenus, pr&#xE9;carit&#xE9; et aide sociale
+                                    </li>
+                            </ul>
+                        </div>
+                        <div class="stat-sheet-wrap-textblock">
+                            <h5 class="h5-sm stat-sheet-wrap-textblock-title">Sous-th&#xE8;me(s)</h5>
+                            <ul class="stat-sheet-wrap-textblock-body">
+                                    <li>
+                                        Revenus fiscaux
+                                    </li>
+                            </ul>
+                        </div>
+
+                            <div class="stat-sheet-wrap-textblock">
+                                <h5 class="h5-sm stat-sheet-wrap-textblock-title">R&#xE9;gion  (2023)</h5>
+                                <div class="stat-sheet-wrap-textblock-body">
+                                    19329
+                                </div>
+                            </div>
+
+                            <div class="stat-sheet-wrap-textblock">
+                                <h5 class="h5-sm stat-sheet-wrap-textblock-title">Unit&#xE9;</h5>
+                                <div class="stat-sheet-wrap-textblock-body">
+                                    &#x20AC;
+                                </div>
+                            </div>
+                            <div class="stat-sheet-wrap-textblock">
+                                <h5 class="h5-sm stat-sheet-wrap-textblock-title">Introduction</h5>
+                                <div class="stat-sheet-wrap-textblock-body">
+                                    <p>La carte du revenu &eacute;quivalent m&eacute;dian des habitant&middot;es apr&egrave;s imp&ocirc;t donne une indication des disparit&eacute;s g&eacute;ographiques de niveau de vie en R&eacute;gion de Bruxelles-Capitale. Le revenu &eacute;quivalent apr&egrave;s imp&ocirc;t permet en effet d&rsquo;estimer le pouvoir d&#39;achat de la population et sa capacit&eacute; d&rsquo;acc&egrave;s aux biens et aux services tels que le logement, la culture, l&#39;alimentation...</p>
+
+<p>&nbsp;</p>
+
+<p>Par rapport aux indicateurs bas&eacute;s sur le revenu imposable, le revenu &eacute;quivalent apr&egrave;s imp&ocirc;t a l&rsquo;avantage de mieux prendre en compte la composition des m&eacute;nages et d&rsquo;&ecirc;tre plus proche du revenu disponible puisque l&rsquo;imp&ocirc;t est d&eacute;duit. Le revenu &eacute;quivalent m&eacute;dian a par ailleurs l&#39;avantage d&#39;&ecirc;tre moins sensible aux valeurs extr&ecirc;mes que le revenu &eacute;quivalent moyen.</p>
+
+<p>&nbsp;</p>
+
+<p>Le revenu &eacute;quivalent m&eacute;dian des habitant&middot;es apr&egrave;s imp&ocirc;t sera simplement nomm&eacute; revenu &eacute;quivalent m&eacute;dian dans la suite de cette fiche.</p>
+
+                                </div>
+                            </div>
+                            <div class="stat-sheet-wrap-textblock highlighted">
+                                <h5 class="h5-sm stat-sheet-wrap-textblock-title">Description</h5>
+                                <div class="stat-sheet-wrap-textblock-body">
+                                    <h3><strong>1. En 2023</strong></h3>
+
+<table border="0">
+	<tbody>
+		<tr>
+			<td>Les quartiers aux revenus &eacute;quivalents m&eacute;dians les plus faibles se concentrent principalement dans le&nbsp;<em>croissant pauvre</em>, tandis que les quartiers aux plus hauts revenus &eacute;quivalent m&eacute;dians se situent surtout dans le <em>quadrant</em> sud-est de la&nbsp;<em>seconde couronne</em>.</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p>La plupart des quartiers aux revenus m&eacute;dians les plus faibles, inf&eacute;rieurs &agrave; 17&nbsp;300&nbsp;&euro;, se situent dans le sud-ouest du <em>Pentagone</em> et dans les parties nord et ouest de la <em>premi&egrave;re couronne</em>. Ils forment ainsi le <em>croissant pauvre</em> de la R&eacute;gion, autour du centre-ville.</p>
+
+<p>&nbsp;</p>
+
+<p>Quelques quartiers de l&rsquo;ouest de la <em>deuxi&egrave;me couronne</em> pr&eacute;sentent &eacute;galement des revenus &eacute;quivalents m&eacute;dians inf&eacute;rieurs &agrave; 17&nbsp;300 &euro;. Trois d&rsquo;entre eux (Anderlecht - Centre - Wayez, Karreveld et Vieux Laeken Ouest) sont directement adjacents aux quartiers de <em>premi&egrave;re couronne</em> formant le <em>croissant pauvre.</em> Ils viennent donc &eacute;tendre ce <em>croissant pauvre</em> qui se limitait historiquement aux fronti&egrave;res de la <em>premi&egrave;re couronne</em>.</p>
+
+<p>&nbsp;</p>
+
+<p>Les quartiers du <em>Pentagone</em> et de la&nbsp;<em>premi&egrave;re couronne</em>&nbsp;qui ne font pas partie de ce&nbsp;<em>croissant pauvre</em>&nbsp;pr&eacute;sentent des profils h&eacute;t&eacute;rog&egrave;nes. Pour la plupart de ces quartiers, le revenu &eacute;quivalent m&eacute;dian varie entre&nbsp;17&nbsp;300&nbsp;&euro; et&nbsp;23&nbsp;300&nbsp;&euro;. Trois quartiers du sud de la <em>premi&egrave;re couronne</em>, Brugmann - Lepoutre, Churchill et &Eacute;tangs d&rsquo;Ixelles, et un quartier peu peupl&eacute; du <em>Pentagone</em>, Quartier Royal, se d&eacute;marquent avec les revenus &eacute;quivalents m&eacute;dians les plus &eacute;lev&eacute;s de la zone, sup&eacute;rieurs &agrave; 23&nbsp;300&nbsp;&euro;.</p>
+
+<p>&nbsp;</p>
+
+<p>Les quartiers aux plus hauts revenus &eacute;quivalents m&eacute;dians de la R&eacute;gion bruxelloise sont majoritairement rassembl&eacute;s dans le&nbsp;<em>quadrant</em>&nbsp;sud-est de la&nbsp;<em>seconde couronne</em>. Dans ce <em>quadrant</em>, la plupart des quartiers pr&eacute;sentent un revenu &eacute;quivalent m&eacute;dian sup&eacute;rieur &agrave; 23&nbsp;300&nbsp;&euro; et trois d&rsquo;entre eux pr&eacute;sentent m&ecirc;me des revenus &eacute;quivalents m&eacute;dians sup&eacute;rieurs &agrave; 27&nbsp;000&nbsp;&euro; (Putdael, Sainte-Alix - Joli Bois et Vivier d&#39;Oie). N&eacute;anmoins, le revenu &eacute;quivalent m&eacute;dian est inf&eacute;rieur &agrave; 19&nbsp;250&nbsp;&euro; dans deux quartiers de ce <em>quadrant</em> de la <em>seconde couronne</em>&nbsp;: Kapelleveld et Trois Tilleuls. Il s&rsquo;agit de quartiers avec une part importante de logements sociaux, combin&eacute;e, pour le premier, &agrave; une forte pr&eacute;sence d&rsquo;&eacute;tudiant&middot;es.</p>
+
+<p>&nbsp;</p>
+
+<p>Les revenus &eacute;quivalents m&eacute;dians dans les quartiers du reste de la&nbsp;<em>seconde couronne</em>&nbsp;sont g&eacute;n&eacute;ralement moins &eacute;lev&eacute;s que dans son&nbsp;<em>quadrant</em>&nbsp;sud-est mais plus &eacute;lev&eacute;s que dans le <em>croissant pauvre</em>, c&rsquo;est-&agrave;-dire situ&eacute;s entre 17&nbsp;300&nbsp;&euro; et 23&nbsp;300&nbsp;&euro;.<br />
+Plusieurs exceptions sont &agrave; noter. D&rsquo;une part, le&nbsp;quartier&nbsp;peu peupl&eacute;&nbsp;Potaarde &agrave; l&rsquo;ouest et le quartier Val d&rsquo;Or &agrave; l&rsquo;est pr&eacute;sentent un revenu &eacute;quivalent m&eacute;dian sup&eacute;rieur &agrave; 23&nbsp;300&nbsp;&euro;. D&rsquo;autre part, le revenu &eacute;quivalent m&eacute;dian est inf&eacute;rieur &agrave; 17&nbsp;300&nbsp;&euro; dans le quartier Bon Air, &agrave; l&rsquo;ouest. Il s&rsquo;agit d&rsquo;un quartier peu peupl&eacute; et compos&eacute; en grande partie de logements sociaux.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>2. De 2005 &agrave; 2023</strong></h3>
+
+<p>Le revenu &eacute;quivalent m&eacute;dian pour la R&eacute;gion est pass&eacute; de 11&nbsp;803&nbsp;&euro; en 2005 &agrave; 19&nbsp;329&nbsp;&euro; en 2023. Bien que la r&eacute;partition g&eacute;ographique soit rest&eacute;e assez stable entre 2005 et 2023, le revenu &eacute;quivalent m&eacute;dian a g&eacute;n&eacute;ralement augment&eacute; un peu plus faiblement dans les quartiers situ&eacute;s &agrave; l&rsquo;ouest du canal que dans ceux situ&eacute;s &agrave; l&rsquo;est de celui-ci.</p>
+
+                                </div>
+                            </div>
+
+                            <div class="stat-sheet-wrap-textblock">
+                                <h5 class="h5-sm stat-sheet-wrap-textblock-title">Remarques</h5>
+                                <div class="stat-sheet-wrap-textblock-body">
+                                    <p>Les caract&eacute;ristiques de la source de donn&eacute;es utilis&eacute;e pour cet indicateur impliquent un certain nombre de pr&eacute;cautions lors d&rsquo;analyses en mati&egrave;re de niveau de vie ou de pouvoir d&rsquo;achat des m&eacute;nages. On notera par exemple les &eacute;l&eacute;ments suivants&nbsp;:</p>
+
+<p>&nbsp;</p>
+
+<p>- La source de base pour le calcul du revenu apr&egrave;s imp&ocirc;t est le revenu total net imposable de chaque d&eacute;claration fiscale.<br />
+Celui-ci a le d&eacute;faut de ne pas inclure certains revenus tels que le revenu d&#39;int&eacute;gration sociale octroy&eacute; par les CPAS et les allocations familiales.<br />
+Il sous-estime aussi g&eacute;n&eacute;ralement les revenus mobiliers et immobiliers en raison des r&egrave;gles d&rsquo;imposition sp&eacute;cifiques &agrave; ces cat&eacute;gories de revenus.<br />
+Enfin, certains revenus ne sont pas impos&eacute;s du fait de syst&egrave;mes de taxations particuliers, comme dans le cas de la plupart des personnes travaillant pour&nbsp;des organisations internationales (telles que les institutions europ&eacute;ennes, l&rsquo;OTAN&hellip;).<br />
+Le revenu apr&egrave;s imp&ocirc;t des m&eacute;nages peut donc &ecirc;tre plus ou moins &eacute;loign&eacute; de leur revenu disponible, qui est l&rsquo;indicateur id&eacute;al pour analyser le niveau de vie d&rsquo;un point de vue &eacute;conomique.</p>
+
+<p>&nbsp;</p>
+
+<p>- La couverture de la population n&rsquo;est pas exhaustive pour le revenu &eacute;quivalent. Les personnes qui ne sont pas reprises dans la population officielle ne le sont pas non plus ici, tandis que les personnes r&eacute;sidant dans des m&eacute;nages collectifs sont &eacute;cart&eacute;es. Par ailleurs, les personnes faisant partie d&rsquo;un m&eacute;nage avec un revenu imposable &eacute;gal &agrave; 0 sont &eacute;cart&eacute;es avant d&rsquo;&eacute;tablir les statistiques.</p>
+
+<p>&nbsp;</p>
+
+<p>- Les statistiques bas&eacute;es sur les revenus fiscaux ne peuvent &ecirc;tre compar&eacute;es d&#39;une ann&eacute;e &agrave; l&#39;autre qu&#39;avec pr&eacute;caution. En effet, les changements dans la r&eacute;glementation fiscale ou les &eacute;volutions dans le traitement administratif et l&#39;enr&ocirc;lement des d&eacute;clarations peuvent avoir des impacts significatifs sur ces statistiques.</p>
+
+<p>&nbsp;</p>
+
+<p>- La m&eacute;thode utilis&eacute;e pour &eacute;tablir un revenu &eacute;quivalent par personne suppose que toutes les personnes faisant partie d&rsquo;un m&ecirc;me m&eacute;nage ont un revenu &eacute;quivalent identique et par cons&eacute;quent le m&ecirc;me niveau de vie. Il s&rsquo;agit d&rsquo;une hypoth&egrave;se discutable.</p>
+
+                                </div>
+                            </div>
+                        <p><em>La d&#xE9;finition des mots en italique se trouve dans le glossaire du site.</em></p>
+
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <button type="button" id="printPageAnalysisSheet" class="btn-icon-block"><span class="btn-icon-block-left"><i class="icon-map-print-white"></i></span>Imprimer</button>
+                    </div>
+                </div>
+            
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const filterButton = document.getElementById("analysis-link");
+        let timeoutId;
+
+        if (filterButton) {
+            filterButton.addEventListener("click", function () {
+                // Si on change d’onglet avant les 5s, on annule l'envoi
+                document.addEventListener("visibilitychange", function () {
+                    if (document.hidden && timeoutId) {
+                        clearTimeout(timeoutId);
+                    }
+                });
+
+                timeoutId = setTimeout(function () {
+                    plausible("analysis-tab-clicked", {
+                        props: {
+                            indicator: "Revenu \u00E9quivalent m\u00E9dian des habitant\u00B7es apr\u00E8s imp\u00F4t "
+                        }
+                    });
+                }, 5000); // 5000 ms = 5 secondes
+            });
+        }
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const filterButton = document.getElementById("sheet-link");
+        let timeoutId;
+
+        if (filterButton) {
+            filterButton.addEventListener("click", function () {
+                // Si on change d’onglet avant les 5s, on annule l'envoi
+                document.addEventListener("visibilitychange", function () {
+                    if (document.hidden && timeoutId) {
+                        clearTimeout(timeoutId);
+                    }
+                });
+
+                timeoutId = setTimeout(function () {
+                    plausible("indicator-tab-clicked", {
+                        props: {
+                            indicator: "Revenu \u00E9quivalent m\u00E9dian des habitant\u00B7es apr\u00E8s imp\u00F4t "
+                        }
+                    });
+                }, 5000); // 5000 ms = 5 secondes
+            });
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        const value = $("#map_url").val();
+        $(".interactive-map-container").html(`<iframe class="interactive-map" src="${value}" width="100%" height='800px' allowFullScreen></iframe>`);
+        $('#map-link').click(function () {
+            $(".interactive-map-container").html(`<iframe class="interactive-map" src="${value}" width="100%" height='800px' allowFullScreen></iframe>`);
+        })
+
+        var isVariable = $('#isVariable').val();
+        if (isVariable) {
+            $('#map-link').parent().hide();
+            $('#sheet-link').click()
+        }
+
+        var iframe = document.querySelector('iframe');
+        var input = document.querySelector('input');
+        if (iframe != null) {
+            iframe.addEventListener("load", onLoad);
+        }
+        function onLoad() {
+            input.addEventListener("change", () => iframe.contentWindow.postMessage(parseInt(input.value), '*'))
+        }
+        
+        var cultureInfo = 'fr-BE';
+        var bannerTtitle = 'Carte interactive';
+        if (cultureInfo === 'nl-BE')
+            bannerTtitle = 'Interactieve kaarten';
+
+
+        $('#bannerTitle')
+            .text(bannerTtitle)
+            .parent()
+            .parent()
+            .addClass('active');
+
+        $(".chosen-select").chosen({ width: "100%" });
+
+        var combinations = JSON.parse("[{&quot;Id&quot;:2157,&quot;Title&quot;:&quot;Revenu imposable moyen par habitant (classes de revenus)&quot;,&quot;Show&quot;:true,&quot;Order&quot;:null,&quot;Years&quot;:[{&quot;Year&quot;:&quot;2005&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2006&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2016&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2017&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2018&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2007&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2008&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2009&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2010&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2011&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2021&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2020&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2014&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2015&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2019&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2012&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2013&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2022&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2023&quot;,&quot;ShowGeoEntities&quot;:[2,1]}]},{&quot;Id&quot;:2335,&quot;Title&quot;:&quot;Revenu imposable moyen par d\u00E9claration (classes de revenus)&quot;,&quot;Show&quot;:true,&quot;Order&quot;:null,&quot;Years&quot;:[{&quot;Year&quot;:&quot;2009&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2010&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2011&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2013&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2014&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2016&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2018&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2019&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2017&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2021&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2020&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2012&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2005&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2006&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2007&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2008&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2015&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2022&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2023&quot;,&quot;ShowGeoEntities&quot;:[2,1]}]},{&quot;Id&quot;:2336,&quot;Title&quot;:&quot;Revenu imposable m\u00E9dian des d\u00E9clarations&quot;,&quot;Show&quot;:true,&quot;Order&quot;:null,&quot;Years&quot;:[{&quot;Year&quot;:&quot;2005&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2006&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2009&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2011&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2012&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2015&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2013&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2016&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2017&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2018&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2007&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2008&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2021&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2020&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2010&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2014&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2019&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2022&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2023&quot;,&quot;ShowGeoEntities&quot;:[2,1]}]},{&quot;Id&quot;:2498,&quot;Title&quot;:&quot;Revenu \u00E9quivalent m\u00E9dian des habitant\u00B7es apr\u00E8s imp\u00F4t &quot;,&quot;Show&quot;:true,&quot;Order&quot;:null,&quot;Years&quot;:[{&quot;Year&quot;:&quot;2023&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2022&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2021&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2020&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2019&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2018&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2017&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2016&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2015&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2014&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2013&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2012&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2011&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2010&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2009&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2008&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2007&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2006&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2005&quot;,&quot;ShowGeoEntities&quot;:[2,1]}]},{&quot;Id&quot;:2500,&quot;Title&quot;:&quot;Revenu \u00E9quivalent moyen par habitant apr\u00E8s imp\u00F4t &quot;,&quot;Show&quot;:true,&quot;Order&quot;:null,&quot;Years&quot;:[{&quot;Year&quot;:&quot;2005&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2006&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2007&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2008&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2009&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2010&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2011&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2012&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2013&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2014&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2015&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2016&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2017&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2018&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2021&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2020&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2022&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2019&quot;,&quot;ShowGeoEntities&quot;:[2,1]},{&quot;Year&quot;:&quot;2023&quot;,&quot;ShowGeoEntities&quot;:[2,1]}]}]".replaceAll("&quot;", '"'));
+        indicatorChosen(combinations);
+        $('#IndicatorSelect').on('change', function () {
+            indicatorChosen(combinations)
+        })
+        $('#YearSelect').on('change', function () {
+            YearChosen(combinations);
+        })
+
+
+        $("#glossaryListButton").show(500);
+        if ($('#starting-tab').val() == 'Sheet') {
+            $('#sheet-link').click()
+        }
+        if ($('#starting-tab').val() == 'Analysis') {
+            $('#analysis-link').click()
+        }
+    })
+    function indicatorChosen(combinations) {
+        var selectedIndicator = $('#IndicatorSelect').val();
+        var allowedYears = combinations.find(x => x.Id == selectedIndicator).Years.map(x=>x.Year+"");
+        var yearOptions = $('#YearSelect').find('option');
+        var selectedYear = $('#YearSelect').val();
+        $(yearOptions).each(function (a) {
+            if (allowedYears.includes($(this).val())) {
+                $(this).show();
+            }
+            else {
+                $(this).hide();
+            }
+        })
+        if (!allowedYears.includes(selectedYear)) {
+            $('#YearSelect').val(allowedYears[0]);
+        }
+        YearChosen(combinations);
+        $('#YearSelect').trigger('chosen:updated')
+        $('#GeoEntitySelect').trigger('chosen:updated')
+    }
+    function YearChosen(combinations) {
+        var selectedIndicator = $('#IndicatorSelect').val();
+        var selectedYear = $('#YearSelect').val();
+        var allowedGeoEntities = [];
+        var yearObject = combinations.find(x => x.Id == selectedIndicator).Years.find(x => x.Year == selectedYear);
+        if (yearObject) {
+            allowedGeoEntities = yearObject.ShowGeoEntities.map(x => x + "");
+        }
+        var GeoEntityOptions = $('#GeoEntitySelect option');
+        $(GeoEntityOptions).each(function (a) {
+            if (allowedGeoEntities.includes($(this).val())) {
+                $(this).show();
+            }
+            else {
+                $(this).hide();
+            }
+        })
+        if (!allowedGeoEntities.includes($('#GeoEntitySelect').val())) {
+            $('#GeoEntitySelect').val(allowedGeoEntities[0]);
+        }
+        $('#GeoEntitySelect').trigger('chosen:updated')
+
+    }
+    function goToIndicator(e) {
+        e.preventDefault();
+        form = $(e.target);
+        var indicatorId = form.find('[name="IndicatorId"]').val();
+        var geoEntity = form.find('[name="GeoEntity"]').val();
+        var year = form.find('[name="Year"]').val();
+        var subTheme = form.find('[name="subThemeId"]').val();
+
+        var yearQuery = year ? `Year=${year}&` : "";
+        var geoEntityQuery = geoEntity ? `GeoEntity=${geoEntity}&` : "";
+        var subThemeQuery = subTheme ? `SubTheme=${subTheme}` : "";
+
+        window.location.href = `/Indicator/IndicatorPage/${indicatorId}?${yearQuery}${geoEntityQuery}${subThemeQuery}`
+    }
+
+    //$('.formula-link').on('click', function (e) {
+    //    e.preventDefault();
+    //    var formulaLink = $(this).text();
+    //    var id = $('#' + formulaLink).val();
+    //    window.location.href = `/Indicator/VariableIndicatorPage/${id}`;
+    //});
+
+    $('#printPageIndicatorSheet, #printPageAnalysisSheet').on('click', function (e) {
+        window.print();
+    });
+</script>
+
+    <script>
+            $(document).ready(function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                const tab = urlParams.get('tab');   // "sheet-link" ou "analysis-link"
+                const hash = window.location.hash;  // "#sheet" ou "#analysis"
+
+                if (tab) {
+                    const $tabLink = $('#' + tab);
+                    if ($tabLink.length) {
+                        $tabLink.tab('show');
+
+                        if (hash) {
+                            $tabLink.one('shown.bs.tab', function () {
+                                const $target = $(hash);
+                                if ($target.length) {
+                                    $('html, body').animate({ scrollTop: $target.offset().top }, 300);
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+    </script>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <h2>Nos autres sites</h2>
+                    <ul class="footer-list">
+                        <li><a class="btn-link-invert btn-icon-right" href="https://perspective.brussels/" target="_blank">perspective.brussels</a><i class="icon-external-link"></i></li>
+                        <li><a class="btn-link-invert btn-icon-right" href="http://ibsa.brussels/" target="_blank">ibsa.brussels</a><i class="icon-external-link"></i></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <h2>ibsa.brussels</h2>
+                    <ul class="footer-list">
+                        <li>rue de Namur 59</li>
+                        <li>B-1000 Bruxelles</li>
+                        <li><a class="btn-link-invert" href="tel:003224354230">+32 2 435 42 30</a></li>
+                        <li><a class="btn-link-invert" href="mail:ibsa@perspective.brussels">ibsa@perspective.brussels</a></li>
+                        <li><a class="btn-link-invert" href="mail:monitoringdesquartiers@perspective.brussels">monitoringdesquartiers@perspective.brussels</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <h2>Suivez-nous</h2>
+                    <ul class="footer-list footer-social inline-list">
+                        <li><a href="https://www.linkedin.com/company/brussels-instituut-voor-statistiek-en-analyse"><i class="icon-vendor-li"></i></a></li>
+                        <li><a href="https://www.facebook.com/IBSAbrussels/"><i class="icon-vendor-fb"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row footer-credits mt-lg">
+                <div class="col-lg-4 col-md-12 footer-credits-legal">
+                        <a class="btn-link-menu" href="/clauses">Mentions l&#xE9;gales - </a>
+                    <a class="btn-link-menu" href="/credits">Cr&#xE9;dits</a>
+
+
+                </div>
+                <div class="col-lg-4 col-md-12 offset-lg-4">
+                    <h2>perspective.brussels</h2>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <div class='loader-wrapper'>
+        <div class="loader-overlay"></div>
+        <div class='loader'>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+        </div>
+    </div>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>

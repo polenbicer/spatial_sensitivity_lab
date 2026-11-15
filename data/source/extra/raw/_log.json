@@ -1,92 +1,122 @@
 [
  {
-  "name": "bru_income_table_65707",
-  "url": "https://geodata.perspective.brussels/api/geodata/mdq/table/65707/fr",
-  "retrieved": "2026-11-15T15:30:18.179700Z",
+  "name": "bru_mdq_home",
+  "url": "https://monitoringdesquartiers.brussels/",
+  "retrieved": "2026-11-15T15:31:43.935676Z",
   "status": 200,
-  "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-  "bytes": 10722
+  "content_type": "text/html; charset=utf-8",
+  "bytes": 63074
  },
  {
   "name": "bru_indicator_page_2498",
   "url": "https://monitoringdesquartiers.brussels/Indicator/IndicatorPage/2498?tab=Sheet&SubTheme=28",
-  "retrieved": "2026-11-15T15:30:19.616115Z",
-  "status": "error",
-  "error": "<HTTPError 302: 'The HTTP server returned a redirect error that would lead to an infinite loop.\\nThe last 30x error message was:\\nFound'>"
+  "retrieved": "2026-11-15T15:31:46.143464Z",
+  "status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "bytes": 70749
  },
  {
-  "name": "bru_mdq_home",
-  "url": "https://monitoringdesquartiers.brussels/",
-  "retrieved": "2026-11-15T15:30:25.660786Z",
-  "status": "error",
-  "error": "<HTTPError 302: 'The HTTP server returned a redirect error that would lead to an infinite loop.\\nThe last 30x error message was:\\nFound'>"
+  "name": "ams_risk_fs",
+  "url": "https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer?f=json",
+  "retrieved": "2026-11-15T15:31:46.953285Z",
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "bytes": 3207
  },
  {
-  "name": "bru_mdq_indicators",
-  "url": "https://monitoringdesquartiers.brussels/Indicator",
-  "retrieved": "2026-11-15T15:30:29.729808Z",
-  "status": "error",
-  "error": "<HTTPError 404: 'Not Found'>"
+  "name": "ams_risk_fs_layer0",
+  "url": "https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&f=json",
+  "retrieved": "2026-11-15T15:31:47.202013Z",
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "bytes": 3275213
  },
  {
-  "name": "bru_geodata_mdq_root",
-  "url": "https://geodata.perspective.brussels/api/geodata/mdq",
-  "retrieved": "2026-11-15T15:30:30.135913Z",
-  "status": "error",
-  "error": "<HTTPError 404: 'Not Found'>"
+  "name": "ams_risk_fs_layer1",
+  "url": "https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/1/query?where=1%3D1&outFields=*&returnGeometry=false&f=json",
+  "retrieved": "2026-11-15T15:31:47.823530Z",
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "bytes": 72
  },
  {
-  "name": "bru_geodata_mdq_tables",
-  "url": "https://geodata.perspective.brussels/api/geodata/mdq/tables",
-  "retrieved": "2026-11-15T15:30:31.266508Z",
-  "status": "error",
-  "error": "<HTTPError 404: 'Not Found'>"
+  "name": "ams_risk_fs_layer2",
+  "url": "https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/2/query?where=1%3D1&outFields=*&returnGeometry=false&f=json",
+  "retrieved": "2026-11-15T15:31:47.888813Z",
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "bytes": 72
  },
  {
-  "name": "bru_geodata_mdq_indicators",
-  "url": "https://geodata.perspective.brussels/api/geodata/mdq/indicators/fr",
-  "retrieved": "2026-11-15T15:30:32.074965Z",
-  "status": "error",
-  "error": "<HTTPError 404: 'Not Found'>"
+  "name": "ams_risk_fs_layer3",
+  "url": "https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/3/query?where=1%3D1&outFields=*&returnGeometry=false&f=json",
+  "retrieved": "2026-11-15T15:31:47.953246Z",
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "bytes": 72
  },
  {
-  "name": "ams_indicator_list",
-  "url": "https://api.data.amsterdam.nl/v1/statistieken/v2/indicatoren?_pageSize=5000&_format=json",
-  "retrieved": "2026-11-15T15:30:32.844143Z",
+  "name": "ams_risk_fs_layer4",
+  "url": "https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/4/query?where=1%3D1&outFields=*&returnGeometry=false&f=json",
+  "retrieved": "2026-11-15T15:31:48.019356Z",
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "bytes": 72
+ },
+ {
+  "name": "ams_risk_fs_layer5",
+  "url": "https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/5/query?where=1%3D1&outFields=*&returnGeometry=false&f=json",
+  "retrieved": "2026-11-15T15:31:48.083996Z",
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "bytes": 72
+ },
+ {
+  "name": "ams_risk_fs_layer6",
+  "url": "https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/6/query?where=1%3D1&outFields=*&returnGeometry=false&f=json",
+  "retrieved": "2026-11-15T15:31:48.148574Z",
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "bytes": 72
+ },
+ {
+  "name": "ams_risk_fs_layer7",
+  "url": "https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/7/query?where=1%3D1&outFields=*&returnGeometry=false&f=json",
+  "retrieved": "2026-11-15T15:31:48.215289Z",
+  "status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "bytes": 72
+ },
+ {
+  "name": "ams_cijfers_BEV65PLUS_P",
+  "url": "https://api.data.amsterdam.nl/v1/statistieken/v2/cijfers?_pageSize=20000&_format=json&indicator.id=2167",
+  "retrieved": "2026-11-15T15:31:48.277069Z",
   "status": 200,
   "content_type": "application/hal+json",
-  "bytes": 1846017
+  "bytes": 9419201
  },
  {
-  "name": "ams_risk_app_a9c9",
-  "url": "https://www.arcgis.com/sharing/rest/content/items/a9c9694c4a8a4298ab97f1a44249ed68/data?f=json",
-  "retrieved": "2026-11-15T15:30:52.165762Z",
+  "name": "ams_cijfers_BEVDICHT",
+  "url": "https://api.data.amsterdam.nl/v1/statistieken/v2/cijfers?_pageSize=20000&_format=json&indicator.id=2203",
+  "retrieved": "2026-11-15T15:32:29.786314Z",
   "status": 200,
-  "content_type": "application/json;charset=utf-8",
-  "bytes": 411415
+  "content_type": "application/hal+json",
+  "bytes": 3300528
  },
  {
-  "name": "ams_risk_app_a9c9_meta",
-  "url": "https://www.arcgis.com/sharing/rest/content/items/a9c9694c4a8a4298ab97f1a44249ed68?f=json",
-  "retrieved": "2026-11-15T15:30:52.353555Z",
+  "name": "ams_cijfers_ORGAFSPARK_M",
+  "url": "https://api.data.amsterdam.nl/v1/statistieken/v2/cijfers?_pageSize=20000&_format=json&indicator.id=2750",
+  "retrieved": "2026-11-15T15:32:40.020275Z",
   "status": 200,
-  "content_type": "application/json;charset=utf-8",
-  "bytes": 1186
+  "content_type": "application/hal+json",
+  "bytes": 405794
  },
  {
-  "name": "ams_risk_app_aec3",
-  "url": "https://www.arcgis.com/sharing/rest/content/items/aec3fc23a4134a3da32c7cb2cf3b66da/data?f=json",
-  "retrieved": "2026-11-15T15:30:52.457523Z",
+  "name": "ams_cijfers_BEV1P75PLUS_P",
+  "url": "https://api.data.amsterdam.nl/v1/statistieken/v2/cijfers?_pageSize=20000&_format=json&indicator.id=2121",
+  "retrieved": "2026-11-15T15:33:03.544191Z",
   "status": 200,
-  "content_type": "application/json;charset=utf-8",
-  "bytes": 262477
- },
- {
-  "name": "ams_risk_app_aec3_meta",
-  "url": "https://www.arcgis.com/sharing/rest/content/items/aec3fc23a4134a3da32c7cb2cf3b66da?f=json",
-  "retrieved": "2026-11-15T15:30:52.602131Z",
-  "status": 200,
-  "content_type": "application/json;charset=utf-8",
-  "bytes": 1268
+  "content_type": "application/hal+json",
+  "bytes": 7021395
  }
 ]

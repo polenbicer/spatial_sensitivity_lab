@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mdq</title>
+    <link rel="stylesheet" type="text/css" href="/static/clients/apps/mdq-e06f207.style.css" />
+    <link rel="icon" href="" />
+    <script src="/static/clients/apps/mdq-e06f207.bundle.js"></script>
+    <script>
+      (function () {
+          var __SDI__ = {
+               user: null, 
+              highlighted_baselayers: [{"id": 1, "name": {"fr": "Urbis Gray", "nl": "Urbis Gray", "en": "Urbis Gray"}, "baselayer": "5e1aeae8-b40f-46e8-91e5-6559c057c15e", "sortIndex": 1, "img": "/media/baselayers/urbis-grey.png"}, {"id": 3, "name": {"fr": "Ortho", "nl": "Ortho", "en": "Ortho"}, "baselayer": "14e44144-b885-4b43-b3a6-caeb4edac1ed", "sortIndex": 2, "img": "/media/baselayers/ortho_NPGAIQ0.png"}],
+              languages: ['fr', 'nl'],
+              args: "fr/65707".split('/'),
+              api : "http://geodata.perspective.brussels/api/",
+              csrf : "hxt0uLubb8fFfDZyYQNPTKiFxDc3g7mbhM2jck3I89fkmvcV0BMKQ4m8G083LRFW",
+              root : "http://geodata.perspective.brussels/client/",
+              apps: [["embed", {"name": {"fr": "Carte embarqu\u00e9e", "nl": "Ingebedde kaarten"}, "option": "notInMenu"}, "embed", "/client/embed/", null], ["dashboard", {"name": {"fr": "Tableau de bord", "nl": "Dashboard"}, "option": null}, "dashboard", "/client/dashboard/", null], ["login", {"name": {"fr": "Login", "nl": "Login"}, "option": "notInMenu"}, "login", "/client/login/", null], ["view", {"name": {"fr": "Atlas", "nl": "Atlas"}, "option": null}, "view", "/client/view/", null], ["mdq", {"name": {"fr": "Monitoring des quartiers", "nl": "Wijkmonitoring"}, "option": "notInMenu"}, "mdq", "/client/mdq/", null], ["form-answer", {"name": {"fr": "Formulaires", "nl": "Forms", "en": "Forms"}, "option": null}, "form-answer", "/client/form-answer/", null]],
+              urls: [{"name": "convert-pdf-api-mdq", "label": {}, "url": {"fr": "https://monitoringdesquartiers.brussels/pdf-api", "nl": "https://monitoringdesquartiers.brussels/pdf-api"}}, {"name": "sitex-vademecum", "label": {"fr": "Vademecum", "nl": "Vademecum"}, "url": {"fr": "/static/sitex/Vademecum_SitEx_230928.pdf", "nl": "/static/sitex/Vademecum_SitEx_230928.pdf"}}, {"name": "forms-doc", "label": {"fr": "Documentation en pdf"}, "url": {"fr": "/forms-doc.html"}}],
+              fonts: {"picto": "/static/clients/fonts/forkawesome.woff2", "label": "/static/clients/fonts/u001-regular.woff2"},
+               admin_query: null, 
+              maintenance: [],
+              app_messages: [],
+              dataCrs: {"name": "EPSG:31370", "defs": "+proj=lcc +lat_0=90 +lon_0=4.36748666666667 +lat_1=51.1666672333333 +lat_2=49.8333339 +x_0=150000.013 +y_0=5400088.438 +ellps=intl +towgs84=-106.8686,52.2978,-103.7239,0.3366,-0.457,1.8422,-1.2747 +units=m +no_defs +type=crs"},
+              mapCrs: {"name": "EPSG:31370", "defs": "+proj=lcc +lat_0=90 +lon_0=4.36748666666667 +lat_1=51.1666672333333 +lat_2=49.8333339 +x_0=150000.013 +y_0=5400088.438 +ellps=intl +towgs84=-106.8686,52.2978,-103.7239,0.3366,-0.457,1.8422,-1.2747 +units=m +no_defs +type=crs"},
+              defaultExtent: [139534, 159139, 159557, 180410],
+          };
+
+
+      document.onreadystatechange = function startApplication() {
+          if ('interactive' === document.readyState) {
+              bundle.main(__SDI__)
+          }
+      };
+
+      })();
+    </script>
+  </head>
+
+  <body></body>
+</html>

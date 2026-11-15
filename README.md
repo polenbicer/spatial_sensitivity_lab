@@ -27,3 +27,11 @@ Alignment with the thesis text; scores, observations and weights unchanged (veri
 - Priority Lines: the fixed Brussels examples included two unranked areas (Industrie Sud, Industrie Nord), so the list never loaded; fixed.
 - Policy simulation chat: disclaimer states that reactions are written by the researcher and are not resident opinion or research data.
 - `data/prepared/amsterdam_neighbourhood/audit.json` documents the earlier buurt model and its earlier weights (40/30/30 etc.); it does not describe the current wijk model.
+
+## Version 0.5 (15 November 2026): city criteria
+
+New page `/city-criteria`, built by `python3 scripts/build_city_criteria.py` into `public/data/city_criteria.json`. The main lab's scores are unchanged.
+
+- **Brussels:** the five criteria the City of Brussels declared for its heat-island study (temperature, population density, age, income, access to green), using Monitoring des Quartiers tables 2259, 2333 and 2338 (IBSA), tested with the rule fixed in the thesis before results were seen (weights 10–40% in 5-point steps; top quartile; consistent ≥ 3/4 of combinations, inconsistent < 1/4). Variants for the set of areas and the green indicator are all reported.
+- **Amsterdam:** the municipal heat-risk map (`risicokaarten_tauw` FeatureServer, 498 buurten) is reproduced as the mean of four category means and compared with the lab's wijk rankings (population-weighted, matched by buurt name).
+- **Data access:** the analysis environment has no direct internet access, so `.github/workflows/fetch-sources.yml` downloads the raw files (`scripts/fetch_extra_sources.py`, `scripts/crawl_mdq_indicators.py`) into `data/source/extra/`.

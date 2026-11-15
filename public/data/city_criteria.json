@@ -1,0 +1,633 @@
+{
+ "version": "0.5",
+ "built": "2026-11-15",
+ "brussels": {
+  "declared_criteria": [
+   "surface temperature (Landsat, prototype)",
+   "population density (MDQ 2259)",
+   "share aged 65+ (MDQ 2333)",
+   "median equivalised after-tax income (MDQ 2498)",
+   "access to public green (MDQ 2338) or green deficit (prototype)"
+  ],
+  "sources": {
+   "density": {
+    "indicator_id": 2259,
+    "title": "Densité de population (hab/km²)",
+    "year": "2025"
+   },
+   "age65": {
+    "indicator_id": 2333,
+    "title": "Part des 65 ans et plus dans la population totale (%)",
+    "year": "2025"
+   },
+   "age80": {
+    "indicator_id": 2365,
+    "title": "Part des 80 ans et plus dans la population totale (%)",
+    "year": "2025"
+   },
+   "isolated65": {
+    "indicator_id": 2159,
+    "title": "Part des isolés parmi les 65 ans et plus (%)",
+    "year": "2025"
+   },
+   "green_access": {
+    "indicator_id": 2338,
+    "title": "Part de la population à proximité d'un espace vert accessible au public (%)",
+    "year": "2012"
+   }
+  },
+  "vulnerable_quartiers_mapping": {
+   "Nord": [
+    21
+   ],
+   "Laeken": [
+    19,
+    20
+   ],
+   "Neder-over-Hembeek": [
+    77
+   ],
+   "Pentagone": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  "variants": [
+   {
+    "universe": "any_part",
+    "green": "access_2012",
+    "n_areas": 29,
+    "top_quartile_size": 8,
+    "combinations": 826,
+    "listed": [
+     {
+      "quartier": "Nord",
+      "code": 21,
+      "name": "Quartier Nord",
+      "share": 0.6210653753026635,
+      "verdict": "undetermined"
+     },
+     {
+      "quartier": "Laeken",
+      "code": 19,
+      "name": "Vieux Laeken Ouest",
+      "share": 1.0,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Laeken",
+      "code": 20,
+      "name": "Vieux Laeken Est",
+      "share": 0.7978208232445521,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Neder-over-Hembeek",
+      "code": 77,
+      "name": "Heembeek",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 1,
+      "name": "Grand Place",
+      "share": 0.3983050847457627,
+      "verdict": "undetermined"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 2,
+      "name": "Dansaert",
+      "share": 0.9903147699757869,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 3,
+      "name": "Béguinage - Dixmude",
+      "share": 0.026634382566585957,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 4,
+      "name": "Martyrs",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 5,
+      "name": "Notre-Dame-aux-Neiges",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 6,
+      "name": "Quartier Royal",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 7,
+      "name": "Sablon",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 8,
+      "name": "Marolles",
+      "share": 1.0,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 9,
+      "name": "Stalingrad",
+      "share": 1.0,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 10,
+      "name": "Anneessens",
+      "share": 0.9903147699757869,
+      "verdict": "consistent"
+     }
+    ],
+    "not_listed_most_often_top": [
+     {
+      "code": 18,
+      "name": "Quartier Maritime",
+      "share": 0.9285714285714286
+     },
+     {
+      "code": 74,
+      "name": "Heysel",
+      "share": 0.10411622276029056
+     },
+     {
+      "code": 30,
+      "name": "Porte Tervueren",
+      "share": 0.1016949152542373
+     },
+     {
+      "code": 75,
+      "name": "Houba",
+      "share": 0.06779661016949153
+     },
+     {
+      "code": 43,
+      "name": "Brugmann - Lepoutre",
+      "share": 0.0
+     }
+    ]
+   },
+   {
+    "universe": "any_part",
+    "green": "deficit_current",
+    "n_areas": 29,
+    "top_quartile_size": 8,
+    "combinations": 826,
+    "listed": [
+     {
+      "quartier": "Nord",
+      "code": 21,
+      "name": "Quartier Nord",
+      "share": 0.15375302663438256,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Laeken",
+      "code": 19,
+      "name": "Vieux Laeken Ouest",
+      "share": 0.8958837772397095,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Laeken",
+      "code": 20,
+      "name": "Vieux Laeken Est",
+      "share": 0.437046004842615,
+      "verdict": "undetermined"
+     },
+     {
+      "quartier": "Neder-over-Hembeek",
+      "code": 77,
+      "name": "Heembeek",
+      "share": 0.002421307506053269,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 1,
+      "name": "Grand Place",
+      "share": 0.5314769975786925,
+      "verdict": "undetermined"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 2,
+      "name": "Dansaert",
+      "share": 0.5435835351089588,
+      "verdict": "undetermined"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 3,
+      "name": "Béguinage - Dixmude",
+      "share": 0.3062953995157385,
+      "verdict": "undetermined"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 4,
+      "name": "Martyrs",
+      "share": 0.25302663438256656,
+      "verdict": "undetermined"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 5,
+      "name": "Notre-Dame-aux-Neiges",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 6,
+      "name": "Quartier Royal",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 7,
+      "name": "Sablon",
+      "share": 0.031476997578692496,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 8,
+      "name": "Marolles",
+      "share": 0.9757869249394673,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 9,
+      "name": "Stalingrad",
+      "share": 1.0,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 10,
+      "name": "Anneessens",
+      "share": 0.9261501210653753,
+      "verdict": "consistent"
+     }
+    ],
+    "not_listed_most_often_top": [
+     {
+      "code": 40,
+      "name": "Louise - Longue Haie",
+      "share": 0.589588377723971
+     },
+     {
+      "code": 18,
+      "name": "Quartier Maritime",
+      "share": 0.5447941888619855
+     },
+     {
+      "code": 30,
+      "name": "Porte Tervueren",
+      "share": 0.3062953995157385
+     },
+     {
+      "code": 76,
+      "name": "Mutsaard",
+      "share": 0.28692493946731235
+     },
+     {
+      "code": 42,
+      "name": "Châtelain",
+      "share": 0.1513317191283293
+     }
+    ]
+   },
+   {
+    "universe": "wholly",
+    "green": "access_2012",
+    "n_areas": 16,
+    "top_quartile_size": 4,
+    "combinations": 826,
+    "listed": [
+     {
+      "quartier": "Nord",
+      "code": 21,
+      "name": null,
+      "share": null,
+      "verdict": "not in universe"
+     },
+     {
+      "quartier": "Laeken",
+      "code": 19,
+      "name": "Vieux Laeken Ouest",
+      "share": 0.9818401937046005,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Laeken",
+      "code": 20,
+      "name": "Vieux Laeken Est",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Neder-over-Hembeek",
+      "code": 77,
+      "name": "Heembeek",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 1,
+      "name": "Grand Place",
+      "share": 0.11138014527845036,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 2,
+      "name": "Dansaert",
+      "share": 0.026634382566585957,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 3,
+      "name": "Béguinage - Dixmude",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 4,
+      "name": "Martyrs",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 5,
+      "name": "Notre-Dame-aux-Neiges",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 6,
+      "name": "Quartier Royal",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 7,
+      "name": "Sablon",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 8,
+      "name": "Marolles",
+      "share": 1.0,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 9,
+      "name": "Stalingrad",
+      "share": 1.0,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 10,
+      "name": "Anneessens",
+      "share": 0.8910411622276029,
+      "verdict": "consistent"
+     }
+    ],
+    "not_listed_most_often_top": [
+     {
+      "code": 76,
+      "name": "Mutsaard",
+      "share": 0.0
+     },
+     {
+      "code": 78,
+      "name": "Haren",
+      "share": 0.0
+     },
+     {
+      "code": 29,
+      "name": "Squares",
+      "share": 0.0
+     }
+    ]
+   },
+   {
+    "universe": "wholly",
+    "green": "deficit_current",
+    "n_areas": 16,
+    "top_quartile_size": 4,
+    "combinations": 826,
+    "listed": [
+     {
+      "quartier": "Nord",
+      "code": 21,
+      "name": null,
+      "share": null,
+      "verdict": "not in universe"
+     },
+     {
+      "quartier": "Laeken",
+      "code": 19,
+      "name": "Vieux Laeken Ouest",
+      "share": 0.8147699757869249,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Laeken",
+      "code": 20,
+      "name": "Vieux Laeken Est",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Neder-over-Hembeek",
+      "code": 77,
+      "name": "Heembeek",
+      "share": 0.0012106537530266344,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 1,
+      "name": "Grand Place",
+      "share": 0.26150121065375304,
+      "verdict": "undetermined"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 2,
+      "name": "Dansaert",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 3,
+      "name": "Béguinage - Dixmude",
+      "share": 0.009685230024213076,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 4,
+      "name": "Martyrs",
+      "share": 0.09806295399515738,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 5,
+      "name": "Notre-Dame-aux-Neiges",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 6,
+      "name": "Quartier Royal",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 7,
+      "name": "Sablon",
+      "share": 0.0,
+      "verdict": "inconsistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 8,
+      "name": "Marolles",
+      "share": 0.8728813559322034,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 9,
+      "name": "Stalingrad",
+      "share": 1.0,
+      "verdict": "consistent"
+     },
+     {
+      "quartier": "Pentagone",
+      "code": 10,
+      "name": "Anneessens",
+      "share": 0.8414043583535109,
+      "verdict": "consistent"
+     }
+    ],
+    "not_listed_most_often_top": [
+     {
+      "code": 76,
+      "name": "Mutsaard",
+      "share": 0.12590799031476999
+     },
+     {
+      "code": 78,
+      "name": "Haren",
+      "share": 0.0
+     },
+     {
+      "code": 29,
+      "name": "Squares",
+      "share": 0.0
+     }
+    ]
+   }
+  ]
+ },
+ "amsterdam": {
+  "buurten": 498,
+  "reconstruction_max_error": 0.0067,
+  "categories": {
+   "climate": [
+    "HI_KO_PET_S"
+   ],
+   "exposure": [
+    "HI_BS_ANTAL_INWONERS_S",
+    "HI_BS_SCHADUW_OP_LOOPGEBIEDEN_S",
+    "HI_BS_DRUK_OPENBARE_RUIMTE_S"
+   ],
+   "sensitivity": [
+    "HI_GV_AANTAL_65PLUS_S",
+    "HI_GV_AANTAL_LANGDURIG_ZIEKE_IN",
+    "HI_GV_AANTAL_LAAG_OPGELEIDEN_S",
+    "HI_GV_INWONERS_BEPERKT_MOBIEL_S",
+    "HI_GV_INWONERS_ONDER_SOCIAAL_MI",
+    "HI_GV_PANDEN_MET_KWETSBARE_GR_2"
+   ],
+   "adaptive_capacity": [
+    "HI_AV_LATK_S",
+    "HI_AV_TOEGANG_TOT_TUIN_S"
+   ]
+  },
+  "implicit_indicator_weights": {
+   "HI_KO_PET_S": 0.25,
+   "HI_BS_ANTAL_INWONERS_S": 0.0833,
+   "HI_BS_SCHADUW_OP_LOOPGEBIEDEN_S": 0.0833,
+   "HI_BS_DRUK_OPENBARE_RUIMTE_S": 0.0833,
+   "HI_GV_AANTAL_65PLUS_S": 0.0417,
+   "HI_GV_AANTAL_LANGDURIG_ZIEKE_IN": 0.0417,
+   "HI_GV_AANTAL_LAAG_OPGELEIDEN_S": 0.0417,
+   "HI_GV_INWONERS_BEPERKT_MOBIEL_S": 0.0417,
+   "HI_GV_INWONERS_ONDER_SOCIAAL_MI": 0.0417,
+   "HI_GV_PANDEN_MET_KWETSBARE_GR_2": 0.0417,
+   "HI_AV_LATK_S": 0.125,
+   "HI_AV_TOEGANG_TOT_TUIN_S": 0.125
+  },
+  "wijken_compared": 103,
+  "buurt_name_match": "428/498",
+  "spearman_with_prototype": {
+   "priority_balanced": 0.2,
+   "priority_heat_led": 0.12,
+   "priority_nature_deficit_led": 0.05,
+   "priority_income_led": 0.4,
+   "score_surface_temperature": 0.07,
+   "score_green_deficit": -0.11,
+   "score_income_deprivation": 0.45
+  }
+ }
+}

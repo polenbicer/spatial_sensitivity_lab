@@ -1,0 +1,791 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableaux -  Monitoring des Quartiers</title>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/assets/favicon/site.webmanifest">
+	<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+    
+    <link rel="stylesheet" href="/lib/chosen_v1.8.7/chosen.min.css" />
+    <link rel="stylesheet" href="/lib/jstree/themes/default/style.min.css" />
+    <link href="/lib/jtable/themes/basic/jtable_basic.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/lib/slick-1.8.1/slick.css" />
+    <link rel="stylesheet" type="text/css" href="/lib/slick-1.8.1/slick-theme.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/are-you-sure-discard-changes/jquery.are-you-sure.js"></script>
+    <script src="/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/js/notify.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/js/chosen.jquery.js"></script>
+    <script src="/lib/jtable/jquery.jtable.min.js"></script>
+    <script src="/lib/jstree/jstree.min.js"></script>
+    <script src="/lib/jstree/grid/jstreegrid.js"></script>
+    <script src="/lib/chosen_v1.8.7/chosen.jquery.min.js"></script>
+    <script src="/js/ckeditor_4.15.1_standard/ckeditor/ckeditor.js"></script>
+    <script src="/lib/scrollAccordion-2.0.0/scrollAccordion.js" defer></script>
+    <script src="/lib/masonry-4.2.2/masonry.pkgd.min.js" defer></script>
+    <script src="/lib/jquery-multi-select-combo/jquery.selectlistactions.js"></script>
+    <script type="text/javascript" src="/lib/slick-1.8.1/slick.min.js"></script>
+    <script src="/js/site.js?v=gxB6ev8Rme29-id_V269SqGmpCYXi7eHQ98_nMOxfM0"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js'></script>
+
+    <script>
+        $.get('/Shared/MessagesList', function (result) {
+            var jsonMsg = $.parseJSON(result);
+            $.each(jsonMsg, function (index, jsonObject) {
+                $.each(jsonObject, function (index, jsonObject) {
+                    $.notify(jsonObject.Body, jsonObject.CssClass);
+                });
+            });
+        });
+
+        $(document).ajaxComplete(function (e, j, o) {
+            if (o.url.includes('MessagesList'))
+                return
+            $.get('/Shared/MessagesList', function (result) {
+                var jsonMsg = $.parseJSON(result);
+                $.each(jsonMsg, function (index, jsonObject) {
+                    $.each(jsonObject, function (index, jsonObject) {
+                        $.notify(jsonObject.Body, jsonObject.CssClass);
+                    });
+                });
+            });
+        });
+    </script>
+
+    
+
+    <script>
+        function getCookie(name) {
+           
+            var dc = document.cookie;
+            var prefix = name + "=";
+            var begin = dc.indexOf("; " + prefix);
+            if (begin == -1) {
+                begin = dc.indexOf(prefix);
+                if (begin != 0) return null;
+            }
+            else {
+                begin += 2;
+                var end = document.cookie.indexOf(";", begin);
+                if (end == -1) {
+                    end = dc.length;
+                }
+            }
+            // because unescape has been deprecated, replaced with decodeURI
+            //return unescape(dc.substring(begin + prefix.length, end));
+            return decodeURI(dc.substring(begin + prefix.length, end));
+        }
+
+    </script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src=https://www.googletagmanager.com/gtag/js?id=UA-17146775-31></script>
+    <script>
+            var name = "_ga_";
+            var googleNumberFr = 'UA-17146775-31'
+            var result = name.concat(googleNumberFr.slice(2));
+            var franceCookieYes = getCookie(result);
+            var aspConsetCookie = getCookie(".AspNet.Consent");
+           
+            if (franceCookieYes != null && aspConsetCookie == "yes")
+            {
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag() { window.dataLayer.push(arguments); }
+                        gtag('js', new Date());
+
+                        gtag('config', 'UA-17146775-31');
+            }
+            
+    </script>
+
+
+
+
+        <script defer data-domain="monitoringdesquartiers.brussels" src="https://plausible.io/js/script.file-downloads.outbound-links.pageview-props.tagged-events.js"></script>
+
+    <script>
+        window.plausible = window.plausible || function () {
+            (window.plausible.q = window.plausible.q || []).push(arguments)
+        }
+    </script>
+
+
+</head>
+<body>
+    <header>
+        <div class="header-branding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-12 header-branding-type">
+                        <a href="/">
+                            <span>Monitoring des Quartiers</span>
+                        </a>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 header-branding-mark">
+                        <a href="https://ibsa.brussels/"><img src="/assets/logo-fr.svg"></a>
+                        <button class="menu-toggle" type="button">
+                            <div class="menu-toggle-inner"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header-nav">
+                <nav class="header-nav-secondary menu">
+                    <div class="menu-header">
+                        <a href="/"><h4>Monitoring des Quartiers</h4></a>
+                        <button class="menu-open-toggle" type="button">
+                            <div class="menu-open-toggle-inner"></div>
+                        </button>
+                    </div>
+                    <ul class="menu-secondary">
+                        <li>
+                            <a class="btn-link-menu" href="/">Accueil</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/cartes">Cartes</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/tableaux">Tableaux</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/indicateurs">Indicateurs</a>
+                        </li>
+                    </ul>
+                    <ul class="menu-primary">
+                        <li><a href="/actualites">Actualit&#xE9;s</a></li>
+                        <li><a href="/a-propos">A propos</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                    <ul class="menu-user">
+
+                            <li>
+                                <a class="nav-item-add" href="/se-connecter">Se connecter</a>
+                            </li>
+                            <li>
+                                <a class="nav-item-add" href="/s-enregistrer"><i class="icon-user mb-n-xxs"></i>S&#x27;enregistrer</a>
+                            </li>
+                    </ul>
+                    <div class="menu-contact">
+                        <h4>ibsa.brussels</h4>
+                        <ul class="menu-contact-list">
+                            <li>rue de Namur 59</li>
+                            <li>B-1000 Bruxelles</li>
+                            <li><a class="btn-link-invert" href="tel:003224354230">+32 2 435 42 30</a></li>
+                            <li><a class="btn-link-invert" href="mail:ibsa@perspective.brussels">ibsa@perspective.brussels</a></li>
+                            <li><a class="btn-link-invert" href="mail:monitoringdesquartiers@perspective.brussels">monitoringdesquartiers@perspective.brussels</a></li>
+                        </ul>
+                    </div>
+                    <div class="menu-footer">
+                        <ul class="menu-footer-social inline-list">
+                            <li><a href="#"><i class="icon-vendor-tw"></i></a></li>
+                            <li><a href="#"><i class="icon-vendor-li"></i></a></li>
+                            <li><a href="#"><i class="icon-vendor-fb"></i></a></li>
+                        </ul>
+                        <p class="text-sm">Mentions légales - Crédits</p>
+                    </div>
+                </nav>
+                <nav class="header-nav-primary">
+                    <ul class="header-nav-primary-links">
+                        <li>
+                            <a class="btn-link-menu" href="/">Accueil</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/cartes">Cartes</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/tableaux">Tableaux</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/indicateurs">Indicateurs</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+
+<div class="menu-language-wrapper">
+    <div class="container">
+        <ul class="menu-language">
+                    <li class="" onclick="location.href='/Home/ChangeLanguage?returnUrl=%2FIndicator%2FTables&amp;culture=nl-BE';" data-returnUrl="/Indicator/Tables" id="nl-BE">NL</li>
+                    <li class="selected" onclick="location.href='/Home/ChangeLanguage?returnUrl=%2FIndicator%2FTables&amp;culture=fr-BE';" data-returnUrl="/Indicator/Tables" id="fr-BE">FR</li>
+        </ul>
+    </div>
+</div>
+    </header>
+    <div class="banner">
+        <div class="container">
+            <h1 id="bannerTitle" class="banner-title"></h1>
+        </div>
+    </div>
+
+    <section class="floating-quick-nav">
+        <ul>
+            <li class="floating-quick-nav-button glossary-open " id="glossaryListButton" style="display:none">
+                <i class="icon-book"></i>
+                <span>Glossaire</span>
+            </li>
+            <li class="floating-quick-nav-button">
+                <a href="/contact">
+                    <i class="icon-email"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li class="floating-quick-nav-button back-to-top">
+                <i class="icon-chevron-up-white"></i>
+                <span>Top</span>
+            </li>
+        </ul>
+    </section>
+
+    <aside id="glossary" class="glossary">
+        <button class="glossary-close" type="button">
+            <div class="glossary-close-inner"></div>
+        </button>
+
+        <h2 class="h2-lg glossary-title">Glossaire</h2>
+
+        <div class="glossary-search field">
+            <label for="search">Rechercher un terme</label>
+            <div class="input-search ">
+                <input type="text" name="search" id="searchGlossaryFilter" placeholder="Ex: Monitoring des Quartiers, deuxi&#xE8;me couronne, ...">
+                <button type="submit" class="btn-search" id="search-button-glossary-filter">
+                    <i class="icon-search-primary"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="glossaryResultsList"></div>
+    </aside>
+
+    
+
+
+
+
+
+
+
+    <div id="cookieConsent" class="cookie-consent pv-md">
+        <div class="container-fluid">
+            <p class="cookie-consent-text">Le pr&#xE9;sent site internet place des cookies. Les cookies essentiels sont n&#xE9;cessaires au bon fonctionnement du site Internet et ne peuvent pas &#xEA;tre refus&#xE9;s. D&#x2019;autres cookies sont utilis&#xE9;s &#xE0; des fins statistiques (cookies d&#x2019;analyse) et ne seront plac&#xE9;s que si vous en acceptez le placement. Param&#xE9;trer les cookies pour en savoir plus.</p>
+                
+            <div class="cookie-consent-control">
+                <div class="row">
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <button class="btn btn-secondary btn-block btn-sm" type="button" data-dismiss="alert" id="cookieOptions">
+                            <span aria-hidden="true">Param&#xE9;trer les cookies</span>
+                        </button>
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <button class="btn btn-secondary btn-block btn-sm" type="button" data-dismiss="alert" data-cookie-string=".AspNet.Consent=yes; expires=Mon, 15 Nov 2027 15:34:40 GMT; path=/">
+                            <span aria-hidden="true">Accepter tous les cookies</span>
+                        </button>
+                    </div>
+					<div class="col-12 col-sm-3 col-md-2">
+						<button class="btn btn-secondary btn-block btn-sm" type="button" data-dismiss="alert" id="ignore">
+                            <span aria-hidden="true">Refuser les cookies optionnels</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <input id="toggleYes" type="hidden" value="Activ&#xE9;" />
+    <input id="toggleNo" type="hidden" value="D&#xE9;sactiv&#xE9;" />
+    <div class="modal fade cookie-consent-modal" id="cookieOptionsModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <input id="mediaType" hidden />
+            <div class="modal-content">
+                <div class="modal-header">
+					<div class="modal-title">
+						<h3>Notre site utilise des cookies</h3>
+						<h5><p>Qu’est-ce qu’un cookie ? Quels cookies utilisons-nous et pourquoi ?  Lisez <a class="btn-link-menu" target="_blank"  href="/Home/Clauses">notre politique en matière de cookies </a> pour en savoir plus. </p></h5>
+					</div>
+
+					<button type="button" class="close" data-dismiss="modal"><i class="icon-decline icon-xs"></i></button>
+                </div>
+                <div class="modal-body">
+
+					<div class="row">
+						<div class="col-12 col-sm-4">
+							<button type="button" class="btn btn-secondary btn-sm btn-block mt-sm" id="acceptAll" disabled>Accepter tous les cookies</button>
+						</div>
+						<div class="col-12 col-sm-4">
+							<button type="button" class="btn btn-secondary btn-sm btn-block mt-sm" id="refuse">Refuser les cookies optionnels </button>
+						</div>
+					</div>
+
+					<div class="input-checkbox cookie-consent-check">
+                        <input type="checkbox" id="essential" class="checkbox" disabled checked>
+						<label for="essential"><span class="cookie-consent-check-info"><h5>
+Essentiel <span class="cookie-consent-secondary-text">(toujours requis)</span></h5>
+
+<p>Ces cookies sont nécessaires pour des raisons purement techniques pour une visite normale du site Internet. Vu la nécessité technique, seule une obligation d'information s'applique, et ces cookies sont placés dès que vous accédez au site Internet.</p>
+
+<span class="cookie-consent-secondary-text">Utilisation: service de base</span>
+</span></label>
+                        <span class="cookie-consent-check-status">Activ&#xE9;</span>
+
+                    </div>
+
+					<div class="input-checkbox cookie-consent-check">
+                        <input type="checkbox" id="analyticsCookies" class="checkbox" checked>
+						<label for="analyticsCookies"><span class="cookie-consent-check-info"><h5>
+	Analyse d'audience
+</h5>
+
+<p>
+	Il s'agit de cookies qui nous permettent de savoir combien de fois une page déterminée a été consultée. Nous utilisons ces informations uniquement pour améliorer le contenu de notre site Internet. Ces cookies ne sont placés que si vous en acceptez le placement.
+</p>
+
+<span class="cookie-consent-secondary-text">Utilisation: statistiques</span></span></label>
+                        <span class="cookie-consent-check-status" id="toogleStatus">Activ&#xE9;</span>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="modal-footer-wrapper">
+                        <button class="btn btn-secondary btn-sm" id="confirm-cookies">Confirmer mon choix</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var buttonAll = document.querySelector("#cookieConsent button[data-cookie-string]");
+            buttonAll.addEventListener("click", function (event) {
+              
+                document.cookie = buttonAll.dataset.cookieString;
+
+                        var gaScript = $('<script async src="' + 'https://www.googletagmanager.com/gtag/js?id=UA-17146775-31' + '"></s' + 'cript>');
+                       $('body').append($(gaScript));
+                       window.dataLayer = window.dataLayer || [];
+                       function gtag() { window.dataLayer.push(arguments); }
+                       gtag('js', new Date());
+                       gtag('config', 'UA-17146775-31');
+
+
+                $("#cookieConsent").hide();
+            }, false);
+
+            var ignoreButton = document.querySelector("#ignore");
+            ignoreButton.addEventListener("click", function (event) {
+                document.cookie = buttonAll.dataset.cookieString;
+
+                window['ga-disable-MEASUREMENT_ID'] = true;
+
+                var gaPropertyFr = 'UA-17146775-31';
+                var gaPropertyNl = 'UA-17146775-32';
+
+
+                // Disable tracking if the opt-out cookie exists.
+                var disableStrFR = 'ga-disable-' + gaPropertyFr;
+                var disableStrNL = 'ga-disable-' + gaPropertyNl;
+
+                gaOptout(disableStrFR, disableStrNL);
+
+
+
+                $("#cookieConsent").hide();
+            }, false);
+
+            var cookieOptionsPopup = document.querySelector("#cookieOptions");
+            cookieOptionsPopup.addEventListener("click", function (event) {
+
+                $('#cookieOptionsModal').modal('show');
+            }, false);
+
+
+            var buttonAcceptAll = document.querySelector("#acceptAll");
+            buttonAcceptAll.addEventListener("click", function (event) {
+                var yes = $('#toggleYes').val();
+
+                $("#analyticsCookies").prop("checked", true);
+                $('#refuse').prop('disabled', false);
+                $('#acceptAll').prop('disabled', true);
+
+                $('#toogleStatus').text(yes);
+
+            }, false);
+
+
+            var buttonRefuse = document.querySelector("#refuse");
+            buttonRefuse.addEventListener("click", function (event) {
+             
+                var no = $('#toggleNo').val();
+
+                $("#analyticsCookies").prop("checked", false);
+                $('#refuse').prop('disabled', true);
+                $('#acceptAll').prop('disabled', false);
+
+                $('#toogleStatus').text(no);
+
+            }, false);
+
+
+            var analyticsCookies = document.querySelector("#analyticsCookies");
+            analyticsCookies.addEventListener("click", function (event) {
+           
+                var yes = $('#toggleYes').val();
+                var no = $('#toggleNo').val();
+
+                var isAnalyticsChecked = $('#analyticsCookies').is(":checked");
+                if (isAnalyticsChecked) {
+                    $('#refuse').prop('disabled', false);
+                    $('#acceptAll').prop('disabled', true);
+                    $('#toogleStatus').text(yes);
+
+                }
+                else {
+                    $('#refuse').prop('disabled', true);
+                    $('#acceptAll').prop('disabled', false);
+                    $('#toogleStatus').text(no);
+                }
+
+
+            }, false);
+
+
+            var confirmCookies = document.querySelector("#confirm-cookies");
+            confirmCookies.addEventListener("click", function (event) {
+           
+                $("#cookieConsent").hide();
+                $('#cookieOptionsModal').modal('hide');
+
+                var isAnalyticsChecked = $('#analyticsCookies').is(":checked");
+                if (isAnalyticsChecked) {
+
+                    buttonAll.click();
+                }
+                else {
+
+                    ignoreButton.click();
+                }
+
+            }, false);
+
+
+        });
+
+
+
+                // Opt-out function
+      function gaOptout(disableStrFR, disableStrNL) {
+
+                       document.cookie = disableStrFR + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+                        window[disableStrFR] = true;
+
+
+        }
+
+
+
+
+
+
+    </script>
+
+    <main role="main">
+      
+        <div id="errors-main"></div>
+        <input type="hidden" id="tableBannerTitle" value="Tableaux des indicateurs" />
+
+<div class="container">
+    <div class="indicator-query pb-xxl">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item nav-item-30">
+                <a class="nav-link active" id="compare-link" data-toggle="tab" href="#compare" role="tab" aria-controls="compare" aria-selected="true">Comparer des territoires</a>
+            </li>
+            <li class="nav-item nav-item-30">
+                <a class="nav-link" id="export-link" data-toggle="tab" href="#export" role="tab" aria-controls="export" aria-selected="false">Tous les indicateurs d&#x27;un territoire</a>
+            </li>
+        </ul>
+
+        <select class="nav nav-tabs-mobile" id="myTab-mobile" role="tablist">
+            <option value="compare-link" class="nav-item" data-toggle="tab" href="#compare" role="tab" aria-controls="compare" aria-selected="true">Comparer des territoires</option>
+            <option value="export-link" class="nav-item" data-toggle="tab" href="#export" role="tab" aria-controls="export" aria-selected="false">Exporter</option>
+        </select>
+
+        <div class="tab-content" id="myTabContent">
+            <!-- Compare -->
+            <div class="tab-pane fade show active" id="compare" role="tabpanel" aria-labelledby="compare-link">
+                <div class="row lg-gutters indicator-query-filters">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="indicator-query-filters-title">
+                            <h3 class="h3-sm">S&#xE9;lectionner vos indicateurs</h3>
+                        </div>
+                        <div class="indicator-query-filters-group">
+                            <div class="indicator-query-filters-subtitle">
+                                <p>Indicateurs disponibles:</p>
+                            </div>
+                            <div class="indicator-query-filters-jstree jstree-grid-wrapper">
+                                <div id="themeJsTree"></div>
+                            </div>
+                        </div>
+
+                        <div class="indicator-query-filters-group">
+                            <div class="indicator-query-filters-subtitle">
+                                <p>Liste des indicateurs s&#xE9;lectionn&#xE9;s:</p>
+                            </div>
+                            <div class="indicator-query-filters-field indicator-query-filters-tags" id="indicators-container"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-6 col-sm-12">
+                        <div class="indicator-query-filters-title">
+                            <h3 class="h3-sm">S&#xE9;lectionner le niveau et les territoires:</h3>
+                        </div>
+                        <div class="indicator-query-filters-group">
+                            <div class="row lg-gutters">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="indicator-query-filters-subtitle">
+                                        <p>Niveau souhait&#xE9;:</p>
+                                    </div>
+                                    <select id="GeoEntityGroup" class="chosen-select">
+                                            <option data-type="GeoEntity" value="2">Quartiers</option>
+                                            <option data-type="GeoEntity" value="1">Communes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="indicator-query-filters-group">
+                            <div class="indicator-query-filters-subtitle">
+                                <p>Territoires souhait&#xE9;s</p>
+                            </div>
+                            <div id="geoEntities-combo-box-container"></div>
+                        </div>
+
+                        <div class="indicator-query-filters-title">
+                            <h3 class="h3-sm">S&#xE9;lectionner la ou les ann&#xE9;es</h3>
+                        </div>
+
+                        <form>
+                            <div class="input-wrapper">
+                                <div class="input-radio">
+                                    <input type="radio" name="latestYear" id="latest-year" value="true" checked="checked" />
+                                    <label for="latest-year">Ann&#xE9;e la plus r&#xE9;cente</label>
+                                </div>
+                                <div class="input-radio">
+                                    <input type="radio" name="latestYear" id="choose-years" value="false" />
+                                    <label for="choose-years">S&#xE9;lectionner une ou plusieurs ann&#xE9;es</label>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="row lg-gutters indicator-query-filters-double" id="year-combo-box">
+                            <div class="col-lg-6 col-md-12">
+                                <select class="indicator-query-filters-field indicator-query-filters-select" multiple id="years-source">
+                                </select>
+                                <p id="years-selectAll" class="indicator-query-filters-ctrl">Tout s&#xE9;lectionner</p>
+                            </div>
+                            <div class="indicator-query-filters-flow">
+                                <button type='button' class="btn-icon-center btn-secondary" id='years-btnRight'><i class="icon-chevron-left-white"></i></button>
+                                <button type='button' class="btn-icon-center btn-secondary" id='years-btnLeft'><i class="icon-chevron-right-white"></i></button>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <select class="indicator-query-filters-field indicator-query-filters-select" multiple id="years-destination">
+                                </select>
+                                <p id="years-removeAll" class="indicator-query-filters-ctrl">Tout effacer</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-xl mt-xxl" id="get-table">Afficher le tableau</button>
+                    </div>
+                </div>
+                <div class="indicator-query-container" id="compare-indicators-table-container"></div>
+            </div>
+            <!-- Export -->
+            <div class="tab-pane show fade export filters-wrapper" id="export" role="tabpanel" aria-labelledby="export-table">
+                <div class="filters filters-flex">
+                    <div class="filters-item">
+                        <select id="geographicalLevelSelect" data-url="/Indicator/GetGeoEntitiesFromSelectedType" class="chosen-select" name="GeographicalLevel" data-val="true" data-val-required="The SelectedGeoEntityType field is required.">
+                            <option value="" selected="selected" disabled="disabled">Echelle g&#xE9;ographique</option>
+                        <option value="2">Quartiers</option>
+<option value="1">Communes</option>
+</select>
+                    </div>
+                    <div class="filters-item">
+                        <select id="territorySelect" class="chosen-select" name="Territory" data-val="true" data-val-required="The SelectedTerritory field is required.">
+                            <option value="" selected="selected" disabled="disabled">Territoire</option>
+                        </select>
+                    </div>
+                    <div class="filters-item">
+                        <a class="btn btn-primary" id="ExportIndicator" onclick="downloadFile(event)" href="/Indicator/ExportIndicatorTable/0">
+                            Exporter le tableau
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/CustomScripts/IndicatorTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#bannerTitle')
+            .text($('#tableBannerTitle').val())
+            .parent()
+            .parent()
+            .addClass('active');
+
+        $(".chosen-select").chosen({ width: "100%" });
+    });
+    function downloadFile(e) {
+        e.preventDefault();
+        var date = (new Date()).toLocaleDateString().split('/').map(x => x.toString().padStart(2, '0')).join('-');
+        var geoEntity = $('#territorySelect').find('option:selected').text().replace(' - ', '_');
+        var fileName = geoEntity + '_' + date + '.xlsx';
+        activateLoader(true)
+        $.ajax({
+            url: `/Indicator/ExportIndicatorTable/${$('#territorySelect').val()}`,
+            cache: false,
+            xhr: function () {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 2) {
+                        if (xhr.status == 200) {
+                            xhr.responseType = "blob";
+                        } else {
+                            xhr.responseType = "text";
+                        }
+                    }
+                };
+                return xhr;
+            },
+            success: function (data) {
+                activateLoader(false);
+                //Convert the Byte Data to BLOB object.
+                var blob = new Blob([data], { type: "application/octetstream" });
+
+                //Check the Browser type and download the File.
+                var isIE = false || !!document.documentMode;
+                if (isIE) {
+                    window.navigator.msSaveBlob(blob, fileName);
+                } else {
+                    var url = window.URL || window.webkitURL;
+                    link = url.createObjectURL(blob);
+                    var a = $("<a />");
+                    a.attr("download", fileName);
+                    a.attr("href", link);
+                    $("body").append(a);
+                    a[0].click();
+                    $("body").remove(a);
+                }
+            },
+            error: function (data) {
+                activateLoader(false)
+            }
+        });
+    }
+    function x() {
+        console.log('blabla')
+        activateLoader(false);
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const exportBtn = document.getElementById("ExportIndicator");
+      let lastClickTime = 0;
+
+      if (exportBtn) {
+        exportBtn.addEventListener("click", function () {
+          const now = Date.now();
+          if (typeof plausible === 'function' && (now - lastClickTime > 5000)) {
+            plausible("indicator-export");
+            lastClickTime = now;
+          }
+        });
+      }
+    });
+</script>
+
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <h2>Nos autres sites</h2>
+                    <ul class="footer-list">
+                        <li><a class="btn-link-invert btn-icon-right" href="https://perspective.brussels/" target="_blank">perspective.brussels</a><i class="icon-external-link"></i></li>
+                        <li><a class="btn-link-invert btn-icon-right" href="http://ibsa.brussels/" target="_blank">ibsa.brussels</a><i class="icon-external-link"></i></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <h2>ibsa.brussels</h2>
+                    <ul class="footer-list">
+                        <li>rue de Namur 59</li>
+                        <li>B-1000 Bruxelles</li>
+                        <li><a class="btn-link-invert" href="tel:003224354230">+32 2 435 42 30</a></li>
+                        <li><a class="btn-link-invert" href="mail:ibsa@perspective.brussels">ibsa@perspective.brussels</a></li>
+                        <li><a class="btn-link-invert" href="mail:monitoringdesquartiers@perspective.brussels">monitoringdesquartiers@perspective.brussels</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <h2>Suivez-nous</h2>
+                    <ul class="footer-list footer-social inline-list">
+                        <li><a href="https://www.linkedin.com/company/brussels-instituut-voor-statistiek-en-analyse"><i class="icon-vendor-li"></i></a></li>
+                        <li><a href="https://www.facebook.com/IBSAbrussels/"><i class="icon-vendor-fb"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row footer-credits mt-lg">
+                <div class="col-lg-4 col-md-12 footer-credits-legal">
+                        <a class="btn-link-menu" href="/clauses">Mentions l&#xE9;gales - </a>
+                    <a class="btn-link-menu" href="/credits">Cr&#xE9;dits</a>
+
+
+                </div>
+                <div class="col-lg-4 col-md-12 offset-lg-4">
+                    <h2>perspective.brussels</h2>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <div class='loader-wrapper'>
+        <div class="loader-overlay"></div>
+        <div class='loader'>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+        </div>
+    </div>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>

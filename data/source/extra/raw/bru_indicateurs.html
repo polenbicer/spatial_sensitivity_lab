@@ -1,0 +1,1236 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page -  Monitoring des Quartiers</title>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/assets/favicon/site.webmanifest">
+	<link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+    
+    <link href="/urbismap/v1/ol.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/lib/chosen_v1.8.7/chosen.min.css" />
+    <link rel="stylesheet" href="/lib/jstree/themes/default/style.min.css" />
+    <link href="/lib/jtable/themes/basic/jtable_basic.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/lib/slick-1.8.1/slick.css" />
+    <link rel="stylesheet" type="text/css" href="/lib/slick-1.8.1/slick-theme.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/are-you-sure-discard-changes/jquery.are-you-sure.js"></script>
+    <script src="/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/js/notify.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/js/chosen.jquery.js"></script>
+    <script src="/lib/jtable/jquery.jtable.min.js"></script>
+    <script src="/lib/jstree/jstree.min.js"></script>
+    <script src="/lib/jstree/grid/jstreegrid.js"></script>
+    <script src="/lib/chosen_v1.8.7/chosen.jquery.min.js"></script>
+    <script src="/js/ckeditor_4.15.1_standard/ckeditor/ckeditor.js"></script>
+    <script src="/lib/scrollAccordion-2.0.0/scrollAccordion.js" defer></script>
+    <script src="/lib/masonry-4.2.2/masonry.pkgd.min.js" defer></script>
+    <script src="/lib/jquery-multi-select-combo/jquery.selectlistactions.js"></script>
+    <script type="text/javascript" src="/lib/slick-1.8.1/slick.min.js"></script>
+    <script src="/js/site.js?v=gxB6ev8Rme29-id_V269SqGmpCYXi7eHQ98_nMOxfM0"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js'></script>
+
+    <script>
+        $.get('/Shared/MessagesList', function (result) {
+            var jsonMsg = $.parseJSON(result);
+            $.each(jsonMsg, function (index, jsonObject) {
+                $.each(jsonObject, function (index, jsonObject) {
+                    $.notify(jsonObject.Body, jsonObject.CssClass);
+                });
+            });
+        });
+
+        $(document).ajaxComplete(function (e, j, o) {
+            if (o.url.includes('MessagesList'))
+                return
+            $.get('/Shared/MessagesList', function (result) {
+                var jsonMsg = $.parseJSON(result);
+                $.each(jsonMsg, function (index, jsonObject) {
+                    $.each(jsonObject, function (index, jsonObject) {
+                        $.notify(jsonObject.Body, jsonObject.CssClass);
+                    });
+                });
+            });
+        });
+    </script>
+
+    
+
+    <script>
+        function getCookie(name) {
+           
+            var dc = document.cookie;
+            var prefix = name + "=";
+            var begin = dc.indexOf("; " + prefix);
+            if (begin == -1) {
+                begin = dc.indexOf(prefix);
+                if (begin != 0) return null;
+            }
+            else {
+                begin += 2;
+                var end = document.cookie.indexOf(";", begin);
+                if (end == -1) {
+                    end = dc.length;
+                }
+            }
+            // because unescape has been deprecated, replaced with decodeURI
+            //return unescape(dc.substring(begin + prefix.length, end));
+            return decodeURI(dc.substring(begin + prefix.length, end));
+        }
+
+    </script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src=https://www.googletagmanager.com/gtag/js?id=UA-17146775-31></script>
+    <script>
+            var name = "_ga_";
+            var googleNumberFr = 'UA-17146775-31'
+            var result = name.concat(googleNumberFr.slice(2));
+            var franceCookieYes = getCookie(result);
+            var aspConsetCookie = getCookie(".AspNet.Consent");
+           
+            if (franceCookieYes != null && aspConsetCookie == "yes")
+            {
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag() { window.dataLayer.push(arguments); }
+                        gtag('js', new Date());
+
+                        gtag('config', 'UA-17146775-31');
+            }
+            
+    </script>
+
+
+
+
+        <script defer data-domain="monitoringdesquartiers.brussels" src="https://plausible.io/js/script.file-downloads.outbound-links.pageview-props.tagged-events.js"></script>
+
+    <script>
+        window.plausible = window.plausible || function () {
+            (window.plausible.q = window.plausible.q || []).push(arguments)
+        }
+    </script>
+
+
+</head>
+<body>
+    <header>
+        <div class="header-branding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-12 header-branding-type">
+                        <a href="/">
+                            <span>Monitoring des Quartiers</span>
+                        </a>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 header-branding-mark">
+                        <a href="https://ibsa.brussels/"><img src="/assets/logo-fr.svg"></a>
+                        <button class="menu-toggle" type="button">
+                            <div class="menu-toggle-inner"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header-nav">
+                <nav class="header-nav-secondary menu">
+                    <div class="menu-header">
+                        <a href="/"><h4>Monitoring des Quartiers</h4></a>
+                        <button class="menu-open-toggle" type="button">
+                            <div class="menu-open-toggle-inner"></div>
+                        </button>
+                    </div>
+                    <ul class="menu-secondary">
+                        <li>
+                            <a class="btn-link-menu" href="/">Accueil</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/cartes">Cartes</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/tableaux">Tableaux</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/indicateurs">Indicateurs</a>
+                        </li>
+                    </ul>
+                    <ul class="menu-primary">
+                        <li><a href="/actualites">Actualit&#xE9;s</a></li>
+                        <li><a href="/a-propos">A propos</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                    <ul class="menu-user">
+
+                            <li>
+                                <a class="nav-item-add" href="/se-connecter">Se connecter</a>
+                            </li>
+                            <li>
+                                <a class="nav-item-add" href="/s-enregistrer"><i class="icon-user mb-n-xxs"></i>S&#x27;enregistrer</a>
+                            </li>
+                    </ul>
+                    <div class="menu-contact">
+                        <h4>ibsa.brussels</h4>
+                        <ul class="menu-contact-list">
+                            <li>rue de Namur 59</li>
+                            <li>B-1000 Bruxelles</li>
+                            <li><a class="btn-link-invert" href="tel:003224354230">+32 2 435 42 30</a></li>
+                            <li><a class="btn-link-invert" href="mail:ibsa@perspective.brussels">ibsa@perspective.brussels</a></li>
+                            <li><a class="btn-link-invert" href="mail:monitoringdesquartiers@perspective.brussels">monitoringdesquartiers@perspective.brussels</a></li>
+                        </ul>
+                    </div>
+                    <div class="menu-footer">
+                        <ul class="menu-footer-social inline-list">
+                            <li><a href="#"><i class="icon-vendor-tw"></i></a></li>
+                            <li><a href="#"><i class="icon-vendor-li"></i></a></li>
+                            <li><a href="#"><i class="icon-vendor-fb"></i></a></li>
+                        </ul>
+                        <p class="text-sm">Mentions légales - Crédits</p>
+                    </div>
+                </nav>
+                <nav class="header-nav-primary">
+                    <ul class="header-nav-primary-links">
+                        <li>
+                            <a class="btn-link-menu" href="/">Accueil</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/cartes">Cartes</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/tableaux">Tableaux</a>
+                        </li>
+                        <li>
+                            <a class="btn-link-menu" href="/indicateurs">Indicateurs</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+
+<div class="menu-language-wrapper">
+    <div class="container">
+        <ul class="menu-language">
+                    <li class="" onclick="location.href='/Home/ChangeLanguage?returnUrl=%2F&amp;culture=nl-BE';" data-returnUrl="/" id="nl-BE">NL</li>
+                    <li class="selected" onclick="location.href='/Home/ChangeLanguage?returnUrl=%2F&amp;culture=fr-BE';" data-returnUrl="/" id="fr-BE">FR</li>
+        </ul>
+    </div>
+</div>
+    </header>
+    <div class="banner">
+        <div class="container">
+            <h1 id="bannerTitle" class="banner-title"></h1>
+        </div>
+    </div>
+
+    <section class="floating-quick-nav">
+        <ul>
+            <li class="floating-quick-nav-button glossary-open " id="glossaryListButton" style="display:none">
+                <i class="icon-book"></i>
+                <span>Glossaire</span>
+            </li>
+            <li class="floating-quick-nav-button">
+                <a href="/contact">
+                    <i class="icon-email"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li class="floating-quick-nav-button back-to-top">
+                <i class="icon-chevron-up-white"></i>
+                <span>Top</span>
+            </li>
+        </ul>
+    </section>
+
+    <aside id="glossary" class="glossary">
+        <button class="glossary-close" type="button">
+            <div class="glossary-close-inner"></div>
+        </button>
+
+        <h2 class="h2-lg glossary-title">Glossaire</h2>
+
+        <div class="glossary-search field">
+            <label for="search">Rechercher un terme</label>
+            <div class="input-search ">
+                <input type="text" name="search" id="searchGlossaryFilter" placeholder="Ex: Monitoring des Quartiers, deuxi&#xE8;me couronne, ...">
+                <button type="submit" class="btn-search" id="search-button-glossary-filter">
+                    <i class="icon-search-primary"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="glossaryResultsList"></div>
+    </aside>
+
+    
+
+
+
+
+
+
+
+    <div id="cookieConsent" class="cookie-consent pv-md">
+        <div class="container-fluid">
+            <p class="cookie-consent-text">Le pr&#xE9;sent site internet place des cookies. Les cookies essentiels sont n&#xE9;cessaires au bon fonctionnement du site Internet et ne peuvent pas &#xEA;tre refus&#xE9;s. D&#x2019;autres cookies sont utilis&#xE9;s &#xE0; des fins statistiques (cookies d&#x2019;analyse) et ne seront plac&#xE9;s que si vous en acceptez le placement. Param&#xE9;trer les cookies pour en savoir plus.</p>
+                
+            <div class="cookie-consent-control">
+                <div class="row">
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <button class="btn btn-secondary btn-block btn-sm" type="button" data-dismiss="alert" id="cookieOptions">
+                            <span aria-hidden="true">Param&#xE9;trer les cookies</span>
+                        </button>
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <button class="btn btn-secondary btn-block btn-sm" type="button" data-dismiss="alert" data-cookie-string=".AspNet.Consent=yes; expires=Mon, 15 Nov 2027 15:34:39 GMT; path=/">
+                            <span aria-hidden="true">Accepter tous les cookies</span>
+                        </button>
+                    </div>
+					<div class="col-12 col-sm-3 col-md-2">
+						<button class="btn btn-secondary btn-block btn-sm" type="button" data-dismiss="alert" id="ignore">
+                            <span aria-hidden="true">Refuser les cookies optionnels</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <input id="toggleYes" type="hidden" value="Activ&#xE9;" />
+    <input id="toggleNo" type="hidden" value="D&#xE9;sactiv&#xE9;" />
+    <div class="modal fade cookie-consent-modal" id="cookieOptionsModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <input id="mediaType" hidden />
+            <div class="modal-content">
+                <div class="modal-header">
+					<div class="modal-title">
+						<h3>Notre site utilise des cookies</h3>
+						<h5><p>Qu’est-ce qu’un cookie ? Quels cookies utilisons-nous et pourquoi ?  Lisez <a class="btn-link-menu" target="_blank"  href="/Home/Clauses">notre politique en matière de cookies </a> pour en savoir plus. </p></h5>
+					</div>
+
+					<button type="button" class="close" data-dismiss="modal"><i class="icon-decline icon-xs"></i></button>
+                </div>
+                <div class="modal-body">
+
+					<div class="row">
+						<div class="col-12 col-sm-4">
+							<button type="button" class="btn btn-secondary btn-sm btn-block mt-sm" id="acceptAll" disabled>Accepter tous les cookies</button>
+						</div>
+						<div class="col-12 col-sm-4">
+							<button type="button" class="btn btn-secondary btn-sm btn-block mt-sm" id="refuse">Refuser les cookies optionnels </button>
+						</div>
+					</div>
+
+					<div class="input-checkbox cookie-consent-check">
+                        <input type="checkbox" id="essential" class="checkbox" disabled checked>
+						<label for="essential"><span class="cookie-consent-check-info"><h5>
+Essentiel <span class="cookie-consent-secondary-text">(toujours requis)</span></h5>
+
+<p>Ces cookies sont nécessaires pour des raisons purement techniques pour une visite normale du site Internet. Vu la nécessité technique, seule une obligation d'information s'applique, et ces cookies sont placés dès que vous accédez au site Internet.</p>
+
+<span class="cookie-consent-secondary-text">Utilisation: service de base</span>
+</span></label>
+                        <span class="cookie-consent-check-status">Activ&#xE9;</span>
+
+                    </div>
+
+					<div class="input-checkbox cookie-consent-check">
+                        <input type="checkbox" id="analyticsCookies" class="checkbox" checked>
+						<label for="analyticsCookies"><span class="cookie-consent-check-info"><h5>
+	Analyse d'audience
+</h5>
+
+<p>
+	Il s'agit de cookies qui nous permettent de savoir combien de fois une page déterminée a été consultée. Nous utilisons ces informations uniquement pour améliorer le contenu de notre site Internet. Ces cookies ne sont placés que si vous en acceptez le placement.
+</p>
+
+<span class="cookie-consent-secondary-text">Utilisation: statistiques</span></span></label>
+                        <span class="cookie-consent-check-status" id="toogleStatus">Activ&#xE9;</span>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="modal-footer-wrapper">
+                        <button class="btn btn-secondary btn-sm" id="confirm-cookies">Confirmer mon choix</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var buttonAll = document.querySelector("#cookieConsent button[data-cookie-string]");
+            buttonAll.addEventListener("click", function (event) {
+              
+                document.cookie = buttonAll.dataset.cookieString;
+
+                        var gaScript = $('<script async src="' + 'https://www.googletagmanager.com/gtag/js?id=UA-17146775-31' + '"></s' + 'cript>');
+                       $('body').append($(gaScript));
+                       window.dataLayer = window.dataLayer || [];
+                       function gtag() { window.dataLayer.push(arguments); }
+                       gtag('js', new Date());
+                       gtag('config', 'UA-17146775-31');
+
+
+                $("#cookieConsent").hide();
+            }, false);
+
+            var ignoreButton = document.querySelector("#ignore");
+            ignoreButton.addEventListener("click", function (event) {
+                document.cookie = buttonAll.dataset.cookieString;
+
+                window['ga-disable-MEASUREMENT_ID'] = true;
+
+                var gaPropertyFr = 'UA-17146775-31';
+                var gaPropertyNl = 'UA-17146775-32';
+
+
+                // Disable tracking if the opt-out cookie exists.
+                var disableStrFR = 'ga-disable-' + gaPropertyFr;
+                var disableStrNL = 'ga-disable-' + gaPropertyNl;
+
+                gaOptout(disableStrFR, disableStrNL);
+
+
+
+                $("#cookieConsent").hide();
+            }, false);
+
+            var cookieOptionsPopup = document.querySelector("#cookieOptions");
+            cookieOptionsPopup.addEventListener("click", function (event) {
+
+                $('#cookieOptionsModal').modal('show');
+            }, false);
+
+
+            var buttonAcceptAll = document.querySelector("#acceptAll");
+            buttonAcceptAll.addEventListener("click", function (event) {
+                var yes = $('#toggleYes').val();
+
+                $("#analyticsCookies").prop("checked", true);
+                $('#refuse').prop('disabled', false);
+                $('#acceptAll').prop('disabled', true);
+
+                $('#toogleStatus').text(yes);
+
+            }, false);
+
+
+            var buttonRefuse = document.querySelector("#refuse");
+            buttonRefuse.addEventListener("click", function (event) {
+             
+                var no = $('#toggleNo').val();
+
+                $("#analyticsCookies").prop("checked", false);
+                $('#refuse').prop('disabled', true);
+                $('#acceptAll').prop('disabled', false);
+
+                $('#toogleStatus').text(no);
+
+            }, false);
+
+
+            var analyticsCookies = document.querySelector("#analyticsCookies");
+            analyticsCookies.addEventListener("click", function (event) {
+           
+                var yes = $('#toggleYes').val();
+                var no = $('#toggleNo').val();
+
+                var isAnalyticsChecked = $('#analyticsCookies').is(":checked");
+                if (isAnalyticsChecked) {
+                    $('#refuse').prop('disabled', false);
+                    $('#acceptAll').prop('disabled', true);
+                    $('#toogleStatus').text(yes);
+
+                }
+                else {
+                    $('#refuse').prop('disabled', true);
+                    $('#acceptAll').prop('disabled', false);
+                    $('#toogleStatus').text(no);
+                }
+
+
+            }, false);
+
+
+            var confirmCookies = document.querySelector("#confirm-cookies");
+            confirmCookies.addEventListener("click", function (event) {
+           
+                $("#cookieConsent").hide();
+                $('#cookieOptionsModal').modal('hide');
+
+                var isAnalyticsChecked = $('#analyticsCookies').is(":checked");
+                if (isAnalyticsChecked) {
+
+                    buttonAll.click();
+                }
+                else {
+
+                    ignoreButton.click();
+                }
+
+            }, false);
+
+
+        });
+
+
+
+                // Opt-out function
+      function gaOptout(disableStrFR, disableStrNL) {
+
+                       document.cookie = disableStrFR + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+                        window[disableStrFR] = true;
+
+
+        }
+
+
+
+
+
+
+    </script>
+
+    <main role="main">
+      
+        <div id="errors-main"></div>
+        
+<div class="container">
+    <section class="home-banner mt-n-xxl">
+        <div class="row">
+            <div class="col-lg-7 col-md-12 home-banner-intro">
+                <div class="home-banner-intro-bg"></div>
+                <h1 class="h-lg">
+                    Le Monitoring des Quartiers de la R&#xE9;gion de Bruxelles-Capitale
+                </h1>
+                <p>
+                    Le Monitoring des Quartiers de l&#x2019;IBSA est un outil interactif de suivi des quartiers bruxellois. De nombreuses cartes &#xE0; l&#x2019;&#xE9;chelle infra-communale illustrent une s&#xE9;lection d&#x2019;indicateurs. Ces cartes mettent en &#xE9;vidence les dynamiques et disparit&#xE9;s territoriales au sein de la R&#xE9;gion de Bruxelles-Capitale.
+                </p>
+                <a class="btn-link-home-banner" href="/a-propos">En savoir plus sur le Monitoring des Quartiers</a>
+            </div>
+
+            <div class="col-lg-5 col-md-12 home-banner-latest-news">
+                <div class="home-banner-latest-news-bg"></div>
+                <div class="home-banner-latest-news-header">
+                    <h2>Actualit&#xE9;s</h2>
+                    <a class="btn-link-home-banner" href="/actualites">
+                        Voir plus
+                    </a>
+                </div>
+                <div class="home-banner-latest-news-body">
+                        <div class="home-banner-latest-news-short">
+                            <div class="home-banner-latest-news-short-thumb">
+                                <img src="https://ibsa.brussels/sites/default/files/styles/large/public/2026-10/update.jpg" alt="news thumbnail" type="text" maxlength="500" />
+                            </div>
+                            <div class="home-banner-latest-news-short-wrapper">
+                                <a class="home-banner-latest-news-short-link" href="https://ibsa.brussels/node/3592" target="_blank"></a>
+                                <p class="home-banner-latest-news-short-date">29.10.2026</p>
+                                <ul class="tags tags-sm inline-list">
+                                    <li class="tags-bg-white"><span>News</span></li>
+                                </ul>
+                                <p class="home-banner-latest-news-short-title">Mise &#xE0; jour mensuelle des donn&#xE9;es (octobre&#xA0;2026)&#xA0;: trois th&#xE9;matiques actualis&#xE9;es</p>
+                            </div>
+                        </div>
+                        <div class="home-banner-latest-news-short">
+                            <div class="home-banner-latest-news-short-thumb">
+                                <img src="https://ibsa.brussels/sites/default/files/styles/large/public/2026-10/view-unrecognizable-businessman-leaving-office-after-losing-his-job.jpg" alt="news thumbnail" type="text" maxlength="500" />
+                            </div>
+                            <div class="home-banner-latest-news-short-wrapper">
+                                <a class="home-banner-latest-news-short-link" href="https://ibsa.brussels/node/3589" target="_blank"></a>
+                                <p class="home-banner-latest-news-short-date">22.10.2026</p>
+                                <ul class="tags tags-sm inline-list">
+                                    <li class="tags-bg-white"><span>News</span></li>
+                                </ul>
+                                <p class="home-banner-latest-news-short-title">Les &#xE9;volutions r&#xE9;centes de l&#x2019;&#xE9;conomie bruxelloise dans l&#x2019;Aper&#xE7;u conjoncturel d&#x2019;octobre</p>
+                            </div>
+                        </div>
+                        <div class="home-banner-latest-news-short">
+                            <div class="home-banner-latest-news-short-thumb">
+                                <img src="https://ibsa.brussels/sites/default/files/styles/large/public/2026-10/xavier-mouton-photographie-MRWHSKimBJk-unsplash_3.jpg" alt="news thumbnail" type="text" maxlength="500" />
+                            </div>
+                            <div class="home-banner-latest-news-short-wrapper">
+                                <a class="home-banner-latest-news-short-link" href="https://ibsa.brussels/node/3586" target="_blank"></a>
+                                <p class="home-banner-latest-news-short-date">21.10.2026</p>
+                                <ul class="tags tags-sm inline-list">
+                                    <li class="tags-bg-white"><span>News</span></li>
+                                </ul>
+                                <p class="home-banner-latest-news-short-title">Focus n&#xB0;86 : les familles monoparentales davantage expos&#xE9;es &#xE0; la pr&#xE9;carit&#xE9; &#xE0; Bruxelles</p>
+                            </div>
+                        </div>
+                        <div class="home-banner-latest-news-short">
+                            <div class="home-banner-latest-news-short-thumb">
+                                <img src="https://ibsa.brussels/sites/default/files/styles/large/public/2026-10/hand-2722107_1280.jpg" alt="news thumbnail" type="text" maxlength="500" />
+                            </div>
+                            <div class="home-banner-latest-news-short-wrapper">
+                                <a class="home-banner-latest-news-short-link" href="https://ibsa.brussels/node/3581" target="_blank"></a>
+                                <p class="home-banner-latest-news-short-date">15.10.2026</p>
+                                <ul class="tags tags-sm inline-list">
+                                    <li class="tags-bg-white"><span>News</span></li>
+                                </ul>
+                                <p class="home-banner-latest-news-short-title">Coup d&#x27;&#x153;il dans le r&#xE9;tro sur les 10 ans de l&#x27;Institut interf&#xE9;d&#xE9;ral de statistique dans la 11e&#xA0;newsletter de l&#x27;IIS</p>
+                            </div>
+                        </div>
+                        <div class="home-banner-latest-news-short">
+                            <div class="home-banner-latest-news-short-thumb">
+                                <img src="https://ibsa.brussels/sites/default/files/styles/large/public/2026-10/20250504fetedeliris-216_3.jpg" alt="news thumbnail" type="text" maxlength="500" />
+                            </div>
+                            <div class="home-banner-latest-news-short-wrapper">
+                                <a class="home-banner-latest-news-short-link" href="https://ibsa.brussels/node/3574" target="_blank"></a>
+                                <p class="home-banner-latest-news-short-date">07.10.2026</p>
+                                <ul class="tags tags-sm inline-list">
+                                    <li class="tags-bg-white"><span>News</span></li>
+                                </ul>
+                                <p class="home-banner-latest-news-short-title">Barom&#xE8;tre d&#xE9;mographique 2026&#xA0;: la population bruxelloise s&#x2019;est maintenue en&#xA0;2025</p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="indicators-slider-container">
+    <div class="indicators-slider">
+            <div class="indicators-slider-card">
+                <div class="indicators-slider-card-wrapper">
+                    <div class="indicators-slider-card-icon">
+                        <i class="icon-squished-diamond"></i>
+                        <img src="/MdqFiles/Images/2.svg" alt="indicator icon" />
+                    </div>
+                    <div class="indicators-slider-card-header">
+                        <h5 class="h5-sm">Population</h5>
+                        <h3>Coefficient de s&#xE9;niorit&#xE9; des femmes (80&#x2B;/60&#x2B;)</h3>
+                            <h3>(%)</h3>
+
+                        <h3>2024</h3>
+
+                    </div>
+                    <div class="indicators-slider-card-body">
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Saint-Paul</li>
+                                <li class="indicators-slider-card-sheet-value">32,67</li>
+                            </ul>
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Porte de Hal</li>
+                                <li class="indicators-slider-card-sheet-value">18,01</li>
+                            </ul>
+                    </div>
+                    <div class="indicators-slider-card-footer">
+                        <ul class="indicators-slider-card-sheet">
+                            <li class="indicators-slider-card-sheet-label">Moyenne r&#xE9;gionale</li>
+                            <li class="indicators-slider-card-sheet-value">23,97</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="indicators-slider-card">
+                <div class="indicators-slider-card-wrapper">
+                    <div class="indicators-slider-card-icon">
+                        <i class="icon-squished-diamond"></i>
+                        <img src="/MdqFiles/Images/6.svg" alt="indicator icon" />
+                    </div>
+                    <div class="indicators-slider-card-header">
+                        <h5 class="h5-sm">B&#xE2;ti et &#xE9;quipements</h5>
+                        <h3>Taux d&#x27;emprise au sol</h3>
+                            <h3>(%)</h3>
+
+                        <h3>2026</h3>
+
+                    </div>
+                    <div class="indicators-slider-card-body">
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Reyers</li>
+                                <li class="indicators-slider-card-sheet-value">23,6748</li>
+                            </ul>
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Cureghem V&#xE9;t&#xE9;rinaire</li>
+                                <li class="indicators-slider-card-sheet-value">40,8048</li>
+                            </ul>
+                    </div>
+                    <div class="indicators-slider-card-footer">
+                        <ul class="indicators-slider-card-sheet">
+                            <li class="indicators-slider-card-sheet-label">Moyenne r&#xE9;gionale</li>
+                            <li class="indicators-slider-card-sheet-value">22,2889</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="indicators-slider-card">
+                <div class="indicators-slider-card-wrapper">
+                    <div class="indicators-slider-card-icon">
+                        <i class="icon-squished-diamond"></i>
+                        <img src="/MdqFiles/Images/74.svg" alt="indicator icon" />
+                    </div>
+                    <div class="indicators-slider-card-header">
+                        <h5 class="h5-sm">S&#xE9;curit&#xE9;</h5>
+                        <h3>Densit&#xE9; des interventions du SIAMU pour des fuites de gaz</h3>
+                            <h3>(nb/km&#xB2;)</h3>
+
+                        <h3>2018-2021</h3>
+
+                    </div>
+                    <div class="indicators-slider-card-body">
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Molenbeek Historique</li>
+                                <li class="indicators-slider-card-sheet-value">12,4</li>
+                            </ul>
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Quartier Royal</li>
+                                <li class="indicators-slider-card-sheet-value">1,4</li>
+                            </ul>
+                    </div>
+                    <div class="indicators-slider-card-footer">
+                        <ul class="indicators-slider-card-sheet">
+                            <li class="indicators-slider-card-sheet-label">Moyenne r&#xE9;gionale</li>
+                            <li class="indicators-slider-card-sheet-value">4,2</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="indicators-slider-card">
+                <div class="indicators-slider-card-wrapper">
+                    <div class="indicators-slider-card-icon">
+                        <i class="icon-squished-diamond"></i>
+                        <img src="/MdqFiles/Images/1.svg" alt="indicator icon" />
+                    </div>
+                    <div class="indicators-slider-card-header">
+                        <h5 class="h5-sm">Environnement</h5>
+                        <h3>Concentrations moyennes annuelles en particules fines de diam&#xE8;tre inf&#xE9;rieur &#xE0; 2.5&#xB5;m (PM2.5)</h3>
+                            <h3>(&#xB5;g / m&#xB3;)</h3>
+
+                        <h3>2024</h3>
+
+                    </div>
+                    <div class="indicators-slider-card-body">
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Botanique</li>
+                                <li class="indicators-slider-card-sheet-value">9,200</li>
+                            </ul>
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Terdelt</li>
+                                <li class="indicators-slider-card-sheet-value">8,030</li>
+                            </ul>
+                    </div>
+                    <div class="indicators-slider-card-footer">
+                        <ul class="indicators-slider-card-sheet">
+                            <li class="indicators-slider-card-sheet-label">Moyenne r&#xE9;gionale</li>
+                            <li class="indicators-slider-card-sheet-value">7,450</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="indicators-slider-card">
+                <div class="indicators-slider-card-wrapper">
+                    <div class="indicators-slider-card-icon">
+                        <i class="icon-squished-diamond"></i>
+                        <img src="/MdqFiles/Images/2.svg" alt="indicator icon" />
+                    </div>
+                    <div class="indicators-slider-card-header">
+                        <h5 class="h5-sm">Population</h5>
+                        <h3>Part des femmes de 20-59 ans en couple avec enfant (sur les femmes de 20-59 ans)</h3>
+                            <h3>(%)</h3>
+
+                        <h3>2025</h3>
+
+                    </div>
+                    <div class="indicators-slider-card-body">
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Neerpede</li>
+                                <li class="indicators-slider-card-sheet-value">31,05</li>
+                            </ul>
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Stockel</li>
+                                <li class="indicators-slider-card-sheet-value">38,61</li>
+                            </ul>
+                    </div>
+                    <div class="indicators-slider-card-footer">
+                        <ul class="indicators-slider-card-sheet">
+                            <li class="indicators-slider-card-sheet-label">Moyenne r&#xE9;gionale</li>
+                            <li class="indicators-slider-card-sheet-value">32,35</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="indicators-slider-card">
+                <div class="indicators-slider-card-wrapper">
+                    <div class="indicators-slider-card-icon">
+                        <i class="icon-squished-diamond"></i>
+                        <img src="/MdqFiles/Images/6.svg" alt="indicator icon" />
+                    </div>
+                    <div class="indicators-slider-card-header">
+                        <h5 class="h5-sm">B&#xE2;ti et &#xE9;quipements</h5>
+                        <h3>Hauteur maximale des b&#xE2;timents</h3>
+                            <h3>(m)</h3>
+
+                        <h3>2026</h3>
+
+                    </div>
+                    <div class="indicators-slider-card-body">
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Helmet</li>
+                                <li class="indicators-slider-card-sheet-value">55,03</li>
+                            </ul>
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Roodebeek - Constellations</li>
+                                <li class="indicators-slider-card-sheet-value">52,45</li>
+                            </ul>
+                    </div>
+                    <div class="indicators-slider-card-footer">
+                        <ul class="indicators-slider-card-sheet">
+                            <li class="indicators-slider-card-sheet-label">Moyenne r&#xE9;gionale</li>
+                            <li class="indicators-slider-card-sheet-value">7.787,67</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="indicators-slider-card">
+                <div class="indicators-slider-card-wrapper">
+                    <div class="indicators-slider-card-icon">
+                        <i class="icon-squished-diamond"></i>
+                        <img src="/MdqFiles/Images/2.svg" alt="indicator icon" />
+                    </div>
+                    <div class="indicators-slider-card-header">
+                        <h5 class="h5-sm">Population</h5>
+                        <h3>Coefficient de d&#xE9;pendance &#xE9;conomique</h3>
+                            <h3>(%)</h3>
+
+                        <h3>2025</h3>
+
+                    </div>
+                    <div class="indicators-slider-card-body">
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Cureghem V&#xE9;t&#xE9;rinaire</li>
+                                <li class="indicators-slider-card-sheet-value">61,26</li>
+                            </ul>
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Terdelt</li>
+                                <li class="indicators-slider-card-sheet-value">62,90</li>
+                            </ul>
+                    </div>
+                    <div class="indicators-slider-card-footer">
+                        <ul class="indicators-slider-card-sheet">
+                            <li class="indicators-slider-card-sheet-label">Moyenne r&#xE9;gionale</li>
+                            <li class="indicators-slider-card-sheet-value">52,77</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="indicators-slider-card">
+                <div class="indicators-slider-card-wrapper">
+                    <div class="indicators-slider-card-icon">
+                        <i class="icon-squished-diamond"></i>
+                        <img src="/MdqFiles/Images/1.svg" alt="indicator icon" />
+                    </div>
+                    <div class="indicators-slider-card-header">
+                        <h5 class="h5-sm">Environnement</h5>
+                        <h3>Bruit des transports (multi-exposition) : indicateur Lden (24h)</h3>
+                            <h3>(dB (A))</h3>
+
+                        <h3>2021</h3>
+
+                    </div>
+                    <div class="indicators-slider-card-body">
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Buffon</li>
+                                <li class="indicators-slider-card-sheet-value">59,88</li>
+                            </ul>
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Cimeti&#xE8;re d&#x27;Ixelles</li>
+                                <li class="indicators-slider-card-sheet-value">56,90</li>
+                            </ul>
+                    </div>
+                    <div class="indicators-slider-card-footer">
+                        <ul class="indicators-slider-card-sheet">
+                            <li class="indicators-slider-card-sheet-label">Moyenne r&#xE9;gionale</li>
+                            <li class="indicators-slider-card-sheet-value">65,70</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="indicators-slider-card">
+                <div class="indicators-slider-card-wrapper">
+                    <div class="indicators-slider-card-icon">
+                        <i class="icon-squished-diamond"></i>
+                        <img src="/MdqFiles/Images/9.svg" alt="indicator icon" />
+                    </div>
+                    <div class="indicators-slider-card-header">
+                        <h5 class="h5-sm">Enseignement</h5>
+                        <h3>Part des &#xE9;l&#xE8;ves des &#xE9;coles primaires r&#xE9;sidant &#xE0; plus de 4 km de leur &#xE9;cole</h3>
+                            <h3>(%)</h3>
+
+                        <h3>2023-2024</h3>
+
+                    </div>
+                    <div class="indicators-slider-card-body">
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">Saint-Pierre</li>
+                                <li class="indicators-slider-card-sheet-value">21,33</li>
+                            </ul>
+                            <ul class="indicators-slider-card-sheet">
+                                <li class="indicators-slider-card-sheet-label">H&#xF4;pital Fran&#xE7;ais</li>
+                                <li class="indicators-slider-card-sheet-value">5,39</li>
+                            </ul>
+                    </div>
+                    <div class="indicators-slider-card-footer">
+                        <ul class="indicators-slider-card-sheet">
+                            <li class="indicators-slider-card-sheet-label">Moyenne r&#xE9;gionale</li>
+                            <li class="indicators-slider-card-sheet-value">13,45</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+
+<section class="indicator-tools">
+    <div class="container">
+        <div class="indicator-tools-header row">
+            <a class="btn btn-primary col-4 offset-4" href="/cartes">Cr&#xE9;er une carte</a>
+            <div class="indicator-tools-header-body col-12">
+                <h4>Les outils &#xE0; votre disposition</h4>
+                <p class="text-lg">Les indicateurs du Monitoring des Quartiers sont class&#xE9;s par th&#xE8;me et sous-th&#xE8;me. Pour acc&#xE9;der aux indicateurs propos&#xE9;s, plusieurs outils s&#x2019;offrent &#xE0; vous :</p>
+            </div>
+        </div>
+
+        <div class="indicator-tools-card-wrapper row">
+            <div class="indicator-tools-card card-map col-xl-4 col-lg-12">
+                <div class="indicator-tools-card-bg"></div>
+                <h6 class="indicator-tools-card-category">Carte</h6>
+                <div class="indicator-tools-card-title">
+                    <div class="indicator-tools-card-title-icon">
+                        <img src="/assets/icons/icon-map.svg" alt="indicator-card-icon" />
+                    </div>
+                    <h2 class="text-brown">Cr&#xE9;er une carte</h2>
+                </div>
+                <p class="indicator-tools-card-text">Cr&#xE9;ez une carte avec l&#x2019;indicateur qui vous int&#xE9;resse. Pour afficher la carte, choisissez l&#x2019;ann&#xE9;e et le niveau (quartiers ou communes) souhait&#xE9;s.</p>
+                <div class="indicator-tools-card-footer">
+                    <a class="btn btn-primary" href="/cartes">Cr&#xE9;er une carte</a>
+                </div>
+            </div>
+
+            <div class="indicator-tools-card card-compare col-xl-4 col-lg-12">
+                <div class="indicator-tools-card-bg"></div>
+                <h6 class="indicator-tools-card-category">Tableaux </h6>
+                <div class="indicator-tools-card-title">
+                    <div class="indicator-tools-card-title-icon">
+                        <img src="/assets/icons/icon-chart.svg" alt="indicator-card-icon" />
+                    </div>
+                    <h2 class="text-brown">Comparer des indicateurs</h2>
+                </div>
+                <p class="indicator-tools-card-text">
+                    Cr&#xE9;ez un tableau avec un seul ou plusieurs indicateurs. Pour afficher le tableau, choisissez les territoires et ann&#xE9;es souhait&#xE9;s. Cet outil permet aussi d&#x2019;exporter un tableau comprenant toutes les donn&#xE9;es disponibles pour un territoire choisi.
+                </p>
+                <div class="indicator-tools-card-footer">
+                    <a class="btn btn-primary" href="/tableaux">Comparer des indicateurs</a>
+                </div>
+            </div>
+            <div class="indicator-tools-card card-catalogue col-xl-4 col-lg-12">
+                <div class="indicator-tools-card-bg"></div>
+                <h6 class="indicator-tools-card-category">Indicateurs</h6>
+                <div class="indicator-tools-card-title">
+                    <div class="indicator-tools-card-title-icon">
+                        <img src="/assets/icons/icon-folder.svg" alt="indicator-card-icon" />
+                    </div>
+                    <h2 class="text-primary">Parcourir tous les indicateurs </h2>
+                </div>
+                <p class="indicator-tools-card-text">
+                    Obtenez une vue d&#x2019;ensemble sur tous les indicateurs avec le catalogue. Pour trouver facilement un indicateur dans la liste, effectuez une recherche par mot-cl&#xE9;.
+                </p>
+                <div class="indicator-tools-card-footer">
+                    <a class="btn btn-secondary" href="/indicateurs">Parcourir tous les indicateurs </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="home-district-map">
+    <div class="container">
+        <input hidden value="Secteurs statistiques" id="sectorTranslation" />
+        <input hidden value="Communes" id="municipalityTranslation" />
+        <input hidden value="Quartiers" id="districtTranslation" />
+        <div id="blockMap" class="row">
+            <div class="col-lg-4 col-md-12 filters-wrapper home-district-map-filters">
+                <div class="home-district-map-filters-bg"></div>
+                <h6 class="section-heading">Localisation</h6>
+                <form id="form_map_search" action="#">
+                    <div class="filters">
+                        <div class="filters-item home-district-map-filters-title">
+                            <div class="home-district-map-filters-title-icon">
+                                <img src="/assets/icons/icon-pinmap.svg" alt="location icon" />
+                            </div>
+                            <h2>Trouvez votre quartier :</h2>
+                        </div>
+                        <div class="filters-item filters-item-address">
+                            <label for="input_address">Adresse :</label>
+                            <input id="input_address" type="text" placeholder="Adresse" />
+                        </div>
+                        <div class="filters-item filters-item-number">
+                            <label for="input_number">Num&#xE9;ro :</label>
+                            <input id="input_number" type="text" placeholder="Num&#xE9;ro" />
+                        </div>
+                        <div class="filters-item filters-item-postcode">
+                            <label for="input_postcode">Code postal :</label>
+                            <input id="input_postcode" type="text" placeholder="Code postal" />
+                        </div>
+                        <div class="filters-item filters-item-results">
+                            <ul id="address_search_results" class="home-district-map-filters-results"></ul>
+                            <ul id="location_details" class="home-district-map-filters-results">
+                                <li class="mv-md">
+                                    <h6 class="h6-sm">Adresse :</h6>
+                                    <p id="value_address" class="value text-sm"></p>
+                                </li>
+                                <li class="mv-md">
+                                    <h6 class="h6-sm">Num&#xE9;ro :</h6>
+                                    <p id="value_number" class="value text-sm"></p>
+                                </li>
+                                <li class="mv-md">
+                                    <h6 class="h6-sm">Code postal :</h6>
+                                    <p id="value_postcode" class="value text-sm"></p>
+                                </li>
+                                <li class="mv-md">
+                                    <h6 class="h6-sm">Quartier :</h6>
+                                    <p id="value_district" class="value text-sm"></p>
+                                </li>
+                                <li class="mv-md">
+                                    <h6 class="h6-sm">Commune :</h6>
+                                    <p id="value_municipality" class="value text-sm"></p>
+                                </li>
+                                <li class="mv-md">
+                                    <h6 class="h6-sm">Zones :</h6>
+                                    <p id="value_groups" class="value text-sm"></p>
+                                    <p class="empty_value text-sm" id="noZone">Aucune zone</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="filters-item submit">
+                            <button id="submit-localisation" type="submit" class="btn btn-primary">Rechercher</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-8 col-md-12 home-district-map-main">
+                <div class="home-district-map-main-wrapper">
+                    <div id="map_search" class="olMap home-district-map-main-inner">
+                        <div class="olControlUrbisSwitchOverlay olControlNoSelect"
+                             unselectable="on" style="position: absolute; z-index: 1003;">
+                            <button type="button" id="municipalityBtn" data-action="communes">
+                                Communes
+                            </button>
+                            <button type="button" id="districtBtn" data-action="quartiers">
+                                Quartiers
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="newsletter-cta">
+    <div class="container">
+        <!-- Begin Mailchimp Signup Form -->
+
+        <div id="mc_embed_signup" class="row">
+            <form action="https://brussels.us14.list-manage.com/subscribe/post?u=9f94e54cae9d171cb6a02d69a&amp;amp;id=1e1182676a" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate newsletter-cta-form col-12" target="_blank" novalidate>
+                <div id="mc_embed_signup_scroll" class="newsletter-cta-form-wrapper">
+                    <h2 class="text-white mce-email-label" for="mce-EMAIL">Inscrivez-vous &#xE0; la newsletter IBSA</h2>
+                    <div class="mce-email">
+                        <i class="icon-email-primary-sm"></i>
+                        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Votre adresse email" required>
+                    </div>
+                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_425d0fe4a91a4c79913ce966f_e630a058a0" tabindex="-1" value=""></div>
+                    <div class="clear mce-email-submit"><button type="submit" value="S&#x27;abonner" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary">S&#x27;abonner</button></div>
+                </div>
+            </form>
+        </div>
+        <!--End mc_embed_signup-->
+    </div>
+</section>
+
+
+
+<script>
+    $(document).ready(function () {
+        let introBg = $('.home-banner-intro-bg');
+        let newsBg = $('.home-banner-latest-news-bg');
+        let indicatorToolsMapBg = $('.card-map .indicator-tools-card-bg');
+        let indicatorToolsCatalogueBg = $('.card-catalogue .indicator-tools-card-bg');
+        let districtMapFilters = $('.home-district-map-filters-bg');
+        let districtMapMain = $('.home-district-map-main-wrapper');
+        let avoidWidgetOffset = 98;
+
+        // GENERAL PURPOSE OFFSET CALCULATOR TO STICK ELEMENT TO WINDOW BORDER
+        function offsetToWindowBorder(desktopBreakpoint = 1140, wrapper = 'container') {
+            let wrapperWidth = document.getElementsByClassName(wrapper)[0].clientWidth;
+            let screenWidth = document.body.clientWidth;
+
+            if (screenWidth > desktopBreakpoint) {
+                let offset = Math.floor((wrapperWidth - screenWidth) / 2)
+
+                introBg.css({ left: offset });
+                newsBg.css({ right: offset });
+                indicatorToolsMapBg.css({ left: offset });
+                indicatorToolsCatalogueBg.css({ right: offset });
+                districtMapFilters.css({ left: offset });
+                districtMapMain.css({ right: offset + avoidWidgetOffset });
+            }
+        }
+
+        offsetToWindowBorder();
+
+        $(window).on('resize', function () {
+            offsetToWindowBorder();
+        });
+
+        // Indicators Slick slider
+        $(".indicators-slider").slick({
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            dots: true,
+            appendArrows: $('.indicators-slider-container')
+        });
+    });
+</script>
+<script type="text/javascript">
+    var media_url = "urbisMap/static/";
+    var lang = 'fr';
+    var admin_media_prefix = "";
+    var urbis_url = "https://geoservices.irisnet.be/";
+    var map_url = "https://geoservices-urbis.irisnet.be/";
+    var map_url_others = "https://geoservices-others.irisnet.be/";
+
+    jQuery(function ($) {
+        $("#login").load("/logged_in/");
+        // $(".roundedCorners").corner();
+    });
+
+    var base_url = window.location.href.split('/').splice(0, 3).join("/");
+
+    // Workaround to avoid geoserver calling MdQ with HTTPS due to missing certificat
+
+    var sld_url = "https://monitoringdesquartiers.brussels"
+
+</script>
+    <script>var showSector = false;</script>
+<script>
+    var label_sectors = $('#sectorTranslation').val();
+    var label_districts = $('#districtTranslation').val();
+    var label_municipalities = $('#municipalityTranslation').val();
+    var label_center_map = "Centrer la carte";
+    var label_fullscreen = "Plein écran";
+    var label_close_fullscreen = "Fermer le plein écran";
+    var label_no_results_FR = "La recherche n'a donné aucun résultat.";
+    var label_no_results_NL = "Het onderzoek heeft geen resultaten opgeleverd.";
+    var label_search_loading = "Recherche...";
+    var label_search_loading_FR = "Recherche...";
+    var label_search_loading_NL = "Onderzoek...";
+
+    window.current_lang = "FR";
+    window.current_lang_lower = "fr";
+</script>
+<script src="/urbismap/v1/bundle.js"></script>
+<script src="/urbismap/v1/action.js"></script>
+<script src="/urbismap/v1/address.widget.js"></script>
+<script>
+    (function() {
+      let lastClickTime = 0;
+      document.getElementById('submit-localisation')?.addEventListener('click', function () {
+        const now = Date.now();
+        if (typeof plausible === 'function' && (now - lastClickTime > 5000)) {
+          plausible('indicator-submit-click');
+          lastClickTime = now;
+        }
+      });
+    })();
+</script>
+
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <h2>Nos autres sites</h2>
+                    <ul class="footer-list">
+                        <li><a class="btn-link-invert btn-icon-right" href="https://perspective.brussels/" target="_blank">perspective.brussels</a><i class="icon-external-link"></i></li>
+                        <li><a class="btn-link-invert btn-icon-right" href="http://ibsa.brussels/" target="_blank">ibsa.brussels</a><i class="icon-external-link"></i></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <h2>ibsa.brussels</h2>
+                    <ul class="footer-list">
+                        <li>rue de Namur 59</li>
+                        <li>B-1000 Bruxelles</li>
+                        <li><a class="btn-link-invert" href="tel:003224354230">+32 2 435 42 30</a></li>
+                        <li><a class="btn-link-invert" href="mail:ibsa@perspective.brussels">ibsa@perspective.brussels</a></li>
+                        <li><a class="btn-link-invert" href="mail:monitoringdesquartiers@perspective.brussels">monitoringdesquartiers@perspective.brussels</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <h2>Suivez-nous</h2>
+                    <ul class="footer-list footer-social inline-list">
+                        <li><a href="https://www.linkedin.com/company/brussels-instituut-voor-statistiek-en-analyse"><i class="icon-vendor-li"></i></a></li>
+                        <li><a href="https://www.facebook.com/IBSAbrussels/"><i class="icon-vendor-fb"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row footer-credits mt-lg">
+                <div class="col-lg-4 col-md-12 footer-credits-legal">
+                        <a class="btn-link-menu" href="/clauses">Mentions l&#xE9;gales - </a>
+                    <a class="btn-link-menu" href="/credits">Cr&#xE9;dits</a>
+
+
+                </div>
+                <div class="col-lg-4 col-md-12 offset-lg-4">
+                    <h2>perspective.brussels</h2>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <div class='loader-wrapper'>
+        <div class="loader-overlay"></div>
+        <div class='loader'>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+            <div class='loader-cube'></div>
+        </div>
+    </div>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>

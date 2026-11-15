@@ -1,18 +1,1 @@
-[
- {
-  "name": "bru_site_js",
-  "url": "https://monitoringdesquartiers.brussels/js/site.js",
-  "retrieved": "2026-11-15T15:35:27.916232Z",
-  "status": 200,
-  "content_type": "text/javascript",
-  "bytes": 5889
- },
- {
-  "name": "bru_client_65707",
-  "url": "https://geodata.perspective.brussels/client/mdq/fr/65707",
-  "retrieved": "2026-11-15T15:35:29.236648Z",
-  "status": 200,
-  "content_type": "text/html; charset=utf-8",
-  "bytes": 3515
- }
-]
+[]

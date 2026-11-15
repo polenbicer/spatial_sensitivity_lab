@@ -43,8 +43,17 @@ export function rankCity(rows: Row[], city: City): RankedRow[] {
 }
 
 export function exampleIds(rows: RankedRow[], city: City): string[] {
-  const original = ['1.0', '47.0', '26.0', '18.0', '803.0', '800.0'].map(id => `Brussels:${id}`);
-  if (city === 'Brussels' && original.every(id => rows.some(row => row.id === id))) return original;
+  // Brussels: four fixed, ranked examples (Grand Place, Haut Saint-Gilles, Dailly, Quartier Maritime).
+  // The earlier list also named Industrie Sud and Industrie Nord, which are unranked (no published income),
+  // so the fixed list never loaded. Remaining slots are filled with the largest rank spans.
+  const fixed = city === 'Brussels'
+    ? ['1.0', '47.0', '26.0', '18.0'].map(id => `Brussels:${id}`).filter(id => rows.some(row => row.id === id))
+    : [];
+  if (fixed.length) {
+    const fill = [...rows].filter(row => !fixed.includes(row.id))
+      .sort((a, b) => b.span - a.span || a.id.localeCompare(b.id)).slice(0, 6 - fixed.length).map(row => row.id);
+    return [...fixed, ...fill];
+  }
   // Amsterdam: one high-priority reference and five largest spans, all from its own ranking universe.
   const highest = [...rows].sort((a, b) => a.ranks[0] - b.ranks[0] || a.id.localeCompare(b.id))[0];
   const movers = [...rows].filter(row => row.id !== highest?.id)

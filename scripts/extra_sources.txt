@@ -1,14 +1,16 @@
-# Brussels: Monitoring des Quartiers (IBSA / perspective.brussels)
-bru_income_table_65707	https://geodata.perspective.brussels/api/geodata/mdq/table/65707/fr
-bru_indicator_page_2498	https://monitoringdesquartiers.brussels/Indicator/IndicatorPage/2498?tab=Sheet&SubTheme=28
+# Round 2
 bru_mdq_home	https://monitoringdesquartiers.brussels/
-bru_mdq_indicators	https://monitoringdesquartiers.brussels/Indicator
-bru_geodata_mdq_root	https://geodata.perspective.brussels/api/geodata/mdq
-bru_geodata_mdq_tables	https://geodata.perspective.brussels/api/geodata/mdq/tables
-bru_geodata_mdq_indicators	https://geodata.perspective.brussels/api/geodata/mdq/indicators/fr
-# Amsterdam: statistics API and municipal heat risk map
-ams_indicator_list	https://api.data.amsterdam.nl/v1/statistieken/v2/indicatoren?_pageSize=5000&_format=json
-ams_risk_app_a9c9	https://www.arcgis.com/sharing/rest/content/items/a9c9694c4a8a4298ab97f1a44249ed68/data?f=json
-ams_risk_app_a9c9_meta	https://www.arcgis.com/sharing/rest/content/items/a9c9694c4a8a4298ab97f1a44249ed68?f=json
-ams_risk_app_aec3	https://www.arcgis.com/sharing/rest/content/items/aec3fc23a4134a3da32c7cb2cf3b66da/data?f=json
-ams_risk_app_aec3_meta	https://www.arcgis.com/sharing/rest/content/items/aec3fc23a4134a3da32c7cb2cf3b66da?f=json
+bru_indicator_page_2498	https://monitoringdesquartiers.brussels/Indicator/IndicatorPage/2498?tab=Sheet&SubTheme=28
+ams_risk_fs	https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer?f=json
+ams_risk_fs_layer0	https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&f=json
+ams_risk_fs_layer1	https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/1/query?where=1%3D1&outFields=*&returnGeometry=false&f=json
+ams_risk_fs_layer2	https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/2/query?where=1%3D1&outFields=*&returnGeometry=false&f=json
+ams_risk_fs_layer3	https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/3/query?where=1%3D1&outFields=*&returnGeometry=false&f=json
+ams_risk_fs_layer4	https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/4/query?where=1%3D1&outFields=*&returnGeometry=false&f=json
+ams_risk_fs_layer5	https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/5/query?where=1%3D1&outFields=*&returnGeometry=false&f=json
+ams_risk_fs_layer6	https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/6/query?where=1%3D1&outFields=*&returnGeometry=false&f=json
+ams_risk_fs_layer7	https://services.arcgis.com/ZFXfOvgBZpGWrLdH/arcgis/rest/services/risicokaarten_tauw/FeatureServer/7/query?where=1%3D1&outFields=*&returnGeometry=false&f=json
+ams_cijfers_BEV65PLUS_P	https://api.data.amsterdam.nl/v1/statistieken/v2/cijfers?_pageSize=20000&_format=json&indicator.id=2167
+ams_cijfers_BEVDICHT	https://api.data.amsterdam.nl/v1/statistieken/v2/cijfers?_pageSize=20000&_format=json&indicator.id=2203
+ams_cijfers_ORGAFSPARK_M	https://api.data.amsterdam.nl/v1/statistieken/v2/cijfers?_pageSize=20000&_format=json&indicator.id=2750
+ams_cijfers_BEV1P75PLUS_P	https://api.data.amsterdam.nl/v1/statistieken/v2/cijfers?_pageSize=20000&_format=json&indicator.id=2121

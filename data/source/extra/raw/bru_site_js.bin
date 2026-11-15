@@ -1,0 +1,206 @@
+﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+// for details on configuring this project to bundle and minify static web assets.
+
+// Write your JavaScript code.
+
+function PreventReloadOnEnter(searchInputId) {
+    $('#' + searchInputId).keypress(function (e) {
+        if (e.which == 13) {
+            e.preventDefault();
+        }
+    });
+}
+
+
+function Search(searchId, jtableId) {
+    $("#" + searchId).keyup(function () {
+        var value = $(this).val();
+
+        $('#' + jtableId).jtable('load', {
+            filter: value
+        });
+    });
+}
+
+function OnSelectionJtable(countSelectedItemsLabel) {
+    var countSelectedItems = 0;
+    var countAllItems = $('.jtable-data-row').length;
+    $('.jtable-row-selected').each(function () {
+        var isSelectedCount = $(this).find('td.can-select-current-row').length;
+        if (isSelectedCount > 0) {
+            countSelectedItems = countSelectedItems + 1;
+        }
+    });
+    $('#' + countSelectedItemsLabel).empty();
+    $('#' + countSelectedItemsLabel).text(countSelectedItems + ' of ' + countAllItems + ' selected');
+}
+
+function OnRowInsertingJTable(data) {
+    data.row.find("td.jtable-selecting-column").addClass('can-select-current-row');
+}
+
+function TranslateMessagesJTable(currentLanguage) {
+    var jTableMessages = {};
+
+    var englishMessages = {
+        noDataAvailable: 'Nothing found'
+    };
+    var frenchMessages = {
+        noDataAvailable: 'Aucun résultat trouvé'
+    };
+    var dutchMessages = {
+        noDataAvailable: 'geen resultaat gevonden'
+    };
+
+    var currentLanguage = $('#' + currentLanguage).val();
+    switch (currentLanguage) {
+        case 'en':
+            jTableMessages = englishMessages;
+            break;
+        case 'fr':
+            jTableMessages = frenchMessages;
+            break;
+        case 'nl':
+            jTableMessages = dutchMessages;
+            break;
+        default:
+            jTableMessages = englishMessages;
+    }
+
+    return jTableMessages;
+}
+
+function ReloadJTableWithSelection(divTable) {
+    $('.jtable').find('th.jtable-command-column-header').first().find('input').prop("checked", false);
+    $('.jtable').find("tr.jtable-row-selected").removeClass('jtable-row-selected');
+    $('.jtable').find("tr.jtable-data-row").addClass('jtable-row-even');
+    $('#' + divTable).jtable('reload');
+}
+
+function openModal(e) {
+    var url = e.href;
+    console.log(url);
+    if (url == undefined) {
+        url = e.target.dataset.url;
+    }
+    console.log(url);
+
+    placeholderelement = $('#modal-placeholder');
+    if (url != "") {
+        $.ajax({
+            url: url,
+            type: "get",
+            processdata: false,
+            contenttype: false,
+            success: function (data) {
+                placeholderelement.html(data);
+                placeholderelement.find('.modal').modal('show');
+
+            },
+            error: function (data) {
+            }
+        });
+    }
+}
+
+
+
+var addLabelsToJtableCheckboxes = function () {
+    var i = 1;
+    var checkboxes = $(':checkbox');
+    checkboxes.each(function () {
+        var id = `checkBox${i}`
+        this.id = id;
+        var label = document.createElement('label');
+        label.classList.add('jtable-checkbox-label');
+        label.setAttribute("for", id);
+        this.insertAdjacentElement('afterend', label);
+        i++;
+    })
+}
+
+
+
+$(document).ready(function () {
+
+    //var isGlossaryVisible = $('#isGlossaryListVisible').val();
+    //debugger;
+    //if (isGlossaryVisible = 'show')
+    //    $('#isGlossaryBtnVisible').show();
+    //else 
+    //    $('#isGlossaryBtnVisible').hide();
+
+
+    //MAIN MENU AND GLOSSARY TOGGLES
+    $('.menu-toggle, .menu-open-toggle').click(function () {
+        $('.header-nav').toggleClass('header-nav-expanded');
+        $('html, body').toggleClass('sidebar-expanded');
+    });
+
+    $('.glossary-close').click(function () {
+        $('#glossary').removeClass('glossary-expanded');
+    });
+    $('.glossary-open').click(function () {
+        var search = '';
+        listAllPublishedGlossaries(search);
+
+    });
+
+    //BACK TO TOP BTN
+    let $window = $(window);
+    let backToTop = $('.back-to-top');
+    function toggleBtt() {
+        if ($window.scrollTop() > 200) {
+            backToTop.addClass('btt-visible');
+        } else if ($window.scrollTop() < 200) {
+            backToTop.removeClass('btt-visible');
+        }
+    }
+    backToTop.on('click', function () {
+        $('body, html').animate({
+            scrollTop: 0
+        }, 300);
+    });
+
+    $window.on('scroll', toggleBtt);
+
+    $("#searchGlossaryFilter").keypress(function (e) {
+        if (e.which == 13) {
+            $("#search-button-glossary-filter").click();
+        }
+    });
+    $('#search-button-glossary-filter').on('click', function (e) {
+        var search = $('#searchGlossaryFilter').val();
+        listAllPublishedGlossaries(search);
+    });
+    var listAllPublishedGlossaries = function (search) {
+        var url = '/Glossary/GetGlossariesForPublic';
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: { search: search },
+            success: function (data) {
+                $('#glossaryResultsList').empty();
+                $('#glossaryResultsList').html(data);
+                $('#glossary').addClass('glossary-expanded');
+            },
+            error: function (data) {
+            }
+
+        })
+    }
+
+});
+
+
+function activateLoader(activate) {
+    let $loader = $('.loader-wrapper');
+    if (activate) {
+        if ($loader.hasClass('active')) return;
+        $loader.addClass('active');
+    } else {
+        $loader.removeClass('active');
+    }
+}
+
+

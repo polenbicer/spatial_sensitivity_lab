@@ -1,452 +1,3357 @@
 {
  "1297": {
-  "title": null,
+  "title": "Nombre de 25-29 ans de sexe masculin",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1299": {
+  "title": "Nombre de 30-34 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1301": {
+  "title": "Revenu imposable médian des déclarations",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1303": {
+  "title": "Nombre total de 65 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1305": {
+  "title": "Nombre total de 0-17 ans et de 65 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1307": {
+  "title": "Différence de population",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1309": {
+  "title": "Population des 18-64 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1311": {
+  "title": "Différence de population des 3-5 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1313": {
+  "title": "Différence de population des 6-11 ans",
+  "table_default_year": 0,
+  "years": []
  },
  "1315": {
-  "title": null,
+  "title": "Différence de population des 12-17 ans",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1317": {
+  "title": "Population de 18-64 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1319": {
+  "title": "Population des 65 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1323": {
+  "title": "Population active occupée",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1325": {
+  "title": "Population totale",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1327": {
+  "title": "Nombre de femmes de 20-49 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1329": {
+  "title": "Nombre de femmes de 60 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1331": {
+  "title": "Nombre de 15-19 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
  },
  "1333": {
-  "title": null,
+  "title": "Revenu imposable moyen par habitant - tableau",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1335": {
+  "title": "Nombre de personnes dont le ménage est connu",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1339": {
+  "title": "Espérance de vie des femmes",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1341": {
+  "title": "Nombre de 30-34 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1343": {
+  "title": "Nombre de 35-39 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1345": {
+  "title": "Nombre de primes à la rénovation pour la période",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1347": {
+  "title": "Somme du nombre de ménages pour chaque année pour la période",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1349": {
+  "title": "Somme des montants des primes à la rénovation de la période",
+  "table_default_year": 0,
+  "years": []
  },
  "1351": {
-  "title": null,
+  "title": "Somme des pourcentages des primes à la rénovation payées pour chaque année de la période",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1353": {
+  "title": "Nombre de dossiers clôturés de demande de prime à la rénovation pour la période",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1355": {
+  "title": "Nombre de primes à l'embellissement des façades pour la période",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1357": {
+  "title": "Somme des montants des primes à l'embellissement des façades de la période",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1359": {
+  "title": "Nombre de bâtiments protégés",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1361": {
+  "title": "Nombre de Français",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1363": {
+  "title": "Nombre de personnes dans un ménage collectif",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1365": {
+  "title": "Population à proximité d'un arrêt d'une ligne de metro ou de Chrono",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1371": {
+  "title": "Ecart absolu entre les taux d’activité masculin et féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1373": {
+  "title": "Nombre de femmes actives au lieu de résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1375": {
+  "title": "Nombre d'hommes actifs au lieu de résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1379": {
+  "title": "Population des 65-79 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1381": {
+  "title": "Nombre de 15-19 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1383": {
+  "title": "Nombre de 25-29 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1385": {
+  "title": "Nombre de 30-34 ans",
+  "table_default_year": 0,
+  "years": []
  },
  "1387": {
-  "title": null,
+  "title": "Nombre d'Européens hors UE",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1389": {
+  "title": "Nombre de 0-4 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1391": {
+  "title": "Nombre de 10-14 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1393": {
+  "title": "Nombre de 20-24 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1395": {
+  "title": "Population de l'Amérique Latine",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1397": {
+  "title": "Différence de population des 65 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1401": {
+  "title": "Nombre total de 40-64 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1403": {
+  "title": "Nombre total de 15-39 ans",
+  "table_default_year": 0,
+  "years": []
  },
  "1405": {
-  "title": null,
+  "title": "Nombre de salariés",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1407": {
+  "title": "Nombre d'hommes",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1409": {
+  "title": "Nombre total de bâtiments",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1411": {
+  "title": "Nombre de bâtiments protégés X 1000",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1413": {
+  "title": "Nombre de mailles",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1415": {
+  "title": "Somme concentrations moyennes journalières annuelles",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1417": {
+  "title": "Nombre total de ménages",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1419": {
+  "title": "Bilan migratoire des 18-29 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1421": {
+  "title": "Bilan migratoire des 30-44 ans",
+  "table_default_year": 0,
+  "years": []
  },
  "1423": {
-  "title": null,
+  "title": "Bilan migratoire des 45-54 ans",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1425": {
+  "title": "Bilan migratoire des 55 -69 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1427": {
+  "title": "Bilan migratoire des 70 et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1429": {
+  "title": "Bilan migratoire avec le reste du monde",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1431": {
+  "title": "Bilan migratoire avec la Flandre",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1433": {
+  "title": "Bilan migratoire avec le reste de la Région",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1435": {
+  "title": "Bilan migratoire avec la Wallonie",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1437": {
+  "title": "Part des sédentaires",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1439": {
+  "title": "Taux de mobilité avec l'étranger",
+  "table_default_year": 0,
+  "years": []
  },
  "1441": {
-  "title": null,
+  "title": "Taux de mobilité avec la Flandre",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1443": {
+  "title": "Taux de mobilité avec le reste de la Région",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1445": {
+  "title": "Taux de mobilité avec la Wallonie",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1447": {
+  "title": "Nombre total de demandeurs d'emploi inoccupés",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1449": {
+  "title": "Nombre total de déclarations",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1453": {
+  "title": "Nombre total de salariés",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1455": {
+  "title": "Population de plus de 18 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1457": {
+  "title": "Nombre total de commerces",
+  "table_default_year": 0,
+  "years": []
  },
  "1459": {
-  "title": null,
+  "title": "Nombre d'actifs de 18-24 ans au lieu de résidence",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1461": {
+  "title": "Nombre de commerces locaux",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1463": {
+  "title": "Nombre de salariés à titre permanent",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1465": {
+  "title": "Nombre de salariés et d'indépendants",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1467": {
+  "title": "Nombre de commerces supralocaux",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1469": {
+  "title": "Nombre d'actifs au lieu de résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1471": {
+  "title": "Nombre de demandeurs d'emploi inoccupés avec profil employé",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1473": {
+  "title": "Nombre de demandeurs d'emploi inoccupés de longue durée",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1475": {
+  "title": "Nombre de demandeurs d'emploi inoccupés diplômés de l'université ou de l'enseignement supérieur",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1479": {
+  "title": "Nombre total de logements dont le confort est connu",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1481": {
+  "title": "Nombre total d'occupants ayant répondu",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1483": {
+  "title": "Nombre total de logements occupés dont on connaît le nombre de pièces",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1485": {
+  "title": "Nombre total d'occupants ayant répondu",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1487": {
+  "title": "Nombre de logements loués dont le type de propriétaire est connu",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1489": {
+  "title": "Nombre total de logements dont le statut d'occupation est connu",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1491": {
+  "title": "Superficie totale des logements",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1493": {
+  "title": "Nombre de logements avec confort de base",
+  "table_default_year": 0,
+  "years": []
  },
  "1495": {
-  "title": null,
+  "title": "Nombre total de pièces des logements occupés",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1497": {
+  "title": "Nombre de logements loués dont le propriétaire est un particulier",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1499": {
+  "title": "Nombre de logements occupés par leur propriétaire",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1503": {
+  "title": "Nombre de logements situés dans des maisons unifamiliales 3 ou 4 façades",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1505": {
+  "title": "Nombre de logements de plus de 104 m²",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1507": {
+  "title": "Nombre de logements de moins de 55 m²",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1509": {
+  "title": "Nombre de logements de 55-84 m²",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1511": {
+  "title": "Nombre de logements de moins de 85-104 m²",
+  "table_default_year": 0,
+  "years": []
  },
  "1513": {
-  "title": null,
+  "title": "Nombre de logements situés dans des maisons unifamiliales",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1515": {
+  "title": "Nombre total de logements occupés dont on connaît la surface",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1517": {
+  "title": "Nombre total de logements occupés dont on connaît le type",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1519": {
+  "title": "Nombre de places disponibles en voirie",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1521": {
+  "title": "Nombre de bâtiments de 5 niveaux et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1523": {
+  "title": "Nombre total de logements d'âge connu",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1525": {
+  "title": "Surface des îlots",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1527": {
+  "title": "Superficie",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1529": {
+  "title": "Surface impermeable",
+  "table_default_year": 0,
+  "years": []
  },
  "1531": {
-  "title": null,
+  "title": "Surface plancher de bureaux en m²",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1533": {
+  "title": "Nombre total de bâtiments",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1535": {
+  "title": "Nombre de logements construits avant 1961",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1537": {
+  "title": "Surface au sol des bâtiments",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1539": {
+  "title": "Loyer mensuel moyen",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1541": {
+  "title": "Loyer mensuel d'un logement 1 chambre_var",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1543": {
+  "title": "Loyer mensuel moyen d'un logement 2 chambres",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1545": {
+  "title": "Nombre de places en milieu d’accueil liées au revenu",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1547": {
+  "title": "Nombre de places en milieu d’accueil liées au revenu et accessibles",
+  "table_default_year": 0,
+  "years": []
  },
  "1549": {
-  "title": null,
+  "title": "Nombre de places en milieu d'accueil",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1551": {
+  "title": "Nombre de places en milieu d’accueil accessibles",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1553": {
+  "title": "Population à proximité d'un arrêt de transport en commun",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1555": {
+  "title": "Population totale",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1559": {
+  "title": "Population à proximité d'un arrêt de metro",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1561": {
+  "title": "Population à proximité d'un arrêt de tram",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1563": {
+  "title": "Population à proximité d'un arrêt de bus",
+  "table_default_year": 0,
+  "years": []
  },
  "1567": {
-  "title": null,
+  "title": "Surface plancher totale",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1571": {
+  "title": "Nombre total d'étages",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1573": {
+  "title": "Coefficient de localisation des élus communaux",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1575": {
+  "title": "Population des 18-29 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1577": {
+  "title": "Population des 30-44 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1579": {
+  "title": "Population des 3-5 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1581": {
+  "title": "Population des 45-64 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1583": {
+  "title": "Population des 6-17 ans",
+  "table_default_year": 0,
+  "years": []
  },
  "1585": {
-  "title": null,
+  "title": "Population de l'Afrique subsaharienne",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1587": {
+  "title": "nombre d'européens - nouveaux états membres de l'u.e. en 2004 2007 et 2013",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1589": {
+  "title": "nombre d'européens - Europe des 15 hors Belgique",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1591": {
+  "title": "Population de moins de 3 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1593": {
+  "title": "Population des 60 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1595": {
+  "title": "Population de 65 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1599": {
+  "title": "Population de l'Afrique du Nord",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1601": {
+  "title": "Population de la Turquie",
+  "table_default_year": 0,
+  "years": []
  },
  "1603": {
-  "title": null,
+  "title": "Population totale",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1605": {
+  "title": "Nombre de ménages insatisfaits",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1607": {
+  "title": "Nombre de ménages ayant répondu à la question sur la propreté aux environs immédiats de leur logement",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1609": {
+  "title": "Superficie des trottoirs",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1611": {
+  "title": "Superficie totale de la voirie",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1613": {
+  "title": "Nombre moyen de places occupées entre 5h30 et 7h00",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1615": {
+  "title": "nombre moyen de places occupées entre 10h30 et 12h",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1617": {
+  "title": "Nombre de logements sociaux",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1619": {
+  "title": "Nombre de ménages",
+  "table_default_year": 0,
+  "years": []
  },
  "1621": {
-  "title": null,
+  "title": "Nombre de logements sociaux de 0 ou 1 chambre",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1623": {
+  "title": "Nombre de logements sociaux de 2 chambres",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1625": {
+  "title": "Nombre de logements sociaux de 3 chambres",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1627": {
+  "title": "Nombre de logements sociaux de 4 chambres et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1629": {
+  "title": "Montant moyen des loyers",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1631": {
+  "title": "Loyer moyen d'un logement social de 0-1 chambre",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1633": {
+  "title": "Loyer moyen d'un logement social de 2 chambres",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1635": {
+  "title": "Taux de mortalité standardisé",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1637": {
+  "title": "Taux de mortalité standardisé des 5-64 ans",
+  "table_default_year": 0,
+  "years": []
  },
  "1639": {
-  "title": null,
+  "title": "Taux de mortalité standardisé des 65-74 ans",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1641": {
+  "title": "Taux de mortalité standardisé des 75 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1643": {
+  "title": "Taux de mobilité",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1645": {
+  "title": "Bilan migratoire",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1647": {
+  "title": "Population totale de nationalité étrangère",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1649": {
+  "title": "Longueur des zones 30, zones piétonnes et zones résidentielles",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1651": {
+  "title": "Longeur totale des voiries",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1653": {
+  "title": "Somme des pourcentages des primes à l'embellissement des façades pour chaque année de la période",
+  "table_default_year": 0,
+  "years": []
  },
  "1657": {
-  "title": null,
+  "title": "Nombre de dossiers clôturés de demande de la prime embellissement de façades pendant la période",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1659": {
+  "title": "Nombre de demandeurs d'emploi inoccupés de 18-24 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1665": {
+  "title": "Nombre de 0-4 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1667": {
+  "title": "Nombre de 5-9 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1669": {
+  "title": "Nombre de 40-44 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1671": {
+  "title": "Nombre de 55-59 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1673": {
+  "title": "Nombre de 60-64 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
  },
  "1675": {
-  "title": null,
+  "title": "Nombre de 35-39 ans de sexe masculin",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1677": {
+  "title": "Nombre de 40-44 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1679": {
+  "title": "Nombre de 45-49 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1681": {
+  "title": "Nombre de 50-54 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1683": {
+  "title": "Nombre de 55-59 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1685": {
+  "title": "Nombre de 60-64 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1687": {
+  "title": "Nombre de 65-69 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1689": {
+  "title": "Nombre de 70-74 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1691": {
+  "title": "Nombre de 75-79 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
  },
  "1693": {
-  "title": null,
+  "title": "Nombre de 80-84 ans de sexe masculin",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1695": {
+  "title": "Nombre de 85-89 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1697": {
+  "title": "Nombre de 90-94 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1699": {
+  "title": "Nombre de 95 ans et plus de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1701": {
+  "title": "Indice de richesse",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1703": {
+  "title": "Nombre de naissances",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1705": {
+  "title": "Population totale moyenne",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1709": {
+  "title": "Population de 3-5 ans",
+  "table_default_year": 0,
+  "years": []
  },
  "1711": {
-  "title": null,
+  "title": "Population à proximité d'un espace vert accessible au public",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1713": {
+  "title": "Nombre de femmes de 20-59 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1715": {
+  "title": "Nombre de femmes",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1717": {
+  "title": "Espérance de vie des hommes",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1719": {
+  "title": "Nombre de mineurs vivant dans un ménage sans revenu du travail",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1721": {
+  "title": "Nombre de 50-54 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1723": {
+  "title": "Nombre de 65-69 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1725": {
+  "title": "Nombre de 70-74 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1727": {
+  "title": "Nombre de 80-84 ans de sexe féeminin",
+  "table_default_year": 0,
+  "years": []
  },
  "1729": {
-  "title": null,
+  "title": "Nombre de 95 ans et plus de sexe féminin",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1731": {
+  "title": "Nombre de 0-4 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1733": {
+  "title": "Nombre de 5-9 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1735": {
+  "title": "Nombre de 20-24 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1737": {
+  "title": "Nombre total de 0-17 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1739": {
+  "title": "Nombre total de 18-64 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1741": {
+  "title": "Population des 6-11 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1743": {
+  "title": "Population totale",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1745": {
+  "title": "Différence de population des moins de 3 ans",
+  "table_default_year": 0,
+  "years": []
  },
  "1747": {
-  "title": null,
+  "title": "Population des moins de 3 ans",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1749": {
+  "title": "Nombre de bénéficiaires du revenu d'intégration sociale",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1751": {
+  "title": "Population de 6-11 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1753": {
+  "title": "Population de 12-17 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1755": {
+  "title": "Différence de population des 18-64 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1757": {
+  "title": "Population des 12-17 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1759": {
+  "title": "Nombre de logements sociaux avec salle de bains et chauffage central",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1761": {
+  "title": "Nombre total de logements sociaux dont le confort est connu",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1763": {
+  "title": "Lden trafic aérien",
+  "table_default_year": 0,
+  "years": []
  },
  "1765": {
-  "title": null,
+  "title": "Nombre de logements avec chauffage central",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1767": {
+  "title": "Nombre de places en accueil de groupe",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1769": {
+  "title": "Loyer moyen d'un logement social de 3 chambres",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1771": {
+  "title": "Age cumulé de la population",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1773": {
+  "title": "Nombre total de logements sociaux * 100",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1775": {
+  "title": "Population totale",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1777": {
+  "title": "Nombre total de logements dont le confort est connu",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1779": {
+  "title": "Nombre de femmes de 20-59 ans en couple avec enfant",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1781": {
+  "title": "Nombre de femmes de 20-49 ans en couple sans enfant",
+  "table_default_year": 0,
+  "years": []
  },
  "1783": {
-  "title": null,
+  "title": "Nombre de femmes de 60 ans et plus en couple sans enfant",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1785": {
+  "title": "Nombre de mères seules de 20-49 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1787": {
+  "title": "Nombre de 10-14 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1789": {
+  "title": "Nombre de 20-24 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1791": {
+  "title": "Nombre de 25-29 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1793": {
+  "title": "Nombre de naissances totales",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1795": {
+  "title": "Nombre d'enfants naissant dans un ménage sans revenu du travail",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1797": {
+  "title": "Nombre de mineurs",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1799": {
+  "title": "Nombre de 45-49 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
  },
  "1801": {
-  "title": null,
+  "title": "Nombre de 75-79 ans de sexe féminin",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1803": {
+  "title": "Nombre de 85-89 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1805": {
+  "title": "Nombre de 90-94 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1807": {
+  "title": "Nombre de 10-14 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1809": {
+  "title": "Nombre de 15-19 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1811": {
+  "title": "Nombre de 70-74 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1813": {
+  "title": "Nombre de femmes de 0-17 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1815": {
+  "title": "Nombre d'hommes de 18-64 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1817": {
+  "title": "Nombre de femmes de 18-64 ans",
+  "table_default_year": 0,
+  "years": []
  },
  "1819": {
-  "title": null,
+  "title": "Nombre d'hommes de 0-17 ans",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1821": {
+  "title": "Nombre d'hommes de 65 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1823": {
+  "title": "Nombre de femmes de 65 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1825": {
+  "title": "Nombre de 35-39 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1827": {
+  "title": "Nombre de 40-44 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1829": {
+  "title": "Nombre de 45-49 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1831": {
+  "title": "Nombre de 50-54 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1833": {
+  "title": "Nombre de 55-59 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1835": {
+  "title": "Nombre de 60-64 ans",
+  "table_default_year": 0,
+  "years": []
  },
  "1837": {
-  "title": null,
+  "title": "Revenu imposable moyen par déclaration",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1841": {
+  "title": "Nombre de 65-69 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1843": {
+  "title": "Nombre de 80-84 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1845": {
+  "title": "Nombre de 75-79 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1847": {
+  "title": "Nombre de 85-89 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1849": {
+  "title": "Nombre de 90-94 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1851": {
+  "title": "Nombre de 95 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1853": {
+  "title": "Femmes de 60 ans et plus",
+  "table_default_year": 0,
+  "years": []
  },
  "1855": {
-  "title": null,
+  "title": "Hommes de 60 ans et plus",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1857": {
+  "title": "Femmes de 80 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1859": {
+  "title": "Hommes de 80 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1861": {
+  "title": "Femmes de 15-39 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1863": {
+  "title": "Hommes de 15-39 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1865": {
+  "title": "Hommes de 40-64 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1867": {
+  "title": "Femmes actives occupées",
+  "table_default_year": 0,
+  "years": []
  },
  "1873": {
-  "title": null,
+  "title": "Longueur cumulée des axes",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1875": {
+  "title": "taux d'occupation d’un axe x longueur de cet axe entre 8h et 9h",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1877": {
+  "title": "Nombre d’enfants inscrits en maternel habitant le quartier ou la commune",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1879": {
+  "title": "Nombre d'enfants du quartier inscrits dans une école primaire du quartier ou d'un quartier limitrophe",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1881": {
+  "title": "Nombre d'écoles primaires",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1883": {
+  "title": "nombre d’élèves du quartier ou de la commune inscrits dans une école maternelle de la région bruxelloise",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1885": {
+  "title": "nombre d'élèves de la région bruxelloise inscrits dans une école maternelle du quartier ou de la commune",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1887": {
+  "title": "Nombre d’enfants inscrits en primaire habitant le quartier ou la commune",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1889": {
+  "title": "Nombre d’élèves du quartier inscrits dans une école primaire de la commune",
+  "table_default_year": 0,
+  "years": []
  },
  "1891": {
-  "title": null,
+  "title": "Nombre d’enfants du quartier et des quartiers limitrophes inscrits dans une des écoles primaires du quartier",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1893": {
+  "title": "nombre d’élèves du quartier ou de la commune inscrits dans une école primaire de la région bruxelloise",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1895": {
+  "title": "Nombre d'élèves du quartier inscrits dans une école secondaire de leur quartier",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1897": {
+  "title": "Nombre d'enfants du quartier inscrits dans une école secondaire du quartier ou d'un quartier limitrophe",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1899": {
+  "title": "Nombre d’enfants du quartier et des quartiers limitrophes inscrits dans une des écoles secondaires du quartier",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1901": {
+  "title": "Nombre de ménages monoparentaux",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1903": {
+  "title": "Nombre de couples avec enfants",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1905": {
+  "title": "Isolés de moins de 30 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1907": {
+  "title": "Femmes isolées de moins de 30 ans",
+  "table_default_year": 0,
+  "years": []
  },
  "1909": {
-  "title": null,
+  "title": "Isolés de 65 ans et plus",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1911": {
+  "title": "Nombre de personnes qui font partie d'un ménage privé",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1913": {
+  "title": "Population des pays OCDE - hors Europe Turquie et Amérique Latine",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1917": {
+  "title": "Femmes de 0-17 ans et de 65 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1919": {
+  "title": "Hommes de 0-17 ans et de 65 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1923": {
+  "title": "Nombre de femmes demandeuses d'emploi inoccupées",
+  "table_default_year": 0,
+  "years": []
  },
  "1927": {
-  "title": null,
+  "title": "Nombre d'écoles maternelles",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1929": {
+  "title": "Nombre d’élèves du quartier inscrits dans une école maternelle de la commune",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1931": {
+  "title": "nombre d'enfants habitant le quartier ou la commune et inscrits dans une école secondaire en dehors de la région",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1935": {
+  "title": "Nombre de femmes salariées et indépendantes",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1937": {
+  "title": "Nombre de femmes actives de 18-24 ans au lieu de résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1939": {
+  "title": "Nombre de femmes demandeuses d'emploi inoccupées de 18-24 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1941": {
+  "title": "nombre d’élèves du quartier ou de la commune inscrits dans une école secondaire de la région bruxelloise",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1943": {
+  "title": "Nombre d'élèves du quartier inscrits dans une école maternelle de leur quartier",
+  "table_default_year": 0,
+  "years": []
  },
  "1945": {
-  "title": null,
+  "title": "Nombre d'élèves du quartier inscrits dans une école primaire de leur quartier",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1947": {
+  "title": "Nombre d’élèves du quartier inscrits dans une école secondaire de la commune",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1951": {
+  "title": "Femmes de 40-64 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1953": {
+  "title": "Age cumulé de la population féminine",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1955": {
+  "title": "Hommes actifs occupés",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1957": {
+  "title": "Nombre d'hommes demandeurs d'emploi inoccupés de 18-24 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1959": {
+  "title": "Nombre d'hommes demandeurs d'emploi inoccupés de longue durée",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1961": {
+  "title": "Nombre d'hommes demandeurs d'emploi inoccupés diplômés de l'université ou de l'enseignement supérieur",
+  "table_default_year": 0,
+  "years": []
  },
  "1963": {
-  "title": null,
+  "title": "Nombre d'EVP relevés entre 5h et 17h",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1965": {
+  "title": "Nombre de mères seules avec enfants",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1967": {
+  "title": "Hommes isolés de moins de 30 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1969": {
+  "title": "Age cumulé de la population masculine",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1973": {
+  "title": "Nombre de mineurs dont on connait le statut professionnel du ou des parents",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1975": {
+  "title": "Taux de croissance annuel moyen de la population",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1977": {
+  "title": "nombre d'élèves de la région bruxelloise scolarisés dans une école secondaire du quartier ou de la commune",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1979": {
+  "title": "Nombre d'écoles secondaire",
+  "table_default_year": 0,
+  "years": []
  },
  "1981": {
-  "title": null,
+  "title": "Population des autres pays",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "1983": {
+  "title": "Nombre d'enfants inscrits dans une école maternelle du territoire et qui habitent hors de la Région",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1985": {
+  "title": "nombre d'enfants habitant le quartier ou la commune et inscrits dans une école maternelle en dehors de la région",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1989": {
+  "title": "Nombre de femmes demandeuses d'emploi inoccupées diplômées de l'université ou de l'enseignement supérieur",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1991": {
+  "title": "Population des 18-24 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1993": {
+  "title": "Nombre d'EVP relevés entre 10h et 12h",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1995": {
+  "title": "Nombre de pères seuls avec enfants",
+  "table_default_year": 0,
+  "years": []
+ },
+ "1997": {
+  "title": "nombre d’élèves inscrits dans une école maternelle du quartier ou de la commune",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2007": {
+  "title": "taux d'occupation d’un axe x longueur de cet axe",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2009": {
+  "title": "Nombre d’enfants du quartier et des quartiers limitrophes inscrits dans une des écoles maternelle du quartier",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2011": {
+  "title": "nombre d’élèves inscrits dans une école secondaire du quartier ou de la commune",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2013": {
+  "title": "Nombre d'hommes demandeurs d'emploi inoccupés",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2015": {
+  "title": "Nombre de femmes demandeuses d'emploi inoccupées de longue durée",
+  "table_default_year": 0,
+  "years": []
  },
  "2017": {
-  "title": null,
+  "title": "Nombre de places disponibles en voirie",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2019": {
+  "title": "Longueur cumulée des axes",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2021": {
+  "title": "nombre d'enfants inscrits dans une école secondaire du quartier ou de la commune  qui habitent en dehors de la région",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2023": {
+  "title": "nombre d’élèves inscrits dans une école primaire du quartier ou de la commune",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2025": {
+  "title": "nombre d'élèves de la région bruxelloise scolarisés dans une école primaire du quartier ou de la commune",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2027": {
+  "title": "nombre d'enfants habitant  le quartier ou la commune  et inscrits dans une école primaire en dehors de la région",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2029": {
+  "title": "nombre d'enfants inscrits dans une école secondaire du quartier ou de la commune qui habitent en dehors de la région",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2031": {
+  "title": "Nombre de ménages privés",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2033": {
+  "title": "Isolés de 30 ans et plus",
+  "table_default_year": 0,
+  "years": []
  },
  "2035": {
-  "title": null,
+  "title": "Nombre de couples sans enfants",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2037": {
+  "title": "Nombre d'hommes salariés et indépendants",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2039": {
+  "title": "Nombre d'hommes actifs de 18-24 ans au lieu de résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2041": {
+  "title": "Nombre d'hommes demandeurs d'emploi inoccupés avec profil employé",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2043": {
+  "title": "Nombre de mineurs vivant dans un ménage sans revenus du travail",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2045": {
+  "title": "Nombre d'enfants du quartier inscrits dans une école maternelle du quartier ou d'un quartier limitrophe",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2047": {
+  "title": "Revenu imposable moyen par habitant - carte",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2049": {
+  "title": "Nombre d’enfants inscrits en secondaire habitant le quartier ou la commune",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2051": {
+  "title": "Hommes isolés de 30 ans et plus",
+  "table_default_year": 0,
+  "years": []
  },
  "2053": {
-  "title": null,
+  "title": "Femmes isolées de 30 ans et plus",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2055": {
+  "title": "Hommes isolés de 65 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2057": {
+  "title": "Femmes isolées de 65 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2059": {
+  "title": "Revenu imposable moyen par déclaration",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2067": {
+  "title": "Nouveaux habitants de la Région",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2073": {
+  "title": "Taux de croissance annuel moyen de la population féminine",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2075": {
+  "title": "Nouveaux habitants du territoire",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2079": {
+  "title": "Nombre de 5-9 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2085": {
+  "title": "Taux de croissance annuel moyen de la population masculine",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2099": {
+  "title": "Nombre de médecins généralistes pour 1000 habitants",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2100": {
+  "title": "Taux d'activité masculin",
+  "table_default_year": 64036,
+  "years": []
+ },
+ "2101": {
+  "title": "Taux d'activité féminin",
+  "table_default_year": 64029,
+  "years": []
+ },
+ "2102": {
+  "title": "Croissance démographique des 18-64 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2104": {
+  "title": "Taux de mortalité standardisé (5-64 ans)",
+  "table_default_year": 14929,
+  "years": []
+ },
+ "2105": {
+  "title": "Taux de mortalité standardisé (65-74 ans)",
+  "table_default_year": 14930,
+  "years": []
  },
  "2107": {
-  "title": null,
+  "title": "Loyer mensuel d'un logement 2 chambres",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2108": {
+  "title": "Part des places en milieu d’accueil liées au revenu par rapport au nombre total de places",
+  "table_default_year": 62282,
+  "years": []
+ },
+ "2109": {
+  "title": "Part de la population à proximité d'un arrêt de bus (250m)",
+  "table_default_year": 14978,
+  "years": []
+ },
+ "2110": {
+  "title": "Loyer mensuel d'un logement 1 chambre",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2111": {
+  "title": "Densité des ménages privés",
+  "table_default_year": 65623,
+  "years": []
+ },
+ "2112": {
+  "title": "Nombre de places en milieu d'accueil par enfant de moins de trois ans",
+  "table_default_year": 63118,
+  "years": []
+ },
+ "2113": {
+  "title": "Nombre de places en milieu d’accueil liées au revenu et accessibles par enfant de moins de trois ans",
+  "table_default_year": 62623,
+  "years": []
+ },
+ "2114": {
+  "title": "Part de la population à proximité d'un arrêt de métro (500m)",
+  "table_default_year": 15096,
+  "years": []
+ },
+ "2115": {
+  "title": "Part de la population à proximité d'un arrêt de tram (400m)",
+  "table_default_year": 15105,
+  "years": []
+ },
+ "2117": {
+  "title": "Taux de mortalité standardisé (75 ans et plus)",
+  "table_default_year": 15107,
+  "years": []
+ },
+ "2120": {
+  "title": "Part des moins de 5 ans de sexe féminin dans la population totale",
+  "table_default_year": 65501,
+  "years": []
+ },
+ "2124": {
+  "title": "Espérance de vie des hommes",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2126": {
+  "title": "Part des 15-19 ans de sexe féminin dans la population totale",
+  "table_default_year": 63785,
+  "years": []
+ },
+ "2128": {
+  "title": "Part des logements sociaux de 0 ou 1 chambre",
+  "table_default_year": 65744,
+  "years": []
+ },
+ "2129": {
+  "title": "Part des logements sociaux de 2 chambres",
+  "table_default_year": 65747,
+  "years": []
+ },
+ "2130": {
+  "title": "Part des logements sociaux de 3 chambres",
+  "table_default_year": 65750,
+  "years": []
+ },
+ "2131": {
+  "title": "Part des 45-49 ans de sexe féminin dans la population totale",
+  "table_default_year": 63857,
+  "years": []
+ },
+ "2132": {
+  "title": "Part des 50-54 ans de sexe féminin dans la population totale",
+  "table_default_year": 63869,
+  "years": []
+ },
+ "2133": {
+  "title": "Part des 60-64 ans de sexe féminin dans la population totale",
+  "table_default_year": 63893,
+  "years": []
  },
  "2134": {
-  "title": null,
+  "title": "Part des 65-69 ans de sexe féminin dans la population totale",
   "table_default_year": 63905,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2136": {
+  "title": "Part des 80-84 ans de sexe féminin dans la population totale",
+  "table_default_year": 63941,
+  "years": []
+ },
+ "2137": {
+  "title": "Part des 15-19 ans de sexe masculin dans la population totale",
+  "table_default_year": 63791,
+  "years": []
+ },
+ "2138": {
+  "title": "Part des 20-24 ans de sexe masculin dans la population totale",
+  "table_default_year": 63803,
+  "years": []
+ },
+ "2139": {
+  "title": "Part des 35-39 ans de sexe masculin dans la population totale",
+  "table_default_year": 63839,
+  "years": []
+ },
+ "2140": {
+  "title": "Montant moyen des primes à l'embellissement des façades par ménage",
+  "table_default_year": 55190,
+  "years": []
+ },
+ "2141": {
+  "title": "Montant moyen des primes à l'embellissement des façades",
+  "table_default_year": 55919,
+  "years": []
+ },
+ "2142": {
+  "title": "Taux moyen de subsidiation de l'embellissement des façades",
+  "table_default_year": 55942,
+  "years": []
  },
  "2143": {
-  "title": null,
+  "title": "Taux d'acceptation des demandes de primes à l'embellissement des façades",
   "table_default_year": 55966,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2144": {
+  "title": "Part des 40-44 ans de sexe masculin dans la population totale",
+  "table_default_year": 63851,
+  "years": []
+ },
+ "2145": {
+  "title": "Part des 45-49 ans de sexe masculin dans la population totale",
+  "table_default_year": 63863,
+  "years": []
+ },
+ "2146": {
+  "title": "Part des 50-54 ans de sexe masculin dans la population totale",
+  "table_default_year": 63875,
+  "years": []
+ },
+ "2147": {
+  "title": "Part des 60-64 ans de sexe masculin dans la population totale",
+  "table_default_year": 63899,
+  "years": []
+ },
+ "2148": {
+  "title": "Part des 80-84 ans de sexe masculin dans la population totale",
+  "table_default_year": 63947,
+  "years": []
+ },
+ "2151": {
+  "title": "Part des 18-64 ans dans la population totale",
+  "table_default_year": 65642,
+  "years": []
+ },
+ "2153": {
+  "title": "Part des demandeurs d'emploi dans la population de 18-64 ans",
+  "table_default_year": 65689,
+  "years": []
+ },
+ "2155": {
+  "title": "Croissance démographique des moins de 3 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2157": {
+  "title": "Revenu imposable moyen par habitant (classes de revenus)",
+  "table_default_year": 65719,
+  "years": []
+ },
+ "2158": {
+  "title": "Part des isolés parmi les 18-29 ans",
+  "table_default_year": 65390,
+  "years": []
+ },
+ "2159": {
+  "title": "Part des isolés parmi les 65 ans et plus",
+  "table_default_year": 65281,
+  "years": []
+ },
+ "2164": {
+  "title": "Nombre de primes à la rénovation (pour 1000 ménages)",
+  "table_default_year": 55224,
+  "years": []
+ },
+ "2166": {
+  "title": "Rapport de masculinité",
+  "table_default_year": 65477,
+  "years": []
+ },
+ "2167": {
+  "title": "Part des 5-9 ans de sexe féminin dans la population totale",
+  "table_default_year": 65507,
+  "years": []
+ },
+ "2168": {
+  "title": "Part des 20-24 ans de sexe féminin dans la population totale",
+  "table_default_year": 63797,
+  "years": []
+ },
+ "2169": {
+  "title": "Part des 25-29 ans de sexe féminin dans la population totale",
+  "table_default_year": 63809,
+  "years": []
  },
  "2170": {
-  "title": null,
+  "title": "Part des 30-34 ans de sexe féminin dans la population totale",
   "table_default_year": 63821,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2171": {
+  "title": "Part des 35-39 ans de sexe féminin dans la population totale",
+  "table_default_year": 63833,
+  "years": []
+ },
+ "2172": {
+  "title": "Part des 40-44 ans de sexe féminin dans la population totale",
+  "table_default_year": 63845,
+  "years": []
+ },
+ "2173": {
+  "title": "Part des 55-59 ans de sexe féminin dans la population totale",
+  "table_default_year": 63881,
+  "years": []
+ },
+ "2174": {
+  "title": "Part des 85-89 ans de sexe féminin dans la population totale",
+  "table_default_year": 63953,
+  "years": []
+ },
+ "2175": {
+  "title": "Part des 85-89 ans de sexe masculin dans la population totale",
+  "table_default_year": 63956,
+  "years": []
+ },
+ "2176": {
+  "title": "Part des 90-94 ans de sexe masculin dans la population totale",
+  "table_default_year": 63968,
+  "years": []
+ },
+ "2178": {
+  "title": "Part des 0-17 ans dans la population totale",
+  "table_default_year": 65621,
+  "years": []
  },
  "2179": {
-  "title": null,
+  "title": "Croissance démographique de la population totale",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2180": {
+  "title": "Coefficient de vieillissement",
+  "table_default_year": 65480,
+  "years": []
+ },
+ "2181": {
+  "title": "Part des 10-14 ans de sexe féminin dans la population totale",
+  "table_default_year": 65513,
+  "years": []
+ },
+ "2182": {
+  "title": "Part des 75-79 ans de sexe féminin dans la population totale",
+  "table_default_year": 63929,
+  "years": []
+ },
+ "2183": {
+  "title": "Part des 95 ans et plus de sexe féminin dans la population totale",
+  "table_default_year": 63974,
+  "years": []
+ },
+ "2184": {
+  "title": "Part des moins de 5 ans de sexe masculin dans la population totale",
+  "table_default_year": 65504,
+  "years": []
+ },
+ "2185": {
+  "title": "Part des 5-9 ans de sexe masculin dans la population totale",
+  "table_default_year": 65510,
+  "years": []
+ },
+ "2186": {
+  "title": "Part des 10-14 ans de sexe masculin dans la population totale",
+  "table_default_year": 63779,
+  "years": []
+ },
+ "2187": {
+  "title": "Part des 30-34 ans de sexe masculin dans la population totale",
+  "table_default_year": 63827,
+  "years": []
  },
  "2188": {
-  "title": null,
+  "title": "Part des 25-29 ans de sexe masculin dans la population totale",
   "table_default_year": 63815,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2189": {
+  "title": "Part des 55-59 ans de sexe masculin dans la population totale",
+  "table_default_year": 63887,
+  "years": []
+ },
+ "2190": {
+  "title": "Part des 65-69 ans de sexe masculin dans la population totale",
+  "table_default_year": 63911,
+  "years": []
+ },
+ "2191": {
+  "title": "Part des 70-74 ans de sexe masculin dans la population totale",
+  "table_default_year": 63923,
+  "years": []
+ },
+ "2192": {
+  "title": "Part des 95 ans et plus de sexe masculin dans la population totale",
+  "table_default_year": 63980,
+  "years": []
+ },
+ "2194": {
+  "title": "Croissance démographique des 6-11 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2195": {
+  "title": "Croissance démographique des 3-5 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2196": {
+  "title": "Part des salariés dans la population active occupée",
+  "table_default_year": 64054,
+  "years": []
  },
  "2197": {
-  "title": null,
+  "title": "Part des 70-74 ans de sexe féminin dans la population totale",
   "table_default_year": 63917,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2198": {
+  "title": "Part des 90-94 ans de sexe féminin dans la population totale",
+  "table_default_year": 63962,
+  "years": []
+ },
+ "2199": {
+  "title": "Croissance démographique des 12-17 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2200": {
+  "title": "Croissance démographique des 65 ans et plus",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2201": {
+  "title": "Coefficient de dépendance des âgés",
+  "table_default_year": 65489,
+  "years": []
+ },
+ "2203": {
+  "title": "Part des bâtiments protégés",
+  "table_default_year": 19302,
+  "years": []
+ },
+ "2204": {
+  "title": "Part des moins de 3 ans dans la population totale",
+  "table_default_year": 65413,
+  "years": []
+ },
+ "2205": {
+  "title": "Part des 3-5 ans dans la population totale",
+  "table_default_year": 65417,
+  "years": []
+ },
+ "2207": {
+  "title": "Part des 18-29 ans dans la population totale",
+  "table_default_year": 65431,
+  "years": []
+ },
+ "2208": {
+  "title": "Part des 30-44 ans dans la population totale",
+  "table_default_year": 65438,
+  "years": []
+ },
+ "2209": {
+  "title": "Part des 45-64 ans dans la population totale",
+  "table_default_year": 65444,
+  "years": []
+ },
+ "2226": {
+  "title": "Part des nouveaux états membres de l'U.E. entrés en 2004 2007 2013",
+  "table_default_year": 65586,
+  "years": []
+ },
+ "2227": {
+  "title": "Part des pays OCDE (hors Europe Turquie et Amérique Latine)",
+  "table_default_year": 65591,
+  "years": []
+ },
+ "2228": {
+  "title": "Part de l'Afrique du Nord",
+  "table_default_year": 65594,
+  "years": []
+ },
+ "2229": {
+  "title": "Part de la Turquie",
+  "table_default_year": 65597,
+  "years": []
+ },
+ "2230": {
+  "title": "Part de l'Afrique subsaharienne",
+  "table_default_year": 65603,
+  "years": []
+ },
+ "2231": {
+  "title": "Part des autres pays",
+  "table_default_year": 65606,
+  "years": []
+ },
+ "2232": {
+  "title": "Taux d'activité",
+  "table_default_year": 64022,
+  "years": []
  },
  "2233": {
-  "title": null,
+  "title": "Taux de chômage",
   "table_default_year": 64004,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2234": {
+  "title": "Taux de chômage des jeunes",
+  "table_default_year": 64059,
+  "years": []
+ },
+ "2235": {
+  "title": "Part des demandeurs d'emploi depuis plus d'un an dans les demandeurs d'emploi",
+  "table_default_year": 65402,
+  "years": []
+ },
+ "2238": {
+  "title": "Taux d'emploi",
+  "table_default_year": 64048,
+  "years": []
+ },
+ "2241": {
+  "title": "Part des ménages résidant en appartement",
+  "table_default_year": 20473,
+  "years": []
  },
  "2242": {
-  "title": null,
+  "title": "Part des 12-17 ans dans la population totale",
   "table_default_year": 65426,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2243": {
+  "title": "Part des ménages résidant en maison unifamiliale",
+  "table_default_year": 20545,
+  "years": []
+ },
+ "2244": {
+  "title": "Part des ménages résidant dans une maison 3 ou 4 façades",
+  "table_default_year": 20548,
+  "years": []
+ },
+ "2245": {
+  "title": "Part des logements 55-84m²",
+  "table_default_year": 20551,
+  "years": []
+ },
+ "2246": {
+  "title": "Part des logements 85-104m²",
+  "table_default_year": 20554,
+  "years": []
+ },
+ "2247": {
+  "title": "Part des logements de plus de 104m²",
+  "table_default_year": 20557,
+  "years": []
+ },
+ "2248": {
+  "title": "Superficie moyenne par logement",
+  "table_default_year": 20560,
+  "years": []
+ },
+ "2249": {
+  "title": "Superficie moyenne par habitant",
+  "table_default_year": 20563,
+  "years": []
+ },
+ "2250": {
+  "title": "Nombre de pièces par logement",
+  "table_default_year": 20569,
+  "years": []
  },
  "2251": {
-  "title": null,
+  "title": "Nombre de pièces par habitant",
   "table_default_year": 20572,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2252": {
+  "title": "Part des logements occupés par le propriétaire",
+  "table_default_year": 20580,
+  "years": []
+ },
+ "2253": {
+  "title": "Part des logements mis en location par des particuliers",
+  "table_default_year": 20583,
+  "years": []
+ },
+ "2255": {
+  "title": "Montant moyen des primes à la rénovation",
+  "table_default_year": 58272,
+  "years": []
+ },
+ "2256": {
+  "title": "Taux moyen de subsidiation de la rénovation des logements",
+  "table_default_year": 60600,
+  "years": []
+ },
+ "2257": {
+  "title": "Taux d'acceptation des demandes de primes à la rénovation",
+  "table_default_year": 60579,
+  "years": []
+ },
+ "2258": {
+  "title": "Nombre de primes à l'embellissement des façades (pour 1000 ménages)",
+  "table_default_year": 60557,
+  "years": []
+ },
+ "2259": {
+  "title": "Densité de population",
+  "table_default_year": 65614,
+  "years": []
  },
  "2260": {
-  "title": null,
+  "title": "Densité de bureaux",
   "table_default_year": 63306,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2267": {
+  "title": "Représentation des élus communaux par quartier",
+  "table_default_year": 20752,
+  "years": []
+ },
+ "2268": {
+  "title": "Part des logements sociaux (nombre de logements sociaux pour 100 ménages)",
+  "table_default_year": 65741,
+  "years": []
  },
  "2269": {
-  "title": null,
+  "title": "Âge moyen",
   "table_default_year": 65467,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2271": {
+  "title": "Part de la voirie dédiée au trottoir",
+  "table_default_year": 20868,
+  "years": []
+ },
+ "2274": {
+  "title": "Part des logements sociaux de 4 chambres et plus",
+  "table_default_year": 65753,
+  "years": []
+ },
+ "2279": {
+  "title": "Part des 6-11 ans dans la population totale",
+  "table_default_year": 65420,
+  "years": []
+ },
+ "2280": {
+  "title": "Part des Français",
+  "table_default_year": 65609,
+  "years": []
+ },
+ "2281": {
+  "title": "Part de la population à proximité d'un arrêt de métro ou d'un tram Chrono (500m)",
+  "table_default_year": 21056,
+  "years": []
+ },
+ "2284": {
+  "title": "Ecart entre les taux d’activité masculin et féminin",
+  "table_default_year": 64041,
+  "years": []
+ },
+ "2286": {
+  "title": "Part de l'Amérique latine",
+  "table_default_year": 65600,
+  "years": []
+ },
+ "2288": {
+  "title": "Revenu imposable moyen par habitant",
+  "table_default_year": 65704,
+  "years": []
+ },
+ "2289": {
+  "title": "Part des 0-17 ans de sexe féminin dans le total des femmes",
+  "table_default_year": 65515,
+  "years": []
+ },
+ "2290": {
+  "title": "Capacité d’accueil scolaire relative du quartier | maternel",
+  "table_default_year": 64676,
+  "years": []
+ },
+ "2291": {
+  "title": "Âge moyen des hommes",
+  "table_default_year": 65474,
+  "years": []
+ },
+ "2292": {
+  "title": "Âge moyen des femmes",
+  "table_default_year": 65471,
+  "years": []
+ },
+ "2295": {
+  "title": "Coefficient de dépendance des âgés (des femmes)",
+  "table_default_year": 65492,
+  "years": []
  },
  "2296": {
-  "title": null,
+  "title": "Taux de chômage des femmes",
   "table_default_year": 64010,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2298": {
+  "title": "Taux de chômage des hommes",
+  "table_default_year": 64016,
+  "years": []
+ },
+ "2299": {
+  "title": "Part des 0-17 ans de sexe masculin dans le total des hommes",
+  "table_default_year": 65519,
+  "years": []
+ },
+ "2300": {
+  "title": "Part des hommes de 18-64 ans dans le total des hommes",
+  "table_default_year": 65525,
+  "years": []
+ },
+ "2302": {
+  "title": "Taux de croissance annuel moyen de la population",
+  "table_default_year": 65618,
+  "years": []
+ },
+ "2303": {
+  "title": "Taux d'occupation du stationnement en voirie (5h00 - 7h00)",
+  "table_default_year": 21955,
+  "years": []
+ },
+ "2304": {
+  "title": "Taux d'occupation du stationnement en voirie (10h00-12h00)",
+  "table_default_year": 21958,
+  "years": []
  },
  "2305": {
-  "title": null,
+  "title": "Taux d'occupation de la voirie entre 8h et 9h",
   "table_default_year": 21962,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2310": {
+  "title": "Part des enfants non bruxellois inscrits dans une école maternelle du quartier",
+  "table_default_year": 64685,
+  "years": []
+ },
+ "2313": {
+  "title": "Part des enfants non bruxellois inscrits dans une école primaire du quartier",
+  "table_default_year": 64686,
+  "years": []
+ },
+ "2315": {
+  "title": "Part des enfants du quartier inscrits dans une école secondaire située en dehors de la Région",
+  "table_default_year": 64690,
+  "years": []
+ },
+ "2316": {
+  "title": "Part des isolés de moins de 30 ans dans le total des ménages privés",
+  "table_default_year": 65534,
+  "years": []
+ },
+ "2317": {
+  "title": "Part des isolés de 65 ans et plus dans le total des ménages privés",
+  "table_default_year": 65276,
+  "years": []
+ },
+ "2318": {
+  "title": "Part des couples avec enfants dans le total des ménages privés",
+  "table_default_year": 65549,
+  "years": []
+ },
+ "2319": {
+  "title": "Part des couples sans enfants dans le total des ménages privés",
+  "table_default_year": 65558,
+  "years": []
+ },
+ "2320": {
+  "title": "Part des ménages monoparentaux dans le total des ménages privés",
+  "table_default_year": 65564,
+  "years": []
+ },
+ "2321": {
+  "title": "Taille moyenne des ménages privés",
+  "table_default_year": 65645,
+  "years": []
+ },
+ "2322": {
+  "title": "Part des hommes isolés de moins de 30 ans dans le total des ménages privés",
+  "table_default_year": 63510,
+  "years": []
  },
  "2323": {
-  "title": null,
+  "title": "Part des femmes isolées de moins de 30 ans dans le total des ménages privés",
   "table_default_year": 63507,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2324": {
+  "title": "Part des hommes isolés de 30 ans et plus dans le total des ménages privés",
+  "table_default_year": 63519,
+  "years": []
+ },
+ "2325": {
+  "title": "Part des femmes isolées de 30 ans et plus dans le total des ménages privés",
+  "table_default_year": 63516,
+  "years": []
+ },
+ "2326": {
+  "title": "Part des hommes isolés de 65 ans et plus dans le total des ménages privés",
+  "table_default_year": 65270,
+  "years": []
+ },
+ "2327": {
+  "title": "Part des femmes isolées de 65 ans et plus dans le total des ménages privés",
+  "table_default_year": 65312,
+  "years": []
+ },
+ "2328": {
+  "title": "Part des mères seules avec enfants dans le total des ménages privés",
+  "table_default_year": 65570,
+  "years": []
+ },
+ "2329": {
+  "title": "Part des pères seuls avec enfants dans le total des ménages privés",
+  "table_default_year": 65576,
+  "years": []
+ },
+ "2330": {
+  "title": "Part des femmes dans les demandeurs d'emploi",
+  "table_default_year": 65408,
+  "years": []
  },
  "2332": {
-  "title": null,
+  "title": "Part des 75-79 ans de sexe masculin dans la population totale",
   "table_default_year": 63935,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2333": {
+  "title": "Part des 65 ans et plus dans la population totale",
+  "table_default_year": 65327,
+  "years": []
+ },
+ "2334": {
+  "title": "Part des jeunes dans les demandeurs d'emploi",
+  "table_default_year": 65411,
+  "years": []
+ },
+ "2335": {
+  "title": "Revenu imposable moyen par déclaration (classes de revenus)",
+  "table_default_year": 65716,
+  "years": []
+ },
+ "2336": {
+  "title": "Revenu imposable médian des déclarations",
+  "table_default_year": 65698,
+  "years": []
+ },
+ "2337": {
+  "title": "Revenu imposable moyen par déclaration",
+  "table_default_year": 65701,
+  "years": []
+ },
+ "2338": {
+  "title": "Part de la population à proximité d'un espace vert accessible au public",
+  "table_default_year": 23223,
+  "years": []
+ },
+ "2339": {
+  "title": "Part des logements de moins de 55 m²",
+  "table_default_year": 23225,
+  "years": []
  },
  "2341": {
-  "title": null,
+  "title": "Montant moyen annuel des primes à la rénovation par ménage",
   "table_default_year": 58208,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2342": {
+  "title": "Part de la population à proximité d'un arrêt de transport en commun (3 modes confondus)",
+  "table_default_year": 23255,
+  "years": []
+ },
+ "2343": {
+  "title": "Taux de mortalité standardisé",
+  "table_default_year": 23257,
+  "years": []
+ },
+ "2344": {
+  "title": "Indice standardisé de la santé perçue",
+  "table_default_year": 23259,
+  "years": []
+ },
+ "2345": {
+  "title": "Espérance de vie des femmes",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2346": {
+  "title": "Nombre de places en milieu d’accueil accessibles par enfant de moins de trois ans",
+  "table_default_year": 62627,
+  "years": []
+ },
+ "2347": {
+  "title": "Nombre de places en accueil de groupe par enfant de moins de trois ans",
+  "table_default_year": 62619,
+  "years": []
+ },
+ "2348": {
+  "title": "Part des diplômés du supérieur dans les demandeurs d'emploi",
+  "table_default_year": 65405,
+  "years": []
+ },
+ "2349": {
+  "title": "Part des femmes 65 ans et plus dans le total des femmes",
+  "table_default_year": 65528,
+  "years": []
+ },
+ "2351": {
+  "title": "Part des hommes 65 ans et plus dans le total des hommes",
+  "table_default_year": 65531,
+  "years": []
+ },
+ "2352": {
+  "title": "Taux d'emploi des femmes",
+  "table_default_year": 63992,
+  "years": []
+ },
+ "2353": {
+  "title": "Taux d'emploi des hommes",
+  "table_default_year": 63998,
+  "years": []
+ },
+ "2355": {
+  "title": "Part des femmes demandeuses d’emploi dans la population totale féminine de 18 à 64 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2356": {
+  "title": "Part des hommes demandeurs d’emploi dans la population totale masculine de 18 à 64 ans",
+  "table_default_year": 0,
+  "years": []
  },
  "2359": {
-  "title": null,
+  "title": "Coefficient de vieillissement des femmes",
   "table_default_year": 65483,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2360": {
+  "title": "Coefficient de vieillissement des hommes",
+  "table_default_year": 65486,
+  "years": []
+ },
+ "2361": {
+  "title": "Coefficient de dépendance des âgés (des hommes)",
+  "table_default_year": 65495,
+  "years": []
+ },
+ "2363": {
+  "title": "Part des femmes de 18-64 ans dans le total des femmes",
+  "table_default_year": 65522,
+  "years": []
+ },
+ "2364": {
+  "title": "Part des 65-79 ans dans la population totale",
+  "table_default_year": 65450,
+  "years": []
+ },
+ "2365": {
+  "title": "Part des 80 ans et plus dans la population totale",
+  "table_default_year": 65453,
+  "years": []
+ },
+ "2370": {
+  "title": "Taux d'occupation de la voirie entre 17h et 18h",
+  "table_default_year": 55712,
+  "years": []
+ },
+ "2373": {
+  "title": "Part des enfants du quartier inscrits dans une école primaire située en dehors de la Région",
+  "table_default_year": 64689,
+  "years": []
+ },
+ "2374": {
+  "title": "Part des enfants du quartier inscrits dans une école maternelle située en dehors de la Région",
+  "table_default_year": 64688,
+  "years": []
+ },
+ "2375": {
+  "title": "Capacité d’accueil scolaire relative du quartier (primaire)",
+  "table_default_year": 64677,
+  "years": []
  },
  "2377": {
-  "title": null,
+  "title": "Part des enfants non bruxellois inscrits dans une école secondaire du quartier",
   "table_default_year": 64687,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2379": {
+  "title": "Part des isolés de 30 ans et plus dans le total des ménages privés",
+  "table_default_year": 65540,
+  "years": []
+ },
+ "2380": {
+  "title": "Taux de croissance annuel moyen de la population masculine",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2381": {
+  "title": "Taux de croissance annuel moyen de la population féminine",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2382": {
+  "title": "Part de nouveaux habitants du territoire",
+  "table_default_year": 58604,
+  "years": []
+ },
+ "2384": {
+  "title": "Part de nouveaux habitants de la Région",
+  "table_default_year": 58661,
+  "years": []
+ },
+ "2410": {
+  "title": "Nombre de logements ayant accès à un jardin privé",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2411": {
+  "title": "Nombre de logements",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2412": {
+  "title": "Part des logements ayant accès à un jardin privé",
+  "table_default_year": 24585,
+  "years": []
+ },
+ "2414": {
+  "title": "Taux de végétalisation",
+  "table_default_year": 65076,
+  "years": []
+ },
+ "2415": {
+  "title": "Taux de végétalisation",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2419": {
+  "title": "Nombre de salariés et d'indépendants de 18-24 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2420": {
+  "title": "Nombre de bénéficiaires de l’intervention majorée - BIM",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2421": {
+  "title": "Nombre d’hommes bénéficiaires de l’intervention majorée",
+  "table_default_year": 0,
+  "years": []
  },
  "2422": {
-  "title": null,
+  "title": "Nombre de femmes bénéficiaires de l’intervention majorée",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2428": {
+  "title": "Part des bénéficiaires de l’intervention majorée dans la population totale",
+  "table_default_year": 65728,
+  "years": []
+ },
+ "2429": {
+  "title": "Part des bénéficiaires de l’intervention majorée dans la population de sexe masculin",
+  "table_default_year": 65730,
+  "years": []
+ },
+ "2430": {
+  "title": "Part des bénéficiaires de l’intervention majorée dans la population de sexe féminin",
+  "table_default_year": 65732,
+  "years": []
+ },
+ "2438": {
+  "title": "Population des 25 à 44 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2439": {
+  "title": "Nombre d'européens - Europe des 14 hors Belgique",
+  "table_default_year": 0,
+  "years": []
  },
  "2440": {
-  "title": null,
+  "title": "Part de l'Europe des 14 (hors Belgique)",
   "table_default_year": 65585,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2442": {
+  "title": "Niveaux de bruit multi-exposition : indicateur Lden - 24h",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2443": {
+  "title": "Bruit des transports (multi-exposition) : indicateur Lden (24h)",
+  "table_default_year": 65070,
+  "years": []
+ },
+ "2444": {
+  "title": "Niveaux de bruit multi-exposition : indicateur Ln - 23h-7h",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2445": {
+  "title": "Bruit des transports (multi-exposition) : indicateur Ln (23h-7h)",
+  "table_default_year": 65073,
+  "years": []
+ },
+ "2446": {
+  "title": "Concentrations moyennes annuelles en particules fines de diamètre inférieur à 2.5µm",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2447": {
+  "title": "Concentrations moyennes annuelles en particules fines de diamètre inférieur à 2.5µm (PM2.5)",
+  "table_default_year": 65679,
+  "years": []
+ },
+ "2448": {
+  "title": "Concentrations moyennes annuelles en dioxyde d’azote",
+  "table_default_year": 0,
+  "years": []
  },
  "2449": {
-  "title": null,
+  "title": "Concentrations moyennes annuelles en dioxyde d’azote (NO2)",
   "table_default_year": 65677,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2450": {
+  "title": "cbs",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2466": {
+  "title": "Distance moyenne d’accès aux 4 biens de base",
+  "table_default_year": 65759,
+  "years": []
  },
  "2467": {
-  "title": null,
+  "title": "Taux de rez-de-chaussée occupés par du commerce",
   "table_default_year": 65755,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2468": {
+  "title": "Population de 80 ans et +",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2469": {
+  "title": "Nombre de 0-2 ans de sexe féminin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2470": {
+  "title": "Nombre de 0-2 ans de sexe masculin",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2471": {
+  "title": "Coefficient de dépendance économique",
+  "table_default_year": 65639,
+  "years": []
+ },
+ "2472": {
+  "title": "Coefficient de dépendance économique des femmes",
+  "table_default_year": 63740,
+  "years": []
+ },
+ "2473": {
+  "title": "Coefficient de dépendance économique des hommes",
+  "table_default_year": 63743,
+  "years": []
+ },
+ "2474": {
+  "title": "Coefficient de séniorité (80+/60+)",
+  "table_default_year": 65309,
+  "years": []
+ },
+ "2475": {
+  "title": "Coefficient de séniorité des femmes (80+/60+)",
+  "table_default_year": 63723,
+  "years": []
  },
  "2476": {
-  "title": null,
+  "title": "Coefficient de séniorité des hommes (80+/60+)",
   "table_default_year": 63726,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2477": {
+  "title": "Coefficient de vieillissement des actifs potentiels",
+  "table_default_year": 65497,
+  "years": []
+ },
+ "2478": {
+  "title": "Coefficient de vieillissement des actifs potentiels (des femmes)",
+  "table_default_year": 63731,
+  "years": []
+ },
+ "2479": {
+  "title": "Coefficient de vieillissement des actifs potentiels (des hommes)",
+  "table_default_year": 63734,
+  "years": []
+ },
+ "2480": {
+  "title": "Part des 18-24 ans dans la population totale",
+  "table_default_year": 65305,
+  "years": []
+ },
+ "2481": {
+  "title": "Part des surfaces imperméables",
+  "table_default_year": 60522,
+  "years": []
  },
  "2485": {
-  "title": null,
+  "title": "Part des femmes de 20-49 ans en couple sans enfant (sur les femmes de 20-49 ans)",
   "table_default_year": 65459,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2486": {
+  "title": "Part des femmes de 20-59 ans en couple avec enfant (sur les femmes de 20-59 ans)",
+  "table_default_year": 65461,
+  "years": []
+ },
+ "2487": {
+  "title": "Part des femmes de 60 ans et plus en couple sans enfant (sur les femmes de 60 ans et plus)",
+  "table_default_year": 65465,
+  "years": []
+ },
+ "2488": {
+  "title": "Part des mères seules de 20-49 ans (sur les femmes de 20-49 ans)",
+  "table_default_year": 65456,
+  "years": []
+ },
+ "2489": {
+  "title": "Part du reste de l'Europe (hors UE27)",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2490": {
+  "title": "Accessibilité régionale au territoire en transport public",
+  "table_default_year": 61839,
+  "years": []
+ },
+ "2491": {
+  "title": "Accessibilité régionale au territoire en transport public",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2492": {
+  "title": "Nombre d'actifs",
+  "table_default_year": 64102,
+  "years": []
+ },
+ "2493": {
+  "title": "Nombre d’actifs de 18 à 25 ans",
+  "table_default_year": 64110,
+  "years": []
  },
  "2494": {
-  "title": null,
+  "title": "Nombre de femmes actives",
   "table_default_year": 64105,
-  "years": [],
-  "siblings": []
+  "years": []
  },
- "2503": {
-  "title": null,
+ "2495": {
+  "title": "Nombre d'hommes actifs",
+  "table_default_year": 64117,
+  "years": []
+ },
+ "2497": {
+  "title": "Revenu équivalent médian des habitant·es après impôt",
   "table_default_year": 0,
-  "years": [],
-  "siblings": []
- },
- "2512": {
-  "title": null,
-  "table_default_year": 0,
-  "years": [],
-  "siblings": []
- },
- "2521": {
-  "title": null,
-  "table_default_year": 0,
-  "years": [],
-  "siblings": []
- },
- "2548": {
-  "title": null,
-  "table_default_year": 0,
-  "years": [],
-  "siblings": []
- },
- "2557": {
-  "title": null,
-  "table_default_year": 0,
-  "years": [],
-  "siblings": []
- },
- "2566": {
-  "title": null,
-  "table_default_year": 65225,
-  "years": [],
-  "siblings": []
- },
- "2584": {
-  "title": null,
-  "table_default_year": 65685,
-  "years": [],
-  "siblings": []
- },
- "2593": {
-  "title": null,
-  "table_default_year": 0,
-  "years": [],
-  "siblings": []
+  "years": []
  },
  "2498": {
-  "title": null,
+  "title": "Revenu équivalent médian des habitant·es après impôt",
   "table_default_year": 65707,
-  "years": [],
-  "siblings": []
+  "years": []
+ },
+ "2499": {
+  "title": "Revenu équivalent moyen par habitant·e après impôt",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2500": {
+  "title": "Revenu équivalent moyen par habitant après impôt",
+  "table_default_year": 65710,
+  "years": []
+ },
+ "2501": {
+  "title": "Taux de végétation haute - variable",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2502": {
+  "title": "Taux de végétation haute",
+  "table_default_year": 63594,
+  "years": []
+ },
+ "2503": {
+  "title": "Nombre d' interventions pour des fuites de gaz",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2504": {
+  "title": "Densité des interventions du SIAMU pour des fuites de gaz",
+  "table_default_year": 64487,
+  "years": []
+ },
+ "2505": {
+  "title": "Nombre total d'interventions pour des incendies",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2506": {
+  "title": "Densité des interventions du SIAMU pour des incendies de bâtiment",
+  "table_default_year": 64493,
+  "years": []
+ },
+ "2507": {
+  "title": "Nombre de victimes (blessés et morts) d'incendies",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2508": {
+  "title": "Taux de victimes d’incendies de bâtiments pour 10.000 habitants",
+  "table_default_year": 64486,
+  "years": []
+ },
+ "2509": {
+  "title": "Nombre de victimes (blessés et morts)  d'intoxications au CO",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2510": {
+  "title": "Taux de victimes d’intoxications au CO pour 10.000 habitants",
+  "table_default_year": 64491,
+  "years": []
+ },
+ "2511": {
+  "title": "Densité des interventions du SIAMU pour des intoxications au CO",
+  "table_default_year": 64489,
+  "years": []
+ },
+ "2512": {
+  "title": "Nombre d'interventions pour des intoxications au CO",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2513": {
+  "title": "Nombre de ventes d'appartements",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2514": {
+  "title": "Prix médian des ventes des appartements",
+  "table_default_year": 64497,
+  "years": []
+ },
+ "2516": {
+  "title": "Part des demandeurs d'emploi depuis plus de deux ans dans les demandeurs d'emploi",
+  "table_default_year": 65399,
+  "years": []
+ },
+ "2517": {
+  "title": "Nombre de demandeurs d'emploi inoccupés depuis plus de 2 ans",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2518": {
+  "title": "Nombre de maisons",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2519": {
+  "title": "Nombre d'appartements",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2521": {
+  "title": "Nombre de logements loués",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2522": {
+  "title": "Part des maisons dans le parc de logements",
+  "table_default_year": 64934,
+  "years": []
+ },
+ "2523": {
+  "title": "Part des appartements dans le parc de logements",
+  "table_default_year": 64937,
+  "years": []
+ },
+ "2524": {
+  "title": "Part de logements occupés par des locataires",
+  "table_default_year": 64944,
+  "years": []
+ },
+ "2525": {
+  "title": "Part de logements occupés par leur propriétaire",
+  "table_default_year": 64947,
+  "years": []
+ },
+ "2526": {
+  "title": "Densité de logements",
+  "table_default_year": 64952,
+  "years": []
+ },
+ "2528": {
+  "title": "Nombre de bénéficiaires d’un revenu du CPAS",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2531": {
+  "title": "Part des bénéficiaires d’un revenu du CPAS (RIS ou équivalent) dans la population",
+  "table_default_year": 65082,
+  "years": []
+ },
+ "2544": {
+  "title": "Nombre d'enfants scolarisés en maternel à moins d'un kilomètre de leur résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2545": {
+  "title": "Nombre d'élèves résidant à moins d'un kilomètre de leur école maternelle",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2546": {
+  "title": "Nombre d'enfants scolarisés en primaire à moins d'un kilomètre de leur résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2547": {
+  "title": "Nombre d'élèves résidant à moins d'un kilomètre de leur école primaire",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2548": {
+  "title": "Nombre d'enfants scolarisés en secondaire à moins d'un kilomètre de leur résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2549": {
+  "title": "Nombre d'élèves résidant à moins d'un kilomètre de leur école secondaire",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2550": {
+  "title": "Nombre d'enfants scolarisés en maternel à plus de quatre kilomètres de leur résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2551": {
+  "title": "Nombre d'élèves résidant à plus de quatre kilomètres de leur école maternelle",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2552": {
+  "title": "Nombre d'enfants scolarisés en primaire à plus de quatre kilomètres de leur résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2553": {
+  "title": "Nombre d'élèves résidant à plus de quatre kilomètres de leur école primaire",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2554": {
+  "title": "Nombre d'enfants scolarisés en secondaire à plus de quatre kilomètres de leur résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2555": {
+  "title": "Nombre d'élèves résidant à plus de quatre kilomètres de leur école secondaire",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2556": {
+  "title": "Nombre total d'enfants scolarisés en maternel au lieu de résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2557": {
+  "title": "Nombre total d'élèves dans les écoles maternelles du quartier",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2558": {
+  "title": "Nombre total d'enfants scolarisés en primaire au lieu de résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2559": {
+  "title": "Nombre total d'élèves dans les écoles primaires du quartier",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2560": {
+  "title": "Nombre total d'enfants scolarisés en secondaire au lieu de résidence",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2561": {
+  "title": "Nombre total d'élèves dans les écoles secondaires du quartier",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2562": {
+  "title": "Part des élèves des écoles maternelles résidant à moins de 1 km de leur école",
+  "table_default_year": 65205,
+  "years": []
+ },
+ "2563": {
+  "title": "Part des élèves des écoles primaires résidant à moins de 1 km de leur école",
+  "table_default_year": 65210,
+  "years": []
+ },
+ "2564": {
+  "title": "Part des élèves des écoles secondaires résidant à moins de 1 km de leur école",
+  "table_default_year": 65215,
+  "years": []
+ },
+ "2565": {
+  "title": "Part des élèves des écoles maternelles résidant à plus de 4 km de leur école",
+  "table_default_year": 65220,
+  "years": []
+ },
+ "2566": {
+  "title": "Part des élèves des écoles primaires résidant à plus de 4 km de leur école",
+  "table_default_year": 65225,
+  "years": []
+ },
+ "2567": {
+  "title": "Part des élèves des écoles secondaires résidant à plus de 4 km de leur école",
+  "table_default_year": 65230,
+  "years": []
+ },
+ "2568": {
+  "title": "Part des enfants du quartier scolarisés dans une école maternelle à moins de 1 km de leur domicile",
+  "table_default_year": 65235,
+  "years": []
+ },
+ "2569": {
+  "title": "Part des enfants du quartier scolarisés dans une école primaire à moins de 1 km de leur domicile",
+  "table_default_year": 65240,
+  "years": []
+ },
+ "2570": {
+  "title": "Part des enfants du quartier scolarisés dans une école secondaire à moins de 1 km de leur domicile",
+  "table_default_year": 65245,
+  "years": []
+ },
+ "2571": {
+  "title": "Part des enfants du quartier scolarisés dans une école maternelle à plus de 4 km de leur domicile",
+  "table_default_year": 65250,
+  "years": []
+ },
+ "2572": {
+  "title": "Part des enfants du quartier scolarisés dans une école primaire à plus de 4 km de leur domicile",
+  "table_default_year": 65255,
+  "years": []
+ },
+ "2573": {
+  "title": "Part des enfants du quartier scolarisés dans une école secondaire à plus de 4 km de leur domicile",
+  "table_default_year": 65260,
+  "years": []
+ },
+ "2574": {
+  "title": "Nombre de logements occupés autrement ou inoccupés",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2576": {
+  "title": "Part de logements occupés autrement ou inoccupés",
+  "table_default_year": 65630,
+  "years": []
+ },
+ "2584": {
+  "title": "Taux d'emprise au sol",
+  "table_default_year": 65685,
+  "years": []
+ },
+ "2585": {
+  "title": "Rapport plancher/sol",
+  "table_default_year": 65682,
+  "years": []
+ },
+ "2586": {
+  "title": "Nombre moyen de niveaux",
+  "table_default_year": 65691,
+  "years": []
+ },
+ "2587": {
+  "title": "Hauteur maximale des bâtiments",
+  "table_default_year": 65694,
+  "years": []
+ },
+ "2592": {
+  "title": "Nombre de logements total hors logements sociaux",
+  "table_default_year": 0,
+  "years": []
+ },
+ "2593": {
+  "title": "Nombre de logements loués hors logements sociaux",
+  "table_default_year": 0,
+  "years": []
  }
 }

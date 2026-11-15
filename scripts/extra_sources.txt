@@ -1,2 +1,1 @@
-bru_site_js	https://monitoringdesquartiers.brussels/js/site.js
-bru_client_65707	https://geodata.perspective.brussels/client/mdq/fr/65707
+# round 5: crawler only

@@ -7,7 +7,7 @@
 .block{border-top:1px solid #111;padding:28px 0}
 .block h2{margin:0 0 10px;font-size:26px}.block h3{font-size:16px;margin:22px 0 8px}.block h3 small{font-weight:400;color:#555;margin-left:8px}
 .variant table,.block table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{text-align:left;padding:7px 8px;border-bottom:1px solid #ddd}th{font-weight:600;background:#f3f3f0}
+.page th,.page td{text-align:left;padding:7px 8px;border-bottom:1px solid #ddd}.page th{font-weight:600;background:#f3f3f0}
 .consistent td:last-child{color:#0a6b2e;font-weight:600}.inconsistent td:last-child{color:#b70021;font-weight:600}
 .undetermined td:last-child{color:#8a5a00}.not_in_universe td{color:#888}
 .note{font-size:13px;color:#555}

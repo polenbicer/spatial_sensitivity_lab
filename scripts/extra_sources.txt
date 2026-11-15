@@ -1,0 +1,14 @@
+# Brussels: Monitoring des Quartiers (IBSA / perspective.brussels)
+bru_income_table_65707	https://geodata.perspective.brussels/api/geodata/mdq/table/65707/fr
+bru_indicator_page_2498	https://monitoringdesquartiers.brussels/Indicator/IndicatorPage/2498?tab=Sheet&SubTheme=28
+bru_mdq_home	https://monitoringdesquartiers.brussels/
+bru_mdq_indicators	https://monitoringdesquartiers.brussels/Indicator
+bru_geodata_mdq_root	https://geodata.perspective.brussels/api/geodata/mdq
+bru_geodata_mdq_tables	https://geodata.perspective.brussels/api/geodata/mdq/tables
+bru_geodata_mdq_indicators	https://geodata.perspective.brussels/api/geodata/mdq/indicators/fr
+# Amsterdam: statistics API and municipal heat risk map
+ams_indicator_list	https://api.data.amsterdam.nl/v1/statistieken/v2/indicatoren?_pageSize=5000&_format=json
+ams_risk_app_a9c9	https://www.arcgis.com/sharing/rest/content/items/a9c9694c4a8a4298ab97f1a44249ed68/data?f=json
+ams_risk_app_a9c9_meta	https://www.arcgis.com/sharing/rest/content/items/a9c9694c4a8a4298ab97f1a44249ed68?f=json
+ams_risk_app_aec3	https://www.arcgis.com/sharing/rest/content/items/aec3fc23a4134a3da32c7cb2cf3b66da/data?f=json
+ams_risk_app_aec3_meta	https://www.arcgis.com/sharing/rest/content/items/aec3fc23a4134a3da32c7cb2cf3b66da?f=json

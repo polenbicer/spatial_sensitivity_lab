@@ -15,3 +15,15 @@ Install requirements-neighbourhood.txt. Run `python3 scripts/fetch_amsterdam_nei
 Build with `npm run build`. Earlier social-diagnostic and grid-income scripts are historical and do not define the current Amsterdam model.
 
 Income documentation updated 27 October 2026 following Amsterdam O&S correspondence: excludes student households, institutional residents and households without income information; publication requires at least 100 remaining households. Definitive 2024 figures are expected in 2027. The confirmed historical 418/518 Buurt join is separate from the current 108/110 Wijk coverage. Scores, source values and weights are unchanged.
+
+## Version 0.4 (15 November 2026)
+
+Alignment with the thesis text; scores, observations and weights unchanged (verified: within-city percentiles, the four weighted sums and the scenario median were recomputed independently from the published observations and match the JSON, GeoJSON and CSV files exactly).
+
+- Research question and sub-questions on the main page now match the thesis (three priority logics, AS1–AS3, K1–K4).
+- The unlabelled RESILIO project overlay was removed from the Amsterdam map; `public/data/project_context.geojson` is kept for reference only.
+- The challenge record now states the four evaluation conditions (K1–K4).
+- Added a short justification of the three indicators, including their within-city rank correlations.
+- Priority Lines: the fixed Brussels examples included two unranked areas (Industrie Sud, Industrie Nord), so the list never loaded; fixed.
+- Policy simulation chat: disclaimer states that reactions are written by the researcher and are not resident opinion or research data.
+- `data/prepared/amsterdam_neighbourhood/audit.json` documents the earlier buurt model and its earlier weights (40/30/30 etc.); it does not describe the current wijk model.

@@ -39,7 +39,7 @@ export default function ResidentChat({ decisions, areas, seed, open, onOpen, onC
     {!open && <button ref={trigger} className={styles.launcher} onClick={onOpen} aria-controls="resident-chat" aria-expanded={false}><MessageCircle size={18} aria-hidden="true"/><span>Neighbourhood chat</span><b>{unread > 0 ? `${unread} new` : count}</b></button>}
     {open && <aside id="resident-chat" className={styles.panel} aria-labelledby="chat-title">
       <div className={styles.header}><div><p><span className={styles.dot}/> THE GROUP CHAT 🌶️</p><h2 id="chat-title">Brussels has opinions. 🍿</h2></div><button onClick={() => {onClose();}} aria-label="Close neighbourhood chat"><X size={20}/></button></div>
-      <p className={styles.disclaimer}>Fictional residents. Scripted reactions.<br/>Zero chill. No real messages are posted.</p>
+      <p className={styles.disclaimer}>Fictional residents. Reactions written by the researcher for this game.<br/>Not resident opinion and not research data. No real messages are posted.</p>
       <div className={styles.feed} ref={scroller} onScroll={() => {const el=scroller.current;if(el)setFollowing(el.scrollHeight-el.scrollTop-el.clientHeight < 70);}} role="log" aria-label="Fictional resident reactions" aria-live="polite" aria-relevant="additions">
         {visible.map(c => <div key={`${c.turn}-${c.id}`}>
           {c.first && <div className={styles.event}><span>DECISION 0{c.turn} CONFIRMED</span><strong>{c.title}</strong></div>}

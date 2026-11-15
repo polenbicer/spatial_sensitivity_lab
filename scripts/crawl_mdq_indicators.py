@@ -14,9 +14,13 @@ def get(url):
             return r.read()
     except Exception:
         return None
+from concurrent.futures import ThreadPoolExecutor
+def page(i):
+    return i, get(f'https://monitoringdesquartiers.brussels/Indicator/IndicatorPage/{i}?tab=Sheet')
 index = {}
-for i in range(1, 2700):
-    b = get(f'https://monitoringdesquartiers.brussels/Indicator/IndicatorPage/{i}?tab=Sheet'); time.sleep(0.03)
+with ThreadPoolExecutor(12) as pool:
+    pages = list(pool.map(page, range(1, 2700)))
+for i, b in pages:
     if not b: continue
     s = b.decode('utf-8', 'ignore')
     t = re.search(r'stat-sheet-title">\s*<h3[^>]*>([^<]*)</h3>', s)

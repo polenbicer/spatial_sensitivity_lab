@@ -4,7 +4,7 @@ authors:
   - family-names: Biçer
     given-names: Polen
 title: "Spatial Sensitivity Lab: Urban Cooling Prioritisation in Brussels and Amsterdam"
-version: "0.4"
+version: "0.5"
 date-released: 2026-11-15
 url: "https://spatialsensitivitylab.vercel.app/"
 repository-code: "https://github.com/polenbicer/spatial_sensitivity_lab"

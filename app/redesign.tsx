@@ -179,6 +179,7 @@ export default function ResearchInterface() {
           <a href="/priority-lines">[03] PRIORITY LINES</a>
           <a href="#politics">[04] RESEARCH</a>
           <a href="#method">[05] SOURCES &amp; METHOD</a>
+          <a href="/city-criteria">[06] CITY CRITERIA</a>
         </nav>
 
         <div className="diagram-field" aria-hidden="true">
@@ -451,7 +452,7 @@ export default function ResearchInterface() {
       </section>
       </section>
       <section className="lab-chapter" id="politics" aria-labelledby="politics-title">
-        <header className="chapter-header"><p className="eyebrow">04 · Politics &amp; legitimacy</p><h2 id="politics-title">Politics &amp; legitimacy</h2><p>From value choices in a model to justification, participation and public responsibility.</p></header><nav className="research-links" aria-label="Research sections"><a href="#participation">Participation</a><a href="#legitimacy">Decision process</a><a href="#procurement">Further research</a><a href="#data-evidence">Data evidence</a></nav>
+        <header className="chapter-header"><p className="eyebrow">04 · Politics &amp; legitimacy</p><h2 id="politics-title">Politics &amp; legitimacy</h2><p>From value choices in a model to justification, participation and public responsibility.</p></header><nav className="research-links" aria-label="Research sections"><a href="/city-criteria">City criteria</a><a href="#participation">Participation</a><a href="#legitimacy">Decision process</a><a href="#procurement">Further research</a><a href="#data-evidence">Data evidence</a></nav>
       <section className="research-frame">
         <p className="eyebrow">Research question</p>
         <h3>
@@ -640,7 +641,7 @@ export default function ResearchInterface() {
       </section>
       <footer>
         <b>Spatial Sensitivity Lab</b>
-        <span>Research demonstrator · developed by Polen Biçer · v0.4 · 15 November 2026</span>
+        <span>Research demonstrator · developed by Polen Biçer · v0.5 · 15 November 2026</span>
         <span>Not an operational allocation system</span>
       </footer>
     </main>

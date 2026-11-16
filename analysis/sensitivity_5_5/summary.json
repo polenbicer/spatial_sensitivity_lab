@@ -1,0 +1,278 @@
+{
+ "brussels": {
+  "N": 116,
+  "top_q_size": 29,
+  "published_score_max_abs_diff": {
+   "esit": 3.333333467026023e-07,
+   "sicaklik": 4.000000188852937e-07,
+   "yesil": 4.000000188852937e-07,
+   "gelir": 4.0000001177986633e-07
+  },
+  "pairs": {
+   "esit-sicaklik": {
+    "spearman": 0.978,
+    "common_top": 26,
+    "jaccard": 0.867
+   },
+   "esit-yesil": {
+    "spearman": 0.872,
+    "common_top": 17,
+    "jaccard": 0.425
+   },
+   "esit-gelir": {
+    "spearman": 0.928,
+    "common_top": 24,
+    "jaccard": 0.727
+   },
+   "sicaklik-yesil": {
+    "spearman": 0.795,
+    "common_top": 17,
+    "jaccard": 0.425
+   },
+   "sicaklik-gelir": {
+    "spearman": 0.917,
+    "common_top": 24,
+    "jaccard": 0.727
+   },
+   "yesil-gelir": {
+    "spearman": 0.663,
+    "common_top": 15,
+    "jaccard": 0.349
+   }
+  },
+  "robust_top": [
+   "Anderlecht - Centre - Wayez",
+   "Bas Forest",
+   "Bosnie",
+   "Chaussée de Haecht",
+   "Cureghem Bara",
+   "Cureghem Rosée",
+   "Duchesse",
+   "Karreveld",
+   "Koekelberg",
+   "Martyrs",
+   "Matonge",
+   "Molenbeek Historique",
+   "Quartier Brabant",
+   "Stalingrad",
+   "Woeste"
+  ],
+  "n_robust": 15,
+  "only_one_scenario": [
+   "Altitude 100",
+   "Berckmans - Hôtel des Monnaies",
+   "Châtelain",
+   "Dailly",
+   "Georges Henri",
+   "Louise - Longue Haie",
+   "Marolles",
+   "Molière - Longchamp",
+   "Mutsaard",
+   "Plasky",
+   "Porte Tervueren",
+   "Quartier Nord",
+   "Van Volxem - Van Haelen",
+   "Veeweyde - Aurore",
+   "Vieux Laeken Est"
+  ],
+  "n_union_top": 45,
+  "shift_median": 24.75,
+  "shift_p90": 45.0,
+  "shift_max": 52.0,
+  "n_shift_ge_20": 75,
+  "cutoff_score_esit": 65.22,
+  "near_cutoff_pm5": 18,
+  "scan_n": 171,
+  "scan_always": 5,
+  "scan_never": 56,
+  "scan_between": 55,
+  "examples": {
+   "large": {
+    "name": "Georges Henri",
+    "ranks": {
+     "esit": 42.0,
+     "sicaklik": 34.0,
+     "yesil": 21.0,
+     "gelir": 73.0
+    },
+    "scores": {
+     "esit": 60.0,
+     "sicaklik": 65.6,
+     "yesil": 71.8,
+     "gelir": 42.6
+    },
+    "indicators": [
+     73.9,
+     89.6,
+     16.5
+    ],
+    "shift": 52.0,
+    "scan_top_share": 0.339
+   },
+   "small": {
+    "name": "Duchesse",
+    "ranks": {
+     "esit": 1.0,
+     "sicaklik": 1.0,
+     "yesil": 1.0,
+     "gelir": 1.0
+    },
+    "scores": {
+     "esit": 93.6,
+     "sicaklik": 96.2,
+     "yesil": 89.9,
+     "gelir": 94.8
+    },
+    "indicators": [
+     100.0,
+     84.3,
+     96.5
+    ],
+    "shift": 0.0,
+    "scan_top_share": 1.0
+   },
+   "missing": {
+    "name": "Bois de la Cambre",
+    "status": "income_not_published",
+    "data_quality": "income_not_published"
+   }
+  }
+ },
+ "amsterdam": {
+  "N": 108,
+  "top_q_size": 27,
+  "published_score_max_abs_diff": {
+   "esit": 3.333333467026023e-07,
+   "sicaklik": 4.000000188852937e-07,
+   "yesil": 4.0000000467443897e-07,
+   "gelir": 4.0000000467443897e-07
+  },
+  "pairs": {
+   "esit-sicaklik": {
+    "spearman": 0.962,
+    "common_top": 24,
+    "jaccard": 0.8
+   },
+   "esit-yesil": {
+    "spearman": 0.917,
+    "common_top": 23,
+    "jaccard": 0.742
+   },
+   "esit-gelir": {
+    "spearman": 0.837,
+    "common_top": 17,
+    "jaccard": 0.459
+   },
+   "sicaklik-yesil": {
+    "spearman": 0.895,
+    "common_top": 23,
+    "jaccard": 0.742
+   },
+   "sicaklik-gelir": {
+    "spearman": 0.734,
+    "common_top": 16,
+    "jaccard": 0.421
+   },
+   "yesil-gelir": {
+    "spearman": 0.603,
+    "common_top": 15,
+    "jaccard": 0.385
+   }
+  },
+  "robust_top": [
+   "Burgwallen-Nieuwe Zijde",
+   "Burgwallen-Oude Zijde",
+   "Dapperbuurt",
+   "Hoofdweg e.o.",
+   "IJselbuurt",
+   "Indische Buurt-West",
+   "Jordaan",
+   "Nieuwe Pijp",
+   "Noordelijke IJ-oevers-Oost",
+   "Oude Pijp",
+   "Staatsliedenbuurt",
+   "Transvaalbuurt",
+   "Van Galenbuurt",
+   "Van Lennepbuurt",
+   "Zuid Pijp"
+  ],
+  "n_robust": 15,
+  "only_one_scenario": [
+   "Amstel III/Bullewijk",
+   "Betondorp",
+   "Bijlmermuseum",
+   "Grachtengordel-West",
+   "Grachtengordel-Zuid",
+   "H-buurt",
+   "Noordelijke IJ-oevers-West",
+   "Oosterparkbuurt",
+   "Slotermeer-Noordoost",
+   "Slotermeer-West",
+   "Tuindorp Nieuwendam",
+   "Venserpolder",
+   "Vondelparkbuurt"
+  ],
+  "n_union_top": 42,
+  "shift_median": 24.75,
+  "shift_p90": 47.65,
+  "shift_max": 63.0,
+  "n_shift_ge_20": 67,
+  "cutoff_score_esit": 63.86,
+  "near_cutoff_pm5": 15,
+  "scan_n": 171,
+  "scan_always": 4,
+  "scan_never": 50,
+  "scan_between": 54,
+  "examples": {
+   "large": {
+    "name": "Bijlmermuseum",
+    "ranks": {
+     "esit": 63.0,
+     "sicaklik": 67.5,
+     "yesil": 87.0,
+     "gelir": 24.0
+    },
+    "scores": {
+     "esit": 47.4,
+     "sicaklik": 43.7,
+     "yesil": 30.3,
+     "gelir": 68.0
+    },
+    "indicators": [
+     38.3,
+     4.7,
+     99.1
+    ],
+    "shift": 63.0,
+    "scan_top_share": 0.175
+   },
+   "small": {
+    "name": "Zuid Pijp",
+    "ranks": {
+     "esit": 1.0,
+     "sicaklik": 1.0,
+     "yesil": 2.0,
+     "gelir": 1.0
+    },
+    "scores": {
+     "esit": 91.3,
+     "sicaklik": 90.7,
+     "yesil": 91.0,
+     "gelir": 92.1
+    },
+    "indicators": [
+     89.7,
+     90.7,
+     93.5
+    ],
+    "shift": 1.0,
+    "scan_top_share": 1.0
+   },
+   "missing": {
+    "name": "Coenhaven/Minervahaven",
+    "status": "income_not_published",
+    "data_quality": "income not published"
+   }
+  }
+ }
+}
